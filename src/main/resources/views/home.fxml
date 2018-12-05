@@ -46,18 +46,6 @@
         </graphic>
     </Button>
    <Canvas height="100.0" width="100.0" GridPane.columnIndex="2" />
-   <Canvas height="100.0" width="00.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-   <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
+   <Canvas height="100.0" width="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 
 </GridPane>
