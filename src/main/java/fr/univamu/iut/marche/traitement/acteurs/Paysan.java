@@ -21,4 +21,8 @@ public class Paysan extends Participant {
     public void addProduit(ProduitFermier produit) {
         this.produits.add(produit);
     }
+
+    public void removeProduit(ProduitFermier produit) {
+        this.produits.remove(produit);
+    }
 }
