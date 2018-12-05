@@ -41,5 +41,4 @@ public class Participant {
         this.age = age;
     }
 
-
 }

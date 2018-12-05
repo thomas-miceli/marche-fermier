@@ -1,9 +1,21 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
-import java.util.List;
+import fr.univamu.iut.marche.traitement.ProductionDeMiel;
 
 public class Apiculteur extends Paysan {
-    public Apiculteur(String nom, String prenom, int age, List produits) {
-        super(nom, prenom, age, produits);
+    public Apiculteur(String nom, String prenom, int age) {
+        super(nom, prenom, age);
     }
+
+    @Override
+    public void fabriquerProduit(String objetFab)  {
+        ProductionDeMiel productionDeMiel = new ProductionDeMiel();
+        try {
+            this.addProduit(productionDeMiel.fabriquer(objetFab,this));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
