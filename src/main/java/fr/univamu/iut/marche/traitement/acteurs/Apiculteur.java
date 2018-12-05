@@ -7,7 +7,6 @@ public class Apiculteur extends Paysan {
         super(nom, prenom, age);
     }
 
-    @Override
     public void fabriquerProduit(String objetFab)  {
         ProductionDeMiel productionDeMiel = new ProductionDeMiel();
         try {

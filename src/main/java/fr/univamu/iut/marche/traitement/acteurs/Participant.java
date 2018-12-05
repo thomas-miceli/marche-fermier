@@ -5,11 +5,11 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Participant {
+public abstract class Participant {
 
-    private String nom;
-    private String prenom;
-    private int age;
+    protected String nom;
+    protected String prenom;
+    protected int age;
 
     public Participant(String nom, String prenom, int age) {
         this.nom = nom;

@@ -6,6 +6,9 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
+
+import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 
 public class Marche {
     private Map<Paysan, ArrayList<ProduitFermier>> listeParticipantsMarche = new HashMap<>();
@@ -22,16 +25,6 @@ public class Marche {
 
     }
 
-    public void AddToList(Paysan peon, ProduitFermier produitAVendre){
-        peon.getProduitsVendus().add(produitAVendre);
-        System.out.println(peon);
-        System.out.println(peon.getProduitsVendus());
-
-        listeParticipantsMarche.put(peon, peon.getProduitsVendus());
-
-        System.out.println(listeParticipantsMarche.toString());
-    }
-
     public void listeProduitsPaysans (Paysan peon){
         for(Map.Entry<Paysan, ArrayList<ProduitFermier>> entry : listeParticipantsMarche.entrySet()) {
             Paysan peonCherche = entry.getKey();
@@ -39,10 +32,16 @@ public class Marche {
                 peonCherche.getProduits();
            }
         }
-    }
+    } // pas sur que ça serve ?
 
-    public void VendreProduit(Paysan peon, ProduitFermier produitVendu){
-        AddToList(peon, produitVendu);
-        peon.removeProduit(produitVendu);
+    public void vendreProduit(Paysan peon, ProduitFermier produitVendu){
+        if (peon.getProduits().contains(produitVendu)) {
+
+            peon.getProduitsVendus().add(produitVendu);
+            listeParticipantsMarche.put(peon, peon.getProduitsVendus());
+            peon.removeProduit(produitVendu);
+        } else {
+            System.out.println(ANSI_RED + peon.getPrenom() + " " + peon.getNom() + " ne peut pas vendre " + produitVendu);
+        }
     }
 }

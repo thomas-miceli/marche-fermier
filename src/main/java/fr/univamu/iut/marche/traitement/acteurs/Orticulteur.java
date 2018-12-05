@@ -5,11 +5,10 @@ import fr.univamu.iut.marche.traitement.ProduictionDeFruit;
 import java.util.List;
 
 public class Orticulteur extends Paysan {
-    public Orticulteur(String nom, String prenom, int age, List produits) {
+    public Orticulteur(String nom, String prenom, int age) {
         super(nom, prenom, age);
     }
 
-    @Override
     public void fabriquerProduit(String objetFab) {
         ProduictionDeFruit produictionDeFruit= new ProduictionDeFruit();
         try {

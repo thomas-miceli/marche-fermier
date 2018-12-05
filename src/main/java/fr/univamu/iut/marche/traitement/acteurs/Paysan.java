@@ -5,31 +5,24 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Paysan extends Participant {
+import static fr.univamu.iut.marche.traitement.Main.*;
 
-    private List produitsEnStock = new ArrayList<ProduitFermier>();
+public abstract class Paysan extends Participant {
 
-    private ArrayList<ProduitFermier> produitsVendus = new ArrayList<ProduitFermier>();
+    private ArrayList<ProduitFermier> produitsEnStock = new ArrayList<>();
 
-    public void setProduits(List produits) {
-        this.produitsEnStock = produits;
-    }
+    private ArrayList<ProduitFermier> produitsEnVente = new ArrayList<>();
 
-    public ArrayList<ProduitFermier> getProduitsVendus() {
-        return produitsVendus;
-    }
-
-    public void setProduitsVendus(ArrayList produitsVendus) {
-        this.produitsVendus = produitsVendus;
-    }
-
-    public Paysan(String nom, String prenom, int age, List produits) {
+    public Paysan(String nom, String prenom, int age) {
         super(nom, prenom, age);
-        this.produitsEnStock = produits;
     }
 
-    public List getProduits() {
+    public ArrayList getProduits() {
         return produitsEnStock;
+    }
+
+    public void setProduits(ArrayList<ProduitFermier> produits) {
+        this.produitsEnStock = produits;
     }
 
     public void addProduit(ProduitFermier produit) {
@@ -38,5 +31,24 @@ public class Paysan extends Participant {
 
     public void removeProduit(ProduitFermier produit) {
         this.produitsEnStock.remove(produit);
+    }
+
+    public ArrayList<ProduitFermier> getProduitsVendus() {
+        return produitsEnVente;
+    }
+
+    public String toString() {
+        System.out.println(ANSI_GREEN + this.prenom + " " + this.nom + " - " + this.age + " ans : \n" +
+                ANSI_CYAN + "Produits en stock : " + ANSI_RESET);
+
+        for (ProduitFermier produit : produitsEnStock) {
+            System.out.println(produit);
+        }
+        System.out.println(ANSI_CYAN + "Produits en vente :" + ANSI_RESET);
+        for (ProduitFermier produit : produitsEnVente) {
+            System.out.println(produit);
+        }
+        System.out.println("\n");
+        return null;
     }
 }
