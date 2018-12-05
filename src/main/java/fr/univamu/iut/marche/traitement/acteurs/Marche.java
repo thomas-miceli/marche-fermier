@@ -33,7 +33,7 @@ public class Marche {
     }
 
     public void VendreProduit(Paysan peon, ProduitFermier produitVendu){
-        peon.removeProduit(produitVendu);
         AddToList(peon, produitVendu);
+        peon.removeProduit(produitVendu);
     }
 }
