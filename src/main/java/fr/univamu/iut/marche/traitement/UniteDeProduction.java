@@ -7,7 +7,7 @@ import fr.univamu.iut.marche.traitement.produits.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public abstract class UniteDeProduction {
+public  class UniteDeProduction {
     public ProduitFermier cree(String type, Paysan P)throws ClassNotFoundException{
         switch (type){
             case "orange":
@@ -44,7 +44,11 @@ public abstract class UniteDeProduction {
         }
         return null;
     }
-    public abstract ProduitFermier fabriquer(String type);
+
+    public ProduitFermier fabriquer(String type,Paysan P) throws ClassNotFoundException {
+        ProduitFermier prod = cree(type,P);
+       return prod;
+    }
 
     private String calcDatePremption(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy",Locale.FRENCH);

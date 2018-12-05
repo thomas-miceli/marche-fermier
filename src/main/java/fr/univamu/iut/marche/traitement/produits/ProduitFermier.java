@@ -7,6 +7,7 @@ import java.util.Date;
 public class ProduitFermier extends UniteDeProduction {
     private int quantite;
     private String dateDePeremption;
+    private String nom;
 
     public ProduitFermier(int quantite, String dateDePeremption) {
         this.quantite = quantite;
@@ -27,5 +28,12 @@ public class ProduitFermier extends UniteDeProduction {
 
     public void setDateDePeremption(String dateDePeremption) {
         this.dateDePeremption = dateDePeremption;
+    }
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 }
