@@ -22,7 +22,11 @@ public class CentraleAchat {
         acheteurs.add(trader);
     }
 
-    public void recalculerPrix(String classeDeProduit) {
+    public void recalculerPrix(ProduitFermier produitFermier) {
+        // obtenir tous les prix du marché pour le type de produit et renvoyer une moyenne
+    }
 
+    public int getPrixMoyen(ProduitFermier produit) {
+        return prixMoyen.get(produit);
     }
 }
