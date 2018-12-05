@@ -7,6 +7,13 @@
     <groupId>fr.univamu.iut</groupId>
     <artifactId>marche-fermier</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
 
 
 </project>
