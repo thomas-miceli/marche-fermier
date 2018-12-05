@@ -28,7 +28,12 @@ public class Marche {
                 + listeParticipantsMarche.get(listeParticipantsMarche);
     }
 
-    public void VendreProduit(Paysan peon, ArrayList<ProduitFermier> produitsVendus){
-        listeParticipantsMarche.put(peon, produitsVendus);
+    public void AddToList(Paysan peon, ProduitFermier produitAVendre){
+        peon.getProduits().add(produitAVendre);
+    }
+
+    public void VendreProduit(Paysan peon, ProduitFermier produitVendu){
+        peon.removeProduit(produitVendu);
+        AddToList(peon, produitVendu);
     }
 }
