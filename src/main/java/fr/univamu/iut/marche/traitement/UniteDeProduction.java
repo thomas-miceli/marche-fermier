@@ -48,6 +48,7 @@ public  class UniteDeProduction {
 
     public ProduitFermier fabriquer(String type,Paysan P) throws ClassNotFoundException {
         ProduitFermier prod = cree(type,P);
+        System.out.println("fabriquationd de "+prod.getNom());
        return prod;
     }
 

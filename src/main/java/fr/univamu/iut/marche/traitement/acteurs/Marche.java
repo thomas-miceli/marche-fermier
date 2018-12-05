@@ -1,4 +1,4 @@
-package fr.univamu.iut.marche.traitement;
+package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.acteurs.Paysan;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
