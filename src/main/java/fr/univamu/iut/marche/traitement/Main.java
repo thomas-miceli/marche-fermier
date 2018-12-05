@@ -28,15 +28,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        ArrayList pro = new ArrayList();
-
-        pro.add(new Cochon(5, "4"));
-        pro.add(new Laitage(5, "4"));
-
-        Paysan p1 = new Apiculteur("Oui", "Non", 40, pro);
-
-        p1.addProduit(new Cochon(5, "4"));
-        launch(args);
 
     }
 }
