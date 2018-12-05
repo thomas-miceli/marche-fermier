@@ -11,10 +11,12 @@ public abstract class UniteDeProduction {
     public ProduitFermier cree(String type, Paysan P)throws ClassNotFoundException{
         String prof = P.getClass().getSimpleName();
         switch (type){
+            case "miel":
+                if(prof.equals("Apiculteur"))return new Miel(5,calcDatePremption());
             case "orange":
-                if(prof.equals("Orticulteur"))return new Lait(5,calcDatePremption());
+                if(prof.equals("Orticulteur"))return new Orange(5,calcDatePremption());
             case "pomme":
-                if(prof.equals("Orticulteur"))return new Lait(5,calcDatePremption());
+                if(prof.equals("Orticulteur"))return new Pomme(5,calcDatePremption());
                 else {
                     System.out.println("Vous ne pouvez pas produire ceci");
                 }

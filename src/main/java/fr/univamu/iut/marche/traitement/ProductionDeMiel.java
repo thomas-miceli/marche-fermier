@@ -7,7 +7,7 @@ public class ProductionDeMiel extends UniteDeProduction {
     @Override
     public ProduitFermier fabriquer(String type, Paysan P) throws ClassNotFoundException {
         ProduitFermier prod= cree(type,P);
-        System.out.println("La production de Miel a crée du "+prod.getNom()+" grace au paysan : "+ P.getNom());
+        System.out.println("La production de Miel a crée du "+prod.getClass().getSimpleName()+" grace au paysan : "+ P.getNom());
         return prod;
     }
 }

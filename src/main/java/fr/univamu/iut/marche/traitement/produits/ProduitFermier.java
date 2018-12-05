@@ -4,7 +4,7 @@ import fr.univamu.iut.marche.traitement.UniteDeProduction;
 
 import java.util.Date;
 
-public class ProduitFermier extends UniteDeProduction {
+public class ProduitFermier{
     private int quantite;
     private String dateDePeremption;
     private String nom;
