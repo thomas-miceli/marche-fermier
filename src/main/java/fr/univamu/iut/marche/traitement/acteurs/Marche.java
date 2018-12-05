@@ -9,8 +9,7 @@ import java.util.Map;
 public class Marche {
     private Map<Paysan, ArrayList<ProduitFermier>> listeParticipantsMarche;
 
-    public Marche(Map<Paysan, ArrayList<ProduitFermier>> listeParticipantsMarche) {
-        this.listeParticipantsMarche = listeParticipantsMarche;
+    public Marche() {
     }
 
     public Map<Paysan, ArrayList<ProduitFermier>> getListeParticipantsMarche() {
