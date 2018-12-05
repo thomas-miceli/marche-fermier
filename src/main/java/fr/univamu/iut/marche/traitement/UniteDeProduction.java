@@ -12,7 +12,7 @@ import java.util.Locale;
 
 public abstract class UniteDeProduction {
     public ProduitFermier cree(String type, Paysan P)throws ClassNotFoundException{
-        switch (type){
+        /*switch (type){
             case "vache":
                 if(P.getProfession().equals("ProducteurDeViande"))return new Vache(5,calcDatePremption());
                 else {
@@ -27,7 +27,7 @@ public abstract class UniteDeProduction {
                 break;
             default:
                 throw new ClassNotFoundException();
-        }
+        }*/
         return null;
     }
     public String calcDatePremption(){
