@@ -8,35 +8,36 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public abstract class UniteDeProduction {
+
     public ProduitFermier cree(String type, Paysan P)throws ClassNotFoundException{
         String prof = P.getClass().getSimpleName();
         switch (type){
-            case "miel":
+            case "MIEL":
                 if(prof.equals("Apiculteur"))return new Miel(5,calcDatePremption());
-            case "orange":
+            case "ORANGE":
                 if(prof.equals("Orticulteur"))return new Orange(5,calcDatePremption());
-            case "pomme":
+            case "POMME":
                 if(prof.equals("Orticulteur"))return new Pomme(5,calcDatePremption());
                 else {
                     System.out.println("Vous ne pouvez pas produire ceci");
                 }
-            case "lait":
+            case "LAIT":
                 if(prof.equals("ProducteurLaitier"))return new Lait(5,calcDatePremption());
                 else {
                     System.out.println("Vous ne pouvez pas produire ceci");
                 }
-            case "fromage":
+            case "FROMAGE":
                 if(prof.equals("ProducteurLaitier"))return new Fromage(5,calcDatePremption());
                 else {
                     System.out.println("Vous ne pouvez pas produire ceci");
                 }
-            case "vache":
+            case "VACHE":
                 if(prof.equals("ProducteurDeViande"))return new Vache(5,calcDatePremption());
                 else {
                     System.out.println("Vous ne pouvez pas produire ceci");
                 }
                 break;
-            case "cochon":
+            case "COCHON":
                 if(prof.equals("ProducteurDeViande"))return new Cochon(5,calcDatePremption());
                 else {
                     System.out.println("Vous ne pouvez pas produire ceci");

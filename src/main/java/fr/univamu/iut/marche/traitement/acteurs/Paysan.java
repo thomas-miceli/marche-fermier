@@ -9,6 +9,8 @@ import static fr.univamu.iut.marche.traitement.Main.*;
 
 public abstract class Paysan extends Participant {
 
+    protected enum ProduitsFabricables {}
+
     private ArrayList<ProduitFermier> produitsEnStock = new ArrayList<>();
 
     private ArrayList<ProduitFermier> produitsEnVente = new ArrayList<>();
@@ -38,7 +40,7 @@ public abstract class Paysan extends Participant {
     }
 
     public String toString() {
-        System.out.println(ANSI_GREEN + this.prenom + " " + this.nom + " - " + this.age + " ans : \n" +
+        System.out.println(ANSI_YELLOW + "(" + this.getClass().getSimpleName() + ") " + ANSI_GREEN + this.prenom + " " + this.nom + " - " + this.age + " ans : \n" +
                 ANSI_CYAN + "Produits en stock : " + ANSI_RESET);
 
         for (ProduitFermier produit : produitsEnStock) {

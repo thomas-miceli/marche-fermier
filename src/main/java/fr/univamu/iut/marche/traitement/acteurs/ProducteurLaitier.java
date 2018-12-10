@@ -10,10 +10,15 @@ public class ProducteurLaitier extends Paysan {
         super(nom, prenom, age);
     }
 
-    public void fabriquerProduit(String objetFab) {
+    public enum ProduitsFabricables {
+        LAIT,
+        FROMAGE
+    }
+
+    public void fabriquerProduit(ProduitsFabricables objetFab) {
         ProductionDeLaitage productionDeLaitage = new ProductionDeLaitage();
         try {
-            this.addProduit(productionDeLaitage.fabriquer(objetFab,this));
+            this.addProduit(productionDeLaitage.fabriquer(objetFab.name(),this));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

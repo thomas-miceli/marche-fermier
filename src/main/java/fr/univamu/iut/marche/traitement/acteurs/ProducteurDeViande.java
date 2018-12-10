@@ -9,10 +9,15 @@ public class ProducteurDeViande extends Paysan {
         super(nom, prenom, age);
     }
 
-    public void fabriquerProduit(String objetFab) {
+    public enum ProduitsFabricables {
+        COCHON,
+        VACHE
+    }
+
+    public void fabriquerProduit(ProduitsFabricables objetFab) {
         ProductionDeViande productionDeViande = new ProductionDeViande();
         try {
-            this.addProduit(productionDeViande.fabriquer(objetFab,this));
+            this.addProduit(productionDeViande.fabriquer(objetFab.name(),this));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
