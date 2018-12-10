@@ -14,12 +14,13 @@ import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
  */
 
 public class Marche {
-    private Map<Paysan, ArrayList<ProduitFermier>> listeParticipantsMarche = new HashMap<>();
+    private static Map<Paysan, ArrayList<ProduitFermier>> listeParticipantsMarche = new HashMap<>();
+
 
     public Marche() {
     }
 
-    public Map<Paysan, ArrayList<ProduitFermier>> getListeParticipantsMarche() {
+    public static Map<Paysan, ArrayList<ProduitFermier>> getListeParticipantsMarche() {
         return listeParticipantsMarche;
     }
 

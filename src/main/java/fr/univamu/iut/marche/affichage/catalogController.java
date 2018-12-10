@@ -1,8 +1,8 @@
 package fr.univamu.iut.marche.affichage;
 
-import fr.univ_amu.iut.models.Serveur;
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
-import javafx.beans.value.ChangeListener;
+import fr.univamu.iut.marche.traitement.acteurs.Paysan;
+import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,7 +15,8 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class catalogController extends VBox implements Initializable {
@@ -33,37 +34,24 @@ public class catalogController extends VBox implements Initializable {
 
     private static int selectedVenteId;
 
-    private List<Produit> tableauProduit;
+    private Map<Paysan, ArrayList<ProduitFermier>> tableauProduit;
     private ObservableList<String> data = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tableauProduit = Marche.getListeParticipantsMarche();
+        for (Paysan paysan: tableauProduit.keySet()) {
+            for (ProduitFermier produitFermier : tableauProduit.get(paysan)) {
+                data.add(produitFermier.getClass().getSimpleName());
+            }
 
-        tableauProduit = Marche;
-        for (int i = 0; i<tableauServeur.size(); ++i){
-            if (tableauServeur.get(i).isUserInServer(popupController.getCurrentUser()))
-                data.add(tableauServeur.get(i).getServerName());
         }
-        serveurListe.setItems(data);
-        serveurListe.getSelectionModel().selectedItemProperty()
-                .addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
-                    try {
-                        root.getChildren().clear();
-                        selectedServerId = Serveur.getIdServeurByName(newValue);
-                        root.getChildren().addAll(new serverSendMsgController());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-
+        listeVentes.setItems(data);
     }
 
-    public static int getSelectedServerId() {
-        return selectedServerId;
-    }
 
-    public homeController() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fr.univ_amu.iut/views/home.fxml"));
+    public catalogController() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/Catalog.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         fxmlLoader.load();

@@ -31,7 +31,7 @@ public class homeController implements Initializable {
     @FXML
     public void setSceneToCatalogView() throws IOException {
         contentVBox.getChildren().clear();
-        contentVBox.getChildren().addAll(/*new CatalogController*/);
+        contentVBox.getChildren().addAll(new catalogController());
     }
 
     @FXML

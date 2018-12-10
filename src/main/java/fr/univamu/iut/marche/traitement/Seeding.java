@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Seeding {
     Seeding(){
         Paysan p1 = new Apiculteur("Claude", "Jean", 50);
-        Paysan p2 = new Arboriculteur("Claudette", "Jean", 45);
+        Paysan p2 = new Orticulteur("Claudette", "Jean", 45);
         Paysan p3 = new Orticulteur("Claudinette", "Jean", 40);
 
         Cochon cochon1 = new Cochon(5, "3/10/2018");
