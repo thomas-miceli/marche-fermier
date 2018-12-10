@@ -1,51 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.canvas.Canvas?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univamu.iut.marche.affichage.homeController">
-    <Button fx:id="buttonCatalog" alignment="CENTER" mnemonicParsing="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
-        <graphic>
-            <ImageView>
-                <image>
-                    <Image url="/images/catalog.png" />
-                </image>
-            </ImageView>
-        </graphic>
-    </Button>
-    <Button fx:id="buttonCotation" GridPane.rowIndex="3">
-        <graphic>
-            <ImageView>
-                <image>
-                    <Image url="/images/cotation.png" />
-                </image>
-            </ImageView>
-        </graphic>
-    </Button>
-    <Button fx:id="buttonParticipants" alignment="CENTER" mnemonicParsing="false" GridPane.columnIndex="3">
-        <graphic>
-            <ImageView>
-                <image>
-                    <Image url="/images/participants.png" />
-                </image>
-            </ImageView>
-        </graphic>
-    </Button>
-    <Button fx:id="buttonTransaction" GridPane.columnIndex="3" GridPane.rowIndex="3">
-        <graphic>
-            <ImageView>
-                <image>
-                    <Image url="/images/transaction.png" />
-                </image>
-            </ImageView>
-        </graphic>
-    </Button>
-   <Canvas height="100.0" width="100.0" GridPane.columnIndex="2" />
-   <Canvas height="100.0" width="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-
-</GridPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univamu.iut.marche.affichage.homeController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Marché">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToParticipantsView" text="Nouveau Paysan" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem onAction="#actionQuitter" text="Quitter" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Aide">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#showCredits" text="À propos" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <bottom>
+        <AnchorPane prefHeight="0.0" prefWidth="800.0" style="-fx-background-color: dedede;" BorderPane.alignment="CENTER">
+            <children>
+                <Label alignment="CENTER_RIGHT" contentDisplay="TOP" prefHeight="24.0" prefWidth="800.0" text="Version 1.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <padding>
+                        <Insets right="20.0" />
+                    </padding></Label>
+            </children>
+        </AnchorPane>
+    </bottom>
+    <left>
+        <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="400.0" prefWidth="120.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="buttonCatalog" alignment="CENTER" mnemonicParsing="false" onAction="#setSceneToCatalogView">
+                    <graphic>
+                        <ImageView>
+                            <image>
+                                <Image url="/images/catalog.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="buttonTransaction" onAction="#setSceneToTransactionView">
+                    <graphic>
+                        <ImageView>
+                            <image>
+                                <Image url="/images/transaction.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="buttonCotation" onAction="#setSceneToCotationView">
+                    <graphic>
+                        <ImageView>
+                            <image>
+                                <Image url="/images/cotation.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="buttonParticipants" onAction="#setSceneToParticipantsView">
+                    <graphic>
+                        <ImageView>
+                            <image>
+                                <Image url="/images/participants.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <VBox fx:id="contentVBox">
+            <padding>
+                <Insets top="10.0" />
+            </padding></VBox>
+    </center>
+    <right>
+        <Label fx:id="pseudo" alignment="CENTER" prefWidth="107.0" text="unknown" textAlignment="CENTER" BorderPane.alignment="TOP_LEFT">
+            <BorderPane.margin>
+                <Insets right="10.0" top="10.0" />
+            </BorderPane.margin>
+        </Label>
+    </right>
+</BorderPane>

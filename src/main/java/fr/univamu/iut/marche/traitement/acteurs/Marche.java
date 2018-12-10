@@ -11,17 +11,19 @@ import java.util.NoSuchElementException;
 import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 
 public class Marche {
-    private Map<Paysan, ArrayList<ProduitFermier>> listeParticipantsMarche = new HashMap<>();
+    private static Map<Paysan, ArrayList<ProduitFermier>> listeParticipantsMarche = new HashMap<>();
+    public static final ArrayList<Map<Paysan, ArrayList<ProduitFermier>>> allListeParticipantsMarche = new ArrayList<>();
 
     public Marche() {
     }
 
-    public Map<Paysan, ArrayList<ProduitFermier>> getListeParticipantsMarche() {
+    public static Map<Paysan, ArrayList<ProduitFermier>> getListeParticipantsMarche() {
         return listeParticipantsMarche;
     }
 
     public void setListeParticipantsMarche(Map<Paysan, ArrayList<ProduitFermier>> listeParticipantsMarche) {
         this.listeParticipantsMarche = listeParticipantsMarche;
+        allListeParticipantsMarche.add(listeParticipantsMarche);
 
     }
 
