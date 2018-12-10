@@ -7,7 +7,7 @@ import java.util.Date;
 public abstract class ProduitFermier{
     private int quantite;
     private String dateDePeremption;
-    private String nom;
+    private String label;
 
     public ProduitFermier(int quantite, String dateDePeremption) {
         this.quantite = quantite;
@@ -29,11 +29,9 @@ public abstract class ProduitFermier{
     public void setDateDePeremption(String dateDePeremption) {
         this.dateDePeremption = dateDePeremption;
     }
-    public String getNom() {
-        return nom;
-    }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public boolean valider(){
+
+        return false;
     }
 }

@@ -3,12 +3,15 @@ package fr.univamu.iut.marche.traitement.acteurs;
 import fr.univamu.iut.marche.traitement.acteurs.Paysan;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.security.Key;
+import java.util.*;
 
 import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
+
+/***
+ * @author Téo Martin
+ * Ceci est la classe Marché qui possède toutes les fonctions permettant de gérer celui-ci
+ */
 
 public class Marche {
     private Map<Paysan, ArrayList<ProduitFermier>> listeParticipantsMarche = new HashMap<>();
@@ -25,23 +28,38 @@ public class Marche {
 
     }
 
-    public void listeProduitsPaysans (Paysan peon){
+    public void listeProduitsPaysans (Paysan paysan){
         for(Map.Entry<Paysan, ArrayList<ProduitFermier>> entry : listeParticipantsMarche.entrySet()) {
             Paysan peonCherche = entry.getKey();
-            if (peonCherche == peon){
+            if (peonCherche == paysan){
                 peonCherche.getProduits();
            }
         }
     } // pas sur que ça serve ?
 
-    public void vendreProduit(Paysan peon, ProduitFermier produitVendu){
-        if (peon.getProduits().contains(produitVendu)) {
+    public void vendreProduit(Paysan paysan, ProduitFermier produitVendu){
+        if (paysan.getProduits().contains(produitVendu)) {
 
-            peon.getProduitsVendus().add(produitVendu);
-            listeParticipantsMarche.put(peon, peon.getProduitsVendus());
-            peon.removeProduit(produitVendu);
+            listeParticipantsMarche.get(paysan).add(produitVendu);
+            listeParticipantsMarche.put(paysan, paysan.getProduitsVendus());
+            paysan.removeProduit(produitVendu);
         } else {
-            System.out.println(ANSI_RED + peon.getPrenom() + " " + peon.getNom() + " ne peut pas vendre " + produitVendu);
+            System.out.println(ANSI_RED + paysan.getPrenom() + " " + paysan.getNom() + " ne peut pas vendre " + produitVendu);
         }
+    }
+
+    public ArrayList<ProduitFermier> creerListeProduitsSpe(ProduitFermier p){
+        ArrayList<ProduitFermier> listeProduitSpe = new ArrayList<>();
+        for (Paysan paysan: listeParticipantsMarche.keySet()) {
+            System.out.println(paysan);
+
+            for (ArrayList<ProduitFermier> list: listeParticipantsMarche.values()) {
+                if (listeParticipantsMarche.containsValue(p))
+                    System.out.println(list);
+                    listeProduitSpe.add(p);
+            }
+        }
+        System.out.println(listeProduitSpe);
+        return listeProduitSpe;
     }
 }
