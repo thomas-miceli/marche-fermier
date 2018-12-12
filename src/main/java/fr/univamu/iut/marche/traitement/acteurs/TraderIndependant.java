@@ -7,4 +7,8 @@ public class TraderIndependant extends Trader {
     public TraderIndependant(String nom, String prenom, int age) {
         super(nom, prenom, age);
     }
+
+    public void intervient() {
+
+    }
 }
