@@ -2,7 +2,10 @@ package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.ProductionDeMiel;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
-
+/**
+ * @author Yann FORNER
+ * @author Thomas MICELI
+ */
 public class Apiculteur extends Paysan {
 
     public enum ProduitsFabricables {
@@ -14,10 +17,10 @@ public class Apiculteur extends Paysan {
     }
 
 
-    public ProduitFermier fabriquerProduit(ProduitsFabricables objetFab)  {
+    public ProduitFermier fabriquerProduit(ProduitsFabricables objetFab, int quantite) {
         try {
              ProductionDeMiel productionDeMiel = new ProductionDeMiel();
-             ProduitFermier p= productionDeMiel.fabriquer(objetFab.name(),this);
+             ProduitFermier p= productionDeMiel.fabriquer(objetFab.name(), quantite, this);
             this.addProduit(p);
              return p;
         } catch (ClassNotFoundException e) {

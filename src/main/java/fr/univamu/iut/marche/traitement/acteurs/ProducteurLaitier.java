@@ -19,10 +19,10 @@ public class ProducteurLaitier extends Paysan {
         FROMAGE
     }
 
-    public ProduitFermier fabriquerProduit(ProduitsFabricables objetFab) {
+    public ProduitFermier fabriquerProduit(ProduitsFabricables objetFab, int quantite) {
         try {
         ProductionDeLaitage productionDeLaitage = new ProductionDeLaitage();
-        ProduitFermier p = productionDeLaitage.fabriquer(objetFab.name(),this);
+        ProduitFermier p = productionDeLaitage.fabriquer(objetFab.name(), quantite, this);
 
             this.addProduit(p);
             return p;

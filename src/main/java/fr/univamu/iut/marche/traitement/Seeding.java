@@ -19,19 +19,25 @@ public class Seeding {
         ProducteurLaitier p4 = new ProducteurLaitier("Claudasse", "Jean", 45);
 
 
-        p1.fabriquerProduit(Apiculteur.ProduitsFabricables.MIEL);
+        p1.fabriquerProduit(Apiculteur.ProduitsFabricables.MIEL, 550);
 
-        p2.fabriquerProduit(ProducteurDeViande.ProduitsFabricables.COCHON);
-        p2.fabriquerProduit(ProducteurDeViande.ProduitsFabricables.VACHE);
+        p2.fabriquerProduit(ProducteurDeViande.ProduitsFabricables.COCHON, 30);
+        p2.fabriquerProduit(ProducteurDeViande.ProduitsFabricables.VACHE, 40);
 
-        p3.fabriquerProduit(Orticulteur.ProduitsFabricables.POMME);
-        p3.fabriquerProduit(Orticulteur.ProduitsFabricables.ORANGE);
+        p3.fabriquerProduit(Orticulteur.ProduitsFabricables.POMME, 500);
+        p3.fabriquerProduit(Orticulteur.ProduitsFabricables.ORANGE, 700);
 
-        p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.FROMAGE);
-        ProduitFermier p =p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.LAIT);
+        p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.FROMAGE, 40);
+        ProduitFermier p =p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.LAIT, 800);
         if( p.valider("COTON ROUGE"))
             System.out.println("ok");
 
+        Marche marche = new Marche();
+
+        p1.toString();
+        p2.toString();
+        p3.toString();
+        p4.toString();
 
     }
 }
