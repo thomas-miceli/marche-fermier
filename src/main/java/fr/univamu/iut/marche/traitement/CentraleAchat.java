@@ -9,9 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CentraleAchat extends Participant {
-
-    public CentraleAchat() {
+public class CentraleAchat {
+    public CentraleAchat(){
 
     }
 }

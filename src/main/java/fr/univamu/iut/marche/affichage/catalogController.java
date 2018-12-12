@@ -1,6 +1,7 @@
 package fr.univamu.iut.marche.affichage;
 
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
+import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.acteurs.Paysan;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import javafx.collections.FXCollections;
@@ -35,15 +36,12 @@ public class catalogController extends VBox implements Initializable {
     private ListView listeVentes = new ListView();
 
     private static int selectedVenteId;
-
-    private Map<Paysan, ArrayList<ProduitFermier>> tableauProduit;
     private ObservableList<String> data = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tableauProduit = Marche.getListeParticipantsMarche();
-        for (Paysan paysan: tableauProduit.keySet()) {
-            for (ProduitFermier produitFermier : tableauProduit.get(paysan)) {
+        for (Participant participant: Marche.getListeParticipantsMarche()) {
+            for (ProduitFermier produitFermier : participant.getProduitsAVendre()) {
                 data.add(produitFermier.getClass().getSimpleName());
             }
 
