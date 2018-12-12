@@ -11,9 +11,9 @@ import java.util.List;
 public class Trader extends Participant {
     private CentraleAchat centrale;
 
-    public Trader(String nom, String prenom, int age, CentraleAchat centrale)
+    public Trader(String nom, String prenom, int age)
     {
-        //super(nom, prenom, age);
+        super(nom, prenom, age);
         this.centrale = centrale;
     }
 
