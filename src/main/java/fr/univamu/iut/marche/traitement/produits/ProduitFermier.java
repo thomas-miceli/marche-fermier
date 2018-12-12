@@ -32,7 +32,7 @@ public abstract class ProduitFermier{
         this.dateDePeremption = dateDePeremption;
     }
 
-    public String setDateToString(){
+    public String getDateToString(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH);
         return sdf.format(getDateDePeremption());
     }
