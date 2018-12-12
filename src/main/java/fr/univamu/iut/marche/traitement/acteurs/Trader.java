@@ -13,7 +13,7 @@ public class Trader extends Participant {
 
     public Trader(String nom, String prenom, int age, CentraleAchat centrale)
     {
-        super(nom, prenom, age);
+        //super(nom, prenom, age);
         this.centrale = centrale;
     }
 

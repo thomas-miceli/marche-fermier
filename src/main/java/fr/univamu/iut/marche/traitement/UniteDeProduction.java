@@ -11,36 +11,36 @@ import java.util.*;
  */
 public abstract class UniteDeProduction {
 
-    public ProduitFermier cree(String type, Paysan P)throws ClassNotFoundException{
+    public ProduitFermier cree(String type, int quantite, Paysan P)throws ClassNotFoundException{
         String prof = P.getClass().getSimpleName();
         switch (type){
             case "MIEL":
-                if(prof.equals("Apiculteur"))return new Miel(5,calcDatePremption());
+                if(prof.equals("Apiculteur"))return new Miel(quantite,calcDatePremption());
             case "ORANGE":
-                if(prof.equals("Orticulteur"))return new Orange(5,calcDatePremption());
+                if(prof.equals("Orticulteur"))return new Orange(quantite,calcDatePremption());
             case "POMME":
-                if(prof.equals("Orticulteur"))return new Pomme(5,calcDatePremption());
+                if(prof.equals("Orticulteur"))return new Pomme(quantite,calcDatePremption());
                 else {
                     System.out.println("Vous ne pouvez pas produire ceci");
                 }
             case "LAIT":
-                if(prof.equals("ProducteurLaitier"))return new Lait(5,calcDatePremption());
+                if(prof.equals("ProducteurLaitier"))return new Lait(quantite,calcDatePremption());
                 else {
                     System.out.println("Vous ne pouvez pas produire ceci");
                 }
             case "FROMAGE":
-                if(prof.equals("ProducteurLaitier"))return new Fromage(5,calcDatePremption());
+                if(prof.equals("ProducteurLaitier"))return new Fromage(quantite,calcDatePremption());
                 else {
                     System.out.println("Vous ne pouvez pas produire ceci");
                 }
             case "VACHE":
-                if(prof.equals("ProducteurDeViande"))return new Vache(5,calcDatePremption());
+                if(prof.equals("ProducteurDeViande"))return new Vache(quantite,calcDatePremption());
                 else {
                     System.out.println("Vous ne pouvez pas produire ceci");
                 }
                 break;
             case "COCHON":
-                if(prof.equals("ProducteurDeViande"))return new Cochon(5,calcDatePremption());
+                if(prof.equals("ProducteurDeViande"))return new Cochon(quantite,calcDatePremption());
                 else {
                     System.out.println("Vous ne pouvez pas produire ceci");
                 }
@@ -51,7 +51,7 @@ public abstract class UniteDeProduction {
         return null;
     }
 
-    public abstract ProduitFermier fabriquer(String type,Paysan P) throws ClassNotFoundException ;
+    public abstract ProduitFermier fabriquer(String type,int quantite,Paysan P) throws ClassNotFoundException ;
 
     private Date calcDatePremption(){
 

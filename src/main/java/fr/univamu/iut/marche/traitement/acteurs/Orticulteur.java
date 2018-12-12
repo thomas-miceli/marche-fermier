@@ -19,10 +19,10 @@ public class Orticulteur extends Paysan {
         ORANGE
     }
 
-    public ProduitFermier fabriquerProduit(ProduitsFabricables objetFab) {
+    public ProduitFermier fabriquerProduit(ProduitsFabricables objetFab, int quantite) {
         try {
         ProduictionDeFruit produictionDeFruit= new ProduictionDeFruit();
-            ProduitFermier p =produictionDeFruit.fabriquer(objetFab.name(),this);
+            ProduitFermier p =produictionDeFruit.fabriquer(objetFab.name(), quantite, this);
             this.addProduit(p);
             return p;
         } catch (ClassNotFoundException e) {

@@ -18,10 +18,10 @@ public class ProducteurDeViande extends Paysan {
         VACHE
     }
 
-    public ProduitFermier fabriquerProduit(ProduitsFabricables objetFab) {
+    public ProduitFermier fabriquerProduit(ProduitsFabricables objetFab, int quantite) {
         try {
         ProductionDeViande productionDeViande = new ProductionDeViande();
-            ProduitFermier p = productionDeViande.fabriquer(objetFab.name(),this);
+            ProduitFermier p = productionDeViande.fabriquer(objetFab.name(), quantite, this);
             this.addProduit(p);
             return p;
         } catch (ClassNotFoundException e) {
