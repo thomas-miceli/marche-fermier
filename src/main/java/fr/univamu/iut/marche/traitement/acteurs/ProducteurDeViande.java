@@ -1,6 +1,7 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.ProductionDeViande;
+import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.List;
 /**
@@ -17,12 +18,15 @@ public class ProducteurDeViande extends Paysan {
         VACHE
     }
 
-    public void fabriquerProduit(ProduitsFabricables objetFab) {
-        ProductionDeViande productionDeViande = new ProductionDeViande();
+    public ProduitFermier fabriquerProduit(ProduitsFabricables objetFab) {
         try {
-            this.addProduit(productionDeViande.fabriquer(objetFab.name(),this));
+        ProductionDeViande productionDeViande = new ProductionDeViande();
+            ProduitFermier p = productionDeViande.fabriquer(objetFab.name(),this);
+            this.addProduit(p);
+            return p;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

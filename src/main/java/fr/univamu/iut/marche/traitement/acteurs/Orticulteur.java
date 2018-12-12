@@ -1,6 +1,7 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.ProduictionDeFruit;
+import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.List;
 /**
@@ -18,12 +19,15 @@ public class Orticulteur extends Paysan {
         ORANGE
     }
 
-    public void fabriquerProduit(ProduitsFabricables objetFab) {
-        ProduictionDeFruit produictionDeFruit= new ProduictionDeFruit();
+    public ProduitFermier fabriquerProduit(ProduitsFabricables objetFab) {
         try {
-            this.addProduit(produictionDeFruit.fabriquer(objetFab.name(),this));
+        ProduictionDeFruit produictionDeFruit= new ProduictionDeFruit();
+            ProduitFermier p =produictionDeFruit.fabriquer(objetFab.name(),this);
+            this.addProduit(p);
+            return p;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

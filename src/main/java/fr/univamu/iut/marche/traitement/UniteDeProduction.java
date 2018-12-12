@@ -53,11 +53,12 @@ public abstract class UniteDeProduction {
 
     public abstract ProduitFermier fabriquer(String type,Paysan P) throws ClassNotFoundException ;
 
-    private String calcDatePremption(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy",Locale.FRENCH);
+    private Date calcDatePremption(){
+
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
         c.add(Calendar.DATE, 5);
-        return sdf.format(c.getTime());
+        Date format= (c.getTime());
+        return format;
     }
 }

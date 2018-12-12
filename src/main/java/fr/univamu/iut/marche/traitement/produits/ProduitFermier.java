@@ -2,14 +2,16 @@ package fr.univamu.iut.marche.traitement.produits;
 
 import fr.univamu.iut.marche.traitement.UniteDeProduction;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public abstract class ProduitFermier{
     private int quantite;
-    private String dateDePeremption;
+    private Date dateDePeremption;
     private String label;
 
-    public ProduitFermier(int quantite, String dateDePeremption) {
+    public ProduitFermier(int quantite, Date dateDePeremption) {
         this.quantite = quantite;
         this.dateDePeremption = dateDePeremption;
     }
@@ -22,16 +24,26 @@ public abstract class ProduitFermier{
         this.quantite = quantite;
     }
 
-    public String getDateDePeremption() {
+    public Date getDateDePeremption() {
         return dateDePeremption;
     }
 
-    public void setDateDePeremption(String dateDePeremption) {
+    public void setDateDePeremption(Date dateDePeremption) {
         this.dateDePeremption = dateDePeremption;
     }
 
-    public boolean valider(){
+    public String setDateToString(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH);
+        return sdf.format(getDateDePeremption());
+    }
 
+    public boolean valider(String label){
+        if(getDateDePeremption().compareTo(new Date())> 0){
+            System.out.println(getDateDePeremption());
+            System.out.println(new Date());
+            this.label=label;
+            return true;
+        }
         return false;
     }
 }

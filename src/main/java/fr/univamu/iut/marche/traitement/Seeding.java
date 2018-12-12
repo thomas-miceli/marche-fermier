@@ -28,12 +28,10 @@ public class Seeding {
         p3.fabriquerProduit(Orticulteur.ProduitsFabricables.ORANGE);
 
         p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.FROMAGE);
-        p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.LAIT);
+        ProduitFermier p =p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.LAIT);
+        if( p.valider("COTON ROUGE"))
+            System.out.println("ok");
 
-        p1.toString();
-        p2.toString();
-        p3.toString();
-        p4.toString();
 
     }
 }
