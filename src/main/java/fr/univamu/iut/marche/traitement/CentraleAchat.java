@@ -10,7 +10,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CentraleAchat {
-    public CentraleAchat(){
 
+    private ArrayList<Trader> tradersEnregistres;
+
+    public CentraleAchat() {
+
+    }
+
+    public void addTrader(Trader trader) {
+        tradersEnregistres.add(trader);
+    }
+
+    public boolean hasTrader(Trader trader) {
+        for (Trader _trader : tradersEnregistres) {
+            if (_trader == trader) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
