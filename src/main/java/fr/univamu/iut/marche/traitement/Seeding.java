@@ -34,6 +34,11 @@ public class Seeding {
 
         Marche marche = new Marche();
 
+        try {
+            p1.vendreProduit(p1, Participant.Produits.LAIT);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         p1.toString();
         p2.toString();
         p3.toString();

@@ -14,7 +14,7 @@ import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
  */
 public abstract class Participant {
 
-    enum Produits {
+    public enum Produits {
         COCHON,
         FROMAGE,
         LAIT,
@@ -67,6 +67,10 @@ public abstract class Participant {
         return produitsEnStock;
     }
 
+    public ArrayList<ProduitFermier> getProduitsAVendre() {
+        return produitsEnVente;
+    }
+
     public void setProduits(ArrayList<ProduitFermier> produits) {
         this.produitsEnStock = produits;
     }
@@ -91,16 +95,19 @@ public abstract class Participant {
         this.produitsEnVente.remove(produit);
     }
 
-    public ArrayList<ProduitFermier> getProduitsAVendre() {
-        return produitsEnVente;
+    public ProduitFermier getProduit(Produits prod) {
+        //for ()
     }
 
-    public void vendreProduit(Participant participant, ProduitFermier produitAVendre){
+    public void vendreProduit(Participant participant, Produits produitAVendre) throws ClassNotFoundException {
+
         if (participant.getProduitsAVendre().contains(produitAVendre)) {
             participant.removeProduit(produitAVendre);
         } else {
             System.out.println(ANSI_RED + participant.getPrenom() + " " + participant.getNom() + " ne peut pas vendre " + produitAVendre);
         }
+
     }
+
 
 }
