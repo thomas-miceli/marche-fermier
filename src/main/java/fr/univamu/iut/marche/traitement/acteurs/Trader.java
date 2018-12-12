@@ -6,15 +6,13 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.List;
 /**
- * @author Yann FORNER
+ * @author Dylan MARCH
  */
-public class Trader extends Participant {
-    private CentraleAchat centrale;
+public class Trader extends Paysan {
 
     public Trader(String nom, String prenom, int age)
     {
         super(nom, prenom, age);
-        this.centrale = centrale;
     }
 
     public void Acheter(ProduitFermier produitFermier) {
