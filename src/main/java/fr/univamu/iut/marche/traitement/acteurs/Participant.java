@@ -11,13 +11,46 @@ import java.util.List;
  */
 public abstract class Participant {
 
+    protected String nom;
+    protected String prenom;
+    protected int age;
+
+    public Participant(String nom, String prenom, int age) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
     protected enum ProduitsFabricables {}
 
     protected ArrayList<ProduitFermier> produitsEnStock = new ArrayList<>();
 
     protected ArrayList<ProduitFermier> produitsEnVente = new ArrayList<>();
 
-    public ArrayList getProduits() {
+    public ArrayList<ProduitFermier> getProduits() {
         return produitsEnStock;
     }
 
@@ -33,7 +66,7 @@ public abstract class Participant {
         this.produitsEnStock.remove(produit);
     }
 
-    public ArrayList<ProduitFermier> getProduitsVendus() {
+    public ArrayList<ProduitFermier> getProduitsAVendre() {
         return produitsEnVente;
     }
 
