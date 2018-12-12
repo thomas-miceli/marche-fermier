@@ -18,7 +18,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.ResourceBundle;
-
+/**
+ * @author Pierre LEJEUNE
+ */
 public class catalogController extends VBox implements Initializable {
 
     @FXML

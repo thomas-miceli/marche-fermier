@@ -6,7 +6,9 @@ import fr.univamu.iut.marche.traitement.produits.*;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+/**
+ * @author Yann FORNER
+ */
 public abstract class UniteDeProduction {
 
     public ProduitFermier cree(String type, Paysan P)throws ClassNotFoundException{

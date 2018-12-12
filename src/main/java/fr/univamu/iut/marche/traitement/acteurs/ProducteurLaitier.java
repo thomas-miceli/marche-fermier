@@ -4,7 +4,10 @@ import fr.univamu.iut.marche.traitement.ProductionDeLaitage;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Yann FORNER
+ * @author Thomas MICELI
+ */
 public class ProducteurLaitier extends Paysan {
     public ProducteurLaitier(String nom, String prenom, int age) {
         super(nom, prenom, age);

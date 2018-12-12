@@ -4,7 +4,11 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Yann FORNER
+ * @author Andrea GARCIA
+ * @author Thomas MICELI
+ */
 public abstract class Participant {
 
     protected enum ProduitsFabricables {}

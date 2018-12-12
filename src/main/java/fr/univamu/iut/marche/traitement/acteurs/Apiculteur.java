@@ -1,7 +1,10 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.ProductionDeMiel;
-
+/**
+ * @author Yann FORNER
+ * @author Thomas MICELI
+ */
 public class Apiculteur extends Paysan {
 
     public enum ProduitsFabricables {

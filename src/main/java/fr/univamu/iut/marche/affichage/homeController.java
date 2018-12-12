@@ -16,7 +16,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**
+ * @author Pierre LEJEUNE
+ */
 public class homeController implements Initializable {
 
     @FXML

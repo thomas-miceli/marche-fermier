@@ -3,7 +3,10 @@ package fr.univamu.iut.marche.traitement.acteurs;
 import fr.univamu.iut.marche.traitement.ProductionDeViande;
 
 import java.util.List;
-
+/**
+ * @author Yann FORNER
+ * @author Thomas MICELI
+ */
 public class ProducteurDeViande extends Paysan {
     public ProducteurDeViande(String nom, String prenom, int age) {
         super(nom, prenom, age);

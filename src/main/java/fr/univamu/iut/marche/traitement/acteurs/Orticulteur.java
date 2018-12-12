@@ -3,7 +3,10 @@ package fr.univamu.iut.marche.traitement.acteurs;
 import fr.univamu.iut.marche.traitement.ProduictionDeFruit;
 
 import java.util.List;
-
+/**
+ * @author Yann FORNER
+ * @author Thomas MICELI
+ */
 public class Orticulteur extends Paysan {
 
     public Orticulteur(String nom, String prenom, int age) {

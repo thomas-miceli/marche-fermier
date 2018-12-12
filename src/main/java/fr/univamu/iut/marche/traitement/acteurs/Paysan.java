@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static fr.univamu.iut.marche.traitement.Main.*;
-
+/**
+ * @author Yann FORNER
+ * @author Thomas MICELI
+ */
 public abstract class Paysan extends Participant {
 
     protected String nom;

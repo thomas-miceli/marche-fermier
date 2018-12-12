@@ -5,7 +5,9 @@ import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.List;
-
+/**
+ * @author Yann FORNER
+ */
 public class Trader extends Participant {
     private CentraleAchat centrale;
 

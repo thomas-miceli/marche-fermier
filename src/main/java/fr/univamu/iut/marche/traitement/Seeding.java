@@ -6,7 +6,8 @@ import fr.univamu.iut.marche.traitement.produits.*;
 import java.util.ArrayList;
 
 /***
- * @author Pierre Lejeune
+ * @author Pierre LEJEUNE
+ * @author Thomas MICELI
  * Ceci est une classe de seeding, qui nous permet de créer des valeurs factices pour faire des tests et démontrer le
  * bon fonctionnement de l'application
  */

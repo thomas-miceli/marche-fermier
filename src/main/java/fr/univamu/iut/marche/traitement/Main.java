@@ -13,7 +13,11 @@ import javafx.stage.Stage;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Yann FORNER
+ * @author Pierre LEJEUNE
+ * @author Thomas MICELI
+ */
 public class Main extends Application {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
