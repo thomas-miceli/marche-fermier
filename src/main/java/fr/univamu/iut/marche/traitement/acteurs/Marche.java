@@ -9,7 +9,8 @@ import java.util.*;
 import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 
 /***
- * @author Téo Martin/Pierre Lejeune
+ * @author Pierre LEJEUNE
+ * @author Téo MARTIN
  * Ceci est la classe Marché qui possède toutes les fonctions permettant de gérer celui-ci
  */
 
@@ -43,14 +44,6 @@ public class Marche {
             }
         }
         System.out.println("Le paysan passé en paramètre n'est pas sur le marché");
-    }
-
-    public void vendreProduit(Participant participant, ProduitFermier produitAVendre){
-        if (participant.getProduitsAVendre().contains(produitAVendre)) {
-            participant.removeProduit(produitAVendre);
-        } else {
-            System.out.println(ANSI_RED + participant.getPrenom() + " " + participant.getNom() + " ne peut pas vendre " + produitAVendre);
-        }
     }
 
     public ArrayList<ProduitFermier> getListeProduitsSpe(ProduitFermier p){

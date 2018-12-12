@@ -4,12 +4,25 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
+
 /**
  * @author Yann FORNER
  * @author Andrea GARCIA
  * @author Thomas MICELI
  */
 public abstract class Participant {
+
+    enum Produits {
+        COCHON,
+        FROMAGE,
+        LAIT,
+        MIEL,
+        ORANGE,
+        POMME,
+        VACHE
+    }
 
     protected String nom;
     protected String prenom;
@@ -66,9 +79,28 @@ public abstract class Participant {
         this.produitsEnStock.remove(produit);
     }
 
+    public void setProduitsAVendre(ArrayList<ProduitFermier> produits) {
+        this.produitsEnVente = produits;
+    }
+
+    public void addProduitAVendre(ProduitFermier produit) {
+        this.produitsEnVente.add(produit);
+    }
+
+    public void removeProduitAVendre(ProduitFermier produit) {
+        this.produitsEnVente.remove(produit);
+    }
+
     public ArrayList<ProduitFermier> getProduitsAVendre() {
         return produitsEnVente;
     }
 
+    public void vendreProduit(Participant participant, ProduitFermier produitAVendre){
+        if (participant.getProduitsAVendre().contains(produitAVendre)) {
+            participant.removeProduit(produitAVendre);
+        } else {
+            System.out.println(ANSI_RED + participant.getPrenom() + " " + participant.getNom() + " ne peut pas vendre " + produitAVendre);
+        }
+    }
 
 }
