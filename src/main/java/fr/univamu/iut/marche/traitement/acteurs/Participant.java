@@ -7,38 +7,31 @@ import java.util.List;
 
 public abstract class Participant {
 
-    protected String nom;
-    protected String prenom;
-    protected int age;
+    protected enum ProduitsFabricables {}
 
-    public Participant(String nom, String prenom, int age) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.age = age;
+    protected ArrayList<ProduitFermier> produitsEnStock = new ArrayList<>();
+
+    protected ArrayList<ProduitFermier> produitsEnVente = new ArrayList<>();
+
+    public ArrayList getProduits() {
+        return produitsEnStock;
     }
 
-    public String getNom() {
-        return nom;
+    public void setProduits(ArrayList<ProduitFermier> produits) {
+        this.produitsEnStock = produits;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void addProduit(ProduitFermier produit) {
+        this.produitsEnStock.add(produit);
     }
 
-    public String getPrenom() {
-        return prenom;
+    public void removeProduit(ProduitFermier produit) {
+        this.produitsEnStock.remove(produit);
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public ArrayList<ProduitFermier> getProduitsVendus() {
+        return produitsEnVente;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 
 }
