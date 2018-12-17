@@ -18,4 +18,5 @@ public abstract class Trader extends Participant {
     {
         super(nom, prenom, age);
     }
+
 }

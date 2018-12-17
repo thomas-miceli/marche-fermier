@@ -29,4 +29,32 @@ public abstract class Paysan extends Participant {
         }
         System.out.println("\n");
     }
+
+    public void vendreProduit(Participant participant, Produits produitAVendre) {
+        ProduitFermier aVendre = null;
+        for (ProduitFermier produ : produitsEnStock) {
+            if (produ.getClass().getSimpleName().toUpperCase().equals(produitAVendre.name())) {
+                aVendre = produ;
+                break;
+            }
+        }
+
+        if (participant.getProduitsAVendre().contains(aVendre)) {
+            participant.removeProduit(aVendre);
+        } else {
+            System.out.println(ANSI_RED + participant.getPrenom() + " " + participant.getNom() + " ne peut pas vendre " + produitAVendre);
+        }
+    }
+
+    public void acheterProduit(Participant acheteur, Participant vendeur, Produits produitAchete) {
+        ProduitFermier aAcheter = null;
+        for (ProduitFermier produ : produitsEnStock) {
+            if (produ.getClass().getSimpleName().toUpperCase().equals(produitAchete.name())) {
+                aAcheter = produ;
+                break;
+            }
+        }
+        acheteur.produitsEnStock.add(aAcheter);
+        vendeur.produitsEnVente.remove(aAcheter);
+    }
 }

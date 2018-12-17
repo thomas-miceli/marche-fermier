@@ -12,6 +12,7 @@ import java.util.Map;
 public class CentraleAchat {
 
     private ArrayList<Trader> tradersEnregistres;
+    private ArrayList<Participant.Produits> stockCentrale;
 
     public CentraleAchat() {
 
