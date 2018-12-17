@@ -17,8 +17,4 @@ public abstract class Trader extends Participant {
     {
         super(nom, prenom, age);
     }
-
-    public abstract void acheter(ProduitFermier produitFermier);
-
-    public abstract void vendre(ProduitFermier produitFermier);
 }
