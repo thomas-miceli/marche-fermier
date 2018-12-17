@@ -39,8 +39,6 @@ public abstract class ProduitFermier{
 
     public boolean valider(String label){
         if(getDateDePeremption().compareTo(new Date())> 0){
-            System.out.println(getDateDePeremption());
-            System.out.println(new Date());
             this.label=label;
             return true;
         }
