@@ -16,11 +16,14 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+
 public class venteProduitController extends VBox implements Initializable {
 
     @FXML
     private VBox contentVBox;
 
+    @FXML
+    private Text produitName;
 
 
     @FXML
@@ -28,8 +31,7 @@ public class venteProduitController extends VBox implements Initializable {
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new catalogController());
     }
-    @FXML
-    private Button buttonConfig;
+
 
     private static String produitvente;
 
@@ -45,6 +47,6 @@ public class venteProduitController extends VBox implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        produitName.setText(catalogController.getSelectedProduit());
     }
 }

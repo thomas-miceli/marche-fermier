@@ -26,8 +26,7 @@
                     <children>
                         <Pane maxWidth="1.7976931348623157E308" prefHeight="76.0" prefWidth="315.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                             <children>
-                                <Button fx:id="buttonFile" layoutX="197.0" layoutY="25.0" mnemonicParsing="false" text="Acheter" />
-                        <Text layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité : 0" />
+                                <Button fx:id="buttonAcheter" layoutX="195.0" layoutY="14.0" mnemonicParsing="false" text="Acheter" />
                             </children>
                         </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -41,6 +40,7 @@
                                       <Font size="16.0" />
                                   </font>
                               </Text>
+                        <Text layoutX="17.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité : 0" />
                      </children>
                   </Pane>
                     </children>

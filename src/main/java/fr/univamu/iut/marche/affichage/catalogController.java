@@ -37,14 +37,14 @@ public class catalogController extends VBox implements Initializable {
     @FXML
     private ListView listeVentes = new ListView();
 
-    private static int selectedVenteId;
+    private static String selectedProduit;
     private ObservableList<String> data = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println(Marche.getListeParticipantsMarche());
         for (Participant participant:Marche.getListeParticipantsMarche()) {
             for (ProduitFermier produit: participant.getProduits()) {
-                data.add(produit.getClass().getSimpleName());
+                data.add(produit.getClass().getSimpleName() + "\t\t\t\t\t\t"+ participant.getPrenom() +' '+ participant.getNom());
             }
         }
         listeVentes.setItems(data);
@@ -52,6 +52,7 @@ public class catalogController extends VBox implements Initializable {
                 .addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
                     try {
                         root.getChildren().clear();
+                        selectedProduit = newValue;
                         root.getChildren().addAll(new venteProduitController());
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -61,10 +62,14 @@ public class catalogController extends VBox implements Initializable {
     }
 
 
+
     public catalogController() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/Catalog.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         fxmlLoader.load();
+    }
+    public static String getSelectedProduit(){
+        return selectedProduit;
     }
 }
