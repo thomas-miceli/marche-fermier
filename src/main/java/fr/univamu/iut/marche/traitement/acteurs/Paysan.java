@@ -16,7 +16,7 @@ public abstract class Paysan extends Participant {
         super(nom, prenom, age);
     }
 
-    public String toString() {
+    public void show() {
         System.out.println(ANSI_YELLOW + "(" + this.getClass().getSimpleName() + ") " + ANSI_GREEN + this.prenom + " " + this.nom + " - " + this.age + " ans : \n" +
                 ANSI_CYAN + "Produits en stock : " + ANSI_RESET);
 
@@ -28,6 +28,5 @@ public abstract class Paysan extends Participant {
             System.out.println(produit.getClass().getSimpleName() + " | Quantité: " + produit.getQuantite() + " | Péremption: " + produit.getDateToString());
         }
         System.out.println("\n");
-        return null;
     }
 }

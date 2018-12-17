@@ -12,7 +12,7 @@ import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
  * @author Andrea GARCIA
  * @author Thomas MICELI
  */
-public abstract class Participant implements Grossiste {
+public abstract class Participant {
 
     public enum Produits {
         COCHON,
@@ -105,7 +105,6 @@ public abstract class Participant implements Grossiste {
         return produitFermier;
     }
 
-    @Override
     public void vendreProduit(Participant participant, Produits produitAVendre) {
 
         ProduitFermier aVendre = null;
@@ -124,16 +123,5 @@ public abstract class Participant implements Grossiste {
 
     }
 
-    @Override
-    public void acheterProduit(Participant acheteur, Participant vendeur, Produits produitAchete) {
-        ProduitFermier aAcheter = null;
-        for (ProduitFermier produ : produitsEnStock) {
-            if (produ.getClass().getSimpleName().toUpperCase().equals(produitAchete.name())) {
-                aAcheter = produ;
-                break;
-            }
-        }
-        this.produitsEnStock.add(aAcheter);
-        vendeur.produitsEnVente.remove(aAcheter);
-    }
+
 }
