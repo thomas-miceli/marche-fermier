@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author Dylan MARCH
  */
-public class Trader extends Paysan {
+public abstract class Trader extends Participant {
 
     public Trader(String nom, String prenom, int age)
     {
