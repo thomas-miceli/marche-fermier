@@ -100,7 +100,7 @@
             </padding></VBox>
     </center>
     <right>
-        <Label fx:id="pseudo" alignment="CENTER" prefWidth="107.0" text="unknown" textAlignment="CENTER" BorderPane.alignment="TOP_LEFT">
+        <Label alignment="CENTER" prefWidth="107.0" text="Marché Fermier" textAlignment="CENTER" BorderPane.alignment="TOP_LEFT">
             <BorderPane.margin>
                 <Insets right="10.0" top="10.0" />
             </BorderPane.margin>

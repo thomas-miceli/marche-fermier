@@ -3,6 +3,9 @@ package fr.univamu.iut.marche.traitement;
 
 import fr.univamu.iut.marche.traitement.acteurs.*;
 import fr.univamu.iut.marche.traitement.produits.*;
+
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /***
@@ -29,10 +32,15 @@ public class Seeding {
 
         p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.FROMAGE, 40);
         ProduitFermier p =p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.LAIT, 800);
+        p1.addProduit(new Miel(500, Date.valueOf(LocalDate.now())));
         if( p.valider("COTON ROUGE"))
             System.out.println("ok");
 
         Marche marche = new Marche();
+        marche.addParticipant(p1);
+        marche.addParticipant(p2);
+        marche.addParticipant(p3);
+        marche.addParticipant(p4);
 
         try {
             p1.vendreProduit(p1, Participant.Produits.LAIT);

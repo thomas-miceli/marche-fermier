@@ -16,6 +16,7 @@
         <ListView fx:id="listeVentes" prefHeight="8000.0" prefWidth="680.0">
             <opaqueInsets>
                 <Insets />
-            </opaqueInsets></ListView>
+            </opaqueInsets>
+        </ListView>
     </children>
 </fx:root>

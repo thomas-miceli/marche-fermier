@@ -3,6 +3,7 @@ package fr.univamu.iut.marche.traitement.acteurs;
 import fr.univamu.iut.marche.traitement.acteurs.Paysan;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
+import java.lang.reflect.Array;
 import java.security.Key;
 import java.util.*;
 
@@ -15,11 +16,12 @@ import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
  */
 
 public class Marche {
-    private static ArrayList<Participant> listeParticipantsMarche;
+    private static ArrayList<Participant> listeParticipantsMarche = new ArrayList<>();
 
 
     public Marche() {
     }
+
 
     public static ArrayList<Participant> getListeParticipantsMarche() {
         return listeParticipantsMarche;

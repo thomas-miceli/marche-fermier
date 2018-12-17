@@ -4,6 +4,7 @@ import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.acteurs.Paysan;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 /**
  * @author Pierre LEJEUNE
+ * @author Thomas MICELI
  */
 public class catalogController extends VBox implements Initializable {
 
@@ -37,16 +39,25 @@ public class catalogController extends VBox implements Initializable {
 
     private static int selectedVenteId;
     private ObservableList<String> data = FXCollections.observableArrayList();
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (Participant participant: Marche.getListeParticipantsMarche()) {
-            for (ProduitFermier produitFermier : participant.getProduitsAVendre()) {
-                data.add(produitFermier.getClass().getSimpleName());
+        System.out.println(Marche.getListeParticipantsMarche());
+        for (Participant participant:Marche.getListeParticipantsMarche()) {
+            for (ProduitFermier produit: participant.getProduits()) {
+                data.add(produit.getClass().getSimpleName());
             }
-
         }
         listeVentes.setItems(data);
+        listeVentes.getSelectionModel().selectedItemProperty()
+                .addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
+                    try {
+                        root.getChildren().clear();
+                        root.getChildren().addAll(new venteProduitController());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+
     }
 
 
