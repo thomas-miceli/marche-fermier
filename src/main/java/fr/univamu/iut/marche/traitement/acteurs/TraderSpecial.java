@@ -20,7 +20,8 @@ public class TraderSpecial extends Trader {
 
     }
 
-    public void Intervient() {
+    @Override
+    public void Intervenir() {
 
     }
 }

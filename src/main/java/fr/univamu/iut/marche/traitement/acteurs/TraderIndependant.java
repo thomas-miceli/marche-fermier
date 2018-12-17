@@ -20,7 +20,9 @@ public class TraderIndependant extends Trader {
 
     }
 
-    public void intervient() {
+    @Override
+    public void Intervenir() {
 
     }
+
 }

@@ -18,4 +18,6 @@ public abstract class Trader extends Participant {
     public abstract void Acheter(ProduitFermier produitFermier);
 
     public abstract void Vendre(ProduitFermier produitFermier);
+
+    public abstract void Intervenir();
 }
