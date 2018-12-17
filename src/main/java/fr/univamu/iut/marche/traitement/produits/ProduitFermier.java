@@ -1,12 +1,13 @@
 package fr.univamu.iut.marche.traitement.produits;
 
+import fr.univamu.iut.marche.traitement.IVisitable;
 import fr.univamu.iut.marche.traitement.UniteDeProduction;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public abstract class ProduitFermier{
+public abstract class ProduitFermier implements IVisitable {
     private int quantite;
     private Date dateDePeremption;
     private String label;
@@ -43,5 +44,11 @@ public abstract class ProduitFermier{
             return true;
         }
         return false;
+    }
+    public void fusionnerObjet(ProduitFermier produitFermier){
+        if(this.getClass().getSimpleName().equals(produitFermier.getClass().getSimpleName())){
+            setQuantite(quantite+produitFermier.getQuantite());
+            produitFermier=null;
+        }
     }
 }

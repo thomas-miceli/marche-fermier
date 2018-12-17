@@ -20,29 +20,36 @@ public class Seeding {
 
 
         p1.fabriquerProduit(Apiculteur.ProduitsFabricables.MIEL, 550);
+        p1.fabriquerProduit(Apiculteur.ProduitsFabricables.MIEL,1000);
 
         p2.fabriquerProduit(ProducteurDeViande.ProduitsFabricables.COCHON, 30);
         p2.fabriquerProduit(ProducteurDeViande.ProduitsFabricables.VACHE, 40);
 
         p3.fabriquerProduit(Orticulteur.ProduitsFabricables.POMME, 500);
         p3.fabriquerProduit(Orticulteur.ProduitsFabricables.ORANGE, 700);
-
+        p3.fabriquerProduit(Orticulteur.ProduitsFabricables.ORANGE,1000);
         p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.FROMAGE, 40);
         ProduitFermier p =p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.LAIT, 800);
-        if( p.valider("COTON ROUGE"))
-            System.out.println("ok");
-
+        if( p.valider("COTON ROUGE")) System.out.println("ok");
         Marche marche = new Marche();
+        p1.vendreProduit(p1, Participant.Produits.LAIT);
 
-        try {
-            p1.vendreProduit(p1, Participant.Produits.LAIT);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        p3.show();
+        p3.setProduits(compilerProduits(p3.getProduits()));
+        p3.show();
+    }
+
+    public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd){
+        Identificateur identificateur = new Identificateur();
+        for (int i = 0; i <listProd.size() ; i++) {
+            for (int j = 0; j <listProd.size() ; j++) {
+                if(listProd.get(i).identifier(identificateur)==listProd.get(j).identifier(identificateur) && i != j){
+                    listProd.get(i).fusionnerObjet(listProd.get(j));
+                    listProd.remove(j);
+                }
+            }
         }
-        p1.toString();
-        p2.toString();
-        p3.toString();
-        p4.toString();
 
+        return listProd;
     }
 }
