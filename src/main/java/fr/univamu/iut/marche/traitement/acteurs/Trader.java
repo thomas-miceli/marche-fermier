@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  * @author Dylan MARCH
+ * @author Téo MARTIN
  */
 public abstract class Trader extends Participant {
 

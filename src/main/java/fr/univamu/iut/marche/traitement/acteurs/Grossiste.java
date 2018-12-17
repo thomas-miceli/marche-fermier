@@ -1,9 +1,10 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
-import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
-
-import java.util.ArrayList;
-
+/***
+ * @author Thomas MICELI
+ * @author Téo MARTIN
+ * Ceci est la classe Marché qui possède toutes les fonctions permettant de gérer celui-ci
+ */
 public interface Grossiste {
 
     void acheterProduit(Participant acheteur, Participant vendeur, Participant.Produits produitAchete);

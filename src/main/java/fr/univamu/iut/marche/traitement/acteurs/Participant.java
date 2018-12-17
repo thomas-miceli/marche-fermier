@@ -11,6 +11,7 @@ import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
  * @author Yann FORNER
  * @author Andrea GARCIA
  * @author Thomas MICELI
+ * @author Téo MARTIN
  */
 public abstract class Participant implements Grossiste {
 
