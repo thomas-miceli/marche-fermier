@@ -4,6 +4,7 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 /**
  * @author Dylan MARCH
+ * @author Téo MARTIN
  */
 public class TraderSpecial extends Trader {
     public TraderSpecial(String nom, String prenom, int age) {
@@ -11,17 +12,12 @@ public class TraderSpecial extends Trader {
     }
 
     @Override
-    public void Acheter(ProduitFermier produitFermier) {
-
+    public void acheter(ProduitFermier produitFermier) {
+        stock.add(produitFermier);
     }
 
     @Override
-    public void Vendre(ProduitFermier produitFermier) {
-
-    }
-
-    @Override
-    public void Intervenir() {
-
+    public void vendre(ProduitFermier produitFermier) {
+        stock.remove(produitFermier);
     }
 }

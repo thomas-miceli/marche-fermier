@@ -11,18 +11,12 @@ public class TraderIndependant extends Trader {
     }
 
     @Override
-    public void Acheter(ProduitFermier produitFermier) {
-
+    public void acheter(ProduitFermier produitFermier) {
+        stock.add(produitFermier);
     }
 
     @Override
-    public void Vendre(ProduitFermier produitFermier) {
-
+    public void vendre(ProduitFermier produitFermier) {
+        stock.remove(produitFermier);
     }
-
-    @Override
-    public void Intervenir() {
-
-    }
-
 }
