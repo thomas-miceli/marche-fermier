@@ -38,6 +38,7 @@ public class catalogController extends VBox implements Initializable {
     private ListView listeVentes = new ListView();
 
     private static String selectedProduit;
+    private static ProduitFermier selectedProduitProduit;
     private ObservableList<String> data = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -69,7 +70,7 @@ public class catalogController extends VBox implements Initializable {
         fxmlLoader.setController(this);
         fxmlLoader.load();
     }
-    public static String getSelectedProduit(){
-        return selectedProduit;
+    public static ProduitFermier getSelectedProduit(){
+        return selectedProduitProduit;
     }
 }

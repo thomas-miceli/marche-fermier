@@ -37,6 +37,11 @@ public class Seeding {
         p3.show();
         p3.setProduits(compilerProduits(p3.getProduits()));
         p3.show();
+        marche.addParticipant(p1);
+        marche.addParticipant(p2);
+        marche.addParticipant(p3);
+        marche.addParticipant(p4);
+
     }
 
     public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd){

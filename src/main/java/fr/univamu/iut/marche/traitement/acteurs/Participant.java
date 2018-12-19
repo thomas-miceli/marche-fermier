@@ -2,6 +2,7 @@ package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
+import javax.naming.PartialResultException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,14 +26,20 @@ public abstract class Participant {
         VACHE
     }
 
+
+
+    protected int id=0;
     protected String nom;
     protected String prenom;
     protected int age;
+    protected static ArrayList<Participant> listeParticipant;
 
     public Participant(String nom, String prenom, int age) {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
+        ++id;
+        listeParticipant.add(this);
     }
 
     public String getNom() {
@@ -54,11 +61,24 @@ public abstract class Participant {
     public int getAge() {
         return age;
     }
+    public int getId() {
+        return id;
+    }
 
     public void setAge(int age) {
         this.age = age;
     }
     protected enum ProduitsFabricables {}
+
+    public static ArrayList<Participant> getAllParticipants(){
+        return listeParticipant;
+    }
+    public static Participant getParticipantbyId(int id){
+        for (Participant participant : listeParticipant) {
+            if(participant.getId()==id) return participant;
+        }
+        return null;
+    }
 
     protected ArrayList<ProduitFermier> produitsEnStock = new ArrayList<>();
 
