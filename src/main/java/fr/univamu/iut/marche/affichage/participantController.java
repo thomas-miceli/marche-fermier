@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class participantController extends VBox implements Initializable {
 
     @FXML
-    private VBox root;
+    private VBox contentVBox;
 
     private Scene scene;
 
@@ -40,6 +40,11 @@ public class participantController extends VBox implements Initializable {
     @FXML
     private ListView listeParticipant = new ListView();
 
+    public void setViewToListeparticipants() throws IOException{
+        contentVBox.getChildren().clear();
+        contentVBox.getChildren().addAll(new listeParticipantController());
+    }
+
     private static String selectedParticipant;
     private ObservableList<String> data = FXCollections.observableArrayList();
     @Override
@@ -51,7 +56,7 @@ public class participantController extends VBox implements Initializable {
         }
         listeParticipant.setItems(data);
         participantName.setText(participantCurrent.getPrenom() + ' ' + participantCurrent.getNom());
-        participantInfo.setText("Info \nAge : " + participantCurrent.getAge() + " | Nombre de produits : " + participantCurrent.getProduits().size() + " | Solde : TOIMPLEMENT" /* participantCurrent.getSolde()*/    );
+        participantInfo.setText("Info \nAge : " + participantCurrent.getAge() + " | Nombre de produits : " + participantCurrent.getProduits().size() + " | Solde : " + participantCurrent.getArgent()    );
 
     }
 

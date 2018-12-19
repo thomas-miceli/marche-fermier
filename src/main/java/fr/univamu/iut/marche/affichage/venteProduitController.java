@@ -1,5 +1,6 @@
 package fr.univamu.iut.marche.affichage;
 
+import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import javafx.beans.value.ChangeListener;
@@ -53,9 +54,8 @@ public class venteProduitController extends VBox implements Initializable {
         else {
             Participant participant = Participant.getParticipantbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-3, catalogController.getSelectedProduit().length()-2)));
             ProduitFermier produitFermier = ProduitFermier.getProduitbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
-            participant.vendreProduit(participant, produitFermier, Integer.parseInt(QuantiteVoulus.getCharacters().toString()));
-            contentVBox.getChildren().clear();
-            contentVBox.getChildren().addAll(new catalogController());
+            Marche.vente(homeController.getParticipantFxml(), produitFermier, Integer.parseInt(QuantiteVoulus.getCharacters().toString()), participant);
+            setViewToCatalog();
         }
     }
 
@@ -68,7 +68,6 @@ public class venteProduitController extends VBox implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("bonjour");
         Participant participant = Participant.getParticipantbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-3, catalogController.getSelectedProduit().length()-2)));
         ProduitFermier produitFermier = ProduitFermier.getProduitbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
         produitName.setText(produitFermier.getClass().getSimpleName());

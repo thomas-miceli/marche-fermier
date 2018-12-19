@@ -1,13 +1,8 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
-import fr.univamu.iut.marche.traitement.acteurs.Paysan;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
-import java.lang.reflect.Array;
-import java.security.Key;
 import java.util.*;
-
-import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 
 /***
  * @author Pierre LEJEUNE
@@ -17,6 +12,7 @@ import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 
 public class Marche {
     private static ArrayList<Participant> listeParticipantsMarche = new ArrayList<>();
+    private static ArrayList<String> listeTransactions = new ArrayList<>();
 
 
     public Marche() {
@@ -30,6 +26,22 @@ public class Marche {
     public void setListeParticipantsMarche(ArrayList<Participant> listeParticipantsMarche1) {
         listeParticipantsMarche.removeAll(listeParticipantsMarche);
         listeParticipantsMarche.addAll(listeParticipantsMarche1);
+    }
+    public static void vente(Participant acheteur, ProduitFermier produitAcheter, int Quantite, Participant vendeur){
+        if(acheteur.getArgent()>produitAcheter.getPrix()*Quantite){
+            try{
+                produitAcheter.setQuantite(produitAcheter.getQuantite()-Quantite);
+                for (ProduitFermier produit:vendeur.getProduits()) {
+                    if(produit.getId()==produitAcheter.getId()) produit = produitAcheter;
+                }
+                vendeur.setArgent(acheteur.getArgent()+produitAcheter.getPrix()*Quantite);
+                acheteur.setArgent(vendeur.getArgent()-produitAcheter.getPrix()*Quantite);
+                addTransaction(acheteur, produitAcheter, Quantite, vendeur);
+            }catch (Exception e){
+                System.out.println("un probleme est survenus");
+            }
+        }
+        System.out.println(acheteur.getPrenom()+' '+acheteur.getNom()+" n'a pas les moyens pour cela");
     }
     public void addParticipant(Participant participant){
         listeParticipantsMarche.add(participant);
@@ -56,5 +68,11 @@ public class Marche {
             }
         }
         return listeProduitSpe;
+    }
+    public static void addTransaction(Participant acheteur, ProduitFermier produitAcheter,int Quantite, Participant vendeur){
+        listeTransactions.add("Acheteur : " + acheteur.getPrenom() +' '+ acheteur.getNom() + " | Vendeur : " + vendeur.getPrenom() +' '+vendeur.getNom()+" | Produit : " + produitAcheter.getClass().getSimpleName() + " Quantité : "+ Quantite);
+    }
+    public static ArrayList<String> getTransaction(){
+        return listeTransactions;
     }
 }

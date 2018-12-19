@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,11 +44,12 @@ public class catalogController extends VBox implements Initializable {
     private ObservableList<String> data = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(Marche.getListeParticipantsMarche());
         for (Participant participant:Marche.getListeParticipantsMarche()) {
-            for (ProduitFermier produit: participant.getProduits()) {
-                textaffichetotextdescription.put(produit.getClass().getSimpleName()+"        Quantité  : "+produit.getQuantite()+"        id : "+produit.getId(), produit.getClass().getSimpleName() + ',' + participant.getPrenom() + ','+ participant.getNom() + ',' + participant.getId()+','+ produit.getId());
-                data.add(produit.getClass().getSimpleName()+"        Quantité  : "+produit.getQuantite()+"        id : "+produit.getId());
+            if(participant.getProduits().size()!=0) {
+                for (ProduitFermier produit : participant.getProduits()) {
+                    textaffichetotextdescription.put(produit.getClass().getSimpleName() + "        Quantité  : " + produit.getQuantite() + "        id : " + produit.getId(), produit.getClass().getSimpleName() + ',' + participant.getPrenom() + ',' + participant.getNom() + ',' + participant.getId() + ',' + produit.getId());
+                    data.add(produit.getClass().getSimpleName() + "        Quantité  : " + produit.getQuantite() + "        id : " + produit.getId());
+                }
             }
         }
         listeVentes.setItems(data);

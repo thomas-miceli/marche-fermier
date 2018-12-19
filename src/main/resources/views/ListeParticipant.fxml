@@ -15,7 +15,7 @@
         </Text>
         <ListView fx:id="listeParticipant" prefHeight="8000.0" prefWidth="680.0">
             <opaqueInsets>
-                <Insets />
+                <Insets bottom="10" top="10"/>
             </opaqueInsets>
         </ListView>
     </children>

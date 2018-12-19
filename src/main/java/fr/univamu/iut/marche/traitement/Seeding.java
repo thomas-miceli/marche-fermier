@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public class Seeding {
     Seeding(){
+
+
         Apiculteur p1 = new Apiculteur("Claude", "Jean", 50);
         ProducteurDeViande p2 = new ProducteurDeViande("Claudette", "Jean", 45);
         Orticulteur p3 = new Orticulteur("Claudinette", "Jean", 40);

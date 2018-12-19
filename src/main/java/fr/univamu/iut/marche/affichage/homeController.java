@@ -1,5 +1,7 @@
 package fr.univamu.iut.marche.affichage;
 
+import fr.univamu.iut.marche.traitement.acteurs.Participant;
+import fr.univamu.iut.marche.traitement.acteurs.TraderIndependant;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,7 +27,12 @@ public class homeController implements Initializable {
     @FXML
     private VBox contentVBox;
 
+    @FXML
+    private Text soldeFxmlUser;
+
     private static Stage credits;
+
+    private static Participant participantFxml;
 
     public void setStageAndSetupListeners(Stage stage) {
         stage.setOnCloseRequest(event -> Platform.exit());
@@ -39,7 +47,7 @@ public class homeController implements Initializable {
     @FXML
     public void setSceneToTransactionView() throws IOException {
         contentVBox.getChildren().clear();
-        contentVBox.getChildren().addAll(/*new TransactionController*/);
+        contentVBox.getChildren().addAll(new transactionController());
     }
 
     @FXML
@@ -61,11 +69,9 @@ public class homeController implements Initializable {
         creditStage.setScene(new Scene(root));
         creditStage.setTitle("Crédits");
         creditStage.setResizable(false);
-
         credits = creditStage;
         creditStage.show();
     }
-
 
     public static Stage getCreditStage() {
         return credits;
@@ -84,7 +90,18 @@ public class homeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        participantFxml = new TraderIndependant("Utilisateur", "FXML", 69);
+        participantFxml.setArgent(150);
+        soldeFxmlUser.setText("Solde : " + String.valueOf(participantFxml.getArgent()));
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll();
+    }
+
+    public void reloadsolde(){
+        soldeFxmlUser.setText("Solde : " + String.valueOf(participantFxml.getArgent()));
+    }
+
+    public static Participant getParticipantFxml(){
+        return participantFxml;
     }
 }
