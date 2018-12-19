@@ -50,7 +50,7 @@ public class homeController implements Initializable {
     @FXML
     public void setSceneToParticipantsView() throws IOException {
         contentVBox.getChildren().clear();
-        contentVBox.getChildren().addAll(/* new ParticipantsController*/);
+        contentVBox.getChildren().addAll(new listeParticipantController());
     }
 
     @FXML
