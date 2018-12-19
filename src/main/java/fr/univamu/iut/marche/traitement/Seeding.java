@@ -36,15 +36,13 @@ public class Seeding {
         p1.vendreProduit(p1, Participant.Produits.LAIT);
 
         p3.show();
-        p3.setProduits(compilerProduits(p3.getProduits()));
-        p3.show();
     }
 
     public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd){
         Identificateur identificateur = new Identificateur();
         for (int i = 0; i <listProd.size() ; i++) {
             for (int j = 0; j <listProd.size() ; j++) {
-                if(listProd.get(i).identifier(identificateur)==listProd.get(j).identifier(identificateur) && i != j){
+                if(listProd.get(i).identifier(identificateur)==listProd.get(j).identifier(identificateur) && i != j && listProd.get(i).getDateDePeremption() == listProd.get(j).getDateDePeremption()){
                     listProd.get(i).fusionnerObjet(listProd.get(j));
                     listProd.remove(j);
                 }
