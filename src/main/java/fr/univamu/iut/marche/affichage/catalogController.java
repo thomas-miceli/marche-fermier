@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 /**
@@ -38,14 +39,15 @@ public class catalogController extends VBox implements Initializable {
     private ListView listeVentes = new ListView();
 
     private static String selectedProduit;
-    private static Participant selectedProduitProduit;
+    private static Map<String, String> textaffichetotextdescription = new HashMap<>();
     private ObservableList<String> data = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println(Marche.getListeParticipantsMarche());
         for (Participant participant:Marche.getListeParticipantsMarche()) {
             for (ProduitFermier produit: participant.getProduits()) {
-                data.add(produit.getClass().getSimpleName() + ',' + participant.getPrenom() + ','+ participant.getNom() + ',' + participant.getId());
+                textaffichetotextdescription.put(produit.getClass().getSimpleName()+"        Quantité  : "+produit.getQuantite()+"        id : "+produit.getId(), produit.getClass().getSimpleName() + ',' + participant.getPrenom() + ','+ participant.getNom() + ',' + participant.getId()+','+ produit.getId());
+                data.add(produit.getClass().getSimpleName()+"        Quantité  : "+produit.getQuantite()+"        id : "+produit.getId());
             }
         }
         listeVentes.setItems(data);
@@ -71,6 +73,6 @@ public class catalogController extends VBox implements Initializable {
         fxmlLoader.load();
     }
     public static String getSelectedProduit(){
-        return selectedProduit;
+        return textaffichetotextdescription.get(selectedProduit);
     }
 }

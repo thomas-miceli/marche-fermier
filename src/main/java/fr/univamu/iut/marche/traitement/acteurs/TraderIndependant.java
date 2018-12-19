@@ -14,19 +14,11 @@ public class TraderIndependant extends Trader {
     }
 
     @Override
-    public void vendreProduit(Participant participant, Produits produitAVendre) {
-        ProduitFermier aVendre = null;
-        for (ProduitFermier produ : produitsEnStock) {
-            if (produ.getClass().getSimpleName().toUpperCase().equals(produitAVendre.name())) {
-                aVendre = produ;
-                break;
-            }
-        }
-
-        if (participant.getProduitsAVendre().contains(aVendre)) {
-            participant.removeProduit(aVendre);
-        } else {
-            System.out.println(ANSI_RED + participant.getPrenom() + " " + participant.getNom() + " ne peut pas vendre " + produitAVendre);
+    public void vendreProduit(Participant participant, ProduitFermier produitAVendre) {
+        try{
+            produitsEnStock.remove(ProduitFermier.getProduitbyId(produitAVendre.getId()));
+        }catch (Exception e){
+            System.out.println("un probleme est survenus");
         }
     }
 
