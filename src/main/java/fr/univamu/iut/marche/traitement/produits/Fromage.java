@@ -5,9 +5,10 @@ import fr.univamu.iut.marche.traitement.acteurs.Participant;
 
 import java.util.Date;
 
-public class Fromage extends Laitage {
-    public Fromage(int quantite, Date dateDePeremption) {
-        super(quantite, dateDePeremption);
+public class Fromage extends ProduitFermier {
+
+    public Fromage(int quantite, double prix, Date dateDePeremption) {
+        super(quantite, prix, dateDePeremption);
     }
 
     @Override

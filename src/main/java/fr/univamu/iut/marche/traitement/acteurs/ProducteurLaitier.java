@@ -23,9 +23,9 @@ public class ProducteurLaitier extends Paysan {
     }
 
     @Override
-    public ProduitFermier fabriquerProduit(Produits objetFab, int quantite) {
+    public ProduitFermier fabriquerProduit(Produits objetFab, double prix, int quantite) {
         ProductionDeLaitage productionDeLaitage = new ProductionDeLaitage();
-        ProduitFermier produit =  productionDeLaitage.fabriquer(objetFab.name(),quantite);
+        ProduitFermier produit =  productionDeLaitage.fabriquer(objetFab.name(), prix, quantite);
         if(produit!= null){
             this.addProduit(produit);
             produitsEnStock= Seeding.compilerProduits(produitsEnStock);

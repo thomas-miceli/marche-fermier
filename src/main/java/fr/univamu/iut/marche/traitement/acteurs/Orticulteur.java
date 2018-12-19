@@ -21,9 +21,9 @@ public class Orticulteur extends Paysan {
     }
 
     @Override
-    public ProduitFermier fabriquerProduit(Participant.Produits objetFab, int quantite) {
+    public ProduitFermier fabriquerProduit(Participant.Produits objetFab, double prix, int quantite) {
         ProduictionDeFruit produictionDeFruit = new ProduictionDeFruit();
-        ProduitFermier produit =  produictionDeFruit.fabriquer(objetFab.name(),quantite);
+        ProduitFermier produit =  produictionDeFruit.fabriquer(objetFab.name(), prix, quantite);
         if(produit!= null){
             this.addProduit(produit);
             produitsEnStock= Seeding.compilerProduits(produitsEnStock);

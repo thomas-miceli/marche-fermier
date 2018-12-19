@@ -18,17 +18,24 @@ public class Seeding {
         Orticulteur p3 = new Orticulteur("Claudinette", "Jean", 40);
         ProducteurLaitier p4 = new ProducteurLaitier("Claudasse", "Jean", 45);
 
+        p1.setArgent( 50.1);
+        p2.setArgent(100.2);
+        p3.setArgent(150.3);
+        p4.setArgent(200.4);
 
-        p1.fabriquerProduit(Participant.Produits.MIEL, 550);
-        p1.fabriquerProduit(Participant.Produits.MIEL,1000);
+        p1.fabriquerProduit(Participant.Produits.MIEL, 3.5,550);
+        p1.fabriquerProduit(Participant.Produits.MIEL, 7,1000);
 
-        p2.fabriquerProduit(Participant.Produits.COCHON, 30);
-        p2.fabriquerProduit(Participant.Produits.VACHE, 40);
+        p2.fabriquerProduit(Participant.Produits.COCHON, 15, 30);
+        p2.fabriquerProduit(Participant.Produits.VACHE, 20, 40);
 
-        p3.fabriquerProduit(Participant.Produits.POMME, 500);
-        p3.fabriquerProduit(Participant.Produits.ORANGE, 700);
-        p3.fabriquerProduit(Participant.Produits.ORANGE,1000);
-        p4.fabriquerProduit(Participant.Produits.FROMAGE, 40);
+        p3.fabriquerProduit(Participant.Produits.POMME, 5.4,500);
+        p3.fabriquerProduit(Participant.Produits.ORANGE, 1.2, 700);
+        p3.fabriquerProduit(Participant.Produits.ORANGE,1.5, 1000);
+        p4.fabriquerProduit(Participant.Produits.FROMAGE, 5.4, 40);
+        ProduitFermier p =p4.fabriquerProduit(Participant.Produits.LAIT, 2.1, 800);
+
+        if( p.valider("COTON ROUGE")) System.out.println("ok");
         Marche marche = new Marche();
         for (Participant participants:Participant.getAllParticipants()) {
             marche.addParticipant(participants);

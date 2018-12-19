@@ -28,16 +28,19 @@ public abstract class Participant {
 
 
 
-    protected int id=0;
+    protected int id = 0;
     protected String nom;
     protected String prenom;
     protected int age;
     protected static ArrayList<Participant> listeParticipant = new ArrayList<>();
 
+    protected double argent = 0;
+
     public Participant(String nom, String prenom, int age) {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
+
         id = listeParticipant.size()+1;
         listeParticipant.add(this);
     }
@@ -61,6 +64,7 @@ public abstract class Participant {
     public int getAge() {
         return age;
     }
+
     public int getId() {
         return id;
     }
@@ -68,11 +72,23 @@ public abstract class Participant {
     public void setAge(int age) {
         this.age = age;
     }
-    protected enum ProduitsFabricables {}
+
+    public double getArgent() {
+        return argent;
+    }
+
+    public void setArgent(double argent) {
+        this.argent = argent;
+    }
+
+    public void opArgent(double argent) {
+        this.argent += argent;
+    }
 
     public static ArrayList<Participant> getAllParticipants(){
         return listeParticipant;
     }
+
     public static Participant getParticipantbyId(int id){
         for (Participant participant : listeParticipant) {
             if(participant.getId()==id) return participant;
@@ -138,6 +154,5 @@ public abstract class Participant {
         }
 
     }
-
 
 }

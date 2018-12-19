@@ -5,9 +5,9 @@ import fr.univamu.iut.marche.traitement.acteurs.Participant;
 
 import java.util.Date;
 
-public class Pomme extends Fruit {
-    public Pomme(int quantite, Date dateDePeremption) {
-        super(quantite, dateDePeremption);
+public class Pomme extends ProduitFermier {
+    public Pomme(int quantite, double prix, Date dateDePeremption) {
+        super(quantite, prix, dateDePeremption);
     }
 
     @Override

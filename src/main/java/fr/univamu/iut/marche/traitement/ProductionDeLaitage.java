@@ -8,9 +8,9 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 public class ProductionDeLaitage extends UniteDeProduction {
 
     @Override
-    public ProduitFermier fabriquer(String type, int quantite) {
+    public ProduitFermier fabriquer(String type, double prix, int quantite) {
         if (type.equals("LAIT") || type.equals("FROMAGE")){
-            return cree(type, quantite);
+            return cree(type, quantite, prix);
         }
         return null;
     }

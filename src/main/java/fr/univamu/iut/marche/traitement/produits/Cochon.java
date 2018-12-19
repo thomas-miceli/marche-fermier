@@ -5,10 +5,10 @@ import fr.univamu.iut.marche.traitement.acteurs.Participant;
 
 import java.util.Date;
 
-public class Cochon extends Charcuterie {
+public class Cochon extends ProduitFermier {
 
-    public Cochon(int quantite, Date dateDePeremption) {
-        super(quantite, dateDePeremption);
+    public Cochon(int quantite, double prix, Date dateDePeremption) {
+        super(quantite, prix, dateDePeremption);
     }
 
     @Override
