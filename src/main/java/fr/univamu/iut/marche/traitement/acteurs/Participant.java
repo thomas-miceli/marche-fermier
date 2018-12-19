@@ -38,7 +38,7 @@ public abstract class Participant {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
-        ++id;
+        id = listeParticipant.size()+1;
         listeParticipant.add(this);
     }
 
