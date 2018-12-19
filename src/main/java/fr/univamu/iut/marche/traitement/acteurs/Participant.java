@@ -32,7 +32,7 @@ public abstract class Participant {
     protected String nom;
     protected String prenom;
     protected int age;
-    protected static ArrayList<Participant> listeParticipant;
+    protected static ArrayList<Participant> listeParticipant = new ArrayList<>();
 
     public Participant(String nom, String prenom, int age) {
         this.nom = nom;
