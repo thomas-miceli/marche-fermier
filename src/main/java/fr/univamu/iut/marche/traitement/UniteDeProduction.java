@@ -11,54 +11,39 @@ import java.util.*;
  */
 public abstract class UniteDeProduction {
 
-    public ProduitFermier cree(String type, int quantite, Paysan P)throws ClassNotFoundException{
-        String prof = P.getClass().getSimpleName();
+    public ProduitFermier cree(String type, int quantite){
         switch (type){
             case "MIEL":
-                if(prof.equals("Apiculteur"))return new Miel(quantite,calcDatePremption());
+                return new Miel(quantite,calcDatePremption());
             case "ORANGE":
-                if(prof.equals("Orticulteur"))return new Orange(quantite,calcDatePremption());
+                return new Orange(quantite,calcDatePremption());
             case "POMME":
-                if(prof.equals("Orticulteur"))return new Pomme(quantite,calcDatePremption());
-                else {
-                    System.out.println("Vous ne pouvez pas produire ceci");
-                }
+                return new Pomme(quantite,calcDatePremption());
             case "LAIT":
-                if(prof.equals("ProducteurLaitier"))return new Lait(quantite,calcDatePremption());
-                else {
-                    System.out.println("Vous ne pouvez pas produire ceci");
-                }
+               return new Lait(quantite,calcDatePremption());
             case "FROMAGE":
-                if(prof.equals("ProducteurLaitier"))return new Fromage(quantite,calcDatePremption());
-                else {
-                    System.out.println("Vous ne pouvez pas produire ceci");
-                }
+               return new Fromage(quantite,calcDatePremption());
             case "VACHE":
-                if(prof.equals("ProducteurDeViande"))return new Vache(quantite,calcDatePremption());
-                else {
-                    System.out.println("Vous ne pouvez pas produire ceci");
-                }
-                break;
+               return new Vache(quantite,calcDatePremption());
             case "COCHON":
-                if(prof.equals("ProducteurDeViande"))return new Cochon(quantite,calcDatePremption());
-                else {
-                    System.out.println("Vous ne pouvez pas produire ceci");
-                }
-                break;
+               return new Cochon(quantite,calcDatePremption());
             default:
-                throw new ClassNotFoundException();
+                try {
+                    throw new ClassNotFoundException();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
         }
         return null;
     }
 
-    public abstract ProduitFermier fabriquer(String type,int quantite,Paysan P) throws ClassNotFoundException ;
+    public abstract ProduitFermier fabriquer(String type,int quantite) throws ClassNotFoundException ;
 
     private Date calcDatePremption(){
 
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
         c.add(Calendar.DATE, 5);
-        Date format= (c.getTime());
-        return format;
+        return (c.getTime());
     }
 }

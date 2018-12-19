@@ -1,6 +1,7 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.ProductionDeLaitage;
+import fr.univamu.iut.marche.traitement.Seeding;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.ArrayList;
@@ -14,21 +15,24 @@ public class ProducteurLaitier extends Paysan {
         super(nom, prenom, age);
     }
 
+
+
     public enum ProduitsFabricables {
         LAIT,
         FROMAGE
     }
 
-    public ProduitFermier fabriquerProduit(ProduitsFabricables objetFab, int quantite) {
-        try {
+    @Override
+    public ProduitFermier fabriquerProduit(Produits objetFab, int quantite) {
         ProductionDeLaitage productionDeLaitage = new ProductionDeLaitage();
-        ProduitFermier p = productionDeLaitage.fabriquer(objetFab.name(), quantite, this);
-
-            this.addProduit(p);
-            return p;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        ProduitFermier produit =  productionDeLaitage.fabriquer(objetFab.name(),quantite);
+        if(produit!= null){
+            this.addProduit(produit);
+            produitsEnStock= Seeding.compilerProduits(produitsEnStock);
+            return produit;
         }
         return null;
     }
 }
+
+

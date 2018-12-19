@@ -57,4 +57,5 @@ public abstract class Paysan extends Participant {
         acheteur.produitsEnStock.add(aAcheter);
         vendeur.produitsEnVente.remove(aAcheter);
     }
+    public abstract ProduitFermier fabriquerProduit(Produits objetFab, int quantite);
 }

@@ -19,24 +19,24 @@ public class Seeding {
         ProducteurLaitier p4 = new ProducteurLaitier("Claudasse", "Jean", 45);
 
 
-        p1.fabriquerProduit(Apiculteur.ProduitsFabricables.MIEL, 550);
-        p1.fabriquerProduit(Apiculteur.ProduitsFabricables.MIEL,1000);
+        p1.fabriquerProduit(Participant.Produits.MIEL, 550);
+        p1.fabriquerProduit(Participant.Produits.MIEL,1000);
 
-        p2.fabriquerProduit(ProducteurDeViande.ProduitsFabricables.COCHON, 30);
-        p2.fabriquerProduit(ProducteurDeViande.ProduitsFabricables.VACHE, 40);
+        p2.fabriquerProduit(Participant.Produits.COCHON, 30);
+        p2.fabriquerProduit(Participant.Produits.VACHE, 40);
 
-        p3.fabriquerProduit(Orticulteur.ProduitsFabricables.POMME, 500);
-        p3.fabriquerProduit(Orticulteur.ProduitsFabricables.ORANGE, 700);
-        p3.fabriquerProduit(Orticulteur.ProduitsFabricables.ORANGE,1000);
-        p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.FROMAGE, 40);
-        p4.fabriquerProduit(ProducteurLaitier.ProduitsFabricables.LAIT, 800);
+        p3.fabriquerProduit(Participant.Produits.POMME, 500);
+        p3.fabriquerProduit(Participant.Produits.ORANGE, 700);
+        p3.fabriquerProduit(Participant.Produits.ORANGE,1000);
+        p4.fabriquerProduit(Participant.Produits.FROMAGE, 40);
+        ProduitFermier p =p4.fabriquerProduit(Participant.Produits.LAIT, 800);
+        if( p.valider("COTON ROUGE")) System.out.println("ok");
         Marche marche = new Marche();
         p1.vendreProduit(p1, Participant.Produits.LAIT);
-        marche.addParticipant(p1);
-        marche.addParticipant(p2);
-        marche.addParticipant(p3);
-        marche.addParticipant(p4);
 
+        p3.show();
+        p3.setProduits(compilerProduits(p3.getProduits()));
+        p3.show();
     }
 
     public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd){

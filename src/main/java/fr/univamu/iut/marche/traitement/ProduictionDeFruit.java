@@ -9,7 +9,10 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
  */
 public class ProduictionDeFruit extends UniteDeProduction {
     @Override
-    public ProduitFermier fabriquer(String type, int quantite, Paysan P) throws ClassNotFoundException {
-        return cree(type, quantite, P);
+    public ProduitFermier fabriquer(String type, int quantite) {
+        if (type.equals("ORANGE") || type.equals("POMME")){
+            return cree(type, quantite);
+        }
+        return null;
     }
 }
