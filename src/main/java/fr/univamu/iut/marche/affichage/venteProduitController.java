@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -30,6 +31,11 @@ public class venteProduitController extends VBox implements Initializable {
     @FXML
     private Text produitQuantite;
 
+    @FXML
+    private Text popupAlert;
+
+    @FXML
+    private TextField QuantiteVoulus;
 
     @FXML
     public void setViewToCatalog() throws IOException{
@@ -42,6 +48,14 @@ public class venteProduitController extends VBox implements Initializable {
 
     private ObservableList<String> data = FXCollections.observableArrayList();
 
+    public void vendreProduit()throws  IOException{
+        if(QuantiteVoulus.getCharacters().toString().isEmpty()) popupAlert.setText("Quantité ??");
+        else {
+            Participant participant = Participant.getParticipantbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-3, catalogController.getSelectedProduit().length()-2)));
+            ProduitFermier produitFermier = ProduitFermier.getProduitbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
+            participant.vendreProduit(participant, produitFermier, Integer.parseInt(QuantiteVoulus.getCharacters().toString()));
+        }
+    }
 
     public venteProduitController() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/VenteProduit.fxml"));

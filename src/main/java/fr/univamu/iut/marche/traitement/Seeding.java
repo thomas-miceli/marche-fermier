@@ -29,9 +29,10 @@ public class Seeding {
         p3.fabriquerProduit(Participant.Produits.ORANGE, 700);
         p3.fabriquerProduit(Participant.Produits.ORANGE,1000);
         p4.fabriquerProduit(Participant.Produits.FROMAGE, 40);
-        ProduitFermier p =p4.fabriquerProduit(Participant.Produits.LAIT, 800);
-        if( p.valider("COTON ROUGE")) System.out.println("ok");
         Marche marche = new Marche();
+        for (Participant participants:Participant.getAllParticipants()) {
+            marche.addParticipant(participants);
+        }
         p1.vendreProduit(p1, Participant.Produits.LAIT);
 
         p3.show();

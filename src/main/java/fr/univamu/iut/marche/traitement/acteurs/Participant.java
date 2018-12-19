@@ -126,10 +126,13 @@ public abstract class Participant {
         return produitFermier;
     }
 
-    public void vendreProduit(Participant participant, ProduitFermier produitAVendre) {
+    public void vendreProduit(Participant participant, ProduitFermier produitAVendre, int Quantite) {
 
         try{
-            produitsEnStock.remove(ProduitFermier.getProduitbyId(produitAVendre.getId()));
+            produitAVendre.setQuantite(produitAVendre.getQuantite()-Quantite);
+            for (ProduitFermier produit:produitsEnStock) {
+                if(produit.getId()==produitAVendre.getId()) produit = produitAVendre;
+            }
         }catch (Exception e){
             System.out.println("un probleme est survenus");
         }

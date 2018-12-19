@@ -14,25 +14,15 @@ public class TraderSpecial extends Trader {
     }
 
     @Override
-    public void vendreProduit(Participant participant, ProduitFermier produitAVendre) {
+    public void vendreProduit(Participant participant, ProduitFermier produitAVendre, int Quantite) {
 
         try{
-            produitsEnStock.remove(ProduitFermier.getProduitbyId(produitAVendre.getId()));
+            produitAVendre.setQuantite(produitAVendre.getQuantite()-Quantite);
+            for (ProduitFermier produit:produitsEnStock) {
+                if(produit.getId()==produitAVendre.getId()) produit = produitAVendre;
+            }
         }catch (Exception e){
             System.out.println("un probleme est survenus");
         }
-    }
-
-    @Override
-    public void acheterProduit(Participant acheteur, Participant vendeur, Produits produitAchete) {
-        ProduitFermier aAcheter = null;
-        for (ProduitFermier produ : produitsEnStock) {
-            if (produ.getClass().getSimpleName().toUpperCase().equals(produitAchete.name())) {
-                aAcheter = produ;
-                break;
-            }
-        }
-        acheteur.produitsEnStock.add(aAcheter);
-        vendeur.produitsEnVente.remove(aAcheter);
     }
 }
