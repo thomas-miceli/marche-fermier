@@ -54,6 +54,8 @@ public class venteProduitController extends VBox implements Initializable {
             Participant participant = Participant.getParticipantbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-3, catalogController.getSelectedProduit().length()-2)));
             ProduitFermier produitFermier = ProduitFermier.getProduitbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
             participant.vendreProduit(participant, produitFermier, Integer.parseInt(QuantiteVoulus.getCharacters().toString()));
+            contentVBox.getChildren().clear();
+            contentVBox.getChildren().addAll(new catalogController());
         }
     }
 
@@ -66,6 +68,7 @@ public class venteProduitController extends VBox implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("bonjour");
         Participant participant = Participant.getParticipantbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-3, catalogController.getSelectedProduit().length()-2)));
         ProduitFermier produitFermier = ProduitFermier.getProduitbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
         produitName.setText(produitFermier.getClass().getSimpleName());

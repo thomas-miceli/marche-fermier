@@ -27,7 +27,7 @@
                     <children>
                         <Pane maxWidth="1.7976931348623157E308" prefHeight="76.0" prefWidth="315.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                             <children>
-                                <Button fx:id="buttonAcheter" onAction="vendreProduit" layoutX="195.0" layoutY="14.0" mnemonicParsing="false" text="Acheter" />
+                                <Button fx:id="buttonAcheter" onAction="#vendreProduit" layoutX="195.0" layoutY="14.0" mnemonicParsing="false" text="Acheter" />
                         <TextField fx:id="QuantiteVoulus" layoutX="187.0" layoutY="51.0" prefHeight="26.0" prefWidth="114.0" />
                         <Text layoutX="54.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantite voulus ?" />
                         <Text layoutX="54.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" fx:id="popupAlert" wrappingWidth="28.7294921875" />
