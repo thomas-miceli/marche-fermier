@@ -13,17 +13,7 @@ import static fr.univamu.iut.marche.traitement.Seeding.compilerProduits;
  */
 public class TraderIndependant extends Trader {
 
-    private ArrayList<ProduitFermier> stockPersonnel = new ArrayList<>();
     boolean connexion = true;
-
-
-    public ArrayList<ProduitFermier> getStockPersonnel() {
-        return stockPersonnel;
-    }
-
-    public void setStockPersonnel(ArrayList<ProduitFermier> stockPersonnel) {
-        this.stockPersonnel = stockPersonnel;
-    }
 
     public TraderIndependant(String nom, String prenom, int age) {
         super(nom, prenom, age);
@@ -37,7 +27,7 @@ public class TraderIndependant extends Trader {
         this.connexion = connexion;
     }
 
-    public void vendreProduit(CentraleAchat centraleAchat, ProduitFermier produitAVendre) {
+    public void vendreProduit(ProduitFermier produitAVendre) {
         ProduitFermier aVendre = null;
         if (connexion) {
             for (ProduitFermier produ : produitsEnStock) {
@@ -46,7 +36,7 @@ public class TraderIndependant extends Trader {
                     break;
                 }
             }
-            centraleAchat.getStockAVendreCentrale().remove(aVendre);
+            this.getProduitsAVendre().remove(aVendre);
         }
         System.out.println("Pas connecté, impossible de vendre le produit");
     }
@@ -60,8 +50,8 @@ public class TraderIndependant extends Trader {
                     break;
                 }
             }
-            centraleAchat.getStockCentrale().add(aAcheter);
-            centraleAchat.setStockCentrale(compilerProduits(centraleAchat.getStockCentrale()));
+            this.getProduits().add(aAcheter);
+            this.setProduits(compilerProduits(this.getProduits()));
             vendeur.produitsEnVente.remove(aAcheter);
         }
         System.out.println("Pas connecté, impossible d'acheter le produit");
