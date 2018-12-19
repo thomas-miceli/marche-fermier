@@ -1,7 +1,6 @@
 package fr.univamu.iut.marche.traitement.produits;
 
 import fr.univamu.iut.marche.traitement.IVisitable;
-import fr.univamu.iut.marche.traitement.UniteDeProduction;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,16 +12,25 @@ public abstract class ProduitFermier implements IVisitable {
     private double prix;
 
 
-
     private Date dateDePeremption;
     private String label;
 
     protected int id=0;
     protected static ArrayList<ProduitFermier> listeProduit = new ArrayList<>();
 
-    public ProduitFermier(int quantite, double prix, Date dateDePeremption) {
+    @Override
+    public String toString() {
+        return "ProduitFermier{" +
+                "quantite=" + quantite +
+                ", prix=" + prix +
+                ", dateDePeremption=" + dateDePeremption +
+                ", label='" + label + '\'' +
+                '}';
+    }
+
+    public ProduitFermier(int quantite, Date dateDePeremption) {
         this.quantite = quantite;
-        this.prix = prix;
+        this.prix = 0;
         this.dateDePeremption = dateDePeremption;
 
         id = listeProduit.size()+1;
@@ -79,5 +87,9 @@ public abstract class ProduitFermier implements IVisitable {
             setQuantite(quantite+produitFermier.getQuantite());
             produitFermier=null;
         }
+    }
+    public String getStringDate(){
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        return format.format(dateDePeremption);
     }
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Vache extends ProduitFermier {
     public Vache(int quantite, double prix, Date dateDePeremption) {
-        super(quantite, prix, dateDePeremption);
+        super(quantite, dateDePeremption);
     }
 
     @Override
