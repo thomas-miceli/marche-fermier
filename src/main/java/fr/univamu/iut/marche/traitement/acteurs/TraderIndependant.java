@@ -13,7 +13,7 @@ import static fr.univamu.iut.marche.traitement.Seeding.compilerProduits;
  */
 public class TraderIndependant extends Trader {
 
-    boolean connexion = true;
+    private boolean connexion = true;
 
     public TraderIndependant(String nom, String prenom, int age) {
         super(nom, prenom, age);
@@ -41,7 +41,7 @@ public class TraderIndependant extends Trader {
         System.out.println("Pas connecté, impossible de vendre le produit");
     }
 
-    public void acheterProduit(TraderIndependant independant, CentraleAchat centraleAchat, Participant vendeur, ProduitFermier produitAchete) {
+    public void acheterProduit(Participant vendeur, ProduitFermier produitAchete) {
         ProduitFermier aAcheter = null;
         if (connexion) {
             for (ProduitFermier produ : produitsEnStock) {
