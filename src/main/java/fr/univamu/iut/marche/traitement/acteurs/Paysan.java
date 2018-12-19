@@ -54,8 +54,18 @@ public abstract class Paysan extends Participant {
                 break;
             }
         }
-        acheteur.produitsEnStock.add(aAcheter);
-        vendeur.produitsEnVente.remove(aAcheter);
+        try {
+            if (acheteur.canBuy(aAcheter.getPrix())) {
+                acheteur.produitsEnStock.add(aAcheter);
+                vendeur.produitsEnVente.remove(aAcheter);
+                acheteur.opArgent(0 - aAcheter.getPrix());
+                vendeur.opArgent(aAcheter.getPrix());
+            } else {
+                throw new Exception("Solde insuffisant");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public abstract ProduitFermier fabriquerProduit(Produits objetFab, double prix, int quantite);
 }

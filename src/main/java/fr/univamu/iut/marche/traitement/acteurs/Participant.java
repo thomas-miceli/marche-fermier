@@ -85,6 +85,10 @@ public abstract class Participant {
         this.argent += argent;
     }
 
+    public boolean canBuy(double argent) {
+        return !((this.argent -= argent) < 0);
+    }
+
     public static ArrayList<Participant> getAllParticipants(){
         return listeParticipant;
     }
