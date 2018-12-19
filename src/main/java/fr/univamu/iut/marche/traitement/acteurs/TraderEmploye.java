@@ -5,6 +5,10 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 import static fr.univamu.iut.marche.traitement.Seeding.compilerProduits;
 
+/**
+ * @author Téo MARTIN
+ */
+
 public class TraderEmploye extends Trader {
 
     public TraderEmploye(String nom, String prenom, int age) {
