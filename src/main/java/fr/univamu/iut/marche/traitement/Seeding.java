@@ -42,8 +42,8 @@ public class Seeding {
         for (Participant participants:Participant.getAllParticipants()) {
             marche.addParticipant(participants);
         }
-        p1.vendreProduit(p1, Participant.Produits.LAIT);
-        p3.show();
+        p1.vendreProduit(Participant.Produits.LAIT);
+        p1.show();
     }
 
     public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd){

@@ -30,7 +30,7 @@ public abstract class Paysan extends Participant {
         System.out.println("\n");
     }
 
-    public void vendreProduit(Participant participant, Produits produitAVendre) {
+    public void vendreProduit(Produits produitAVendre) {
         ProduitFermier aVendre = null;
         for (ProduitFermier produ : produitsEnStock) {
             if (produ.getClass().getSimpleName().toUpperCase().equals(produitAVendre.name())) {
@@ -39,14 +39,14 @@ public abstract class Paysan extends Participant {
             }
         }
 
-        if (participant.getProduitsAVendre().contains(aVendre)) {
-            participant.removeProduit(aVendre);
+        if (this.getProduitsAVendre().contains(aVendre)) {
+            this.removeProduit(aVendre);
         } else {
-            System.out.println(ANSI_RED + participant.getPrenom() + " " + participant.getNom() + " ne peut pas vendre " + produitAVendre);
+            System.out.println(ANSI_RED + this.getPrenom() + " " + this.getNom() + " ne peut pas vendre " + produitAVendre);
         }
     }
 
-    public void acheterProduit(Participant acheteur, Participant vendeur, Produits produitAchete) {
+    public void acheterProduit(Participant vendeur, Produits produitAchete) {
         ProduitFermier aAcheter = null;
         for (ProduitFermier produ : produitsEnStock) {
             if (produ.getClass().getSimpleName().toUpperCase().equals(produitAchete.name())) {
@@ -55,10 +55,10 @@ public abstract class Paysan extends Participant {
             }
         }
         try {
-            if (acheteur.canBuy(aAcheter.getPrix())) {
-                acheteur.produitsEnStock.add(aAcheter);
+            if (this.canBuy(aAcheter.getPrix())) {
+                this.produitsEnStock.add(aAcheter);
                 vendeur.produitsEnVente.remove(aAcheter);
-                acheteur.opArgent(0 - aAcheter.getPrix());
+                this.opArgent(0 - aAcheter.getPrix());
                 vendeur.opArgent(aAcheter.getPrix());
             } else {
                 throw new Exception("Solde insuffisant");
