@@ -1,6 +1,7 @@
 package fr.univamu.iut.marche.traitement;
 
 
+import fr.univamu.iut.marche.traitement.Vente;
 import fr.univamu.iut.marche.traitement.acteurs.*;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Apiculteur;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Orticulteur;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class Seeding {
     Seeding(){
 
-
+        Marche marche = new Marche();
         Apiculteur p1 = new Apiculteur("Claude", "Jean", 50);
         ProducteurDeViande p2 = new ProducteurDeViande("Claudette", "Jean", 45);
         Orticulteur p3 = new Orticulteur("Claudinette", "Jean", 40);
@@ -41,13 +42,14 @@ public class Seeding {
         p4.fabriquerProduit(Participant.Produits.FROMAGE, 40);
         ProduitFermier p =p4.fabriquerProduit(Participant.Produits.LAIT,  800);
 
-        if( p.valider("COTON ROUGE")) System.out.println("ok");
-        Marche marche = new Marche();
-        for (Participant participants:Participant.getAllParticipants()) {
-            marche.addParticipant(participants);
-        }
-        p1.vendreProduit(Participant.Produits.LAIT);
-        p1.show();
+        p4.show();
+        marche.show();
+
+        p4.vendreProduit(Participant.Produits.LAIT,500,5,marche);
+
+        marche.show();
+
+        p4.show();
     }
 
     public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd){
