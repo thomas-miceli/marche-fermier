@@ -21,42 +21,27 @@ public abstract class Paysan extends Participant {
         System.out.println(ANSI_YELLOW + "(" + this.getClass().getSimpleName() + ") " + ANSI_GREEN + this.prenom + " " + this.nom + " - " + this.age + " ans : \n" +
                 ANSI_CYAN + "Produits en stock : " + ANSI_RESET);
 
-        for (ProduitFermier produit : produitsEnStock) {
+        for (ProduitFermier produit : this.getProduits()) {
             System.out.println(produit.getClass().getSimpleName() + " | Quantité: " + produit.getQuantite() + " | Péremption: " + produit.getDateToString());
         }
-        System.out.println(ANSI_CYAN + "Produits en vente :" + ANSI_RESET);
-        for (ProduitFermier produit : produitsEnVente) {
-            System.out.println(produit.getClass().getSimpleName() + " | Quantité: " + produit.getQuantite() + " | Péremption: " + produit.getDateToString());
-        }
+//        System.out.println(ANSI_CYAN + "Produits en vente :" + ANSI_RESET);
+//        for (ProduitFermier produit : produitsEnVente) {
+//            System.out.println(produit.getClass().getSimpleName() + " | Quantité: " + produit.getQuantite() + " | Péremption: " + produit.getDateToString());
+//        }
         System.out.println("\n");
     }
 
-    public void vendreProduit(Produits produitAVendre) {
-        ProduitFermier aVendre = null;
-        for (ProduitFermier produ : produitsEnStock) {
-            if (produ.getClass().getSimpleName().toUpperCase().equals(produitAVendre.name())) {
-                aVendre = produ;
-                break;
-            }
-        }
-
-        if (this.getProduitsAVendre().contains(aVendre)) {
-            this.removeProduit(aVendre);
-        } else {
-            System.out.println(ANSI_RED + this.getPrenom() + " " + this.getNom() + " ne peut pas vendre " + produitAVendre);
-        }
-    }
 
     public void acheterProduit(Participant vendeur, Produits produitAchete) {
-        ProduitFermier aAcheter = null;
-        for (ProduitFermier produ : produitsEnStock) {
-            if (produ.getClass().getSimpleName().toUpperCase().equals(produitAchete.name())) {
-                aAcheter = produ;
-                break;
-            }
-        }
-        this.produitsEnStock.add(aAcheter);
-        vendeur.getProduitsAVendre().remove(aAcheter);
+//        ProduitFermier aAcheter = null;
+//        for (ProduitFermier produ : produitsEnStock) {
+//            if (produ.getClass().getSimpleName().toUpperCase().equals(produitAchete.name())) {
+//                aAcheter = produ;
+//                break;
+//            }
+//        }
+//        this.produitsEnStock.add(aAcheter);
+//        vendeur.getProduitsAVendre().remove(aAcheter);
     }
     public abstract ProduitFermier fabriquerProduit(Produits objetFab, int quantite);
 }

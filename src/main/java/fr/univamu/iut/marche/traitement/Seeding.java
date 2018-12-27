@@ -44,11 +44,8 @@ public class Seeding {
 
         p4.show();
         marche.show();
-
-        p4.vendreProduit(Participant.Produits.LAIT,500,5,marche);
-
+        p4.vendreProduit(Participant.Produits.LAIT,1,5,marche);
         marche.show();
-
         p4.show();
     }
 

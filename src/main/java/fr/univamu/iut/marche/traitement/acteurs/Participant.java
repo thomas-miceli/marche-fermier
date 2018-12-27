@@ -2,7 +2,7 @@ package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.Identificateur;
 import fr.univamu.iut.marche.traitement.Vente;
-import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
+import fr.univamu.iut.marche.traitement.produits.*;
 
 import javax.naming.PartialResultException;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public abstract class Participant {
         VACHE
     }
 
-    protected ArrayList<ProduitFermier> produitsEnStock = new ArrayList<>();
+    private ArrayList<ProduitFermier> produitsEnStock = new ArrayList<>();
 
 
     protected int id = 0;
@@ -135,12 +135,57 @@ public abstract class Participant {
         return produitFermier;
     }
 
-    public void vendreProduit(Produits produitAVendre, int quantite, int prix,Marche marche) {
+    public void vendreProduit(Produits produitAVendre, Integer quantite, Integer prix,Marche marche) {
         Identificateur identificateur = new Identificateur();
         for (ProduitFermier p: produitsEnStock) {
-            if(p.identifier(identificateur)==produitAVendre){
-                if(p.getQuantite()-quantite>=0){
-                   ProduitFermier pTemp = p;
+//            System.out.println("ok----------------2");
+//            if(p.identifier(identificateur)==produitAVendre){
+//                System.out.println("ok----------------3");
+//                if(p.getQuantite()-quantite>=0){
+//                   ProduitFermier pTemp = p;
+//                    System.out.println("ok----------------4");
+//                    pTemp.setQuantite(quantite);
+//                    System.out.println("ok----------------5");
+//                    new Vente(pTemp,this,prix,marche);
+//                    if(p.getQuantite()-quantite==0){
+//                        produitsEnStock.remove(p);
+//                    }else{
+//                        p.setQuantite(p.getQuantite()-quantite);
+//                    }
+//                    System.out.println("ok----------------6");
+//                    System.out.println("la vente c'est bien passée");
+//                }else {
+//                    System.out.println(this.getNom()+ " ne peux pas vendre autant de ce produit car pas assez");
+//                }
+//            }
+            if(p.identifier(identificateur).equals(produitAVendre)){
+                if(p.getQuantite()>=quantite){
+                    ProduitFermier pTemp;
+                    switch (p.getClass().getSimpleName()){
+                        case "Miel":
+                            pTemp = new Miel(p);
+                            break;
+                        case "Vache":
+                            pTemp = new Vache(p);
+                            break;
+                        case "Pomme":
+                            pTemp = new Pomme(p);
+                            break;
+                        case "Orange":
+                            pTemp = new Orange(p);
+                            break;
+                        case "Lait":
+                            pTemp = new Lait(p);
+                            break;
+                        case "Fromage":
+                            pTemp = new Fromage(p);
+                            break;
+                        case "Cochon":
+                            pTemp = new Cochon(p);
+                        default:
+                            pTemp=null;
+                            break;
+                    }
                     pTemp.setQuantite(quantite);
                     new Vente(pTemp,this,prix,marche);
                     if(p.getQuantite()-quantite==0){
@@ -149,11 +194,8 @@ public abstract class Participant {
                         p.setQuantite(p.getQuantite()-quantite);
                     }
                     System.out.println("la vente c'est bien passée");
-                }else {
-                    System.out.println(this.getNom()+ " ne peux pas vendre autant de ce produit car pas assez");
                 }
             }
-
         }
 
     }
