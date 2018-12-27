@@ -1,7 +1,8 @@
-package fr.univamu.iut.marche.traitement.acteurs;
+package fr.univamu.iut.marche.traitement.acteurs.Paysans;
 
-import fr.univamu.iut.marche.traitement.ProductionDeMiel;
+import fr.univamu.iut.marche.traitement.fabriques.ProductionDeMiel;
 import fr.univamu.iut.marche.traitement.Seeding;
+import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 /**
  * @author Yann FORNER
@@ -19,9 +20,9 @@ public class Apiculteur extends Paysan {
 
 
     @Override
-    public ProduitFermier fabriquerProduit(Produits objetFab, double prix, int quantite) {
+    public ProduitFermier fabriquerProduit(Participant.Produits objetFab, int quantite) {
         ProductionDeMiel productionDeLaitage = new ProductionDeMiel();
-        ProduitFermier produit =  productionDeLaitage.fabriquer(objetFab.name(), prix, quantite);
+        ProduitFermier produit =  productionDeLaitage.fabriquer(objetFab.name(), quantite);
         if(produit!= null){
             this.addProduit(produit);
             produitsEnStock= Seeding.compilerProduits(produitsEnStock);

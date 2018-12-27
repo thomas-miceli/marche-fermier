@@ -6,7 +6,7 @@ import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import java.util.Date;
 
 public class Miel extends ProduitFermier {
-    public Miel(int quantite, double prix, Date dateDePeremption) {
+    public Miel(int quantite, Date dateDePeremption) {
         super(quantite, dateDePeremption);
     }
 

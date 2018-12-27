@@ -1,6 +1,5 @@
-package fr.univamu.iut.marche.traitement;
+package fr.univamu.iut.marche.traitement.fabriques;
 
-import fr.univamu.iut.marche.traitement.acteurs.Paysan;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 /**
  * @author Yann FORNER
@@ -8,9 +7,9 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 public class ProductionDeLaitage extends UniteDeProduction {
 
     @Override
-    public ProduitFermier fabriquer(String type, double prix, int quantite) {
+    public ProduitFermier fabriquer(String type, int quantite) {
         if (type.equals("LAIT") || type.equals("FROMAGE")){
-            return cree(type, quantite, prix);
+            return cree(type, quantite);
         }
         return null;
     }

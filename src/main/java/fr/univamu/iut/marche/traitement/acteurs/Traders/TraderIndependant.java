@@ -1,10 +1,8 @@
-package fr.univamu.iut.marche.traitement.acteurs;
+package fr.univamu.iut.marche.traitement.acteurs.Traders;
 
+import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
-import java.util.ArrayList;
-
-import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 import static fr.univamu.iut.marche.traitement.Seeding.compilerProduits;
 
 /**
@@ -52,7 +50,7 @@ public class TraderIndependant extends Trader {
             }
             this.getProduits().add(aAcheter);
             this.setProduits(compilerProduits(this.getProduits()));
-            vendeur.produitsEnVente.remove(aAcheter);
+            vendeur.getProduitsAVendre().remove(aAcheter);
         }
         System.out.println("Pas connecté, impossible d'acheter le produit");
     }

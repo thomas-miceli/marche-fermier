@@ -8,7 +8,7 @@ import java.util.*;
  * @author Pierre LEJEUNE
  * @author Téo MARTIN
  * Ceci est la classe Marché qui possède toutes les fonctions permettant de gérer celui-ci
- */
+*/
 
 public class Marche {
     private static ArrayList<Participant> listeParticipantsMarche = new ArrayList<>();
@@ -28,19 +28,18 @@ public class Marche {
         listeParticipantsMarche.addAll(listeParticipantsMarche1);
     }
     public static void vente(Participant acheteur, ProduitFermier produitAcheter, int Quantite, Participant vendeur){
-        if(acheteur.getArgent()>produitAcheter.getPrix()*Quantite){
             try{
                 produitAcheter.setQuantite(produitAcheter.getQuantite()-Quantite);
                 for (ProduitFermier produit:vendeur.getProduits()) {
                     if(produit.getId()==produitAcheter.getId()) produit = produitAcheter;
                 }
-                vendeur.setArgent(acheteur.getArgent()+produitAcheter.getPrix()*Quantite);
-                acheteur.setArgent(vendeur.getArgent()-produitAcheter.getPrix()*Quantite);
+                //vendeur.setArgent(acheteur.getArgent()+produitAcheter.getPrix()*Quantite);
+                //acheteur.setArgent(vendeur.getArgent()-produitAcheter.getPrix()*Quantite);
                 addTransaction(acheteur, produitAcheter, Quantite, vendeur);
             }catch (Exception e){
                 System.out.println("un probleme est survenus");
             }
-        }
+
         System.out.println(acheteur.getPrenom()+' '+acheteur.getNom()+" n'a pas les moyens pour cela");
     }
     public void addParticipant(Participant participant){

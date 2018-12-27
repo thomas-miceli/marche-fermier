@@ -1,4 +1,6 @@
-package fr.univamu.iut.marche.traitement.acteurs;
+package fr.univamu.iut.marche.traitement.acteurs.Grossiste;
+
+import fr.univamu.iut.marche.traitement.acteurs.Participant;
 
 /***
  * @author Thomas MICELI

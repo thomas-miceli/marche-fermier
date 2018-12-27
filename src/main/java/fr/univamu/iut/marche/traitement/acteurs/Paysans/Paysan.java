@@ -1,5 +1,6 @@
-package fr.univamu.iut.marche.traitement.acteurs;
+package fr.univamu.iut.marche.traitement.acteurs.Paysans;
 
+import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.ArrayList;
@@ -54,18 +55,8 @@ public abstract class Paysan extends Participant {
                 break;
             }
         }
-        try {
-            if (this.canBuy(aAcheter.getPrix())) {
-                this.produitsEnStock.add(aAcheter);
-                vendeur.produitsEnVente.remove(aAcheter);
-                this.opArgent(0 - aAcheter.getPrix());
-                vendeur.opArgent(aAcheter.getPrix());
-            } else {
-                throw new Exception("Solde insuffisant");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.produitsEnStock.add(aAcheter);
+        vendeur.getProduitsAVendre().remove(aAcheter);
     }
-    public abstract ProduitFermier fabriquerProduit(Produits objetFab, double prix, int quantite);
+    public abstract ProduitFermier fabriquerProduit(Produits objetFab, int quantite);
 }

@@ -9,9 +9,6 @@ import java.util.Locale;
 
 public abstract class ProduitFermier implements IVisitable {
     private int quantite;
-    private double prix;
-
-
     private Date dateDePeremption;
     private String label;
 
@@ -22,7 +19,6 @@ public abstract class ProduitFermier implements IVisitable {
     public String toString() {
         return "ProduitFermier{" +
                 "quantite=" + quantite +
-                ", prix=" + prix +
                 ", dateDePeremption=" + dateDePeremption +
                 ", label='" + label + '\'' +
                 '}';
@@ -30,7 +26,6 @@ public abstract class ProduitFermier implements IVisitable {
 
     public ProduitFermier(int quantite, Date dateDePeremption) {
         this.quantite = quantite;
-        this.prix = 0;
         this.dateDePeremption = dateDePeremption;
 
         id = listeProduit.size()+1;
@@ -51,14 +46,6 @@ public abstract class ProduitFermier implements IVisitable {
 
     public void setDateDePeremption(Date dateDePeremption) {
         this.dateDePeremption = dateDePeremption;
-    }
-
-    public double getPrix() {
-        return prix;
-    }
-
-    public void setPrix(double prix) {
-        this.prix = prix;
     }
 
     public String getDateToString(){

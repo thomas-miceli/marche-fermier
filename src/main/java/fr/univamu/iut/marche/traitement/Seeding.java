@@ -2,6 +2,10 @@ package fr.univamu.iut.marche.traitement;
 
 
 import fr.univamu.iut.marche.traitement.acteurs.*;
+import fr.univamu.iut.marche.traitement.acteurs.Paysans.Apiculteur;
+import fr.univamu.iut.marche.traitement.acteurs.Paysans.Orticulteur;
+import fr.univamu.iut.marche.traitement.acteurs.Paysans.ProducteurDeViande;
+import fr.univamu.iut.marche.traitement.acteurs.Paysans.ProducteurLaitier;
 import fr.univamu.iut.marche.traitement.produits.*;
 import java.util.ArrayList;
 
@@ -25,17 +29,17 @@ public class Seeding {
         p3.setArgent(150.3);
         p4.setArgent(200.4);
 
-        p1.fabriquerProduit(Participant.Produits.MIEL, 3.5,550);
-        p1.fabriquerProduit(Participant.Produits.MIEL, 7,1000);
+        p1.fabriquerProduit(Participant.Produits.MIEL ,550);
+        p1.fabriquerProduit(Participant.Produits.MIEL,1000);
 
-        p2.fabriquerProduit(Participant.Produits.COCHON, 15, 30);
-        p2.fabriquerProduit(Participant.Produits.VACHE, 20, 40);
+        p2.fabriquerProduit(Participant.Produits.COCHON,  30);
+        p2.fabriquerProduit(Participant.Produits.VACHE, 40);
 
-        p3.fabriquerProduit(Participant.Produits.POMME, 5.4,500);
-        p3.fabriquerProduit(Participant.Produits.ORANGE, 1.2, 700);
-        p3.fabriquerProduit(Participant.Produits.ORANGE,1.5, 1000);
-        p4.fabriquerProduit(Participant.Produits.FROMAGE, 5.4, 40);
-        ProduitFermier p =p4.fabriquerProduit(Participant.Produits.LAIT, 2.1, 800);
+        p3.fabriquerProduit(Participant.Produits.POMME, 500);
+        p3.fabriquerProduit(Participant.Produits.ORANGE,  700);
+        p3.fabriquerProduit(Participant.Produits.ORANGE, 1000);
+        p4.fabriquerProduit(Participant.Produits.FROMAGE, 40);
+        ProduitFermier p =p4.fabriquerProduit(Participant.Produits.LAIT,  800);
 
         if( p.valider("COTON ROUGE")) System.out.println("ok");
         Marche marche = new Marche();
@@ -52,14 +56,12 @@ public class Seeding {
             for (int j = 0; j <listProd.size() ; j++) {
                 if(listProd.get(i).identifier(identificateur)==listProd.get(j).identifier(identificateur)
                         && i != j
-                        && listProd.get(i).getStringDate() .equals(listProd.get(j).getStringDate())
-                        && listProd.get(i).getPrix()==listProd.get(j).getPrix()  ){
+                        && listProd.get(i).getStringDate() .equals(listProd.get(j).getStringDate())) {
                     listProd.get(i).fusionnerObjet(listProd.get(j));
                     listProd.remove(j);
                 }
             }
         }
-
         return listProd;
     }
 }

@@ -1,5 +1,7 @@
-package fr.univamu.iut.marche.traitement.acteurs;
+package fr.univamu.iut.marche.traitement.acteurs.Traders;
 
+import fr.univamu.iut.marche.traitement.acteurs.CentraleAchat;
+import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.text.ParseException;
@@ -7,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 import static fr.univamu.iut.marche.traitement.Seeding.compilerProduits;
 
 /**
@@ -57,7 +58,7 @@ public class TraderSpecial extends Trader {
             }
             this.getProduits().add(aAcheter);
             this.setProduits(compilerProduits(centraleAchat.getStockCentrale()));
-            vendeur.produitsEnVente.remove(aAcheter);
+            vendeur.getProduitsAVendre().remove(aAcheter);
         }
         else {
             ProduitFermier aAcheter = null;
@@ -69,7 +70,7 @@ public class TraderSpecial extends Trader {
             }
             centraleAchat.getStockCentrale().add(aAcheter);
             centraleAchat.setStockCentrale(compilerProduits(centraleAchat.getStockCentrale()));
-            vendeur.produitsEnVente.remove(aAcheter);
+            vendeur.getProduitsAVendre().remove(aAcheter);
         }
     }
 }

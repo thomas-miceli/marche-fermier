@@ -2,7 +2,6 @@ package fr.univamu.iut.marche.affichage;
 
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
-import fr.univamu.iut.marche.traitement.acteurs.Paysan;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -14,11 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;

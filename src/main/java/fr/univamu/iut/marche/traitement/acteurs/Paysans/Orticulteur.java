@@ -1,10 +1,9 @@
-package fr.univamu.iut.marche.traitement.acteurs;
+package fr.univamu.iut.marche.traitement.acteurs.Paysans;
 
-import fr.univamu.iut.marche.traitement.ProduictionDeFruit;
+import fr.univamu.iut.marche.traitement.fabriques.ProduictionDeFruit;
 import fr.univamu.iut.marche.traitement.Seeding;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
-import java.util.List;
 /**
  * @author Yann FORNER
  * @author Thomas MICELI
@@ -21,9 +20,9 @@ public class Orticulteur extends Paysan {
     }
 
     @Override
-    public ProduitFermier fabriquerProduit(Participant.Produits objetFab, double prix, int quantite) {
+    public ProduitFermier fabriquerProduit(Produits objetFab, int quantite) {
         ProduictionDeFruit produictionDeFruit = new ProduictionDeFruit();
-        ProduitFermier produit =  produictionDeFruit.fabriquer(objetFab.name(), prix, quantite);
+        ProduitFermier produit =  produictionDeFruit.fabriquer(objetFab.name(), quantite);
         if(produit!= null){
             this.addProduit(produit);
             produitsEnStock= Seeding.compilerProduits(produitsEnStock);

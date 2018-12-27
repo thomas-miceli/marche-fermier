@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Cochon extends ProduitFermier {
 
-    public Cochon(int quantite, double prix, Date dateDePeremption) {
+    public Cochon(int quantite, Date dateDePeremption) {
         super(quantite, dateDePeremption);
     }
 

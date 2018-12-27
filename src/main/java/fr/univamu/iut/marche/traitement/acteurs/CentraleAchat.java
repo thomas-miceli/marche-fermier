@@ -1,5 +1,6 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
+import fr.univamu.iut.marche.traitement.acteurs.Traders.Trader;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.ArrayList;

@@ -1,11 +1,9 @@
-package fr.univamu.iut.marche.traitement.acteurs;
+package fr.univamu.iut.marche.traitement.acteurs.Paysans;
 
-import fr.univamu.iut.marche.traitement.ProductionDeLaitage;
+import fr.univamu.iut.marche.traitement.fabriques.ProductionDeLaitage;
 import fr.univamu.iut.marche.traitement.Seeding;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
-import java.util.ArrayList;
-import java.util.List;
 /**
  * @author Yann FORNER
  * @author Thomas MICELI
@@ -23,9 +21,9 @@ public class ProducteurLaitier extends Paysan {
     }
 
     @Override
-    public ProduitFermier fabriquerProduit(Produits objetFab, double prix, int quantite) {
+    public ProduitFermier fabriquerProduit(Produits objetFab, int quantite) {
         ProductionDeLaitage productionDeLaitage = new ProductionDeLaitage();
-        ProduitFermier produit =  productionDeLaitage.fabriquer(objetFab.name(), prix, quantite);
+        ProduitFermier produit =  productionDeLaitage.fabriquer(objetFab.name(), quantite);
         if(produit!= null){
             this.addProduit(produit);
             produitsEnStock= Seeding.compilerProduits(produitsEnStock);

@@ -1,9 +1,8 @@
 package fr.univamu.iut.marche;
 
-import fr.univamu.iut.marche.traitement.acteurs.Apiculteur;
-import fr.univamu.iut.marche.traitement.acteurs.Marche;
+import fr.univamu.iut.marche.traitement.acteurs.Paysans.Apiculteur;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
-import fr.univamu.iut.marche.traitement.acteurs.Paysan;
+import fr.univamu.iut.marche.traitement.acteurs.Paysans.Paysan;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import org.junit.Test;
 
@@ -20,7 +19,7 @@ public class MainTest {
         Paysan p1 = new Apiculteur("Miceli", "Thomas", 38);
         p1.setArgent(50.1);
 
-        ProduitFermier produit = p1.fabriquerProduit(Participant.Produits.MIEL, 3.5,550);
+        ProduitFermier produit = p1.fabriquerProduit(Participant.Produits.MIEL, 550);
 
         ArrayList<ProduitFermier> stock = p1.getProduits();
         ArrayList<ProduitFermier> stockToTest = new ArrayList<>(); stockToTest.add(produit);
@@ -34,7 +33,7 @@ public class MainTest {
         Apiculteur p1 = new Apiculteur("Miceli", "Thomas", 38);
         p1.setArgent(50.1);
 
-        ProduitFermier produit = p1.fabriquerProduit(Participant.Produits.MIEL, 3.5,550);
+        ProduitFermier produit = p1.fabriquerProduit(Participant.Produits.MIEL, 550);
 
         p1.vendreProduit(Participant.Produits.MIEL);
 

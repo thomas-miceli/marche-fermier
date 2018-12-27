@@ -1,8 +1,9 @@
-package fr.univamu.iut.marche.traitement.acteurs;
+package fr.univamu.iut.marche.traitement.acteurs.Traders;
 
+import fr.univamu.iut.marche.traitement.acteurs.CentraleAchat;
+import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
-import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 import static fr.univamu.iut.marche.traitement.Seeding.compilerProduits;
 
 /**
@@ -36,6 +37,6 @@ public class TraderEmploye extends Trader {
         }
         centraleAchat.getStockCentrale().add(aAcheter);
         centraleAchat.setStockCentrale(compilerProduits(centraleAchat.getStockCentrale()));
-        vendeur.produitsEnVente.remove(aAcheter);
+        vendeur.getProduitsAVendre().remove(aAcheter);
     }
 }

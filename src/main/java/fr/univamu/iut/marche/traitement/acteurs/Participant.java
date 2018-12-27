@@ -153,8 +153,6 @@ public abstract class Participant {
             for (ProduitFermier produit:produitsEnStock) {
                 if(produit.getId()==produitAVendre.getId()) produit = produitAVendre;
             }
-            this.setArgent(this.getArgent()+produitAVendre.getPrix()*Quantite);
-            participant.setArgent(participant.getArgent()-produitAVendre.getPrix()*Quantite);
         }catch (Exception e){
             System.out.println("un probleme est survenus");
         }
