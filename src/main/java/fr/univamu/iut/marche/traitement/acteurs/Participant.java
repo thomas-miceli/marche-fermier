@@ -1,5 +1,7 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
+import fr.univamu.iut.marche.traitement.Identificateur;
+import fr.univamu.iut.marche.traitement.Vente;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import javax.naming.PartialResultException;
@@ -26,6 +28,7 @@ public abstract class Participant {
         VACHE
     }
 
+    protected ArrayList<ProduitFermier> produitsEnStock = new ArrayList<>();
 
 
     protected int id = 0;
@@ -44,6 +47,7 @@ public abstract class Participant {
         id = listeParticipant.size()+1;
         listeParticipant.add(this);
     }
+
 
     public String getNom() {
         return nom;
@@ -100,17 +104,12 @@ public abstract class Participant {
         return null;
     }
 
-    protected ArrayList<ProduitFermier> produitsEnStock = new ArrayList<>();
 
-    protected ArrayList<ProduitFermier> produitsEnVente = new ArrayList<>();
 
     public ArrayList<ProduitFermier> getProduits() {
         return produitsEnStock;
     }
 
-    public ArrayList<ProduitFermier> getProduitsAVendre() {
-        return produitsEnVente;
-    }
 
     public void setProduits(ArrayList<ProduitFermier> produits) {
         this.produitsEnStock = produits;
@@ -124,17 +123,7 @@ public abstract class Participant {
         this.produitsEnStock.remove(produit);
     }
 
-    public void setProduitsAVendre(ArrayList<ProduitFermier> produits) {
-        this.produitsEnVente = produits;
-    }
 
-    public void addProduitAVendre(ProduitFermier produit) {
-        this.produitsEnVente.add(produit);
-    }
-
-    public void removeProduitAVendre(ProduitFermier produit) {
-        this.produitsEnVente.remove(produit);
-    }
 
     public ProduitFermier getProduit(Produits prod) {
         ProduitFermier produitFermier = null;
@@ -146,15 +135,25 @@ public abstract class Participant {
         return produitFermier;
     }
 
-    public void vendreProduit(Participant participant, ProduitFermier produitAVendre, int Quantite) {
-
-        try{
-            produitAVendre.setQuantite(produitAVendre.getQuantite()-Quantite);
-            for (ProduitFermier produit:produitsEnStock) {
-                if(produit.getId()==produitAVendre.getId()) produit = produitAVendre;
+    public void vendreProduit(Produits produitAVendre, int quantite, int prix,Marche marche) {
+        Identificateur identificateur = new Identificateur();
+        for (ProduitFermier p: produitsEnStock) {
+            if(p.identifier(identificateur)==produitAVendre){
+                if(p.getQuantite()-quantite>=0){
+                   ProduitFermier pTemp = p;
+                    pTemp.setQuantite(quantite);
+                    new Vente(pTemp,this,prix,marche);
+                    if(p.getQuantite()-quantite==0){
+                        produitsEnStock.remove(p);
+                    }else{
+                        p.setQuantite(p.getQuantite()-quantite);
+                    }
+                    System.out.println("la vente c'est bien passée");
+                }else {
+                    System.out.println(this.getNom()+ " ne peux pas vendre autant de ce produit car pas assez");
+                }
             }
-        }catch (Exception e){
-            System.out.println("un probleme est survenus");
+
         }
 
     }
