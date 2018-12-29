@@ -54,7 +54,7 @@ Les modalités de réalisation de certaines fonctionnalités ne sont pas forcém
 
 ## Descriptif
 
-Les agriculteurs (`Participant`) ont décidé de se doter d'une bourse d'échanges de biens fermiers. Dans les temps qui courent (état d'urgence, crise économique, baisse de revenus, réchauffement climatique, fin du monde prochaine, ...) cela devrait leur permettre de se maintenir à flot en favorisant des circuits courts. Le système se veut simple : les fermiers proposent leurs produits fermiers (vaches, cochons, lait, tomates, blé, reblochon, etc.) avec un certain prix et une certaine quantité. Les autres membres du système achètent ce qu'il souhaite en fonction de leurs besoins. Votre mission, si vous l'acceptez (et d'ailleurs même si vous ne l'acceptez pas), est de réaliser ce système en appliquant ce que vous avez appris dans le module M3105.
+Les agriculteurs (`Participant`) ont décidé de se doter d'une bourse d'échanges de biens fermiers. Dans les temps qui courent (état d'urgence, crise économique, baisse de revenus, réchauffement climatique, fin du monde prochaine, ...) cela devrait leur permettre de se maintenir à flot en favorisant des circuits courts. Le système se veut simple : les fermiers proposent leurs stock fermiers (vaches, cochons, lait, tomates, blé, reblochon, etc.) avec un certain prix et une certaine quantité. Les autres membres du système achètent ce qu'il souhaite en fonction de leurs besoins. Votre mission, si vous l'acceptez (et d'ailleurs même si vous ne l'acceptez pas), est de réaliser ce système en appliquant ce que vous avez appris dans le module M3105.
 
 Pour vous aider à mieux cerner l'univers de votre application, la description des différents acteurs impliqués vous est donnée dans le fichier [Acteurs.md](Acteurs.md).
 
@@ -69,7 +69,7 @@ Chaque participant suit l'apparition à la vente des différents types de biens 
 La simulation du passage du temps dans votre système se fera par des itérations actionnées par l'utilisateur de l'application. 
 Chaque itération est composée des étapes suivantes qui devront être réalisée séquentiellement :
 
-1. *Proposition de vente* : l'utilisateur a la possibilité de créer des offres de vente de produits.
+1. *Proposition de vente* : l'utilisateur a la possibilité de créer des offres de vente de stock.
 2. *Validation* : Après avoir terminé la saisie des offres de vente, l'AMF a la charge de valider les offres.
 3. *Achat* : Après la validation, l'utilisateur peut déposer des offres d'achat. À la fin de l'exécution de l'étape d'achat, les biens achetés sont affectés aux participants correspondants et les soldes des acteurs en présence sont mis à jour.
 4. *Affichage* : mise à jour des vues permettant d'afficher l'état actuel du système.
@@ -96,17 +96,17 @@ La mise en œuvre du projet passera par la réalisation des classes et méthodes
 
 Comme indiqué dans le descriptif du sujet, les participants principaux sont les Fermiers.
 
-1.  Écrire les classes permettant de gérer les données et les actions relatives aux participants. Comme prévu initialement, il s'agit de fermiers qui vendent des produits divers. Une spécialisation des fermiers s'impose et au moins quatre catégories de fermiers devraient apparaître : `ProducteurLaitier`, `ProducteurDeViande`, `Orticulteur`, `Arboriculteur`. Vous pourrez imaginez d'autres catégories. Naturellement tout fermier peut acheter tous types de produits agricoles vendus sur le marché.
+1.  Écrire les classes permettant de gérer les données et les actions relatives aux participants. Comme prévu initialement, il s'agit de fermiers qui vendent des stock divers. Une spécialisation des fermiers s'impose et au moins quatre catégories de fermiers devraient apparaître : `ProducteurLaitier`, `ProducteurDeViande`, `Orticulteur`, `Arboriculteur`. Vous pourrez imaginez d'autres catégories. Naturellement tout fermier peut acheter tous types de stock agricoles vendus sur le marché.
 
-2.  L'utilisation du système n'est pas gratuite, chaque participant devra cotiser une somme en fonction de ses gains (afin de garder une certaine équité). Le système étant destiné à évoluer, on s'imagine que certaines réductions pourront s'appliquer à certains fermiers. Par exemple, avec le temps, l'utilisateur pourra décider que les agriculteurs vendant que des produits bio, auront une remise. Un autre exemple pourrait être celui des petits producteurs qui vendent en petite quantité et à des petits prix -- à terme ils pourront bénéficier d'une remise, voire d'une exonération. D'autres spécialisations de la politique tarifaire du marché pourront s'ajouter en cumulant les différentes remises, de façon à ce que l'utilisateur puisse béneficier de tous les avantages potentiels. Dans votre réalisation vous devriez proposer à l'utilisateur d'ajouter de telles extensions sans trop de difficultés et surtout sans modifier le code existant.
+2.  L'utilisation du système n'est pas gratuite, chaque participant devra cotiser une somme en fonction de ses gains (afin de garder une certaine équité). Le système étant destiné à évoluer, on s'imagine que certaines réductions pourront s'appliquer à certains fermiers. Par exemple, avec le temps, l'utilisateur pourra décider que les agriculteurs vendant que des stock bio, auront une remise. Un autre exemple pourrait être celui des petits producteurs qui vendent en petite quantité et à des petits prix -- à terme ils pourront bénéficier d'une remise, voire d'une exonération. D'autres spécialisations de la politique tarifaire du marché pourront s'ajouter en cumulant les différentes remises, de façon à ce que l'utilisateur puisse béneficier de tous les avantages potentiels. Dans votre réalisation vous devriez proposer à l'utilisateur d'ajouter de telles extensions sans trop de difficultés et surtout sans modifier le code existant.
 
 ### Produits Fermiers
 
-Un produit fermier peut être décrit par son propriétaire, son prix. Plusieurs types de produits peuvent être distingués : vaches, pommes, fromage, cochons, lait, miel etc. Pour simplifier, nous allons supposer que chaque produit est conditionné sous une forme standardisée et quantifiable. Ainsi la classe `Pomme` représentera en réalité une cagette de pommes, la classe `Vache` représentera une vache, la classe `Miel` représentera un pot de de 3L de miel etc.
+Un produit fermier peut être décrit par son propriétaire, son prix. Plusieurs types de stock peuvent être distingués : vaches, pommes, fromage, cochons, lait, miel etc. Pour simplifier, nous allons supposer que chaque produit est conditionné sous une forme standardisée et quantifiable. Ainsi la classe `Pomme` représentera en réalité une cagette de pommes, la classe `Vache` représentera une vache, la classe `Miel` représentera un pot de de 3L de miel etc.
 
-1.  Écrire la classe `ProduitFermier` et les sous-classes correspondantes. Vous pouvez imaginez des hiérarchies de classes plus évoluées en définissant des familles de produits communes.
+1.  Écrire la classe `ProduitFermier` et les sous-classes correspondantes. Vous pouvez imaginez des hiérarchies de classes plus évoluées en définissant des familles de stock communes.
 
-2.  Proposer une méthode `valider()` dans la classe `ProduitFermier` qui permettra de certifier le produit. Il faudra à minima vérifier si la date de péremption n'est pas dépassée. Pour permettre un étiquetage des produits en fonction de leur qualité, on souhaiterait intégrer la notion de *label* (AOP, AOC, IGP, Label Rouge etc.). Afin d'obtenir tel ou tel label il faut que le produit passe d'abord l'étape de validation. Pensez notamment aux possibles extensions à l'apparition de nouveaux *labels*.
+2.  Proposer une méthode `valider()` dans la classe `ProduitFermier` qui permettra de certifier le produit. Il faudra à minima vérifier si la date de péremption n'est pas dépassée. Pour permettre un étiquetage des stock en fonction de leur qualité, on souhaiterait intégrer la notion de *label* (AOP, AOC, IGP, Label Rouge etc.). Afin d'obtenir tel ou tel label il faut que le produit passe d'abord l'étape de validation. Pensez notamment aux possibles extensions à l'apparition de nouveaux *labels*.
 
 ### Production des ressources.
 
@@ -118,8 +118,8 @@ Dans la première implémentation demandée, il n'y aura qu'une seule place de m
   
 
 ### Vendre et acheter
-Les produits mis en vente, le sont à un prix décidé par le vendeur. Pour des raisons de régulation des prix, l'AMF 
-se réserve le droit de ne pas mettre en vente des produits à des prix anormalement bas ou anormalement haut.
+Les stock mis en vente, le sont à un prix décidé par le vendeur. Pour des raisons de régulation des prix, l'AMF 
+se réserve le droit de ne pas mettre en vente des stock à des prix anormalement bas ou anormalement haut.
 
 Une fois un ordre d'achat choisi par l'AMF, la transaction correspondante est inscrite dans le grand livre du marché. Pour 
 des raisons d'obligations comptables évidentes, toutes les transactions devront être conservées, historisées et consolidées. 

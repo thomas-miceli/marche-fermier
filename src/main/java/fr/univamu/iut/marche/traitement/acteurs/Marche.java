@@ -15,6 +15,16 @@ public class Marche {
     private ArrayList<Vente> compositionMarche = new ArrayList<>();
     private ArrayList<Offre> offresMarche = new ArrayList<>();
 
+    private String region;
+
+    public Marche(String region) {
+        this.region = region;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
     public void addVente(Vente vente){
         compositionMarche.add(vente);
         System.out.println("un nouveau produit est disponible");

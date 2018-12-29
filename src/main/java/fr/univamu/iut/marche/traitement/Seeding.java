@@ -24,10 +24,10 @@ public class Seeding {
         Orticulteur p3 = new Orticulteur("Claudinette", "Jean", 40);
         ProducteurLaitier p4 = new ProducteurLaitier("Claudasse", "Jean", 45);
 
-        p1.setArgent( 50.1);
-        p2.setArgent(100.2);
-        p3.setArgent(150.3);
-        p4.setArgent(200.4);
+        p1.setSolde( 50.1);
+        p2.setSolde(100.2);
+        p3.setSolde(150.3);
+        p4.setSolde(200.4);
 
         p1.fabriquerProduit(Participant.Produits.MIEL ,550);
         p1.fabriquerProduit(Participant.Produits.MIEL,1000);

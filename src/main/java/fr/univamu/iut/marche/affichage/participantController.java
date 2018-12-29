@@ -3,7 +3,6 @@ package fr.univamu.iut.marche.affichage;
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,8 +16,6 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class participantController extends VBox implements Initializable {
@@ -51,12 +48,12 @@ public class participantController extends VBox implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println(Marche.getListeParticipantsMarche());
         Participant participantCurrent = Participant.getParticipantbyId(Integer.parseInt(listeParticipantController.getSelectedParticipant()));
-        for (ProduitFermier produitFermier : participantCurrent.getProduits()) {
+        for (ProduitFermier produitFermier : participantCurrent.getStock()) {
             data.add("Produit : " + produitFermier.getClass().getSimpleName() +"  Quantité : " + produitFermier.getQuantite() + "  | Date de peremption : "+ produitFermier.getDateDePeremption().getMonth() + '-' +(produitFermier.getDateDePeremption().getYear()-100+2000) + "   | Id : " + produitFermier.getId() );
         }
         listeParticipant.setItems(data);
         participantName.setText(participantCurrent.getPrenom() + ' ' + participantCurrent.getNom());
-        participantInfo.setText("Info \nAge : " + participantCurrent.getAge() + " | Nombre de produits : " + participantCurrent.getProduits().size() + " | Solde : " + participantCurrent.getArgent()    );
+        participantInfo.setText("Info \nAge : " + participantCurrent.getAge() + " | Nombre de produits : " + participantCurrent.getStock().size() + " | Solde : " + participantCurrent.getSolde()    );
 
     }
 

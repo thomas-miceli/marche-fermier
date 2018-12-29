@@ -3,9 +3,7 @@ package fr.univamu.iut.marche.traitement.acteurs;
 import fr.univamu.iut.marche.traitement.Identificateur;
 import fr.univamu.iut.marche.traitement.produits.*;
 
-import javax.naming.PartialResultException;
 import java.util.ArrayList;
-import java.util.List;
 
 //import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 
@@ -27,22 +25,19 @@ public abstract class Participant {
         VACHE
     }
 
-    private ArrayList<ProduitFermier> produitsEnStock = new ArrayList<>();
-
-
     protected int id = 0;
     protected String nom;
     protected String prenom;
     protected int age;
-    protected static ArrayList<Participant> listeParticipant = new ArrayList<>();
+    private ArrayList<ProduitFermier> stock = new ArrayList<>();
+    protected double solde = 0;
 
-    protected double argent = 0;
+    protected static ArrayList<Participant> listeParticipant = new ArrayList<>();
 
     public Participant(String nom, String prenom, int age) {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
-
         id = listeParticipant.size()+1;
         listeParticipant.add(this);
     }
@@ -76,20 +71,20 @@ public abstract class Participant {
         this.age = age;
     }
 
-    public double getArgent() {
-        return argent;
+    public double getSolde() {
+        return solde;
     }
 
-    public void setArgent(double argent) {
-        this.argent = argent;
+    public void setSolde(double solde) {
+        this.solde = solde;
     }
 
-    public void opArgent(double argent) {
-        this.argent += argent;
+    public void opArgent(double montant) {
+        this.solde += montant;
     }
 
     public boolean canBuy(double argent) {
-        return !((this.argent -= argent) < 0);
+        return !((this.solde -= argent) < 0);
     }
 
     public static ArrayList<Participant> getAllParticipants(){
@@ -105,28 +100,28 @@ public abstract class Participant {
 
 
 
-    public ArrayList<ProduitFermier> getProduits() {
-        return produitsEnStock;
+    public ArrayList<ProduitFermier> getStock() {
+        return stock;
     }
 
 
-    public void setProduits(ArrayList<ProduitFermier> produits) {
-        this.produitsEnStock = produits;
+    public void setStock(ArrayList<ProduitFermier> stock) {
+        this.stock = stock;
     }
 
     public void addProduit(ProduitFermier produit) {
-        this.produitsEnStock.add(produit);
+        this.stock.add(produit);
     }
 
     public void removeProduit(ProduitFermier produit) {
-        this.produitsEnStock.remove(produit);
+        this.stock.remove(produit);
     }
 
 
 
     public ProduitFermier getProduit(Produits prod) {
         ProduitFermier produitFermier = null;
-        for (ProduitFermier produ : produitsEnStock) {
+        for (ProduitFermier produ : stock) {
             if (produ.getClass().getSimpleName().toUpperCase().equals(prod.name())) {
                 produitFermier = produ;
             }
@@ -136,7 +131,7 @@ public abstract class Participant {
 
     public void vendreProduit(Produits produitAVendre, Integer quantite, Integer prix,Marche marche) {
         Identificateur identificateur = new Identificateur();
-        for (ProduitFermier p: produitsEnStock) {
+        for (ProduitFermier p: stock) {
             if(p.identifier(identificateur).equals(produitAVendre)){
                 if(p.getQuantite()>=quantite){
                     ProduitFermier pTemp;
@@ -170,7 +165,7 @@ public abstract class Participant {
                     if(c.validerOffre(pTemp,"validé")){
                         new Vente(pTemp,this,prix,marche);
                         if(p.getQuantite()-quantite==0){
-                            produitsEnStock.remove(p);
+                            stock.remove(p);
                         }else{
                             p.setQuantite(p.getQuantite()-quantite);
                         }
@@ -186,10 +181,10 @@ public abstract class Participant {
 
     }
     public void proposerOffre(Produits produitAAcheter, Integer quantite, Integer prix,Marche marche){
-        if(argent >= prix ){
+        if(solde >= prix ){
             new Offre(produitAAcheter,this,prix,quantite,marche);
         }else{
-            System.out.println(nom+" n'a pas assez d'argent pour placer cette offre");
+            System.out.println(nom+" n'a pas assez d'solde pour placer cette offre");
         }
     }
 }

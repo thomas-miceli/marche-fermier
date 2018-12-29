@@ -42,8 +42,8 @@ public class catalogController extends VBox implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         for (Participant participant:Marche.getListeParticipantsMarche()) {
-            if(participant.getProduits().size()!=0) {
-                for (ProduitFermier produit : participant.getProduits()) {
+            if(participant.getStock().size()!=0) {
+                for (ProduitFermier produit : participant.getStock()) {
                     textaffichetotextdescription.put(produit.getClass().getSimpleName() + "        Quantité  : " + produit.getQuantite() + "        id : " + produit.getId(), produit.getClass().getSimpleName() + ',' + participant.getPrenom() + ',' + participant.getNom() + ',' + participant.getId() + ',' + produit.getId());
                     data.add(produit.getClass().getSimpleName() + "        Quantité  : " + produit.getQuantite() + "        id : " + produit.getId());
                 }

@@ -13,7 +13,7 @@ public class Controlleur {
         listeProduitsInterdits.add(p);
     }
 
-    public boolean isInterdit (ProduitFermier p){
+    private boolean isInterdit(ProduitFermier p){
         for (ProduitFermier produit: listeProduitsInterdits) {
             if (produit == p)
                 return true;
@@ -22,8 +22,12 @@ public class Controlleur {
     }
 
     public boolean validerOffre(ProduitFermier p, String label){
-        if (isInterdit(p) == true || p.valider(label))
+        if (isInterdit(p) || p.valider(label))
             return true;
         return false;
+    }
+
+    public void choisirAcheteur() {
+        //TODO
     }
 }

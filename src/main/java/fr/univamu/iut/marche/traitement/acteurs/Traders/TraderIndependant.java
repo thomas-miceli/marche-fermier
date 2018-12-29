@@ -48,8 +48,8 @@
 //                    break;
 //                }
 //            }
-//            this.getProduits().add(aAcheter);
-//            this.setProduits(compilerProduits(this.getProduits()));
+//            this.getStock().add(aAcheter);
+//            this.setStock(compilerProduits(this.getStock()));
 //            vendeur.getProduitsAVendre().remove(aAcheter);
 //        }
 //        System.out.println("Pas connecté, impossible d'acheter le produit");

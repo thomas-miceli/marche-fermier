@@ -89,14 +89,14 @@ public class homeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         participantFxml = new TraderIndependant("Utilisateur", "FXML", 69);
-        participantFxml.setArgent(150);
-        soldeFxmlUser.setText("Solde : " + String.valueOf(participantFxml.getArgent()));
+        participantFxml.setSolde(150);
+        soldeFxmlUser.setText("Solde : " + String.valueOf(participantFxml.getSolde()));
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll();
     }
 
     public void reloadsolde(){
-        soldeFxmlUser.setText("Solde : " + String.valueOf(participantFxml.getArgent()));
+        soldeFxmlUser.setText("Solde : " + String.valueOf(participantFxml.getSolde()));
     }
 
     public static Participant getParticipantFxml(){

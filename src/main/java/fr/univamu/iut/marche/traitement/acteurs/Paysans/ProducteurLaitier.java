@@ -26,7 +26,7 @@ public class ProducteurLaitier extends Paysan {
         ProduitFermier produit =  productionDeLaitage.fabriquer(objetFab.name(), quantite);
         if(produit!= null){
             this.addProduit(produit);
-            this.setProduits( Seeding.compilerProduits(this.getProduits()));
+            this.setStock( Seeding.compilerProduits(this.getStock()));
             return produit;
         }
         return null;

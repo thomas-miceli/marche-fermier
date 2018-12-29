@@ -56,8 +56,8 @@
 //                    break;
 //                }
 //            }
-//            this.getProduits().add(aAcheter);
-//            this.setProduits(compilerProduits(centraleAchat.getStockCentrale()));
+//            this.getStock().add(aAcheter);
+//            this.setStock(compilerProduits(centraleAchat.getStockCentrale()));
 //            vendeur.getProduitsAVendre().remove(aAcheter);
 //        }
 //        else {

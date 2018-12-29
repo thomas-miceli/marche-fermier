@@ -17,11 +17,11 @@ public class MainTest {
     @Test
     public void test_Apiculteur_Stock() {
         Paysan p1 = new Apiculteur("Miceli", "Thomas", 38);
-        p1.setArgent(50.1);
+        p1.setSolde(50.1);
 
         ProduitFermier produit = p1.fabriquerProduit(Participant.Produits.MIEL, 550);
 
-        ArrayList<ProduitFermier> stock = p1.getProduits();
+        ArrayList<ProduitFermier> stock = p1.getStock();
         ArrayList<ProduitFermier> stockToTest = new ArrayList<>(); stockToTest.add(produit);
 
         System.out.println(stock);
@@ -31,7 +31,7 @@ public class MainTest {
     @Test
     public void test_Apiculteur_Ventes() {
         Apiculteur p1 = new Apiculteur("Miceli", "Thomas", 38);
-        p1.setArgent(50.1);
+        p1.setSolde(50.1);
 
         ProduitFermier produit = p1.fabriquerProduit(Participant.Produits.MIEL, 550);
 
