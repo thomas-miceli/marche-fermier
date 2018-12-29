@@ -1,7 +1,4 @@
-package fr.univamu.iut.marche.traitement;
-
-import fr.univamu.iut.marche.traitement.acteurs.Marche;
-import fr.univamu.iut.marche.traitement.acteurs.Participant;
+package fr.univamu.iut.marche.traitement.acteurs;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 public class Vente {

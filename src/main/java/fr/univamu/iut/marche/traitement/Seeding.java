@@ -1,7 +1,6 @@
 package fr.univamu.iut.marche.traitement;
 
 
-import fr.univamu.iut.marche.traitement.Vente;
 import fr.univamu.iut.marche.traitement.acteurs.*;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Apiculteur;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Orticulteur;
@@ -45,6 +44,7 @@ public class Seeding {
         p4.show();
         marche.show();
         p4.vendreProduit(Participant.Produits.LAIT,1,5,marche);
+        p3.proposerOffre(Participant.Produits.LAIT,1,500000,marche);
         marche.show();
         p4.show();
     }
