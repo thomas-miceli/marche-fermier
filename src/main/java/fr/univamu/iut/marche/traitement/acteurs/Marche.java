@@ -1,5 +1,7 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
+import fr.univamu.iut.marche.traitement.Identificateur;
+
 import java.util.*;
 
 /***
@@ -47,5 +49,18 @@ public class Marche {
         return compositionMarche;
     }
 
+    public void updateMarket(){
+        Identificateur i = new Identificateur();
+        for (Offre o: offresMarche) {
+            for (Vente v: compositionMarche) {
+                // to do
+
+            }
+        }
+    }
+    public void aquisition(Offre o, Vente v){
+       //to do  
+
+    }
 
 }
