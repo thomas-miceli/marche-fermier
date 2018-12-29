@@ -8,7 +8,7 @@ import javax.naming.PartialResultException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
+//import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 
 /**
  * @author Yann FORNER
@@ -138,26 +138,6 @@ public abstract class Participant {
     public void vendreProduit(Produits produitAVendre, Integer quantite, Integer prix,Marche marche) {
         Identificateur identificateur = new Identificateur();
         for (ProduitFermier p: produitsEnStock) {
-//            System.out.println("ok----------------2");
-//            if(p.identifier(identificateur)==produitAVendre){
-//                System.out.println("ok----------------3");
-//                if(p.getQuantite()-quantite>=0){
-//                   ProduitFermier pTemp = p;
-//                    System.out.println("ok----------------4");
-//                    pTemp.setQuantite(quantite);
-//                    System.out.println("ok----------------5");
-//                    new Vente(pTemp,this,prix,marche);
-//                    if(p.getQuantite()-quantite==0){
-//                        produitsEnStock.remove(p);
-//                    }else{
-//                        p.setQuantite(p.getQuantite()-quantite);
-//                    }
-//                    System.out.println("ok----------------6");
-//                    System.out.println("la vente c'est bien passée");
-//                }else {
-//                    System.out.println(this.getNom()+ " ne peux pas vendre autant de ce produit car pas assez");
-//                }
-//            }
             if(p.identifier(identificateur).equals(produitAVendre)){
                 if(p.getQuantite()>=quantite){
                     ProduitFermier pTemp;
@@ -187,17 +167,28 @@ public abstract class Participant {
                             break;
                     }
                     pTemp.setQuantite(quantite);
-                    new Vente(pTemp,this,prix,marche);
-                    if(p.getQuantite()-quantite==0){
-                        produitsEnStock.remove(p);
+                    Controlleur c = new Controlleur();
+                    if(c.validerOffre(pTemp,"validé")){
+                        new Vente(pTemp,this,prix,marche);
+                        if(p.getQuantite()-quantite==0){
+                            produitsEnStock.remove(p);
+                        }else{
+                            p.setQuantite(p.getQuantite()-quantite);
+                        }
+                        System.out.println("la vente c'est bien passée");
                     }else{
-                        p.setQuantite(p.getQuantite()-quantite);
+                        System.out.println("le controle de l'objet c'est mal passé");
                     }
-                    System.out.println("la vente c'est bien passée");
+
+
                 }
             }
         }
 
     }
+    public void placerOffre(Produits produitOffre,Integer quantite,Integer prix,Marche marche){
+
+    }
+
 
 }
