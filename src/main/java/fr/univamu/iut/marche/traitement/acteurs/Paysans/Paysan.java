@@ -15,7 +15,7 @@ public abstract class Paysan extends Participant {
     }
 
     public void show() {
-        System.out.println(ANSI_YELLOW + "(" + this.getClass().getSimpleName() + ") " + ANSI_GREEN + this.prenom + " " + this.nom + " - " + this.age + " ans : \n" +
+        System.out.println(ANSI_YELLOW + "(" + this.getClass().getSimpleName() + ") " + ANSI_GREEN + this.prenom + " " + this.nom + " - " + this.age + " ans - " + this.solde + "€ :\n" +
                 ANSI_CYAN + "Produits en stock : " + ANSI_RESET);
 
         for (ProduitFermier produit : this.getStock()) {

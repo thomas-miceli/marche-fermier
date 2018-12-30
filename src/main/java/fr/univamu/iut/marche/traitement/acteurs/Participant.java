@@ -115,8 +115,6 @@ public abstract class Participant {
         this.stock.remove(produit);
     }
 
-
-
     public ProduitFermier getProduit(Produits prod) {
         ProduitFermier produitFermier = null;
         for (ProduitFermier produ : stock) {
@@ -176,8 +174,8 @@ public abstract class Participant {
                 }
             }
         }
-
     }
+
     public void proposerOffre(Produits produitAAcheter, Integer quantite, Integer prix,Marche marche){
         if(solde >= prix ){
             new Offre(produitAAcheter,this,prix,quantite,marche);
@@ -187,11 +185,12 @@ public abstract class Participant {
     }
 
     public void calculerCotisations(Strategy... strategies) {
-        double pourcentage = 15;
+        double remises = 0;
         for (Strategy s : strategies) {
             if (s.calcRemise(this) != 0)
-                pourcentage -= s.calcRemise(this);
+                remises += s.calcRemise(this);
         }
-        opArgent(0 - (this.solde * (pourcentage/100)));
+        System.out.println(remises);
+        opArgent(0 - (this.solde * ((15 - (remises/100))/100)));
     }
 }

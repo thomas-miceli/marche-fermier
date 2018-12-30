@@ -8,6 +8,7 @@ import fr.univamu.iut.marche.traitement.acteurs.Paysans.Paysan;
 import fr.univamu.iut.marche.traitement.produits.Miel;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import fr.univamu.iut.marche.traitement.remises.StratProduitBio;
+import fr.univamu.iut.marche.traitement.remises.StratProduitQuantite;
 import fr.univamu.iut.marche.traitement.remises.Strategy;
 import org.junit.Test;
 
@@ -68,16 +69,71 @@ public class MainTest {
     public void test_Strategy_Bio() {
         Orticulteur p1 = new Orticulteur("Miceli", "Thomas", 38);
         p1.setSolde(500);
-        p1.fabriquerProduit(Participant.Produits.POMME, 20);
-        p1.fabriquerProduit(Participant.Produits.POMME, 40);
-        p1.fabriquerProduit(Participant.Produits.POMME, 40);
-        p1.fabriquerProduit(Participant.Produits.ORANGE, 40);
-        p1.fabriquerProduit(Participant.Produits.ORANGE, 50);
 
-        p1.calculerCotisations(new StratProduitBio()); // 500 * ((15 - 3 - 3 - 3) / 100) = 30 || 500 - 30
+        p1.fabriquerProduit(Participant.Produits.POMME, 20); //<
+        p1.fabriquerProduit(Participant.Produits.POMME, 40); //<-- Groupés
+        p1.fabriquerProduit(Participant.Produits.POMME, 40); //<
+        p1.fabriquerProduit(Participant.Produits.ORANGE, 40);//<
+        p1.fabriquerProduit(Participant.Produits.ORANGE, 50);//<-- Ignorés par la stratégie
 
-        assertEquals(p1.getSolde(), 440, 0.001);
+        p1.calculerCotisations(new StratProduitBio());
+
+        // this.solde * ((15 - (remises/100))/100))
+        //    500     * ((15 - (      3/100))/100))
+        //    500     * ((15 -          0.03)/100))
+        //    500     * ((14.97)             /100))
+        //    500     *   0.1497 = 74.85
+
+        // solde restant => 500 - 74.85
+
+        assertEquals(p1.getSolde(), 425.15, 0.0001);
     }
 
+    @Test
+    public void test_Strategy_Quantite() {
+        Orticulteur p1 = new Orticulteur("Miceli", "Thomas", 38);
+        p1.setSolde(500);
 
+        p1.fabriquerProduit(Participant.Produits.POMME, 50);
+        p1.fabriquerProduit(Participant.Produits.POMME, 100);
+        p1.fabriquerProduit(Participant.Produits.POMME, 60);
+        p1.fabriquerProduit(Participant.Produits.ORANGE, 120);
+        p1.fabriquerProduit(Participant.Produits.ORANGE, 90);
+
+        p1.calculerCotisations(new StratProduitQuantite());
+
+        // this.solde * ((15 - (remises/100))/100))
+        //    500     * ((15 - (  5 + 5/100))/100))
+        //    500     * ((15 -           0.1)/100))
+        //    500     * ((14.9)              /100))
+        //    500     *   0.149 = 74.5
+
+        // solde restant => 500 - 74.5
+
+        assertEquals(p1.getSolde(), 425.5, 0.001);
+    }
+
+    @Test
+    public void test_Strategy_QuantiteBio() {
+        Orticulteur p1 = new Orticulteur("Miceli", "Thomas", 38);
+        p1.setSolde(500);
+
+        p1.fabriquerProduit(Participant.Produits.POMME, 50);
+        p1.fabriquerProduit(Participant.Produits.POMME, 100);
+        p1.fabriquerProduit(Participant.Produits.POMME, 60);
+        p1.fabriquerProduit(Participant.Produits.ORANGE, 120);
+        p1.fabriquerProduit(Participant.Produits.ORANGE, 90);
+
+        p1.calculerCotisations(new StratProduitQuantite(), new StratProduitBio());
+
+        // this.solde * ((15 -   (remises/100))/100))
+        //    500     * ((15 - (5 + 5 + 3/100))/100))
+        //    500     * ((15 -           0.13) /100))
+        //    500     * ((14.87)               /100))
+        //    500     *   0.1487 = 74.35
+
+        // solde restant => 500 - 74.35
+
+        assertEquals(p1.getSolde(), 425.65, 0.001);
+    }
 }
