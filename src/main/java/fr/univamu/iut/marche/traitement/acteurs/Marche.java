@@ -1,6 +1,6 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
-import fr.univamu.iut.marche.traitement.Identificateur;
+import fr.univamu.iut.marche.traitement.produits.Identificateur;
 
 import java.util.*;
 
@@ -72,8 +72,8 @@ public class Marche {
         if(o.getPrixOffre().equals(v.getPrix())
                && (v.getProduitVendu().getQuantite())== o.getQuantite()
                 ){
-           v.getVendeur().setArgent(v.getVendeur().getArgent()+o.getPrixOffre());
-           o.getAcheteur().setArgent(v.getVendeur().getArgent()-o.getPrixOffre());
+           v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());
+           o.getAcheteur().setSolde(v.getVendeur().getSolde()-o.getPrixOffre());
            o.getAcheteur().addProduit(v.getProduitVendu());
            offresMarche.remove(o);
            System.out.println("test");
