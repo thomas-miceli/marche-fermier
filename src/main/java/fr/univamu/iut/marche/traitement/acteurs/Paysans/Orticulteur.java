@@ -14,11 +14,6 @@ public class Orticulteur extends Paysan {
         super(nom, prenom, age);
     }
 
-    public enum ProduitsFabricables {
-        POMME,
-        ORANGE
-    }
-
     @Override
     public ProduitFermier fabriquerProduit(Produits objetFab, int quantite) {
         ProduictionDeFruit produictionDeFruit = new ProduictionDeFruit();

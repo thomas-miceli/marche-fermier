@@ -12,19 +12,19 @@ public abstract class UniteDeProduction {
     public ProduitFermier cree(String type, int quantite){
         switch (type){
             case "MIEL":
-                return new Miel(quantite, calcDatePremption());
+                return new Miel(quantite, calcDatePeremption());
             case "ORANGE":
-                return new Orange(quantite, calcDatePremption());
+                return new Orange(quantite, calcDatePeremption());
             case "POMME":
-                return new Pomme(quantite,calcDatePremption());
+                return new Pomme(quantite, calcDatePeremption());
             case "LAIT":
-               return new Lait(quantite,calcDatePremption());
+               return new Lait(quantite, calcDatePeremption());
             case "FROMAGE":
-               return new Fromage(quantite,calcDatePremption());
+               return new Fromage(quantite, calcDatePeremption());
             case "VACHE":
-               return new Vache(quantite, calcDatePremption());
+               return new Vache(quantite, calcDatePeremption());
             case "COCHON":
-               return new Cochon(quantite, calcDatePremption());
+               return new Cochon(quantite, calcDatePeremption());
             default:
                 try {
                     throw new ClassNotFoundException();
@@ -37,7 +37,7 @@ public abstract class UniteDeProduction {
 
     public abstract ProduitFermier fabriquer(String type, int quantite) throws ClassNotFoundException ;
 
-    private Date calcDatePremption(){
+    private Date calcDatePeremption(){
 
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());

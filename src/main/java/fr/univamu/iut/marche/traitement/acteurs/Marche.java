@@ -1,6 +1,6 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
-import fr.univamu.iut.marche.traitement.Identificateur;
+import fr.univamu.iut.marche.traitement.produits.Identificateur;
 
 import java.util.*;
 

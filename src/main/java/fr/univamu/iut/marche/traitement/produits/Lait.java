@@ -1,6 +1,5 @@
 package fr.univamu.iut.marche.traitement.produits;
 
-import fr.univamu.iut.marche.traitement.Visiteur;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 
 import java.util.Date;
@@ -16,7 +15,7 @@ public class Lait extends ProduitFermier {
         this.dateDePeremption=copy.dateDePeremption;
     }//constructCopieur
     @Override
-    public Participant.Produits identifier(Visiteur v) {
+    public Participant.Produits identifier(ProduitVisiteur v) {
        return v.visiter(this);
     }
 }

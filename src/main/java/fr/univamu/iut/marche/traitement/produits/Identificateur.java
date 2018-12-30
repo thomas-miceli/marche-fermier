@@ -1,9 +1,9 @@
-package fr.univamu.iut.marche.traitement;
+package fr.univamu.iut.marche.traitement.produits;
 
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.*;
 
-public class Identificateur extends Visiteur {
+public class Identificateur implements ProduitVisiteur {
     @Override
     public Participant.Produits visiter(Miel m) {
         return Participant.Produits.MIEL;

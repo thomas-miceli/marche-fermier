@@ -1,7 +1,8 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
-import fr.univamu.iut.marche.traitement.Identificateur;
+import fr.univamu.iut.marche.traitement.produits.Identificateur;
 import fr.univamu.iut.marche.traitement.produits.*;
+import fr.univamu.iut.marche.traitement.remises.Strategy;
 
 import java.util.ArrayList;
 
@@ -98,12 +99,9 @@ public abstract class Participant {
         return null;
     }
 
-
-
     public ArrayList<ProduitFermier> getStock() {
         return stock;
     }
-
 
     public void setStock(ArrayList<ProduitFermier> stock) {
         this.stock = stock;
@@ -186,5 +184,14 @@ public abstract class Participant {
         }else{
             System.out.println(nom+" n'a pas assez d'solde pour placer cette offre");
         }
+    }
+
+    public void calculerCotisations(Strategy... strategies) {
+        double pourcentage = 15;
+        for (Strategy s : strategies) {
+            if (s.calcRemise(this) != 0)
+                pourcentage -= s.calcRemise(this);
+        }
+        opArgent(0 - (this.solde * (pourcentage/100)));
     }
 }

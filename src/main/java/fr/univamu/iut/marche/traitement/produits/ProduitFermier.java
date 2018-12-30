@@ -1,19 +1,14 @@
 package fr.univamu.iut.marche.traitement.produits;
 
-import fr.univamu.iut.marche.traitement.IVisitable;
-import fr.univamu.iut.marche.traitement.Visiteur;
-import fr.univamu.iut.marche.traitement.acteurs.Participant;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public abstract class ProduitFermier implements IVisitable   {
+public abstract class ProduitFermier implements ProduitVisitable {
     protected int quantite;
     protected Date dateDePeremption;
     protected String label;
-
     protected int id=0;
     protected static ArrayList<ProduitFermier> listeProduit = new ArrayList<>();
 

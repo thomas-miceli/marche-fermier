@@ -1,6 +1,7 @@
 package fr.univamu.iut.marche.traitement.fabriques;
 
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
+
 /**
  * @author Yann FORNER
  */
