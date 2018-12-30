@@ -1,6 +1,6 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
-import fr.univamu.iut.marche.traitement.produits.Identificateur;
+import fr.univamu.iut.marche.traitement.Identificateur;
 
 import java.util.*;
 
@@ -49,6 +49,7 @@ public class Marche {
             System.out.println("Proposé par "+o.getAcheteur().getNom());
         }
         System.out.println("fin Marché");
+        System.out.println("\n");
     }
 
     public ArrayList<Offre> getOffresMarche() {
@@ -61,15 +62,24 @@ public class Marche {
 
     public void updateMarket(){
         Identificateur i = new Identificateur();
-        for (Offre o: offresMarche) {
-            for (Vente v: compositionMarche) {
-                // to do
-
+        for (int j = offresMarche.size() - 1 ; j >= 0 ; j--) {
+            for (int k = compositionMarche.size() - 1 ; k >= 0 ; k--) {
+                if(offresMarche.get(j).getProduitOffre().equals(compositionMarche.get(k).getProduitVendu().identifier(i)))aquisition(offresMarche.get(j),compositionMarche.get(k));
             }
         }
     }
     public void aquisition(Offre o, Vente v){
-       //to do  
+        if(o.getPrixOffre().equals(v.getPrix())
+               && (v.getProduitVendu().getQuantite())== o.getQuantite()
+                ){
+           v.getVendeur().setArgent(v.getVendeur().getArgent()+o.getPrixOffre());
+           o.getAcheteur().setArgent(v.getVendeur().getArgent()-o.getPrixOffre());
+           o.getAcheteur().addProduit(v.getProduitVendu());
+           offresMarche.remove(o);
+           System.out.println("test");
+           compositionMarche.remove(v);
+
+        }//cas basique
 
     }
 
