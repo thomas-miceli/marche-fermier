@@ -18,6 +18,7 @@ public class Offre {
         this.quantite=quantite;
         this.prixParU= Double.valueOf((prixOffre/quantite));
         marche.addOffre(this);
+        marche.updateMarket();
     }
 
     public Participant.Produits getProduitOffre() {
@@ -65,5 +66,8 @@ public class Offre {
 
     public void setPrixParU(Double prixParU) {
         this.prixParU = prixParU;
+    }
+    public void refreshPrixParU(){
+        prixParU= (double) (prixOffre/quantite);
     }
 }

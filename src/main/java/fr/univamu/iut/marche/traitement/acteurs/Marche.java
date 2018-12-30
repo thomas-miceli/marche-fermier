@@ -1,6 +1,5 @@
 package fr.univamu.iut.marche.traitement.acteurs;
-
-import fr.univamu.iut.marche.traitement.produits.Identificateur;
+import fr.univamu.iut.marche.traitement.produits.*;
 
 import java.util.*;
 
@@ -49,7 +48,6 @@ public class Marche {
             System.out.println("Proposé par "+o.getAcheteur().getNom());
         }
         System.out.println("fin Marché");
-        System.out.println("\n");
     }
 
     public ArrayList<Offre> getOffresMarche() {
@@ -78,9 +76,58 @@ public class Marche {
            offresMarche.remove(o);
            System.out.println("test");
            compositionMarche.remove(v);
-
         }//cas basique
+        else if(o.getPrixParU().equals(v.getPrixParU())){
+            ProduitFermier pTemp;
+            switch (o.getProduitOffre()){
+                case MIEL:
+                    pTemp = new Miel(v.getProduitVendu());
+                    break;
+                case VACHE:
+                    pTemp = new Vache(v.getProduitVendu());
+                    break;
+                case POMME:
+                    pTemp = new Pomme(v.getProduitVendu());
+                    break;
+                case ORANGE:
+                    pTemp = new Orange(v.getProduitVendu());
+                    break;
+                case LAIT:
+                    pTemp = new Lait(v.getProduitVendu());
+                    break;
+                case FROMAGE:
+                    pTemp = new Fromage(v.getProduitVendu());
+                    break;
+                case COCHON:
+                    pTemp = new Cochon(v.getProduitVendu());
+                default:
+                    pTemp=null;
+                    break;
+            }
+            if(o.getQuantite()<v.getProduitVendu().getQuantite()){
+                v.getProduitVendu().setQuantite(v.getProduitVendu().getQuantite()-o.getQuantite());
+                System.out.println( v.getProduitVendu().getQuantite());
+                v.setPrix(v.getPrix()-o.getPrixOffre());
+                System.out.println(v.getPrix());
+                v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());
+                System.out.println(v.getVendeur().getSolde());
+                o.getAcheteur().setSolde(o.getAcheteur().getSolde()-o.getPrixOffre());
+                System.out.println(o.getAcheteur().getSolde());
+                pTemp.setQuantite(o.getQuantite());
+                System.out.println(pTemp.getId());
+                o.getAcheteur().addProduit(pTemp);
+                offresMarche.remove(o);
+            }
+            if(o.getQuantite()>v.getProduitVendu().getQuantite()){
+                o.setQuantite(o.getQuantite()-v.getProduitVendu().getQuantite());
+                o.setPrixOffre(o.getPrixOffre()-v.getPrix());
+                v.getVendeur().setSolde(v.getVendeur().getSolde()+v.getPrix());
+                o.getAcheteur().setSolde(o.getAcheteur().getSolde()-v.getPrix());
+                pTemp.setQuantite(v.getProduitVendu().getQuantite());
+                compositionMarche.remove(v);
 
+            }
+        }
     }
 
 }

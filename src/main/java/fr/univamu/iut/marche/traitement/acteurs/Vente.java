@@ -16,6 +16,7 @@ public class Vente {
         this.marche = marche;
         this.prixParU= Double.valueOf((prix/produitVendu.getQuantite()));
         marche.addVente(this);
+        marche.updateMarket();
     }
 
 
@@ -57,5 +58,9 @@ public class Vente {
 
     public void setMarche(Marche marche) {
         this.marche = marche;
+    }
+
+    public void refreshPrixParU(){
+        prixParU= (double) (prix/produitVendu.getQuantite());
     }
 }
