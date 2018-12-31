@@ -142,5 +142,17 @@ public class Marche {
             o.updateO();
         }
     }//provisoire
-
+    public Integer cotationProduitparU(Participant.Produits p){
+        Identificateur identificateur = new Identificateur();
+        int prixTot=0;
+        int qMoy=0;
+        for (Vente v: compositionMarche) {
+            System.out.println(p);
+            if(v.getProduitVendu().identifier(identificateur).equals(p)){
+                prixTot+=v.getPrix();
+                qMoy+=v.getProduitVendu().getQuantite();
+            }
+        }
+        return prixTot/qMoy;
+    }
 }
