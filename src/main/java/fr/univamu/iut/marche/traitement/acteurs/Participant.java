@@ -1,5 +1,6 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
+import fr.univamu.iut.marche.traitement.Seeding;
 import fr.univamu.iut.marche.traitement.produits.Identificateur;
 import fr.univamu.iut.marche.traitement.produits.*;
 import fr.univamu.iut.marche.traitement.remises.Strategy;
@@ -109,6 +110,7 @@ public abstract class Participant {
 
     public void addProduit(ProduitFermier produit) {
         this.stock.add(produit);
+        setStock(Seeding.compilerProduits(this.stock));
     }
 
     public void removeProduit(ProduitFermier produit) {
