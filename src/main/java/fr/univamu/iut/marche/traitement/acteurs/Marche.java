@@ -1,7 +1,10 @@
 package fr.univamu.iut.marche.traitement.acteurs;
+
+
+import fr.univamu.iut.marche.traitement.Observer.Observer;
 import fr.univamu.iut.marche.traitement.produits.*;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /***
  * @author Pierre LEJEUNE
@@ -13,7 +16,7 @@ import java.util.*;
 public class Marche {
     private ArrayList<Vente> compositionMarche = new ArrayList<>();
     private ArrayList<Offre> offresMarche = new ArrayList<>();
-
+    private ArrayList<Observer> observers= new ArrayList<>();
     private String region;
 
     public Marche(String region) {
@@ -27,6 +30,7 @@ public class Marche {
     public void addVente(Vente vente){
         compositionMarche.add(vente);
         System.out.println("un nouveau produit est disponible");
+        updateAll();
     }
     public void addOffre(Offre o){
         offresMarche.add(o);
@@ -129,5 +133,14 @@ public class Marche {
             }
         }
     }
+    public void addObserver(Observer o){
+        this.observers.add(o);
+    }
+    public void updateAll(){
+        for (Observer o: observers
+             ) {
+            o.updateO();
+        }
+    }//provisoire
 
 }

@@ -70,4 +70,13 @@ public class Offre {
     public void refreshPrixParU(){
         prixParU= (double) (prixOffre/quantite);
     }
+
+    @Override
+    public String toString() {
+        return "Offre{" +
+                "produitOffre=" + produitOffre +
+                ", prixOffre=" + prixOffre +
+                ", quantite=" + quantite +
+                '}';
+    }
 }

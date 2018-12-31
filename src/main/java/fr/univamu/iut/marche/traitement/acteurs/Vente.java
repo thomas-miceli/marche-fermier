@@ -63,4 +63,12 @@ public class Vente {
     public void refreshPrixParU(){
         prixParU= (double) (prix/produitVendu.getQuantite());
     }
+
+    @Override
+    public String toString() {
+        return "Vente{" +
+                "produitVendu=" +produitVendu.getQuantite() + " "+ produitVendu.getClass().getSimpleName() +
+                ", prix=" + prix +
+                '}';
+    }
 }
