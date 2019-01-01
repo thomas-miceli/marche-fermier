@@ -1,6 +1,7 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.Seeding;
+import fr.univamu.iut.marche.traitement.acteurs.Traders.Trader;
 import fr.univamu.iut.marche.traitement.produits.Identificateur;
 import fr.univamu.iut.marche.traitement.produits.*;
 import fr.univamu.iut.marche.traitement.remises.Strategy;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  * @author Téo MARTIN
  */
 public abstract class Participant {
-
+    public Trader trader=null;
     public enum Produits {
         COCHON,
         FROMAGE,
@@ -127,7 +128,7 @@ public abstract class Participant {
         return produitFermier;
     }
 
-    public void vendreProduit(Produits produitAVendre, Integer quantite, Integer prix,Marche marche) {
+    public void vendreProduit(Produits produitAVendre, Integer quantite, Double prix,Marche marche) {
         Identificateur identificateur = new Identificateur();
         for (ProduitFermier p: stock) {
             if(p.identifier(identificateur).equals(produitAVendre)){
@@ -178,7 +179,7 @@ public abstract class Participant {
         }
     }
 
-    public void proposerOffre(Produits produitAAcheter, Integer quantite, Integer prix,Marche marche){
+    public void proposerOffre(Produits produitAAcheter, Integer quantite, Double prix,Marche marche){
         if(solde >= prix ){
             new Offre(produitAAcheter,this,prix,quantite,marche);
         }else{
@@ -194,5 +195,13 @@ public abstract class Participant {
         }
         System.out.println(remises);
         opArgent(0 - (this.solde * ((15 - (remises/100))/100)));
+    }
+
+    public Trader getTrader() {
+        return trader;
+    }
+
+    public void setTrader(Trader trader) {
+        this.trader = trader;
     }
 }

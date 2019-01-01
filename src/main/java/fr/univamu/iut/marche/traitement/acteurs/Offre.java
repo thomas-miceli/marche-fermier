@@ -4,13 +4,13 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 public class Offre {
     private Participant.Produits produitOffre;
-    private Integer prixOffre;
+    private Double prixOffre;
     private Participant acheteur;
     private Marche marche;
     private Integer quantite;
     private Double prixParU;
 
-    public Offre(Participant.Produits produitOffre, Participant acheteur, Integer prixOffre,Integer quantite, Marche marche) {
+    public Offre(Participant.Produits produitOffre, Participant acheteur, Double prixOffre,Integer quantite, Marche marche) {
         this.produitOffre = produitOffre;
         this.prixOffre = prixOffre;
         this.acheteur = acheteur;
@@ -44,11 +44,11 @@ public class Offre {
     public void setMarche(Marche marche) {
         this.marche = marche;
     }
-    public Integer getPrixOffre() {
+    public Double getPrixOffre() {
         return prixOffre;
     }
 
-    public void setPrixOffre(Integer prixOffre) {
+    public void setPrixOffre(Double prixOffre) {
         this.prixOffre = prixOffre;
     }
 

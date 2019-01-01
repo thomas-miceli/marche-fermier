@@ -5,11 +5,11 @@ public class Vente {
 
     private ProduitFermier produitVendu;
     private Participant vendeur;
-    private int prix;
+    private Double prix;
     private Double prixParU;
     private Marche marche;
 
-    public Vente(ProduitFermier produitVendu, Participant vendeur, int prix, Marche marche) {
+    public Vente(ProduitFermier produitVendu, Participant vendeur, Double prix, Marche marche) {
         this.produitVendu = produitVendu;
         this.vendeur = vendeur;
         this.prix = prix;
@@ -44,11 +44,11 @@ public class Vente {
         this.vendeur = vendeur;
     }
 
-    public int getPrix() {
+    public Double getPrix() {
         return prix;
     }
 
-    public void setPrix(int prix) {
+    public void setPrix(Double prix) {
         this.prix = prix;
     }
 
