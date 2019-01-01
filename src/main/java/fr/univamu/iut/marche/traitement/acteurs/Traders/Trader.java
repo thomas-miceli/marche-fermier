@@ -18,10 +18,10 @@ public class Trader {
         p.setTrader(this);
     }
     public void metEnVente(Participant client, Participant.Produits produitMisEnVente , Integer quantite, Double prix, Marche marche){
-        client.vendreProduit(produitMisEnVente,quantite,prix,marche);
+        if(isClient(client))client.vendreProduit(produitMisEnVente,quantite,prix,marche);
     }
     public void poseUneOffre(Participant client, Participant.Produits produitMisEnVente , Integer quantite, Double prix, Marche marche){
-        client.proposerOffre(produitMisEnVente,quantite,prix,marche);
+        if(isClient(client))client.proposerOffre(produitMisEnVente,quantite,prix,marche);
     }
     public void ajouterAuSolde(Double revenu){
         solde+=revenu*1/8;
@@ -40,5 +40,14 @@ public class Trader {
 
     public ArrayList<Participant> getClients() {
         return clients;
+    }
+    public boolean isClient(Participant p){
+
+        for (Participant client: clients) {
+            if(p.equals(client)){
+                return true;
+            }
+        }
+        return false;
     }
 }
