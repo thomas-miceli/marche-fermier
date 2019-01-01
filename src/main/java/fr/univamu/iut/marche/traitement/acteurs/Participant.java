@@ -155,6 +155,7 @@ public abstract class Participant {
                             break;
                         case "Cochon":
                             pTemp = new Cochon(p);
+                            break;
                         default:
                             pTemp=null;
                             break;
