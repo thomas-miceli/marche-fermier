@@ -57,6 +57,11 @@ public class homeController implements Initializable {
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new listeParticipantController());
     }
+    @FXML
+    public void setSceneToAjoutParticipant() throws IOException {
+        contentVBox.getChildren().clear();
+        contentVBox.getChildren().addAll(new ajoutPaysanController());
+    }
 
     @FXML
     public void showCredits() throws IOException {
