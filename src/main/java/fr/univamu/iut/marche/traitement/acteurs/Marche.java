@@ -17,6 +17,7 @@ public class Marche {
     private static ArrayList<Vente> compositionMarche = new ArrayList<>();
     private static ArrayList<Offre> offresMarche = new ArrayList<>();
     private ArrayList<Observer> observers= new ArrayList<>();
+    private ArrayList<TransactionFini> historiqueDesVentes = new ArrayList<>();
     private String region;
 
     public Marche(String region) {
@@ -52,6 +53,11 @@ public class Marche {
             System.out.println("Proposé par "+o.getAcheteur().getNom());
         }
         System.out.println("fin Marché");
+        System.out.println("HISTORIQUE-------------");
+        for (TransactionFini t: historiqueDesVentes) {
+            System.out.println(t);
+        }
+        System.out.println("FIN HISTORIQUE ----------");
     }
 
     public static ArrayList<Offre> getOffresMarche() {
@@ -86,6 +92,7 @@ public class Marche {
            offresMarche.remove(o);
            System.out.println("test");
            compositionMarche.remove(v);
+           new TransactionFini(o,v,o.getQuantite());
         }//cas basique
         else if(o.getPrixParU().equals(v.getPrixParU())){
             ProduitFermier pTemp;
@@ -110,6 +117,7 @@ public class Marche {
                     break;
                 case COCHON:
                     pTemp = new Cochon(v.getProduitVendu());
+                    break;
                 default:
                     pTemp=null;
                     break;
@@ -127,6 +135,7 @@ public class Marche {
                 pTemp.setQuantite(o.getQuantite());
                 o.getAcheteur().addProduit(pTemp);
                 offresMarche.remove(o);
+                new TransactionFini(o,v,o.getQuantite());
             }
             if(o.getQuantite()>v.getProduitVendu().getQuantite()){
                 o.setQuantite(o.getQuantite()-v.getProduitVendu().getQuantite());
@@ -140,7 +149,7 @@ public class Marche {
                 o.getAcheteur().setSolde(o.getAcheteur().getSolde()-v.getPrix());
                 pTemp.setQuantite(v.getProduitVendu().getQuantite());
                 compositionMarche.remove(v);
-
+                new TransactionFini(o,v,v.getProduitVendu().getQuantite());
             }
         }
     }
@@ -166,4 +175,12 @@ public class Marche {
         }
         return prixTot/qMoy;
     }
+
+    public ArrayList<TransactionFini> getHistoriqueDesVentes() {
+        return historiqueDesVentes;
+    }
+    public void addTransactionFinie(TransactionFini t){
+        historiqueDesVentes.add(t);
+    }
+
 }
