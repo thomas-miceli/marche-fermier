@@ -81,4 +81,8 @@ public abstract class ProduitFermier implements ProduitVisitable {
         return format.format(dateDePeremption);
     }
 
+    public String getType() {
+        return this.getClass().getSimpleName();
+    }
+
 }

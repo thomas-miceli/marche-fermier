@@ -1,6 +1,9 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.produits.Identificateur;
+import fr.univamu.iut.marche.traitement.remises.StratProduitBio;
+import fr.univamu.iut.marche.traitement.remises.StratProduitQuantite;
+import fr.univamu.iut.marche.traitement.remises.Strategy;
 
 import java.util.*;
 
@@ -72,12 +75,22 @@ public class Marche {
         if(o.getPrixOffre().equals(v.getPrix())
                && (v.getProduitVendu().getQuantite())== o.getQuantite()
                 ){
-           v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());
-           o.getAcheteur().setSolde(v.getVendeur().getSolde()-o.getPrixOffre());
-           o.getAcheteur().addProduit(v.getProduitVendu());
-           offresMarche.remove(o);
-           System.out.println("test");
-           compositionMarche.remove(v);
+            v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());
+            o.getAcheteur().setSolde(v.getVendeur().getSolde()-o.getPrixOffre());
+            o.getAcheteur().addProduit(v.getProduitVendu());
+            System.out.println(v.getVendeur().getSolde());
+            if (v.getProduitVendu().getType().equals("Pomme") || v.getProduitVendu().getType().equals("Miel")) {
+                v.getVendeur().calculerCotisations(v, new StratProduitBio());
+            }
+
+            if (v.getProduitVendu().getQuantite() > 200) {
+                v.getVendeur().calculerCotisations(v, new StratProduitQuantite());
+            }
+
+            System.out.println(v.getVendeur().getSolde());
+            offresMarche.remove(o);
+            System.out.println("test");
+            compositionMarche.remove(v);
 
         }//cas basique
 

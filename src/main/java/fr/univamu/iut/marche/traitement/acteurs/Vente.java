@@ -7,7 +7,7 @@ public class Vente {
     private Participant vendeur;
     private int prix;
     private Double prixParU;
-    private Marche marche;
+    private     Marche marche;
 
     public Vente(ProduitFermier produitVendu, Participant vendeur, int prix, Marche marche) {
         this.produitVendu = produitVendu;

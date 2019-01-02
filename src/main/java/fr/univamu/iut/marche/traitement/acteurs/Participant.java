@@ -184,7 +184,7 @@ public abstract class Participant {
         }
     }
 
-    public void calculerCotisations(Strategy... strategies) {
+    public void calculerCotisations(Vente v, Strategy... strategies) {
         double remises = 0;
         for (Strategy s : strategies) {
             if (s.calcRemise(this) != 0)

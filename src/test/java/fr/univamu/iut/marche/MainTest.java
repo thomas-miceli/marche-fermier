@@ -76,7 +76,7 @@ public class MainTest {
         p1.fabriquerProduit(Participant.Produits.ORANGE, 40);//<
         p1.fabriquerProduit(Participant.Produits.ORANGE, 50);//<-- Ignorés par la stratégie
 
-        p1.calculerCotisations(new StratProduitBio());
+        //p1.calculerCotisations(new StratProduitBio());
 
         // this.solde * ((15 - (remises/100))/100))
         //    500     * ((15 - (      3/100))/100))
@@ -100,7 +100,7 @@ public class MainTest {
         p1.fabriquerProduit(Participant.Produits.ORANGE, 120);
         p1.fabriquerProduit(Participant.Produits.ORANGE, 90);
 
-        p1.calculerCotisations(new StratProduitQuantite());
+        //p1.calculerCotisations(new StratProduitQuantite());
 
         // this.solde * ((15 - (remises/100))/100))
         //    500     * ((15 - (  5 + 5/100))/100))
@@ -124,7 +124,7 @@ public class MainTest {
         p1.fabriquerProduit(Participant.Produits.ORANGE, 120);
         p1.fabriquerProduit(Participant.Produits.ORANGE, 90);
 
-        p1.calculerCotisations(new StratProduitQuantite(), new StratProduitBio());
+        //p1.calculerCotisations(new StratProduitQuantite(), new StratProduitBio());
 
         // this.solde * ((15 -   (remises/100))/100))
         //    500     * ((15 - (5 + 5 + 3/100))/100))

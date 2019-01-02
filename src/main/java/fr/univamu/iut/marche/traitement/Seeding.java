@@ -45,8 +45,8 @@ public class Seeding {
         marche.show();
         p4.vendreProduit(Participant.Produits.LAIT,1,5,marche);
         p3.proposerOffre(Participant.Produits.LAIT,1,500000,marche);
+        marche.updateMarket();
         marche.show();
-        p4.show();
     }
 
     public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd){
