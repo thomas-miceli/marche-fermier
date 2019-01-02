@@ -205,4 +205,9 @@ public abstract class Participant {
     public void setTrader(Trader trader) {
         this.trader = trader;
     }
+
+    @Override
+    public String toString() {
+        return nom+ "\n";
+    }
 }
