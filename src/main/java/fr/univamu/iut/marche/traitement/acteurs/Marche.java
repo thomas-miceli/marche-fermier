@@ -3,6 +3,8 @@ package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.Observer.Observer;
 import fr.univamu.iut.marche.traitement.produits.*;
+import fr.univamu.iut.marche.traitement.remises.StratProduitBio;
+import fr.univamu.iut.marche.traitement.remises.StratProduitQuantite;
 
 import java.util.ArrayList;
 
@@ -86,6 +88,16 @@ public class Marche {
                 v.getVendeur().getTrader().ajouterAuSolde(v.getPrix());
                 v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre()*(7/8));
             }
+
+            if (v.getProduitVendu().getType().equals("Miel") || v.getProduitVendu().getType().equals("Pomme")) {
+                v.getVendeur().calculerCotisations(new StratProduitBio());
+
+            }
+
+            if (v.getProduitVendu().getQuantite() > 200) {
+                v.getVendeur().calculerCotisations(new StratProduitQuantite());
+            }
+
            v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());//refaire
            o.getAcheteur().setSolde(v.getVendeur().getSolde()-o.getPrixOffre());
            o.getAcheteur().addProduit(v.getProduitVendu());
