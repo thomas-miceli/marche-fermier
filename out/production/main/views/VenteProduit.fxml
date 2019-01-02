@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root fx:id="contentVBox" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <javafx.scene.layout.AnchorPane>
+            <children>
+                <GridPane alignment="CENTER" maxWidth="8000.0" prefHeight="125.0" prefWidth="560.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="8000.0" minWidth="110.0" percentWidth="40.0" prefWidth="255.0" />
+                        <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="8000.0" minWidth="20.0" percentWidth="60.0" prefWidth="315.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints fillHeight="false" maxHeight="90.0" minHeight="10.0" prefHeight="90.0" vgrow="ALWAYS" />
+                        <RowConstraints fillHeight="false" maxHeight="61.0" minHeight="10.0" prefHeight="46.0" vgrow="ALWAYS" />
+                    </rowConstraints>
+                    <children>
+                        <Pane maxWidth="1.7976931348623157E308" prefHeight="76.0" prefWidth="315.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                            <children>
+                                <Button fx:id="buttonAcheter" onAction="#vendreProduit" layoutX="195.0" layoutY="14.0" mnemonicParsing="false" text="Acheter" />
+                                <TextField fx:id="QuantiteVoulus" layoutX="187.0" layoutY="51.0" prefHeight="26.0" prefWidth="114.0" />
+                                <Text layoutX="54.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantite voulus ?" />
+                                <Text layoutX="54.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" fx:id="popupAlert"/>
+                            </children>
+                        </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <Button layoutX="34.0" layoutY="8.0" mnemonicParsing="false" onAction="#setViewToCatalog" text="Retour Catalogue" />
+                     </children></Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                              <Text fx:id="produitName" layoutX="17.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produit Inconnus" wrappingWidth="190.7294921875">
+                                  <font>
+                                      <Font size="16.0" />
+                                  </font>
+                              </Text>
+                        <Text fx:id="produitQuantite" layoutX="17.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité : 0" />
+                     </children>
+                  </Pane>
+                    </children>
+                </GridPane>
+            </children>
+        </javafx.scene.layout.AnchorPane>
+    </children>
+</fx:root>

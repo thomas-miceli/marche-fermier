@@ -28,7 +28,7 @@ public class Seeding {
 
         p1.setSolde( 50.1);
         p2.setSolde(100.2);
-        p3.setSolde(150.3);
+        p3.setSolde(1500.3);
         p4.setSolde(200.4);
 
         p1.fabriquerProduit(Participant.Produits.MIEL ,550);
@@ -47,8 +47,12 @@ public class Seeding {
         marche.show();
         p4.vendreProduit(Participant.Produits.LAIT,1,5.0,marche);
         p3.proposerOffre(Participant.Produits.LAIT,1,50.0,marche);
-        marche.show();
-        p4.show();
+        p2.proposerOffre(Participant.Produits.LAIT,1,5.0,marche);
+
+        p1.vendreProduit(Participant.Produits.MIEL,1000,10000.0,marche);
+        p3.proposerOffre(Participant.Produits.MIEL,50,500.0,marche);
+
+        p1.show();
         marche.show();
     }
 
