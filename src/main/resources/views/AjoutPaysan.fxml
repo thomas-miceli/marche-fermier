@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<fx:root fx:id="root" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nouveau Paysan " />
+      <HBox prefHeight="45.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :   " />
+            <TextField prefHeight="31.0" prefWidth="119.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="   Prénom :   " />
+            <TextField prefHeight="31.0" prefWidth="120.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="   Age :   " />
+            <TextField prefHeight="31.0" prefWidth="120.0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="37.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type : " />
+            <MenuButton mnemonicParsing="false" text="Apiculteur">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Orticulteur" />
+                <MenuItem mnemonicParsing="false" text="Producteur de viande" />
+                  <MenuItem mnemonicParsing="false" text="Producteur Laitier" />
+              </items>
+            </MenuButton>
+         </children>
+      </HBox>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="   Produits : " />
+      <HBox prefHeight="34.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Cochon :    " />
+            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="34.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Fromage :  " />
+            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="34.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Lait  :          " />
+            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="34.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Miel  :         " />
+            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="34.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Orange :     " />
+            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="34.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Pomme :    " />
+            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="34.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Vache :       " />
+            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+         </children>
+      </HBox>
+      <Button mnemonicParsing="false" text="Valider" />
+   </children>
+</fx:root>

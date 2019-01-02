@@ -53,7 +53,7 @@ public class MainTest {
 
         p1.fabriquerProduit(Participant.Produits.MIEL, 550);
 
-        p1.vendreProduit(Participant.Produits.MIEL, 200, 100, marche);
+        p1.vendreProduit(Participant.Produits.MIEL, 200, 100.0, marche);
 
         ArrayList<ProduitFermier> vente = p1.getStock();
 

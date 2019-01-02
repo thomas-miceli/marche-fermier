@@ -1,11 +1,10 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
-import fr.univamu.iut.marche.traitement.produits.Identificateur;
-import fr.univamu.iut.marche.traitement.remises.StratProduitBio;
-import fr.univamu.iut.marche.traitement.remises.StratProduitQuantite;
-import fr.univamu.iut.marche.traitement.remises.Strategy;
 
-import java.util.*;
+import fr.univamu.iut.marche.traitement.Observer.Observer;
+import fr.univamu.iut.marche.traitement.produits.*;
+
+import java.util.ArrayList;
 
 /***
  * @author Pierre LEJEUNE
@@ -15,9 +14,10 @@ import java.util.*;
  */
 
 public class Marche {
-    private ArrayList<Vente> compositionMarche = new ArrayList<>();
-    private ArrayList<Offre> offresMarche = new ArrayList<>();
-
+    private static ArrayList<Vente> compositionMarche = new ArrayList<>();
+    private static ArrayList<Offre> offresMarche = new ArrayList<>();
+    private ArrayList<Observer> observers= new ArrayList<>();
+    private ArrayList<TransactionFini> historiqueDesVentes = new ArrayList<>();
     private String region;
 
     public Marche(String region) {
@@ -31,6 +31,7 @@ public class Marche {
     public void addVente(Vente vente){
         compositionMarche.add(vente);
         System.out.println("un nouveau produit est disponible");
+        updateAll();
     }
     public void addOffre(Offre o){
         offresMarche.add(o);
@@ -42,7 +43,7 @@ public class Marche {
         System.out.println("VENTES : ");
         for (Vente v: compositionMarche) {
             System.out.println("------------");
-            System.out.println(v.getProduitVendu().getId()+ "-"+ v.getProduitVendu().getClass().getSimpleName()+" : " + v.getPrix()+" euro pour "+v.getProduitVendu().getQuantite());
+            System.out.println(v.getProduitVendu().getClass().getSimpleName()+" : " + v.getPrix()+" euro pour "+v.getProduitVendu().getQuantite());
             System.out.println("vendu par "+v.getVendeur().getNom());
         }
         System.out.println("OFFRES :");
@@ -52,14 +53,18 @@ public class Marche {
             System.out.println("Proposé par "+o.getAcheteur().getNom());
         }
         System.out.println("fin Marché");
-        System.out.println("\n");
+        System.out.println("HISTORIQUE-------------");
+        for (TransactionFini t: historiqueDesVentes) {
+            System.out.println(t);
+        }
+        System.out.println("FIN HISTORIQUE ----------");
     }
 
-    public ArrayList<Offre> getOffresMarche() {
+    public static ArrayList<Offre> getOffresMarche() {
         return offresMarche;
     }
 
-    public ArrayList<Vente> getCompositionMarche() {
+    public static ArrayList<Vente> getCompositionMarche() {
         return compositionMarche;
     }
 
@@ -75,25 +80,107 @@ public class Marche {
         if(o.getPrixOffre().equals(v.getPrix())
                && (v.getProduitVendu().getQuantite())== o.getQuantite()
                 ){
-            v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());
-            o.getAcheteur().setSolde(v.getVendeur().getSolde()-o.getPrixOffre());
-            o.getAcheteur().addProduit(v.getProduitVendu());
-            System.out.println(v.getVendeur().getSolde());
-            if (v.getProduitVendu().getType().equals("Pomme") || v.getProduitVendu().getType().equals("Miel")) {
-                v.getVendeur().calculerCotisations(v, new StratProduitBio());
+            if(v.getVendeur().getTrader()==null){
+                v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());
+            }else{
+                v.getVendeur().getTrader().ajouterAuSolde(v.getPrix());
+                v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre()*(7/8));
             }
-
-            if (v.getProduitVendu().getQuantite() > 200) {
-                v.getVendeur().calculerCotisations(v, new StratProduitQuantite());
-            }
-
-            System.out.println(v.getVendeur().getSolde());
-            offresMarche.remove(o);
-            System.out.println("test");
-            compositionMarche.remove(v);
-
+           v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());//refaire
+           o.getAcheteur().setSolde(v.getVendeur().getSolde()-o.getPrixOffre());
+           o.getAcheteur().addProduit(v.getProduitVendu());
+           offresMarche.remove(o);
+           System.out.println("test");
+           compositionMarche.remove(v);
+           new TransactionFini(o,v,o.getQuantite());
         }//cas basique
+        else if(o.getPrixParU().equals(v.getPrixParU())){
+            ProduitFermier pTemp;
+            switch (o.getProduitOffre()){
+                case MIEL:
+                    pTemp = new Miel(v.getProduitVendu());
+                    break;
+                case VACHE:
+                    pTemp = new Vache(v.getProduitVendu());
+                    break;
+                case POMME:
+                    pTemp = new Pomme(v.getProduitVendu());
+                    break;
+                case ORANGE:
+                    pTemp = new Orange(v.getProduitVendu());
+                    break;
+                case LAIT:
+                    pTemp = new Lait(v.getProduitVendu());
+                    break;
+                case FROMAGE:
+                    pTemp = new Fromage(v.getProduitVendu());
+                    break;
+                case COCHON:
+                    pTemp = new Cochon(v.getProduitVendu());
+                    break;
+                default:
+                    pTemp=null;
+                    break;
+            }
+            if(o.getQuantite()<v.getProduitVendu().getQuantite()){
+                v.getProduitVendu().setQuantite(v.getProduitVendu().getQuantite()-o.getQuantite());
+                v.setPrix(v.getPrix()-o.getPrixOffre());
+                if(v.getVendeur().getTrader()==null){
+                    v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());
+                }else{
+                    v.getVendeur().getTrader().ajouterAuSolde(v.getPrix());
+                    v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre()*(7/8));
+                }
+                o.getAcheteur().setSolde(o.getAcheteur().getSolde()-o.getPrixOffre());
+                pTemp.setQuantite(o.getQuantite());
+                o.getAcheteur().addProduit(pTemp);
+                offresMarche.remove(o);
+                new TransactionFini(o,v,o.getQuantite());
+            }
+            if(o.getQuantite()>v.getProduitVendu().getQuantite()){
+                o.setQuantite(o.getQuantite()-v.getProduitVendu().getQuantite());
+                o.setPrixOffre(o.getPrixOffre()-v.getPrix());
+                if(v.getVendeur().getTrader()==null){
+                    v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());
+                }else{
+                    v.getVendeur().getTrader().ajouterAuSolde(v.getPrix());
+                    v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre()*(7/8));
+                }
+                o.getAcheteur().setSolde(o.getAcheteur().getSolde()-v.getPrix());
+                pTemp.setQuantite(v.getProduitVendu().getQuantite());
+                compositionMarche.remove(v);
+                new TransactionFini(o,v,v.getProduitVendu().getQuantite());
+            }
+        }
+    }
+    public void addObserver(Observer o){
+        this.observers.add(o);
+    }
+    public void updateAll(){
+        for (Observer o: observers
+             ) {
+            o.updateO();
+        }
+    }//provisoire
+    public Integer cotationProduitparU(Participant.Produits p){
+        Identificateur identificateur = new Identificateur();
+        int prixTot=0;
+        int qMoy=0;
+        for (Vente v: compositionMarche) {
+            System.out.println(p);
+            if(v.getProduitVendu().identifier(identificateur).equals(p)){
+                prixTot+=v.getPrix();
+                qMoy+=v.getProduitVendu().getQuantite();
+            }
+        }
+        return prixTot/qMoy;
+    }
 
+    public ArrayList<TransactionFini> getHistoriqueDesVentes() {
+        return historiqueDesVentes;
+    }
+    public void addTransactionFinie(TransactionFini t){
+        historiqueDesVentes.add(t);
     }
 
 }

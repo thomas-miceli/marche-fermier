@@ -10,7 +10,6 @@ public class Cochon extends ProduitFermier {
         super(quantite, dateDePeremption);
     }
     public Cochon(ProduitFermier copy){
-        this.id=copy.id;
         this.quantite=copy.quantite;
         this.label=copy.label;
         this.dateDePeremption=copy.dateDePeremption;

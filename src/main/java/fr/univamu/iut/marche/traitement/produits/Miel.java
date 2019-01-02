@@ -9,7 +9,6 @@ public class Miel extends ProduitFermier {
         super(quantite, dateDePeremption);
     }
     public Miel(ProduitFermier copy){
-        this.id=copy.id;
         this.quantite=copy.quantite;
         this.label=copy.label;
         this.dateDePeremption=copy.dateDePeremption;

@@ -46,10 +46,10 @@ public class participantController extends VBox implements Initializable {
     private ObservableList<String> data = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(Marche.getListeParticipantsMarche());
+        System.out.println(Participant.getAllParticipants());
         Participant participantCurrent = Participant.getParticipantbyId(Integer.parseInt(listeParticipantController.getSelectedParticipant()));
-        for (ProduitFermier produitFermier : participantCurrent.getStock()) {
-            data.add("Produit : " + produitFermier.getClass().getSimpleName() +"  Quantité : " + produitFermier.getQuantite() + "  | Date de peremption : "+ produitFermier.getDateDePeremption().getMonth() + '-' +(produitFermier.getDateDePeremption().getYear()-100+2000) + "   | Id : " + produitFermier.getId() );
+        for (int i =0; i<participantCurrent.getStock().size(); ++i) {
+            data.add("Produit : " + participantCurrent.getStock().get(i).getClass().getSimpleName() +"  Quantité : " + participantCurrent.getStock().get(i).getQuantite() + "  | Date de peremption : "+ participantCurrent.getStock().get(i).getDateDePeremption().getMonth() + '-' +(participantCurrent.getStock().get(i).getDateDePeremption().getYear()-100+2000) + "   | Id : " + i);
         }
         listeParticipant.setItems(data);
         participantName.setText(participantCurrent.getPrenom() + ' ' + participantCurrent.getNom());

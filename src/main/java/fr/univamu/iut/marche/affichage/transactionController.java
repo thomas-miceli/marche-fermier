@@ -1,6 +1,7 @@
 package fr.univamu.iut.marche.affichage;
 
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
+import fr.univamu.iut.marche.traitement.acteurs.Offre;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -34,9 +35,9 @@ public class transactionController extends VBox implements Initializable {
     private ObservableList<String> data = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(Marche.getListeParticipantsMarche());
-        for (String string : Marche.getTransaction()) {
-            data.add(string);
+        System.out.println(Participant.getAllParticipants());
+        for (Offre offre: Marche.getOffresMarche()) {
+            data.add(offre.toString());
         }
         listeTransaction.setItems(data);
     }

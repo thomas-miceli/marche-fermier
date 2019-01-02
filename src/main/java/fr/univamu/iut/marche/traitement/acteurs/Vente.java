@@ -1,21 +1,28 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
+import java.util.ArrayList;
+
 public class Vente {
 
+    private static int id=0;
+    private static ArrayList<Vente> listeVentes = new ArrayList<Vente>();
     private ProduitFermier produitVendu;
     private Participant vendeur;
-    private int prix;
+    private Double prix;
     private Double prixParU;
-    private     Marche marche;
+    private Marche marche;
 
-    public Vente(ProduitFermier produitVendu, Participant vendeur, int prix, Marche marche) {
+    public Vente(ProduitFermier produitVendu, Participant vendeur, Double prix, Marche marche) {
         this.produitVendu = produitVendu;
         this.vendeur = vendeur;
         this.prix = prix;
         this.marche = marche;
         this.prixParU= Double.valueOf((prix/produitVendu.getQuantite()));
+        this.id=listeVentes.size();
+        listeVentes.add(this);
         marche.addVente(this);
+        marche.updateMarket();
     }
 
 
@@ -43,11 +50,11 @@ public class Vente {
         this.vendeur = vendeur;
     }
 
-    public int getPrix() {
+    public Double getPrix() {
         return prix;
     }
 
-    public void setPrix(int prix) {
+    public void setPrix(Double prix) {
         this.prix = prix;
     }
 
@@ -58,4 +65,20 @@ public class Vente {
     public void setMarche(Marche marche) {
         this.marche = marche;
     }
+
+    public void refreshPrixParU(){
+        prixParU= (double) (prix/produitVendu.getQuantite());
+    }
+
+    @Override
+    public String toString() {
+        return "Vente{" +
+                "produitVendu=" +produitVendu.getQuantite() + " "+ produitVendu.getClass().getSimpleName() +
+                ", prix=" + prix +
+                '}';
+    }
+    public static ArrayList<Vente> getAllVente(){
+        return listeVentes;
+    }
+
 }
