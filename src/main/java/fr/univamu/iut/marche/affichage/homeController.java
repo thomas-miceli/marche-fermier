@@ -1,7 +1,7 @@
 package fr.univamu.iut.marche.affichage;
 
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
-import fr.univamu.iut.marche.traitement.acteurs.Traders.TraderIndependant;
+import fr.univamu.iut.marche.traitement.acteurs.Paysans.Orticulteur;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +31,6 @@ public class homeController implements Initializable {
     private static Stage credits;
 
     private static Participant participantFxml;
-
     public void setStageAndSetupListeners(Stage stage) {
         stage.setOnCloseRequest(event -> Platform.exit());
     }
@@ -88,18 +87,16 @@ public class homeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        participantFxml = new TraderIndependant("Utilisateur", "FXML", 69);
-        participantFxml.setSolde(150);
-        soldeFxmlUser.setText("Solde : " + String.valueOf(participantFxml.getSolde()));
+        participantFxml = new Orticulteur("Utilisateur", "FXML", 18);
+        participantFxml.setSolde(500);
+        soldeFxmlUser.setText("Solde : " + participantFxml.getSolde());
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll();
     }
-
-    public void reloadsolde(){
-        soldeFxmlUser.setText("Solde : " + String.valueOf(participantFxml.getSolde()));
-    }
-
-    public static Participant getParticipantFxml(){
+    public static Participant getFxmlUser(){
         return participantFxml;
+    }
+    public static void setFxmlUser(Participant participantFxml){
+        participantFxml = participantFxml;
     }
 }

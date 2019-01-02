@@ -9,7 +9,6 @@ public class Lait extends ProduitFermier {
         super(quantite, dateDePeremption);
     }
     public Lait(ProduitFermier copy){
-        this.id=copy.id;
         this.quantite=copy.quantite;
         this.label=copy.label;
         this.dateDePeremption=copy.dateDePeremption;

@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 
 public class Marche {
-    private ArrayList<Vente> compositionMarche = new ArrayList<>();
-    private ArrayList<Offre> offresMarche = new ArrayList<>();
+    private static ArrayList<Vente> compositionMarche = new ArrayList<>();
+    private static ArrayList<Offre> offresMarche = new ArrayList<>();
     private ArrayList<Observer> observers= new ArrayList<>();
     private String region;
 
@@ -42,7 +42,7 @@ public class Marche {
         System.out.println("VENTES : ");
         for (Vente v: compositionMarche) {
             System.out.println("------------");
-            System.out.println(v.getProduitVendu().getId()+ "-"+ v.getProduitVendu().getClass().getSimpleName()+" : " + v.getPrix()+" euro pour "+v.getProduitVendu().getQuantite());
+            System.out.println(v.getProduitVendu().getClass().getSimpleName()+" : " + v.getPrix()+" euro pour "+v.getProduitVendu().getQuantite());
             System.out.println("vendu par "+v.getVendeur().getNom());
         }
         System.out.println("OFFRES :");
@@ -54,11 +54,11 @@ public class Marche {
         System.out.println("fin Marché");
     }
 
-    public ArrayList<Offre> getOffresMarche() {
+    public static ArrayList<Offre> getOffresMarche() {
         return offresMarche;
     }
 
-    public ArrayList<Vente> getCompositionMarche() {
+    public static ArrayList<Vente> getCompositionMarche() {
         return compositionMarche;
     }
 

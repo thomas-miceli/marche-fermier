@@ -38,8 +38,8 @@ public class listeParticipantController extends VBox implements Initializable {
     private ObservableList<String> data = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(Marche.getListeParticipantsMarche());
-        for (Participant participant:Marche.getListeParticipantsMarche()) {
+        System.out.println(Participant.getAllParticipants());
+        for (Participant participant:Participant.getAllParticipants()) {
             textaffichetotextdescription.put(participant.getPrenom() +"  "+ participant.getNom(), String.valueOf(participant.getId()));
             data.add(participant.getPrenom()+"  "+participant.getNom());
         }

@@ -1,7 +1,9 @@
 package fr.univamu.iut.marche.affichage;
 
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
+import fr.univamu.iut.marche.traitement.acteurs.Offre;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
+import fr.univamu.iut.marche.traitement.acteurs.Vente;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -41,12 +43,10 @@ public class catalogController extends VBox implements Initializable {
     private ObservableList<String> data = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        for (Participant participant:Marche.getListeParticipantsMarche()) {
-            if(participant.getStock().size()!=0) {
-                for (ProduitFermier produit : participant.getStock()) {
-                    textaffichetotextdescription.put(produit.getClass().getSimpleName() + "        Quantité  : " + produit.getQuantite() + "        id : " + produit.getId(), produit.getClass().getSimpleName() + ',' + participant.getPrenom() + ',' + participant.getNom() + ',' + participant.getId() + ',' + produit.getId());
-                    data.add(produit.getClass().getSimpleName() + "        Quantité  : " + produit.getQuantite() + "        id : " + produit.getId());
-                }
+        for (int i=0; i<Marche.getCompositionMarche().size(); i++) {
+            if(Marche.getCompositionMarche().get(i).getVendeur().getStock().size()!=0) {
+                textaffichetotextdescription.put(Marche.getCompositionMarche().get(i).getProduitVendu().getClass().getSimpleName() + "        Quantité  : " + Marche.getCompositionMarche().get(i).getProduitVendu().getQuantite() + "        id : " + i, Marche.getCompositionMarche().get(i).getProduitVendu().getClass().getSimpleName() + ',' + Marche.getCompositionMarche().get(i).getVendeur().getPrenom() + ',' + Marche.getCompositionMarche().get(i).getVendeur().getNom() + ',' + i );
+                data.add(Marche.getCompositionMarche().get(i).getProduitVendu().getClass().getSimpleName() + "        Quantité  : " + Marche.getCompositionMarche().get(i).getProduitVendu().getQuantite() + "        id : " + i);
             }
         }
         listeVentes.setItems(data);

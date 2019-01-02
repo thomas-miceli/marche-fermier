@@ -1,8 +1,12 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
+import java.util.ArrayList;
+
 public class Vente {
 
+    private static int id=0;
+    private static ArrayList<Vente> listeVentes = new ArrayList<Vente>();
     private ProduitFermier produitVendu;
     private Participant vendeur;
     private Double prix;
@@ -15,6 +19,8 @@ public class Vente {
         this.prix = prix;
         this.marche = marche;
         this.prixParU= Double.valueOf((prix/produitVendu.getQuantite()));
+        this.id=listeVentes.size();
+        listeVentes.add(this);
         marche.addVente(this);
         marche.updateMarket();
     }
@@ -71,4 +77,8 @@ public class Vente {
                 ", prix=" + prix +
                 '}';
     }
+    public static ArrayList<Vente> getAllVente(){
+        return listeVentes;
+    }
+
 }

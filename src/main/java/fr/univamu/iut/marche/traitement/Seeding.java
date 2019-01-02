@@ -16,9 +16,11 @@ import java.util.ArrayList;
  * bon fonctionnement de l'application
  */
 public class Seeding {
+    private static ArrayList<Marche> listeMarche = new ArrayList<Marche>();
     Seeding(){
 
         Marche marche = new Marche("PACA");
+        listeMarche.add(marche);
         Apiculteur p1 = new Apiculteur("Claude", "Jean", 50);
         ProducteurDeViande p2 = new ProducteurDeViande("Claudette", "Jean", 45);
         Orticulteur p3 = new Orticulteur("Claudinette", "Jean", 40);
@@ -43,10 +45,11 @@ public class Seeding {
 
         p4.show();
         marche.show();
-        p4.vendreProduit(Participant.Produits.LAIT,1,5,marche);
-        p3.proposerOffre(Participant.Produits.LAIT,1,500000,marche);
+        p4.vendreProduit(Participant.Produits.LAIT,1,5.0,marche);
+        p3.proposerOffre(Participant.Produits.LAIT,1,50.0,marche);
         marche.show();
         p4.show();
+        marche.show();
     }
 
     public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd){
@@ -62,5 +65,9 @@ public class Seeding {
             }
         }
         return listProd;
+    }
+
+    public static ArrayList<Marche> getListeMarche(){
+        return listeMarche;
     }
 }

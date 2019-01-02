@@ -1,7 +1,9 @@
 package fr.univamu.iut.marche.affichage;
 
+import fr.univamu.iut.marche.traitement.Seeding;
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
+import fr.univamu.iut.marche.traitement.acteurs.Vente;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -52,9 +54,8 @@ public class venteProduitController extends VBox implements Initializable {
     public void vendreProduit()throws  IOException{
         if(QuantiteVoulus.getCharacters().toString().isEmpty()) popupAlert.setText("Quantité ??");
         else {
-            Participant participant = Participant.getParticipantbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-3, catalogController.getSelectedProduit().length()-2)));
-            ProduitFermier produitFermier = ProduitFermier.getProduitbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
-            Marche.vente(homeController.getParticipantFxml(), produitFermier, Integer.parseInt(QuantiteVoulus.getCharacters().toString()), participant);
+            Vente vente = Marche.getCompositionMarche().get(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
+            homeController.getFxmlUser().proposerOffre(Participant.Produits.valueOf(vente.getProduitVendu().getClass().getSimpleName().toUpperCase()),Integer.valueOf(QuantiteVoulus.getCharacters().toString()),vente.getPrix(),Seeding.getListeMarche().get(0));
             setViewToCatalog();
         }
     }
@@ -68,10 +69,11 @@ public class venteProduitController extends VBox implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Participant participant = Participant.getParticipantbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-3, catalogController.getSelectedProduit().length()-2)));
-        ProduitFermier produitFermier = ProduitFermier.getProduitbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
-        produitName.setText(produitFermier.getClass().getSimpleName());
-        produitQuantite.setText("Quantitée : " + String.valueOf(produitFermier.getQuantite()));
+        System.out.println(catalogController.getSelectedProduit());
+        Participant participant = Participant.getParticipantbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
+        Vente vente = Marche.getCompositionMarche().get(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
+        produitName.setText(vente.getProduitVendu().getClass().getSimpleName());
+        produitQuantite.setText("Quantitée : " + String.valueOf(vente.getProduitVendu().getQuantite()));
 
     }
 }

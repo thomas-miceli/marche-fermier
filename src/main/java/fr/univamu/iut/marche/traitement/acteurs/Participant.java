@@ -184,7 +184,7 @@ public abstract class Participant {
         if(solde >= prix ){
             new Offre(produitAAcheter,this,prix,quantite,marche);
         }else{
-            System.out.println(nom+" n'a pas assez d'solde pour placer cette offre");
+            System.out.println(nom+" n'a pas assez de solde pour placer cette offre");
         }
     }
 
