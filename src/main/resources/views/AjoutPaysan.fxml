@@ -35,56 +35,42 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Cochon :    " />
             <TextField fx:id="Cochon" prefHeight="31.0" prefWidth="54.0" text="0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
-            <TextField fx:id="CochonPrix" prefHeight="31.0" prefWidth="54.0" text="20" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Fromage :  " />
             <TextField fx:id="Fromage" prefHeight="31.0" prefWidth="55.0" text="0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
-            <TextField fx:id="FromagePrix" prefHeight="31.0" prefWidth="54.0" text="5" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Lait  :          " />
             <TextField fx:id="Lait" prefHeight="31.0" prefWidth="54.0" text="0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
-            <TextField fx:id="LaitPrix" prefHeight="31.0" prefWidth="54.0" text="0" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Miel  :         " />
             <TextField fx:id="Miel" prefHeight="31.0" prefWidth="53.0" text="0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
-            <TextField fx:id="MielPrix" prefHeight="31.0" prefWidth="54.0" text="0" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Orange :     " />
             <TextField fx:id="Orange" prefHeight="31.0" prefWidth="52.0" text="0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
-            <TextField fx:id="Orangeprix" prefHeight="31.0" prefWidth="54.0" text="0" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Pomme :    " />
             <TextField fx:id="Pomme" prefHeight="31.0" prefWidth="54.0" text="0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
-            <TextField fx:id="PommePrix" prefHeight="31.0" prefWidth="54.0" text="0" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Vache :       " />
             <TextField fx:id="Vache" prefHeight="31.0" prefWidth="53.0" text="0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
-            <TextField fx:id="VachePrix" prefHeight="31.0" prefWidth="54.0" text="0" />
          </children>
       </HBox>
       <HBox prefHeight="12.0" prefWidth="600.0">

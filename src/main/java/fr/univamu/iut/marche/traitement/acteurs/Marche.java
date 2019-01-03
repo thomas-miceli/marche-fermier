@@ -21,9 +21,11 @@ public class Marche {
     private ArrayList<Observer> observers= new ArrayList<>();
     private ArrayList<TransactionFini> historiqueDesVentes = new ArrayList<>();
     private String region;
+    private Controlleur controlleur;
 
-    public Marche(String region) {
+    public Marche(String region,Controlleur c) {
         this.region = region;
+        this.controlleur= c;
     }
 
     public String getRegion() {
@@ -195,4 +197,7 @@ public class Marche {
         historiqueDesVentes.add(t);
     }
 
+    public Controlleur getControlleur() {
+        return controlleur;
+    }
 }

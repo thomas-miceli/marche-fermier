@@ -161,8 +161,7 @@ public abstract class Participant {
                             break;
                     }
                     pTemp.setQuantite(quantite);
-                    Controlleur c = new Controlleur();
-                    if(c.validerOffre(pTemp,"validé")){
+                    if(marche.getControlleur().validerOffre(pTemp,"validé")){
                         new Vente(pTemp,this,prix,marche);
                         if(p.getQuantite()-quantite==0){
                             stock.remove(p);

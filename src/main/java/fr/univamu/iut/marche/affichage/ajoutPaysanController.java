@@ -93,14 +93,13 @@ public class ajoutPaysanController extends VBox implements Initializable {
             }
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.YEAR, 1);
-            ProduitFermier cochon = new Cochon(getIntOfTextField(Cochon), cal.getTime());
-            ProduitFermier lait = new Lait(getIntOfTextField(Lait), cal.getTime());
-            ProduitFermier miel = new Miel(getIntOfTextField(Miel), cal.getTime());
-            ProduitFermier fromage = new Fromage(getIntOfTextField(Fromage), cal.getTime());
-            ProduitFermier pomme = new Pomme(getIntOfTextField(Pomme), cal.getTime());
-            ProduitFermier orange = new Orange(getIntOfTextField(Orange), cal.getTime());
-            ProduitFermier vache = new Vache(getIntOfTextField(Vache), cal.getTime());
-            paysan.addProduit(cochon);paysan.addProduit(lait);paysan.addProduit(miel);paysan.addProduit(fromage);paysan.addProduit(pomme);paysan.addProduit(orange);paysan.addProduit(vache);
+            ajouterProdtoPaysan(paysan,new Cochon(getIntOfTextField(Cochon),calcDatePeremption()));
+            ajouterProdtoPaysan(paysan,new Lait(getIntOfTextField(Lait), calcDatePeremption()));
+            ajouterProdtoPaysan(paysan,new Miel(getIntOfTextField(Miel), calcDatePeremption()));
+            ajouterProdtoPaysan(paysan, new Fromage(getIntOfTextField(Fromage), calcDatePeremption()));
+            ajouterProdtoPaysan(paysan,new Pomme(getIntOfTextField(Pomme), calcDatePeremption()));
+            ajouterProdtoPaysan(paysan,new Orange(getIntOfTextField(Orange), calcDatePeremption()));
+            ajouterProdtoPaysan(paysan,new Vache(getIntOfTextField(Vache), calcDatePeremption()));
             Random Solde = new Random();
             paysan.setSolde(Solde.nextInt(400)+200);
             contentVBox.getChildren().clear();
@@ -134,5 +133,17 @@ public class ajoutPaysanController extends VBox implements Initializable {
             return 0;
         }
 
+    }
+    private void ajouterProdtoPaysan(Paysan p ,  ProduitFermier produitFermier){
+        if(produitFermier.getQuantite()>0){
+            p.addProduit(produitFermier);
+        }
+    }
+    private Date calcDatePeremption(){
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.DATE, 5);
+        return (c.getTime());
     }
 }

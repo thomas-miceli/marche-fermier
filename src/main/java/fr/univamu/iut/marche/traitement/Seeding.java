@@ -19,7 +19,7 @@ public class Seeding {
     private static ArrayList<Marche> listeMarche = new ArrayList<Marche>();
     Seeding(){
 
-        Marche marche = new Marche("PACA");
+        Marche marche = new Marche("PACA",new Controlleur());
         listeMarche.add(marche);
         Apiculteur p1 = new Apiculteur("Claude", "Jean", 50);
         ProducteurDeViande p2 = new ProducteurDeViande("Claudette", "Jean", 45);
@@ -51,8 +51,8 @@ public class Seeding {
 
         p1.vendreProduit(Participant.Produits.MIEL,1000,10000.0,marche);
         p3.proposerOffre(Participant.Produits.MIEL,50,500.0,marche);
-
-        p1.show();
+        p2.proposerOffre(Participant.Produits.MIEL,5,50.0,marche);
+        p2.show();
         marche.show();
     }
 
