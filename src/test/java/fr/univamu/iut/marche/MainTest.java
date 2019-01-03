@@ -1,5 +1,6 @@
 package fr.univamu.iut.marche;
 
+import fr.univamu.iut.marche.traitement.acteurs.Controlleur;
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Apiculteur;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
@@ -12,6 +13,7 @@ import fr.univamu.iut.marche.traitement.remises.StratProduitQuantite;
 import fr.univamu.iut.marche.traitement.remises.Strategy;
 import org.junit.Test;
 
+import javax.naming.ldap.Control;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -48,7 +50,8 @@ public class MainTest {
     @Test
     public void test_Apiculteur_Vente() {
         Apiculteur p1 = new Apiculteur("Miceli", "Thomas", 38);
-        Marche marche = new Marche("PACA");
+        Controlleur co = new Controlleur();
+        Marche marche = new Marche("PACA", co);
         p1.setSolde(50.1);
 
         p1.fabriquerProduit(Participant.Produits.MIEL, 550);

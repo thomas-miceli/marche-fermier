@@ -93,7 +93,6 @@ public class Marche {
 
             if (v.getProduitVendu().getType().equals("Miel") || v.getProduitVendu().getType().equals("Pomme")) {
                 v.getVendeur().calculerCotisations(new StratProduitBio());
-
             }
 
             if (v.getProduitVendu().getQuantite() > 200) {
