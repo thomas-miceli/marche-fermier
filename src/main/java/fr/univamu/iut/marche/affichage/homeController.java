@@ -93,7 +93,7 @@ public class homeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         participantFxml = new Orticulteur("Utilisateur", "FXML", 18);
-        participantFxml.setSolde(500);
+        participantFxml.setSolde(50000);
         soldeFxmlUser.setText("Solde : " + participantFxml.getSolde());
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll();

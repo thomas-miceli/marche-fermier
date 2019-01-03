@@ -53,7 +53,7 @@ public class participantController extends VBox implements Initializable {
         }
         listeParticipant.setItems(data);
         participantName.setText(participantCurrent.getPrenom() + ' ' + participantCurrent.getNom());
-        participantInfo.setText("Info \nAge : " + participantCurrent.getAge() + " | Nombre de produits : " + participantCurrent.getStock().size() + " | Solde : " + participantCurrent.getSolde()    );
+        participantInfo.setText("Info \nAge : " + participantCurrent.getAge() + " | Nombre de produits : " + participantCurrent.getStock().size() + " | Solde : " + participantCurrent.getSolde()  + " | Type : "  + participantCurrent.getClass().getSimpleName()  );
 
     }
 

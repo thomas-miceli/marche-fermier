@@ -1,82 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<fx:root fx:id="root" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="contentVBox" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nouveau Paysan " />
+      <HBox prefHeight="0.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nouveau Paysan " />
+         </children>
+      </HBox>
       <HBox prefHeight="45.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :   " />
-            <TextField prefHeight="31.0" prefWidth="119.0" />
+            <TextField fx:id="Nom" prefHeight="31.0" prefWidth="119.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="   Prénom :   " />
-            <TextField prefHeight="31.0" prefWidth="120.0" />
+            <TextField fx:id="Prenom" prefHeight="31.0" prefWidth="120.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="   Age :   " />
-            <TextField prefHeight="31.0" prefWidth="120.0" />
+            <TextField fx:id="Age" prefHeight="31.0" prefWidth="120.0" />
          </children>
       </HBox>
-      <HBox prefHeight="37.0" prefWidth="600.0">
+      <HBox fx:id="Type" prefHeight="37.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type : " />
-            <MenuButton mnemonicParsing="false" text="Apiculteur">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Orticulteur" />
-                <MenuItem mnemonicParsing="false" text="Producteur de viande" />
-                  <MenuItem mnemonicParsing="false" text="Producteur Laitier" />
-              </items>
-            </MenuButton>
+            
          </children>
       </HBox>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="   Produits : " />
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Cochon :    " />
-            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+            <TextField fx:id="Cochon" prefHeight="31.0" prefWidth="54.0" text="0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
+            <TextField fx:id="CochonPrix" prefHeight="31.0" prefWidth="54.0" text="20" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Fromage :  " />
-            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+            <TextField fx:id="Fromage" prefHeight="31.0" prefWidth="55.0" text="0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
+            <TextField fx:id="FromagePrix" prefHeight="31.0" prefWidth="54.0" text="5" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Lait  :          " />
-            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+            <TextField fx:id="Lait" prefHeight="31.0" prefWidth="54.0" text="0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
+            <TextField fx:id="LaitPrix" prefHeight="31.0" prefWidth="54.0" text="0" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Miel  :         " />
-            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+            <TextField fx:id="Miel" prefHeight="31.0" prefWidth="53.0" text="0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
+            <TextField fx:id="MielPrix" prefHeight="31.0" prefWidth="54.0" text="0" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Orange :     " />
-            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+            <TextField fx:id="Orange" prefHeight="31.0" prefWidth="52.0" text="0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
+            <TextField fx:id="Orangeprix" prefHeight="31.0" prefWidth="54.0" text="0" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Pomme :    " />
-            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+            <TextField fx:id="Pomme" prefHeight="31.0" prefWidth="54.0" text="0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
+            <TextField fx:id="PommePrix" prefHeight="31.0" prefWidth="54.0" text="0" />
          </children>
       </HBox>
       <HBox prefHeight="34.0" prefWidth="600.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    Vache :       " />
-            <TextField prefHeight="18.0" prefWidth="187.0" text="0" />
+            <TextField fx:id="Vache" prefHeight="31.0" prefWidth="53.0" text="0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Prix :    " wrappingWidth="98.6708984375" />
+            <TextField fx:id="VachePrix" prefHeight="31.0" prefWidth="54.0" text="0" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="Valider" />
+      <HBox prefHeight="12.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#newPaysan" prefHeight="31.0" prefWidth="100.0" text="Valider" />
+            <Canvas height="22.0" width="200.0" />
+            <Text fx:id="alertText" strokeType="OUTSIDE" strokeWidth="0.0" />
+         </children>
+      </HBox>
    </children>
 </fx:root>
