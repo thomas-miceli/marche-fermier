@@ -37,7 +37,7 @@ public class Controlleur {
             System.out.println("Produit interdit");
             return false;
         }
-        if (p.valider(label)) {
+        if (!p.valider(label)) {
             System.out.println("Label invalide");
             return false;
         }
