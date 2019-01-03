@@ -5,47 +5,38 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.ArrayList;
 
-public class CentraleAchat {
+public class CentraleAchat extends Participant {
 
-    private ArrayList<Trader> tradersEnregistres;
-    private ArrayList<ProduitFermier> stockCentrale;
-    private ArrayList<ProduitFermier> stockAVendreCentrale;
-
-    public void addTrader(Trader trader) {
-        tradersEnregistres.add(trader);
+    private ArrayList<Participant> membres = new ArrayList<>();
+    private ArrayList<VenteCentrale> ventesDeCentrale = new ArrayList<>();
+    private ArrayList<OffreCentrale> offresDeCentrale = new ArrayList<>();
+    public CentraleAchat(String nom, String prenom, int age) {
+        super(nom, prenom, age);
     }
 
-    public boolean hasTrader(Trader trader) {
-        for (Trader _trader : tradersEnregistres) {
-            if (_trader == trader) {
-                return true;
-            }
-        }
-
-        return false;
+    public ArrayList<Participant> getMembres() {
+        return membres;
     }
 
-    public ArrayList<Trader> getTradersEnregistres() {
-        return tradersEnregistres;
+    public void addMembre(Participant p){
+        membres.add(p);
     }
 
-    public void setTradersEnregistres(ArrayList<Trader> tradersEnregistres) {
-        this.tradersEnregistres = tradersEnregistres;
+    @Override
+    public String toString() {
+        return "CentraleAchat{" +
+                "membres=" + membres +
+                ", nom='" + nom + '\'' +
+                '}';
+    }
+    public void instacierOffre(Produits produit,Participant membre,Integer q,Double prix,Marche marche){
+        
     }
 
-    public ArrayList<ProduitFermier> getStockCentrale() {
-        return stockCentrale;
-    }
+    private class VenteCentrale {
 
-    public void setStockCentrale(ArrayList<ProduitFermier> stockCentrale) {
-        this.stockCentrale = stockCentrale;
     }
+    private class OffreCentrale{
 
-    public ArrayList<ProduitFermier> getStockAVendreCentrale() {
-        return stockAVendreCentrale;
-    }
-
-    public void setStockAVendreCentrale(ArrayList<ProduitFermier> stockAVendreCentrale) {
-        this.stockAVendreCentrale = stockAVendreCentrale;
     }
 }
