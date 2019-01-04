@@ -30,16 +30,11 @@ public class CentraleAchat extends Participant {
     }
     public void vendre(Produits p,Participant vendeurInitial,Double prix , Integer quantite , Marche marche){
         Identificateur i = new Identificateur();
-        System.out.println("1");
         for (ProduitFermier produitsVendeur :vendeurInitial.getStock()) {
-            System.out.println("2");
             if(produitsVendeur.identifier(i).equals(p) && produitsVendeur.getQuantite() >= quantite){
-                System.out.println("3");
                 if(produitsVendeur.getQuantite()==quantite){
-                    System.out.println("4");
                     vendeurInitial.removeProduit(produitsVendeur);
                     this.addProduit(produitsVendeur);
-                    System.out.println("test--");
                 }else{
                     produitsVendeur.setQuantite(produitsVendeur.getQuantite()-quantite);
                     ProduitFermier pTemp;
@@ -72,13 +67,20 @@ public class CentraleAchat extends Participant {
                     }
                     this.addProduit(pTemp);
                 }
-                System.out.println("test");
-                this.vendreProduit(p,quantite,prix,marche);
-                new VenteCentrale(p,vendeurInitial,prix,quantite,marche);
-            }else{
-                System.out.println("toz");
-            }
+                if (isPresent(p)){
+                    for (Vente v: marche.getListVenteClient(this)) {
+                        if(v.getProduitVendu().identifier(i).equals(p) && v.getPrixParU()== prix/quantite){
+                            v.getProduitVendu().setQuantite(v.getProduitVendu().getQuantite()+quantite);
+                            v.setPrix(v.getPrixParU()*v.getProduitVendu().getQuantite());
+                        }
+                    }
+                }else
+                {
+                    this.vendreProduit(p,quantite,prix,marche);
+                }
 
+                new VenteCentrale(p,vendeurInitial,prix,quantite,marche);
+            }
         }
     }
 
@@ -100,6 +102,26 @@ public class CentraleAchat extends Participant {
             ventesDeCentrale.add(this);
         }
 
+        public Produits getProduits() {
+            return produits;
+        }
+
+        public Participant getVendeur() {
+            return vendeur;
+        }
+
+        public Double getPrix() {
+            return prix;
+        }
+
+        public Integer getQuantite() {
+            return quantite;
+        }
+
+        public Marche getMarche() {
+            return marche;
+        }
+
         @Override
         public String toString() {
             return "VenteCentrale{" +
@@ -119,4 +141,15 @@ public class CentraleAchat extends Participant {
             System.out.println(v);
         }
     }
+    public boolean isPresent(Produits p){
+        for (int j = ventesDeCentrale.size()-1 ; j >= 0 ; j--) {
+            if(ventesDeCentrale.get(j).getProduits().equals(p))return true;
+        }
+        return false;
+    }
+    public void setSolde(double solde) {
+
+
+    }
+
 }

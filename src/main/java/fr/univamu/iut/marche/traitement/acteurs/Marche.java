@@ -199,4 +199,12 @@ public class Marche {
     public Controlleur getControlleur() {
         return controlleur;
     }
+
+    public ArrayList<Vente> getListVenteClient(Participant p){
+        ArrayList<Vente> ventesClient = new ArrayList<>(0);
+        for (Vente v: compositionMarche) {
+            if(v.getVendeur()==p)ventesClient.add(v);
+        }
+        return ventesClient;
+    }
 }
