@@ -81,14 +81,14 @@ public class Marche {
         }
     }
     public void aquisition(Offre o, Vente v){
-        if(o.getPrixOffre().equals(v.getPrix())
+        if(o.getPrixOffre( ).equals(v.getPrix())
                && (v.getProduitVendu().getQuantite())== o.getQuantite()
                 ){
             if(v.getVendeur().getTrader()==null){
-                v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());
+                v.getVendeur().addSolde(o.getPrixOffre(),v);
             }else{
                 v.getVendeur().getTrader().ajouterAuSolde(v.getPrix());
-                v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre()*(7/8));
+                v.getVendeur().addSolde(o.getPrixOffre()*(7/8),v);
             }
 
             if (v.getProduitVendu().getType().equals("Miel") || v.getProduitVendu().getType().equals("Pomme")) {
@@ -136,14 +136,15 @@ public class Marche {
                     break;
             }
             if(o.getQuantite()<v.getProduitVendu().getQuantite()){
-                v.getProduitVendu().setQuantite(v.getProduitVendu().getQuantite()-o.getQuantite());
-                v.setPrix(v.getPrix()-o.getPrixOffre());
+
                 if(v.getVendeur().getTrader()==null){
-                    v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());
+                    v.getVendeur().addSolde(o.getPrixOffre(),v);
                 }else{
                     v.getVendeur().getTrader().ajouterAuSolde(v.getPrix());
-                    v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre()*(7/8));
+                    v.getVendeur().addSolde(o.getPrixOffre()*(7/8),v);
                 }
+                v.getProduitVendu().setQuantite(v.getProduitVendu().getQuantite()-o.getQuantite());
+                v.setPrix(v.getPrix()-o.getPrixOffre());
                 o.getAcheteur().setSolde(o.getAcheteur().getSolde()-o.getPrixOffre());
                 pTemp.setQuantite(o.getQuantite());
                 o.getAcheteur().addProduit(pTemp);
@@ -151,14 +152,15 @@ public class Marche {
                 new TransactionFini(o,v,o.getQuantite());
             }
             if(o.getQuantite()>v.getProduitVendu().getQuantite()){
-                o.setQuantite(o.getQuantite()-v.getProduitVendu().getQuantite());
-                o.setPrixOffre(o.getPrixOffre()-v.getPrix());
+
                 if(v.getVendeur().getTrader()==null){
-                    v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());
+                    v.getVendeur().addSolde(o.getPrixOffre(),v);
                 }else{
                     v.getVendeur().getTrader().ajouterAuSolde(v.getPrix());
-                    v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre()*(7/8));
+                    v.getVendeur().addSolde(o.getPrixOffre()*(7/8),v);
                 }
+                o.setQuantite(o.getQuantite()-v.getProduitVendu().getQuantite());
+                o.setPrixOffre(o.getPrixOffre()-v.getPrix());
                 o.getAcheteur().setSolde(o.getAcheteur().getSolde()-v.getPrix());
                 pTemp.setQuantite(v.getProduitVendu().getQuantite());
                 compositionMarche.remove(v);
@@ -180,7 +182,6 @@ public class Marche {
         int prixTot=0;
         int qMoy=0;
         for (Vente v: compositionMarche) {
-            System.out.println(p);
             if(v.getProduitVendu().identifier(identificateur).equals(p)){
                 prixTot+=v.getPrix();
                 qMoy+=v.getProduitVendu().getQuantite();

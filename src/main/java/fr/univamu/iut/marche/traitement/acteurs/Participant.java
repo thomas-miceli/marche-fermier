@@ -127,6 +127,15 @@ public abstract class Participant {
         }
         return produitFermier;
     }
+    public void addSolde(Double prix,Vente v){
+        System.out.println("ADD SOLDE NORMAL");
+        this.setSolde(this.getSolde()+prix);
+
+    }
+    public void addSolde(Double prix, Offre o){
+        System.out.println("ADD SOLDE NORMAL");
+        this.setSolde(this.getSolde()+prix);
+    }
 
     public void vendreProduit(Produits produitAVendre, Integer quantite, Double prix,Marche marche) {
         Identificateur identificateur = new Identificateur();
@@ -209,4 +218,5 @@ public abstract class Participant {
     public String toString() {
         return nom+ "\n";
     }
+
 }

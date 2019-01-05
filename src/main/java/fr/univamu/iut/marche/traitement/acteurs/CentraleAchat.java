@@ -90,6 +90,7 @@ public class CentraleAchat extends Participant {
         private Participant vendeur;
         private Double prix;
         private Integer quantite;
+        private Double prixParU;
         private Marche marche;
 
 
@@ -99,7 +100,9 @@ public class CentraleAchat extends Participant {
             this.prix = prix;
             this.quantite = quantite;
             this.marche = marche;
+            this.prixParU=prix/quantite;
             ventesDeCentrale.add(this);
+
         }
 
         public Produits getProduits() {
@@ -122,6 +125,10 @@ public class CentraleAchat extends Participant {
             return marche;
         }
 
+        public Double getPrixParU() {
+            return prixParU;
+        }
+
         @Override
         public String toString() {
             return "VenteCentrale{" +
@@ -135,6 +142,14 @@ public class CentraleAchat extends Participant {
     private class OffreCentrale{
 
     }
+    public ArrayList<VenteCentrale> recupVentesCentrales(Produits p,Double prixParU){
+        ArrayList<VenteCentrale> venteCentralesFiltrer = new ArrayList<>();
+        for (VenteCentrale v: ventesDeCentrale
+             ) {
+            if(v.getProduits().equals(p)&& v.getPrixParU().equals(prixParU))venteCentralesFiltrer.add(v);
+        }
+        return venteCentralesFiltrer;
+    }
 
     public void showCentralArray(){
         for (VenteCentrale v: ventesDeCentrale) {
@@ -147,9 +162,14 @@ public class CentraleAchat extends Participant {
         }
         return false;
     }
-    public void setSolde(double solde) {
 
-
+    public void addSolde(Double prix,Vente v){
+        System.out.println("ADD SOLDE DE CENTRALE");
+        Identificateur i = new Identificateur();
+        ArrayList <VenteCentrale> recupFiltre = recupVentesCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());
+        for ( VenteCentrale vc : recupFiltre) {
+             vc.getVendeur().addSolde(prix*(vc.getQuantite()/v.getProduitVendu().getQuantite()),(Vente) null);
+        }
     }
 
 }
