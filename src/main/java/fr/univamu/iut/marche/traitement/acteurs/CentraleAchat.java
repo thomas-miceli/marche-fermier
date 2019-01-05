@@ -30,36 +30,35 @@ public class CentraleAchat extends Participant {
     }
     public void vendre(Produits p,Participant vendeurInitial,Double prix , Integer quantite , Marche marche){
         Identificateur i = new Identificateur();
-        for (ProduitFermier produitsVendeur :vendeurInitial.getStock()) {
-            if(produitsVendeur.identifier(i).equals(p) && produitsVendeur.getQuantite() >= quantite){
-                if(produitsVendeur.getQuantite()==quantite){
-                    vendeurInitial.removeProduit(produitsVendeur);
-                    this.addProduit(produitsVendeur);
+        for (int j = vendeurInitial.getStock().size()-1; j >=0 ; j--) {
+            if(vendeurInitial.getStock().get(j).identifier(i).equals(p) && vendeurInitial.getStock().get(j).getQuantite() >= quantite){
+                if(vendeurInitial.getStock().get(j).getQuantite()==quantite){
+                    this.addProduit(vendeurInitial.getStock().get(j));
+                    vendeurInitial.removeProduit(vendeurInitial.getStock().get(j));
                 }else{
-                    produitsVendeur.setQuantite(produitsVendeur.getQuantite()-quantite);
+                    vendeurInitial.getStock().get(j).setQuantite(vendeurInitial.getStock().get(j).getQuantite()-quantite);
                     ProduitFermier pTemp;
-                    System.out.println("test-");
                     switch (p){
                         case MIEL:
-                            pTemp = new Miel(produitsVendeur);
+                            pTemp = new Miel(vendeurInitial.getStock().get(j));
                             break;
                         case VACHE:
-                            pTemp = new Vache(produitsVendeur);
+                            pTemp = new Vache(vendeurInitial.getStock().get(j));
                             break;
                         case POMME:
-                            pTemp = new Pomme(produitsVendeur);
+                            pTemp = new Pomme(vendeurInitial.getStock().get(j));
                             break;
                         case ORANGE:
-                            pTemp = new Orange(produitsVendeur);
+                            pTemp = new Orange(vendeurInitial.getStock().get(j));
                             break;
                         case LAIT:
-                            pTemp = new Lait(produitsVendeur);
+                            pTemp = new Lait(vendeurInitial.getStock().get(j));
                             break;
                         case FROMAGE:
-                            pTemp = new Fromage(produitsVendeur);
+                            pTemp = new Fromage(vendeurInitial.getStock().get(j));
                             break;
                         case COCHON:
-                            pTemp = new Cochon(produitsVendeur);
+                            pTemp = new Cochon(vendeurInitial.getStock().get(j));
                             break;
                         default:
                             pTemp=null;
@@ -72,6 +71,7 @@ public class CentraleAchat extends Participant {
                         if(v.getProduitVendu().identifier(i).equals(p) && v.getPrixParU()== prix/quantite){
                             v.getProduitVendu().setQuantite(v.getProduitVendu().getQuantite()+quantite);
                             v.setPrix(v.getPrixParU()*v.getProduitVendu().getQuantite());
+
                         }
                     }
                 }else
@@ -79,9 +79,13 @@ public class CentraleAchat extends Participant {
                     this.vendreProduit(p,quantite,prix,marche);
                 }
 
-                new VenteCentrale(p,vendeurInitial,prix,quantite,marche);
+                VenteCentrale vLOL = new VenteCentrale(p,vendeurInitial,prix,quantite,marche);
+                System.out.println(vLOL);
             }
         }
+//        for (ProduitFermier produitsVendeur :vendeurInitial.getStock()) {
+//
+//        }
     }
 
     private class VenteCentrale {
@@ -164,12 +168,19 @@ public class CentraleAchat extends Participant {
     }
 
     public void addSolde(Double prix,Vente v){
-        System.out.println("ADD SOLDE DE CENTRALE");
+        System.out.println("CEST PASSSEEE MAL " + prix);
+            Identificateur i = new Identificateur();
+            ArrayList <VenteCentrale> recupFiltre = recupVentesCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());
+            for ( VenteCentrale vc : recupFiltre) {
+                vc.getVendeur().addSolde(prix*((double)(vc.getQuantite()/(double)v.getProduitVendu().getQuantite())),(Vente) null);
+            }
+    }
+    public void addSolde(Double prix,Offre o){
+        System.out.println("CEST PASSSEEE MAL " + prix);
         Identificateur i = new Identificateur();
-        ArrayList <VenteCentrale> recupFiltre = recupVentesCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());
+        ArrayList <VenteCentrale> recupFiltre = recupVentesCentrales(o.getProduitOffre(),o.getPrixParU());
         for ( VenteCentrale vc : recupFiltre) {
-             vc.getVendeur().addSolde(prix*(vc.getQuantite()/v.getProduitVendu().getQuantite()),(Vente) null);
+            vc.getVendeur().addSolde(prix*((double)(vc.getQuantite()/(double)o.getQuantite())),(Vente) null);
         }
     }
-
 }

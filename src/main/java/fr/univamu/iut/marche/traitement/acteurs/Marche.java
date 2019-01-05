@@ -100,7 +100,7 @@ public class Marche {
             }
 
            v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());//refaire
-           o.getAcheteur().setSolde(v.getVendeur().getSolde()-o.getPrixOffre());
+           o.getAcheteur().setSolde(o.getAcheteur().getSolde()-o.getPrixOffre());
            o.getAcheteur().addProduit(v.getProduitVendu());
            offresMarche.remove(o);
            System.out.println("test");
@@ -154,10 +154,10 @@ public class Marche {
             if(o.getQuantite()>v.getProduitVendu().getQuantite()){
 
                 if(v.getVendeur().getTrader()==null){
-                    v.getVendeur().addSolde(o.getPrixOffre(),v);
+                    v.getVendeur().addSolde(o.getPrixOffre(),o);
                 }else{
                     v.getVendeur().getTrader().ajouterAuSolde(v.getPrix());
-                    v.getVendeur().addSolde(o.getPrixOffre()*(7/8),v);
+                    v.getVendeur().addSolde(o.getPrixOffre()*(7/8),o);
                 }
                 o.setQuantite(o.getQuantite()-v.getProduitVendu().getQuantite());
                 o.setPrixOffre(o.getPrixOffre()-v.getPrix());

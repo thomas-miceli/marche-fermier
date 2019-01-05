@@ -25,6 +25,11 @@ public class Seeding {
         ProducteurDeViande p2 = new ProducteurDeViande("Claudette", "Jean", 45);
         Orticulteur p3 = new Orticulteur("Claudinette", "Jean", 40);
         ProducteurLaitier p4 = new ProducteurLaitier("Claudasse", "Jean", 45);
+        CentraleAchat centraleAchat = new CentraleAchat("corp",null,0);
+
+        centraleAchat.addMembre(p1);
+        centraleAchat.addMembre(p2);
+
 
         p1.setSolde( 50.1);
         p2.setSolde(100.2);
@@ -43,17 +48,23 @@ public class Seeding {
         p4.fabriquerProduit(Participant.Produits.FROMAGE, 40);
         ProduitFermier p =p4.fabriquerProduit(Participant.Produits.LAIT,  800);
 
-        p4.show();
-        marche.show();
-        p4.vendreProduit(Participant.Produits.LAIT,1,5.0,marche);
-        p3.proposerOffre(Participant.Produits.LAIT,1,50.0,marche);
-        p2.proposerOffre(Participant.Produits.LAIT,1,5.0,marche);
 
-        p1.vendreProduit(Participant.Produits.MIEL,1000,10000.0,marche);
-        p3.proposerOffre(Participant.Produits.MIEL,50,500.0,marche);
-        p2.proposerOffre(Participant.Produits.MIEL,5,50.0,marche);
+        p1.vendreProduit(Participant.Produits.MIEL,1,10.0,marche);
+        p2.proposerOffre(Participant.Produits.MIEL,1,10.0,marche);
+
+        p1.show();
         p2.show();
+
+        centraleAchat.vendre(Participant.Produits.MIEL,p1,500.0,5,marche);
+        centraleAchat.vendre(Participant.Produits.MIEL,p2,100.0,1,marche);
+
+        p3.proposerOffre(Participant.Produits.MIEL,3,300.0,marche);
+
+        p1.show();
+        p2.show();
+        p3.show();
         marche.show();
+
     }
 
     public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd){

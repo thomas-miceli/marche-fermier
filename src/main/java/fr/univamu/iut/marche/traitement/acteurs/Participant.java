@@ -128,7 +128,7 @@ public abstract class Participant {
         return produitFermier;
     }
     public void addSolde(Double prix,Vente v){
-        System.out.println("ADD SOLDE NORMAL");
+        System.out.println("ADD SOLDE NORMAL " + solde+ " + "+ prix);
         this.setSolde(this.getSolde()+prix);
 
     }
