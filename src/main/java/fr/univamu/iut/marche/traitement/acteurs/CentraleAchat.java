@@ -133,6 +133,11 @@ public class CentraleAchat extends Participant {
             return prixParU;
         }
 
+        public void setQuantite(Integer quantite) {
+            prix=prixParU*quantite;
+            this.quantite = quantite;
+        }
+
         @Override
         public String toString() {
             return "VenteCentrale{" +
@@ -168,19 +173,65 @@ public class CentraleAchat extends Participant {
     }
 
     public void addSolde(Double prix,Vente v){
-        System.out.println("CEST PASSSEEE MAL " + prix);
+        System.out.println("CEST PASSSEEE MAL VENTE " + prix);
             Identificateur i = new Identificateur();
             ArrayList <VenteCentrale> recupFiltre = recupVentesCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());
-            for ( VenteCentrale vc : recupFiltre) {
-                vc.getVendeur().addSolde(prix*((double)(vc.getQuantite()/(double)v.getProduitVendu().getQuantite())),(Vente) null);
+        if(v.getProduitVendu().getQuantite()==recupQuantiteTotDeVenteCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
+            for (VenteCentrale vC: recupFiltre
+                    ) {
+                vC.getVendeur().addSolde(prix*((double)(vC.getQuantite()/(double)v.getProduitVendu().getQuantite())),(Vente) null);
+                ventesDeCentrale.remove(vC);
             }
+        }else{
+            for (VenteCentrale vc: recupFiltre
+                    ) {
+                vc.getVendeur().addSolde(prix*((double)vc.getQuantite()/(double)recupQuantiteTotDeVenteCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())),(Vente) null);
+                //                System.out.println((double)vc.getQuantite()+"/"+(double)recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU())+"="+(double)vc.getQuantite()/(double)recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU()));
+
+            }
+            for (VenteCentrale vc: recupFiltre
+                    ) {
+                vc.setQuantite(vc.getQuantite()*(v.getProduitVendu().getQuantite()/recupQuantiteTotDeVenteCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())));
+                if(vc.getQuantite()==0)ventesDeCentrale.remove(vc);
+            }
+        }
+
     }
     public void addSolde(Double prix,Offre o){
-        System.out.println("CEST PASSSEEE MAL " + prix);
+        System.out.println("CEST PASSSEEE MAL OFFRE " + prix);
         Identificateur i = new Identificateur();
         ArrayList <VenteCentrale> recupFiltre = recupVentesCentrales(o.getProduitOffre(),o.getPrixParU());
-        for ( VenteCentrale vc : recupFiltre) {
-            vc.getVendeur().addSolde(prix*((double)(vc.getQuantite()/(double)o.getQuantite())),(Vente) null);
+        System.out.println(o.getQuantite()+"---------->" +recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU()) );
+        if(o.getQuantite().equals(recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU()))){
+            for (VenteCentrale vC: recupFiltre
+                    ) {
+                vC.getVendeur().addSolde(prix*((double)(vC.getQuantite()/(double)o.getQuantite())),(Vente) null);
+                ventesDeCentrale.remove(vC);
+            }
+        }else{
+            for (VenteCentrale vc: recupFiltre
+                    ) {
+                vc.getVendeur().addSolde(prix*((double)vc.getQuantite()/(double)recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU())),(Vente) null);
+                //                System.out.println((double)vc.getQuantite()+"/"+(double)recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU())+"="+(double)vc.getQuantite()/(double)recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU()));
+
+            }
+            for (VenteCentrale vc: recupFiltre
+                    ) {
+                vc.setQuantite(vc.getQuantite()*(o.getQuantite()/recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU())));
+                if(vc.getQuantite()==0)ventesDeCentrale.remove(vc);
+            }
         }
     }
+
+    public Integer recupQuantiteTotDeVenteCentrale(Produits p , Double prixParU){
+
+        Integer quantiteVcTot = 0;
+        for (VenteCentrale vc: ventesDeCentrale) {
+            if(p.equals(vc.getProduits())&& prixParU.equals(vc.getPrixParU())){
+                quantiteVcTot+=vc.getQuantite();
+            }
+        }
+        return quantiteVcTot;
+    }
+
 }
