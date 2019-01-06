@@ -207,4 +207,11 @@ public class Marche {
         }
         return ventesClient;
     }
+    public ArrayList<Offre> getListOffreClient(Participant p){
+        ArrayList<Offre> offresClient = new ArrayList<>(0);
+        for (Offre o: offresMarche) {
+            if(o.getAcheteur()==p)offresClient.add(o);
+        }
+        return offresClient;
+    }
 }

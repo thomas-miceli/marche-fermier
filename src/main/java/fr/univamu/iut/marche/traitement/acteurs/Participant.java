@@ -136,6 +136,14 @@ public abstract class Participant {
         System.out.println("ADD SOLDE NORMAL");
         this.setSolde(this.getSolde()+prix);
     }
+    public void subSolde(Double prix , Vente v){
+        System.out.println("SUB SOLDE NORMAL");
+        this.setSolde(this.getSolde()-prix);
+    }
+    public void subSolde(Double prix, Offre o){
+        System.out.println("SUB SOLDE NORMAL");
+        this.setSolde(this.getSolde()-prix);
+    }
 
     public void vendreProduit(Produits produitAVendre, Integer quantite, Double prix,Marche marche) {
         Identificateur identificateur = new Identificateur();

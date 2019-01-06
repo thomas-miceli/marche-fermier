@@ -31,7 +31,7 @@ public class Seeding {
         centraleAchat.addMembre(p2);
 
 
-        p1.setSolde( 50.1);
+        p1.setSolde( 1000.0);
         p2.setSolde(100.2);
         p3.setSolde(1500.3);
         p4.setSolde(200.4);
@@ -49,23 +49,10 @@ public class Seeding {
         ProduitFermier p =p4.fabriquerProduit(Participant.Produits.LAIT,  800);
 
 
-        p1.vendreProduit(Participant.Produits.MIEL,1,10.0,marche);
-        p2.proposerOffre(Participant.Produits.MIEL,1,10.0,marche);
-
-        p1.show();
-        p2.show();
-
-        centraleAchat.vendre(Participant.Produits.MIEL,p1,500.0,5,marche);
-        centraleAchat.vendre(Participant.Produits.MIEL,p2,100.0,1,marche);
-
-        p3.proposerOffre(Participant.Produits.MIEL,10,1000.0,marche);
-
-        p1.show();
-        p2.show();
-        p3.show();
+        centraleAchat.poserOffre(Participant.Produits.MIEL,p1,100.0,10,marche);
+        centraleAchat.poserOffre(Participant.Produits.MIEL,p2,10.0,1,marche);
         marche.show();
         centraleAchat.showCentralArray();
-
     }
 
     public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd){
