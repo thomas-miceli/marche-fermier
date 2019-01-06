@@ -3,6 +3,7 @@ package fr.univamu.iut.marche.traitement.acteurs;
 import fr.univamu.iut.marche.traitement.produits.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CentraleAchat extends Participant {
 
@@ -34,7 +35,7 @@ public class CentraleAchat extends Participant {
             for (int j = vendeurInitial.getStock().size() - 1; j >= 0; j--) {
                 if (vendeurInitial.getStock().get(j).identifier(i).equals(p) && vendeurInitial.getStock().get(j).getQuantite() >= quantite) {
                     if (vendeurInitial.getStock().get(j).getQuantite() == quantite) {
-                        this.addProduit(vendeurInitial.getStock().get(j));
+                        getStock().add(vendeurInitial.getStock().get(j));
                         vendeurInitial.removeProduit(vendeurInitial.getStock().get(j));
                     } else {
                         vendeurInitial.getStock().get(j).setQuantite(vendeurInitial.getStock().get(j).getQuantite() - quantite);
@@ -65,7 +66,7 @@ public class CentraleAchat extends Participant {
                                 pTemp = null;
                                 break;
                         }
-                        this.addProduit(pTemp);
+                        getStock().add(pTemp);
                     }
                     if (isPresentVentesC(p)) {
                         for (Vente v : marche.getListVenteClient(this)) {
@@ -123,6 +124,9 @@ public class CentraleAchat extends Participant {
             this.prixParU=prix/quantite;
             ventesDeCentrale.add(this);
 
+        }
+        public void addProduit(ProduitFermier p){
+            //ne doit absolument rien faire dans les cas d'une centrale
         }
 
         public Produits getProduits() {
@@ -350,6 +354,8 @@ public class CentraleAchat extends Participant {
             if(membre==p)return true;
         }
         return false;
+    }
+    private ArrayList<OffreCentrale> triByQuantiteDesc(ArrayList<OffreCentrale> array){
     }
 
 }
