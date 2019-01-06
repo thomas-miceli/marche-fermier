@@ -173,7 +173,7 @@ public class CentraleAchat extends Participant {
     }
 
     public void addSolde(Double prix,Vente v){
-        System.out.println("CEST PASSSEEE  VENTE " + prix);
+        System.out.println("CEST PASSSEEE MAL VENTE " + prix);
             Identificateur i = new Identificateur();
             ArrayList <VenteCentrale> recupFiltre = recupVentesCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());
         if(v.getProduitVendu().getQuantite()==recupQuantiteTotDeVenteCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
@@ -198,7 +198,7 @@ public class CentraleAchat extends Participant {
 
     }
     public void addSolde(Double prix,Offre o){
-        System.out.println("CEST PASSSEEE  OFFRE " + prix);
+        System.out.println("CEST PASSSEEE MAL OFFRE " + prix);
         Identificateur i = new Identificateur();
         ArrayList <VenteCentrale> recupFiltre = recupVentesCentrales(o.getProduitOffre(),o.getPrixParU());
         System.out.println(o.getQuantite()+"---------->" +recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU()) );
@@ -233,4 +233,5 @@ public class CentraleAchat extends Participant {
         }
         return quantiteVcTot;
     }
+
 }

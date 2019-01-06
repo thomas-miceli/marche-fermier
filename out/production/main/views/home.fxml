@@ -20,7 +20,7 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Marché">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#setSceneToAjoutParticipant" text="Nouveau Paysan" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToParticipantsView" text="Nouveau Paysan" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem onAction="#actionQuitter" text="Quitter" />
                     </items>
