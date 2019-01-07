@@ -296,7 +296,7 @@ public class CentraleAchat extends Participant {
         if(v.getProduitVendu().getQuantite()>=recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
             for (OffreCentrale oC:recupFiltre
                  ) {
-                System.out.println("-------------"+oC.getQuantite()+"/"+recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU()));
+//                System.out.println("-------------"+oC.getQuantite()+"/"+recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU()));
                 ProduitFermier prodTemp= (ProduitFermier)v.getProduitVendu().clone();
                 prodTemp.setQuantite(oC.getQuantite());
                 oC.getAcheteur().addProduit(prodTemp);
@@ -306,7 +306,22 @@ public class CentraleAchat extends Participant {
                 offresDeCentrale.remove(oC);
             }
         }else{
-            //todo
+            Integer quantiteLever= v.getProduitVendu().getQuantite();
+            ProduitFermier prodTemp = (ProduitFermier)v.getProduitVendu().clone();
+            for(OffreCentrale oC : recupFiltre){
+                if(quantiteLever>=oC.getQuantite()){
+                    prodTemp.setQuantite(oC.quantite);
+                    oC.getAcheteur().addProduit(prodTemp);
+                    quantiteLever-=oC.getQuantite();
+                }else if(quantiteLever <= oC.getQuantite()&& quantiteLever != 0) {
+                    prodTemp.setQuantite(quantiteLever);
+                    oC.getAcheteur().addProduit(prodTemp);
+                    quantiteLever=0;
+                }else{
+                    System.out.println("lever fini");
+                    break;
+                }
+            }
         }
 
     }
