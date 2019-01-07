@@ -322,7 +322,7 @@ public class CentraleAchat extends Participant {
         if(v.getProduitVendu().getQuantite()==recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
             for (OffreCentrale oC:recupFiltre
                  ) {
-                oC.getAcheteur().subSolde(prix,v);
+                oC.getAcheteur().subSolde(prix*(oC.getQuantite()/recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())),v);
                 v.getProduitVendu().setQuantite(oC.getQuantite());
                 oC.getAcheteur().addProduit(v.getProduitVendu());
                 offresDeCentrale.remove(oC);
