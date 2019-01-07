@@ -57,10 +57,10 @@ public class Seeding {
         centraleAchat.poserOffre(Participant.Produits.MIEL,p1,100.0,10,marche);
         centraleAchat.poserOffre(Participant.Produits.MIEL,p2,10.0,1,marche);
 
-        p3.vendreProduit(Participant.Produits.MIEL,100,1000.0,marche);
+        p3.vendreProduit(Participant.Produits.MIEL,5,50.0,marche);
 
         marche.show();
-
+        centraleAchat.showCentralArray();
         p1.show();
         p2.show();
         p3.show();

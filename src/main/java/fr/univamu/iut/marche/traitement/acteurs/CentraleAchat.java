@@ -308,14 +308,16 @@ public class CentraleAchat extends Participant {
         }else{
             Integer quantiteLever= v.getProduitVendu().getQuantite();
             ProduitFermier prodTemp = (ProduitFermier)v.getProduitVendu().clone();
-            for(OffreCentrale oC : recupFiltre){
-                if(quantiteLever>=oC.getQuantite()){
-                    prodTemp.setQuantite(oC.quantite);
-                    oC.getAcheteur().addProduit(prodTemp);
-                    quantiteLever-=oC.getQuantite();
-                }else if(quantiteLever <= oC.getQuantite()&& quantiteLever != 0) {
+            for (int j = recupFiltre.size()-1; j >=0  ; j--) {
+                if(quantiteLever>=recupFiltre.get(j).getQuantite()){
+                    prodTemp.setQuantite(recupFiltre.get(j).quantite);
+                    recupFiltre.get(j).getAcheteur().addProduit(prodTemp);
+                    quantiteLever-=recupFiltre.get(j).getQuantite();
+                    offresDeCentrale.remove(recupFiltre.get(j));
+                }else if(quantiteLever <= recupFiltre.get(j).getQuantite()&& quantiteLever != 0) {
                     prodTemp.setQuantite(quantiteLever);
-                    oC.getAcheteur().addProduit(prodTemp);
+                    recupFiltre.get(j).getAcheteur().addProduit(prodTemp);
+                    recupFiltre.get(j).setQuantite(recupFiltre.get(j).getQuantite()-quantiteLever);
                     quantiteLever=0;
                 }else{
                     System.out.println("lever fini");
