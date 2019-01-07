@@ -39,33 +39,7 @@ public class CentraleAchat extends Participant {
                         vendeurInitial.removeProduit(vendeurInitial.getStock().get(j));
                     } else {
                         vendeurInitial.getStock().get(j).setQuantite(vendeurInitial.getStock().get(j).getQuantite() - quantite);
-                        ProduitFermier pTemp;
-                        switch (p) {
-                            case MIEL:
-                                pTemp = new Miel(vendeurInitial.getStock().get(j));
-                                break;
-                            case VACHE:
-                                pTemp = new Vache(vendeurInitial.getStock().get(j));
-                                break;
-                            case POMME:
-                                pTemp = new Pomme(vendeurInitial.getStock().get(j));
-                                break;
-                            case ORANGE:
-                                pTemp = new Orange(vendeurInitial.getStock().get(j));
-                                break;
-                            case LAIT:
-                                pTemp = new Lait(vendeurInitial.getStock().get(j));
-                                break;
-                            case FROMAGE:
-                                pTemp = new Fromage(vendeurInitial.getStock().get(j));
-                                break;
-                            case COCHON:
-                                pTemp = new Cochon(vendeurInitial.getStock().get(j));
-                                break;
-                            default:
-                                pTemp = null;
-                                break;
-                        }
+                        ProduitFermier pTemp= (ProduitFermier) vendeurInitial.getStock().get(j).clone();
                         getStock().add(pTemp);
                     }
                     if (isPresentVentesC(p)) {
@@ -316,19 +290,22 @@ public class CentraleAchat extends Participant {
     }
 
     public void subSolde(Double prix , Vente v){
-        System.out.println("Test");
         Identificateur i = new Identificateur();
         ArrayList<OffreCentrale> recupFiltre = recupOffresCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());
-        if(v.getProduitVendu().getQuantite()==recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
+        if(v.getProduitVendu().getQuantite()>=recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
             for (OffreCentrale oC:recupFiltre
                  ) {
-                oC.getAcheteur().subSolde(prix,v);
-                v.getProduitVendu().setQuantite(oC.getQuantite());
-                oC.getAcheteur().addProduit(v.getProduitVendu());
+                System.out.println("-------------"+oC.getQuantite()+"/"+recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU()));
+                ProduitFermier prodTemp= (ProduitFermier)v.getProduitVendu().clone();
+                prodTemp.setQuantite(oC.getQuantite());
+                oC.getAcheteur().addProduit(prodTemp);
+            }
+            for (OffreCentrale  oC: recupFiltre
+                 ) {
                 offresDeCentrale.remove(oC);
             }
         }else{
-
+            //todo
         }
 
     }
@@ -348,6 +325,7 @@ public class CentraleAchat extends Participant {
              ) {
             if(p.equals(oc.getProduits()) && prixParaU.equals(oc.getPrixParU()))quantiteOcTot+=oc.getQuantite();
         }
+
         return quantiteOcTot;
     }
 

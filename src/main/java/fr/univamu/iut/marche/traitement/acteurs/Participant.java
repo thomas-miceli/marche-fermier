@@ -150,33 +150,7 @@ public abstract class Participant {
         for (int i = stock.size()-1; i >= 0 ; i--) {
             if(stock.get(i).identifier(identificateur).equals(produitAVendre)){
                 if(stock.get(i).getQuantite()>=quantite){
-                    ProduitFermier pTemp;
-                    switch (stock.get(i).getClass().getSimpleName()){
-                        case "Miel":
-                            pTemp = new Miel(stock.get(i));
-                            break;
-                        case "Vache":
-                            pTemp = new Vache(stock.get(i));
-                            break;
-                        case "Pomme":
-                            pTemp = new Pomme(stock.get(i));
-                            break;
-                        case "Orange":
-                            pTemp = new Orange(stock.get(i));
-                            break;
-                        case "Lait":
-                            pTemp = new Lait(stock.get(i));
-                            break;
-                        case "Fromage":
-                            pTemp = new Fromage(stock.get(i));
-                            break;
-                        case "Cochon":
-                            pTemp = new Cochon(stock.get(i));
-                            break;
-                        default:
-                            pTemp=null;
-                            break;
-                    }
+                    ProduitFermier pTemp= (ProduitFermier) stock.get(i).clone();
                     pTemp.setQuantite(quantite);
                     if(marche.getControlleur().validerVente(pTemp,"validé", prix)){
                         new Vente(pTemp,this,prix,marche);

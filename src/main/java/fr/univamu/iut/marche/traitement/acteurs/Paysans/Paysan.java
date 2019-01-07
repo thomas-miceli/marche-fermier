@@ -28,18 +28,5 @@ public abstract class Paysan extends Participant {
         System.out.println("\n");
     }
 
-/*
-    public void acheterProduit(Participant vendeur, Produits produitAchete) {
-        ProduitFermier aAcheter = null;
-        for (ProduitFermier produ : produitsEnStock) {
-            if (produ.getClass().getSimpleName().toUpperCase().equals(produitAchete.name())) {
-                aAcheter = produ;
-                break;
-            }
-        }
-        this.produitsEnStock.add(aAcheter);
-        vendeur.getProduitsAVendre().remove(aAcheter);
-    }
-    */
     public abstract ProduitFermier fabriquerProduit(Produits objetFab, int quantite);
 }

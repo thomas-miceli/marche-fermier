@@ -1,11 +1,13 @@
 package fr.univamu.iut.marche.traitement.produits;
 
+import fr.univamu.iut.marche.traitement.acteurs.Participant;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public abstract class ProduitFermier implements ProduitVisitable {
+public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
     protected int quantite;
     protected Date dateDePeremption;
     protected String label;
@@ -30,6 +32,10 @@ public abstract class ProduitFermier implements ProduitVisitable {
 
     public int getQuantite() {
         return quantite;
+    }
+
+    public String getLabel() {
+        return label;
     }
 
     public void setQuantite(int quantite) {
@@ -71,4 +77,22 @@ public abstract class ProduitFermier implements ProduitVisitable {
         return this.getClass().getSimpleName();
     }
 
+    @Override
+    public Participant.Produits identifier(ProduitVisiteur v) {
+        return null;
+    }
+    public Object clone() {
+        Object o = null;
+        try {
+            // On récupère l'instance à renvoyer par l'appel de la
+            // méthode super.clone()
+            o = super.clone();
+        } catch(CloneNotSupportedException cnse) {
+            // Ne devrait jamais arriver car nous implémentons
+            // l'interface Cloneable
+            cnse.printStackTrace(System.err);
+        }
+        // on renvoie le clone
+        return o;
+    }
 }
