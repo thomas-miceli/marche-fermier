@@ -290,6 +290,7 @@ public class CentraleAchat extends Participant {
     }
 
     public void subSolde(Double prix , Vente v){
+        System.out.println("Test");
         Identificateur i = new Identificateur();
         ArrayList<OffreCentrale> recupFiltre = recupOffresCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());
         if(v.getProduitVendu().getQuantite()>=recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
@@ -325,7 +326,6 @@ public class CentraleAchat extends Participant {
              ) {
             if(p.equals(oc.getProduits()) && prixParaU.equals(oc.getPrixParU()))quantiteOcTot+=oc.getQuantite();
         }
-
         return quantiteOcTot;
     }
 
