@@ -316,12 +316,15 @@ public class CentraleAchat extends Participant {
     }
 
     public void subSolde(Double prix , Vente v){
+        System.out.println("Test");
         Identificateur i = new Identificateur();
         ArrayList<OffreCentrale> recupFiltre = recupOffresCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());
         if(v.getProduitVendu().getQuantite()==recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
             for (OffreCentrale oC:recupFiltre
                  ) {
                 oC.getAcheteur().subSolde(prix,v);
+                v.getProduitVendu().setQuantite(oC.getQuantite());
+                oC.getAcheteur().addProduit(v.getProduitVendu());
                 offresDeCentrale.remove(oC);
             }
         }else{
@@ -354,8 +357,6 @@ public class CentraleAchat extends Participant {
             if(membre==p)return true;
         }
         return false;
-    }
-    private ArrayList<OffreCentrale> triByQuantiteDesc(ArrayList<OffreCentrale> array){
     }
 
 }

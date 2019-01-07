@@ -100,7 +100,7 @@ public class Marche {
             }
 
            v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());//refaire
-           o.getAcheteur().setSolde(o.getAcheteur().getSolde()-o.getPrixOffre());
+            o.getAcheteur().subSolde(o.getPrixOffre(),v);
            o.getAcheteur().addProduit(v.getProduitVendu());
            offresMarche.remove(o);
            compositionMarche.remove(v);

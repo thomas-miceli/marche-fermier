@@ -137,7 +137,7 @@ public abstract class Participant {
         this.setSolde(this.getSolde()+prix);
     }
     public void subSolde(Double prix , Vente v){
-        System.out.println("SUB SOLDE NORMAL");
+        System.out.println("SUB SOLDE NORMAL " + solde+" - "+prix );
         this.setSolde(this.getSolde()-prix);
     }
     public void subSolde(Double prix, Offre o){
@@ -147,31 +147,31 @@ public abstract class Participant {
 
     public void vendreProduit(Produits produitAVendre, Integer quantite, Double prix,Marche marche) {
         Identificateur identificateur = new Identificateur();
-        for (ProduitFermier p: stock) {
-            if(p.identifier(identificateur).equals(produitAVendre)){
-                if(p.getQuantite()>=quantite){
+        for (int i = stock.size()-1; i >= 0 ; i--) {
+            if(stock.get(i).identifier(identificateur).equals(produitAVendre)){
+                if(stock.get(i).getQuantite()>=quantite){
                     ProduitFermier pTemp;
-                    switch (p.getClass().getSimpleName()){
+                    switch (stock.get(i).getClass().getSimpleName()){
                         case "Miel":
-                            pTemp = new Miel(p);
+                            pTemp = new Miel(stock.get(i));
                             break;
                         case "Vache":
-                            pTemp = new Vache(p);
+                            pTemp = new Vache(stock.get(i));
                             break;
                         case "Pomme":
-                            pTemp = new Pomme(p);
+                            pTemp = new Pomme(stock.get(i));
                             break;
                         case "Orange":
-                            pTemp = new Orange(p);
+                            pTemp = new Orange(stock.get(i));
                             break;
                         case "Lait":
-                            pTemp = new Lait(p);
+                            pTemp = new Lait(stock.get(i));
                             break;
                         case "Fromage":
-                            pTemp = new Fromage(p);
+                            pTemp = new Fromage(stock.get(i));
                             break;
                         case "Cochon":
-                            pTemp = new Cochon(p);
+                            pTemp = new Cochon(stock.get(i));
                             break;
                         default:
                             pTemp=null;
@@ -180,10 +180,10 @@ public abstract class Participant {
                     pTemp.setQuantite(quantite);
                     if(marche.getControlleur().validerVente(pTemp,"validé", prix)){
                         new Vente(pTemp,this,prix,marche);
-                        if(p.getQuantite()-quantite==0){
-                            stock.remove(p);
+                        if(stock.get(i).getQuantite()-quantite==0){
+                            stock.remove(stock.get(i));
                         }else{
-                            p.setQuantite(p.getQuantite()-quantite);
+                            stock.get(i).setQuantite(stock.get(i).getQuantite()-quantite);
                         }
                         System.out.println("la vente c'est bien passée");
                     }else{
