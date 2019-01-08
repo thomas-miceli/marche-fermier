@@ -81,7 +81,7 @@ public class Marche {
         }
     }
     public void aquisition(Offre o, Vente v){
-        if(o.getPrixOffre( ).equals(v.getPrix())
+        if(o.getPrixOffre( ).equals(v.getPrix())// cas o = v
                && (v.getProduitVendu().getQuantite())== o.getQuantite()
                 ){
             if(v.getVendeur().getTrader()==null){
@@ -108,7 +108,7 @@ public class Marche {
         }//cas basique
         else if(o.getPrixParU().equals(v.getPrixParU())){
             ProduitFermier pTemp= (ProduitFermier)v.getProduitVendu().clone();
-            if(o.getQuantite()<v.getProduitVendu().getQuantite()){
+            if(o.getQuantite()<v.getProduitVendu().getQuantite()){// cas o < v
                 if(v.getVendeur().getTrader()==null){
                     v.getVendeur().addSolde(o.getPrixOffre(),o);
                 }else{
@@ -119,11 +119,12 @@ public class Marche {
                 v.getProduitVendu().setQuantite(v.getProduitVendu().getQuantite()-o.getQuantite());
                 v.setPrix(v.getPrix()-o.getPrixOffre());
                 pTemp.setQuantite(o.getQuantite());
+                System.out.println(o.getAcheteur()+" ---> " +pTemp.getClass().getSimpleName()+ " "+ pTemp.getQuantite());
                 o.getAcheteur().addProduit(pTemp);
                 offresMarche.remove(o);
                 new TransactionFini(o,v,o.getQuantite());
             }
-            if(o.getQuantite()>v.getProduitVendu().getQuantite()){
+            else if(o.getQuantite()>v.getProduitVendu().getQuantite()){// cas o > v
                 if(v.getVendeur().getTrader()==null){
                     v.getVendeur().addSolde(v.getPrix(),v);
                 }else{

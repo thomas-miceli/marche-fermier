@@ -101,6 +101,7 @@ public class CentraleAchat extends Participant {
         }
         public void addProduit(ProduitFermier p){
             //ne doit absolument rien faire dans les cas d'une centrale
+            System.out.println("JE FAIS RIEN LOL");
         }
 
         public Produits getProduits() {
@@ -291,7 +292,6 @@ public class CentraleAchat extends Participant {
     }
 
     public void subSolde(Double prix , Vente v){
-        System.out.println("Test");
         Identificateur i = new Identificateur();
         ArrayList<OffreCentrale> recupFiltre = recupOffresCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());;
         if(v.getProduitVendu().getQuantite()>=recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
@@ -304,26 +304,34 @@ public class CentraleAchat extends Participant {
             }
             for (OffreCentrale  oC: recupFiltre
                  ) {
-                this.removeO(oC,v.getMarche());
+
+                removeO(oC,v.getMarche());
             }
         }else{
-            Integer quantiteLever= v.getProduitVendu().getQuantite();
-            if(v.getProduitVendu().getQuantite()>recupQuantiteTotDeOffreCentrale(recupFiltre.get(0).getProduits(),v.getPrixParU()))quantiteLever=recupQuantiteTotDeOffreCentrale(recupFiltre.get(0).getProduits(),v.getPrixParU());
+            Integer quantiteLever;
+            if(v.getProduitVendu().getQuantite()>=recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
+                quantiteLever=recupQuantiteTotDeVenteCentrale(v.getProduitVendu().identifier(i),v.getPrixParU());
+                v.getProduitVendu().setQuantite(v.getProduitVendu().getQuantite()-quantiteLever);
+            }else{
+                quantiteLever=v.getProduitVendu().getQuantite();
+                Marche.getCompositionMarche().remove(v);
+            }
             for (int j = recupFiltre.size()-1; j >=0  ; j--) {
                 ProduitFermier prodTemp = (ProduitFermier)v.getProduitVendu().clone();
-                if(quantiteLever>=recupFiltre.get(j).getQuantite()){
+                System.out.println("ICI");
+                System.out.println(quantiteLever);
+                if(quantiteLever==0)break;
+                if(recupFiltre.get(j).getQuantite()<= quantiteLever){
                     prodTemp.setQuantite(recupFiltre.get(j).getQuantite());
                     recupFiltre.get(j).getAcheteur().addProduit(prodTemp);
                     quantiteLever-=recupFiltre.get(j).getQuantite();
-                    removeO(recupFiltre.get(j),v.getMarche());
-                }else if(quantiteLever<recupFiltre.get(j).getQuantite()
-                        && quantiteLever>0 ){
+                    this.removeO(recupFiltre.get(j),v.getMarche());
+
+                }else{
                     prodTemp.setQuantite(quantiteLever);
                     recupFiltre.get(j).getAcheteur().addProduit(prodTemp);
-                    recupFiltre.get(j).setQuantite(recupFiltre.get(j).getQuantite() -quantiteLever);
-                    quantiteLever=0;
-                }else{
-                    break;
+                    recupFiltre.get(j).setQuantite(recupFiltre.get(j).getQuantite()-quantiteLever);
+                    quantiteLever-=recupFiltre.get(j).getQuantite();
                 }
             }
         }
