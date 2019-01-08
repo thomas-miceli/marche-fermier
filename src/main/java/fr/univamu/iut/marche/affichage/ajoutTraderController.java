@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -51,8 +52,11 @@ public class ajoutTraderController extends VBox implements Initializable {
             HBox hBox = new HBox();
             CheckBox checkBox = new CheckBox();
             checkBoxes.add(checkBox);
+            String espace = "";
             hBox.getChildren().add(0, new Text(participant.getPrenom() + ' ' + participant.getNom()));
-            hBox.getChildren().add(1, checkBox);
+            for (int i = (participant.getPrenom() + ' ' + participant.getNom()).length(); i<40; ++i) espace+=' ';
+            hBox.getChildren().add(1, new Text(espace));
+            hBox.getChildren().add(2, checkBox);
             Participants.getChildren().add(hBox);
         }
     }
