@@ -198,6 +198,7 @@ public class CentraleAchat extends Participant {
                     ", quantite=" + quantite +
                     '}';
         }
+
     }
     public ArrayList<VenteCentrale> recupVentesCentrales(Produits p,Double prixParU){
         ArrayList<VenteCentrale> venteCentralesFiltrer = new ArrayList<>();
@@ -292,7 +293,7 @@ public class CentraleAchat extends Participant {
     public void subSolde(Double prix , Vente v){
         System.out.println("Test");
         Identificateur i = new Identificateur();
-        ArrayList<OffreCentrale> recupFiltre = recupOffresCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());
+        ArrayList<OffreCentrale> recupFiltre = recupOffresCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());;
         if(v.getProduitVendu().getQuantite()>=recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
             for (OffreCentrale oC:recupFiltre
                  ) {
@@ -303,24 +304,25 @@ public class CentraleAchat extends Participant {
             }
             for (OffreCentrale  oC: recupFiltre
                  ) {
-                offresDeCentrale.remove(oC);
+                this.removeO(oC,v.getMarche());
             }
         }else{
             Integer quantiteLever= v.getProduitVendu().getQuantite();
-            ProduitFermier prodTemp = (ProduitFermier)v.getProduitVendu().clone();
+            if(v.getProduitVendu().getQuantite()>recupQuantiteTotDeOffreCentrale(recupFiltre.get(0).getProduits(),v.getPrixParU()))quantiteLever=recupQuantiteTotDeOffreCentrale(recupFiltre.get(0).getProduits(),v.getPrixParU());
             for (int j = recupFiltre.size()-1; j >=0  ; j--) {
+                ProduitFermier prodTemp = (ProduitFermier)v.getProduitVendu().clone();
                 if(quantiteLever>=recupFiltre.get(j).getQuantite()){
-                    prodTemp.setQuantite(recupFiltre.get(j).quantite);
+                    prodTemp.setQuantite(recupFiltre.get(j).getQuantite());
                     recupFiltre.get(j).getAcheteur().addProduit(prodTemp);
                     quantiteLever-=recupFiltre.get(j).getQuantite();
-                    offresDeCentrale.remove(recupFiltre.get(j));
-                }else if(quantiteLever <= recupFiltre.get(j).getQuantite()&& quantiteLever != 0) {
+                    removeO(recupFiltre.get(j),v.getMarche());
+                }else if(quantiteLever<recupFiltre.get(j).getQuantite()
+                        && quantiteLever>0 ){
                     prodTemp.setQuantite(quantiteLever);
                     recupFiltre.get(j).getAcheteur().addProduit(prodTemp);
-                    recupFiltre.get(j).setQuantite(recupFiltre.get(j).getQuantite()-quantiteLever);
+                    recupFiltre.get(j).setQuantite(recupFiltre.get(j).getQuantite() -quantiteLever);
                     quantiteLever=0;
                 }else{
-                    System.out.println("lever fini");
                     break;
                 }
             }
@@ -352,6 +354,33 @@ public class CentraleAchat extends Participant {
             if(membre==p)return true;
         }
         return false;
+    }
+    private boolean removeV(VenteCentrale v,Marche m){
+        ventesDeCentrale.remove(v);
+        Identificateur i = new Identificateur();
+        for ( Vente venteOrigin : m.getListVenteClient(this)
+             ) {
+            if(venteOrigin.getProduitVendu().identifier(i).equals(v.getProduits())
+                    && venteOrigin.getPrixParU().equals(v.getPrixParU())
+                    && venteOrigin.getProduitVendu().getQuantite()==v.getQuantite()){
+                Marche.getCompositionMarche().remove(venteOrigin);
+            }
+
+        }
+        return true;
+    }
+    private boolean removeO(OffreCentrale o,Marche m){
+        offresDeCentrale.remove(o);
+        for ( Offre offreOrigin : m.getListOffreClient(this)
+        ) {
+            if(offreOrigin.getProduitOffre().equals(o.getProduits())
+                    && offreOrigin.getPrixParU().equals(o.getPrixParU())
+                    && offreOrigin.getQuantite().equals(o.getQuantite())){
+                Marche.getOffresMarche().remove(offreOrigin);
+            }
+
+        }
+        return true;
     }
 
 }
