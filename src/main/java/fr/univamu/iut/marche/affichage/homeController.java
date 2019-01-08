@@ -60,9 +60,23 @@ public class homeController implements Initializable {
     @FXML
     public void setSceneToAjoutParticipant() throws IOException {
         contentVBox.getChildren().clear();
+        contentVBox.getChildren().addAll(new ajoutParticipantController());
+    }
+    @FXML
+    public void setSceneToAjoutPaysan()throws IOException{
+        contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new ajoutPaysanController());
     }
-
+    @FXML
+    public void setSceneToOffreView()throws IOException{
+        contentVBox.getChildren().clear();
+        contentVBox.getChildren().addAll(new listeOffresController());
+    }
+    @FXML
+    public void setSceneToAjoutTrader()throws IOException{
+        contentVBox.getChildren().clear();
+        contentVBox.getChildren().addAll(new ajoutTraderController());
+    }
     @FXML
     public void showCredits() throws IOException {
         Stage creditStage = new Stage();

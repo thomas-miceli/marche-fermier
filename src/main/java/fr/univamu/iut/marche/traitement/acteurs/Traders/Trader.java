@@ -50,4 +50,13 @@ public class Trader {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        String string = "Le trader " + this.getName() +" possèdent " + clients.size() + " client \n";
+        for (Participant participant: clients){
+            string+=participant.getNom() +' ' + participant.getPrenom()+'\n';
+        }
+        return string;
+    }
 }

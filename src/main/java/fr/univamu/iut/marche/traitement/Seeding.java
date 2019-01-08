@@ -25,7 +25,7 @@ public class Seeding {
         ProducteurDeViande p2 = new ProducteurDeViande("Claudette", "Jean", 45);
         Orticulteur p3 = new Orticulteur("Claudinette", "Jean", 40);
         ProducteurLaitier p4 = new ProducteurLaitier("Claudasse", "Jean", 45);
-        CentraleAchat centraleAchat = new CentraleAchat("corp",null,0);
+        CentraleAchat centraleAchat = new CentraleAchat("corp","Marché",0);
 
         centraleAchat.addMembre(p1);
         centraleAchat.addMembre(p2);
@@ -59,7 +59,9 @@ public class Seeding {
 
         p3.vendreProduit(Participant.Produits.MIEL,5,50.0,marche);
 
+        p2.vendreProduit(Participant.Produits.COCHON, 15, 60.0, marche);
         marche.show();
+
         centraleAchat.showCentralArray();
         p1.show();
         p2.show();

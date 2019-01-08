@@ -55,7 +55,7 @@ public class venteProduitController extends VBox implements Initializable {
         if(QuantiteVoulus.getCharacters().toString().isEmpty()) popupAlert.setText("Quantité ??");
         else {
             Vente vente = Marche.getCompositionMarche().get(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
-            homeController.getFxmlUser().proposerOffre(Participant.Produits.valueOf(vente.getProduitVendu().getClass().getSimpleName().toUpperCase()),Integer.valueOf(QuantiteVoulus.getCharacters().toString()),vente.getPrix()/Integer.valueOf(QuantiteVoulus.getCharacters().toString()),Seeding.getListeMarche().get(0));
+            homeController.getFxmlUser().proposerOffre(Participant.Produits.valueOf(vente.getProduitVendu().getClass().getSimpleName().toUpperCase()),Integer.valueOf(QuantiteVoulus.getCharacters().toString()), ((Double.valueOf(QuantiteVoulus.getCharacters().toString()))*vente.getPrix())/vente.getProduitVendu().getQuantite(),Seeding.getListeMarche().get(0));
             setViewToCatalog();
         }
     }

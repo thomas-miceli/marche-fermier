@@ -19,7 +19,7 @@ public class Marche {
     private static ArrayList<Vente> compositionMarche = new ArrayList<>();
     private static ArrayList<Offre> offresMarche = new ArrayList<>();
     private ArrayList<Observer> observers= new ArrayList<>();
-    private ArrayList<TransactionFini> historiqueDesVentes = new ArrayList<>();
+    private static ArrayList<TransactionFini> historiqueDesVentes = new ArrayList<>();
     private String region;
     private Controlleur controlleur;
 
@@ -187,5 +187,8 @@ public class Marche {
             if(o.getAcheteur()==p)offresClient.add(o);
         }
         return offresClient;
+    }
+    public static ArrayList<TransactionFini> getTransactions(){
+        return historiqueDesVentes;
     }
 }

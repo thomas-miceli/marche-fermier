@@ -1,5 +1,7 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
+import java.util.ArrayList;
+
 public class TransactionFini {
     private Participant vendeur;
     private Participant acheteur;
@@ -8,7 +10,6 @@ public class TransactionFini {
     private Integer quantite;
 
     private Participant.Produits produitVendu;
-
     public TransactionFini(Offre o , Vente v, Integer quantite) {
 
         this.vendeur = v.getVendeur();
@@ -17,6 +18,7 @@ public class TransactionFini {
         this.prix = v.getPrixParU();
         this.produitVendu = o.getProduitOffre();
         o.getMarche().addTransactionFinie(this);
+
     }
 
     public Participant getVendeur() {
@@ -61,12 +63,13 @@ public class TransactionFini {
 
     @Override
     public String toString() {
-        return "TransactionFini{" +
+        return "Vendeur : " + vendeur.getPrenom() + ' ' + vendeur.getNom() + " vends " + quantite + ' '  + produitVendu + " à " + acheteur.getPrenom() +' '+acheteur.getNom();
+        /*return "TransactionFini{" +
                 "vendeur=" + vendeur +
                 ", acheteur=" + acheteur +
                 ", prix/u=" + prix +
                 ", quantite=" + quantite +
                 ", produitVendu=" + produitVendu +
-                '}';
+                '}';*/
     }
 }

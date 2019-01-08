@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
@@ -20,12 +17,28 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Marché">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#setSceneToAjoutParticipant" text="Nouveau Paysan" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToAjoutPaysan" text="Nouveau Paysan" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToAjoutParticipant" text="Nouveau Participant" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToAjoutTrader" text="Nouveau Trader" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToParticipantsView" text="Listes Participants" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem onAction="#actionQuitter" text="Quitter" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Aide">
+                <Menu mnemonicParsing="false" text="Transactions">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToCatalogView" text="Catalogue" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToOffreView" text="Offres" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToTransactionView" text="Transaction" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" onAction="#setSceneToCotationView" text="Cotations"/>
+                <Menu mnemonicParsing="false"  text="Aide">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#showCredits" text="À propos" />
                     </items>
@@ -43,57 +56,6 @@
             </children>
         </AnchorPane>
     </bottom>
-    <left>
-        <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="400.0" prefWidth="120.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button fx:id="buttonCatalog" alignment="CENTER" mnemonicParsing="false" onAction="#setSceneToCatalogView">
-                    <graphic>
-                        <ImageView>
-                            <image>
-                                <Image url="/images/catalog.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="buttonTransaction" onAction="#setSceneToTransactionView">
-                    <graphic>
-                        <ImageView>
-                            <image>
-                                <Image url="/images/transaction.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                </Button>
-                <Button fx:id="buttonCotation" onAction="#setSceneToCotationView">
-                    <graphic>
-                        <ImageView>
-                            <image>
-                                <Image url="/images/cotation.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                </Button>
-                <Button fx:id="buttonParticipants" onAction="#setSceneToParticipantsView">
-                    <graphic>
-                        <ImageView>
-                            <image>
-                                <Image url="/images/participants.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                </Button>
-            </children>
-        </VBox>
-    </left>
     <center>
         <VBox fx:id="contentVBox" prefHeight="497.0" prefWidth="538.0">
             <padding>
@@ -104,7 +66,7 @@
         <VBox prefHeight="497.0" prefWidth="185.0">
             <children>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Marché fermier" />
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Solde : " fx:id="soldeFxmlUser"/>
+                <Text fx:id="soldeFxmlUser" strokeType="OUTSIDE" strokeWidth="0.0" text="Solde : " />
             </children>
         </VBox>
     </right>
