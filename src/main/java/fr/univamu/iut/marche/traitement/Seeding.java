@@ -17,8 +17,11 @@ import java.util.ArrayList;
  */
 public class Seeding {
     private static ArrayList<Marche> listeMarche = new ArrayList<Marche>();
-    Seeding(){
+    private static Participant FxmlUser = new Orticulteur("Fxml", "User", 18);
 
+    Seeding(){
+        FxmlUser = new Orticulteur("Utilisateur", "FXML", 18);
+        FxmlUser.setSolde(50000);
         Marche marche = new Marche("PACA",new Controlleur());
         listeMarche.add(marche);
         Apiculteur p1 = new Apiculteur("Claude", "Jean", 50);
@@ -83,5 +86,8 @@ public class Seeding {
 
     public static ArrayList<Marche> getListeMarche(){
         return listeMarche;
+    }
+    public static Participant getFxmlUser(){
+        return FxmlUser;
     }
 }

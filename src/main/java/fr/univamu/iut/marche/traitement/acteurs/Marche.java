@@ -5,6 +5,7 @@ import fr.univamu.iut.marche.traitement.Observer.Observer;
 import fr.univamu.iut.marche.traitement.produits.*;
 import fr.univamu.iut.marche.traitement.remises.StratProduitBio;
 import fr.univamu.iut.marche.traitement.remises.StratProduitQuantite;
+import fr.univamu.iut.marche.affichage.homeController;
 
 import java.util.ArrayList;
 
@@ -22,12 +23,16 @@ public class Marche {
     private static ArrayList<TransactionFini> historiqueDesVentes = new ArrayList<>();
     private String region;
     private Controlleur controlleur;
+    private static homeController homeController;
 
     public Marche(String region,Controlleur c) {
         this.region = region;
         this.controlleur= c;
     }
 
+    public static void setHomeController(homeController h){
+        homeController = h;
+    }
     /**
      * revoie la valeur de la variable region d'un objet de type Marche
      * @return region
@@ -42,7 +47,7 @@ public class Marche {
      */
     public void addVente(Vente vente){
         compositionMarche.add(vente);
-        System.out.println("un nouveau produit est disponible");
+        if(homeController != null)homeController.setNotification("Un nouveau produit est disponible");
         updateAll();
     }
 
@@ -52,6 +57,7 @@ public class Marche {
      */
     public void addOffre(Offre o){
         offresMarche.add(o);
+        if(homeController != null)homeController.setNotification("Une nouvelle offre est présente !");
         System.out.println("une nouvelle offre est présente");
     }
 
@@ -199,7 +205,7 @@ public class Marche {
      * @param p
      * @return prixTot/qMoy
      */
-    public Integer cotationProduitparU(Participant.Produits p){
+    public static Integer cotationProduitparU(Participant.Produits p){
         Identificateur identificateur = new Identificateur();
         int prixTot=0;
         int qMoy=0;
@@ -209,7 +215,8 @@ public class Marche {
                 qMoy+=v.getProduitVendu().getQuantite();
             }
         }
-        return prixTot/qMoy;
+        if(qMoy!=0)return prixTot/qMoy;
+        return 0;
     }
 
     /**

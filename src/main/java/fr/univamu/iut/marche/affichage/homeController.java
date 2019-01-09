@@ -1,5 +1,8 @@
 package fr.univamu.iut.marche.affichage;
 
+import fr.univamu.iut.marche.traitement.Observer.ObserverNewVente;
+import fr.univamu.iut.marche.traitement.Seeding;
+import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Orticulteur;
 import javafx.application.Platform;
@@ -9,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Menu;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -32,8 +36,6 @@ public class homeController implements Initializable {
     private Text notification;
 
     private static Stage credits;
-
-    private static Participant participantFxml;
     public void setStageAndSetupListeners(Stage stage) {
         stage.setOnCloseRequest(event -> Platform.exit());
     }
@@ -41,6 +43,11 @@ public class homeController implements Initializable {
     public void setSceneToCatalogView() throws IOException {
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new catalogController());
+    }
+    @FXML
+    public void setNotification(String s){
+        notification.setText(s);
+        setSoldeFxmlUser();
     }
 
     @FXML
@@ -52,7 +59,7 @@ public class homeController implements Initializable {
     @FXML
     public void setSceneToCotationView() throws IOException {
         contentVBox.getChildren().clear();
-        contentVBox.getChildren().addAll(/* new CotationController*/);
+        contentVBox.getChildren().addAll( new cotationController());
     }
     @FXML
     public void setSceneToParticipantsView() throws IOException {
@@ -108,16 +115,14 @@ public class homeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        participantFxml = new Orticulteur("Utilisateur", "FXML", 18);
-        participantFxml.setSolde(50000);
-        soldeFxmlUser.setText("Solde : " + participantFxml.getSolde());
+        Marche.setHomeController(this);
+        venteProduitController.setHomeController(this);
+        soldeFxmlUser.setText("Solde : " + Seeding.getFxmlUser().getSolde());
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll();
     }
-    public static Participant getFxmlUser(){
-        return participantFxml;
-    }
-    public static void setFxmlUser(Participant participantFxml){
-        participantFxml = participantFxml;
+    @FXML
+    public void setSoldeFxmlUser(){
+        soldeFxmlUser.setText("Solde : " + Seeding.getFxmlUser().getSolde());
     }
 }
