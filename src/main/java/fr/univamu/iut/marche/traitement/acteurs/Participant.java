@@ -30,6 +30,8 @@ public abstract class Participant {
         VACHE
     }
 
+    private int maxStock = 500;
+
     protected int id = 0;
     protected String nom;
     protected String prenom;
@@ -50,6 +52,13 @@ public abstract class Participant {
         listeParticipant.add(this);
     }
 
+    public int getMaxStock() {
+        return maxStock;
+    }
+
+    public void setMaxStock(int maxStock) {
+        this.maxStock = maxStock;
+    }
 
     public String getNom() {
         return nom;
@@ -115,6 +124,23 @@ public abstract class Participant {
      * @param produit
      */
     public void addProduit(ProduitFermier produit) {
+
+        // le stock max est de 500
+
+        if (this.stock.size() == 500)
+            return;
+
+        int numproduits = 0;
+        for (ProduitFermier prod : stock) {
+            numproduits += prod.getQuantite();
+        }
+
+        numproduits += produit.getQuantite();
+
+        if (numproduits > 500) {
+            produit.setQuantite(numproduits - 500);
+        }
+
         this.stock.add(produit);
         setStock(Seeding.compilerProduits(this.stock));
     }
