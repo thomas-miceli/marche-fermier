@@ -35,7 +35,7 @@
                         </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Button layoutX="34.0" layoutY="8.0" mnemonicParsing="false" onAction="#setViewToParticipant" text="Retour Catalogue" />
+                        <Button layoutX="34.0" layoutY="8.0" mnemonicParsing="false" onAction="#setViewToParticipant" text="Retour Participant" />
                      </children></Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
