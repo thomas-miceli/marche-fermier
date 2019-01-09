@@ -1,10 +1,8 @@
 package fr.univamu.iut.marche.affichage;
 
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
-import fr.univamu.iut.marche.traitement.acteurs.Offre;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.acteurs.TransactionFini;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,8 +15,6 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class transactionController extends VBox implements Initializable {
@@ -34,15 +30,15 @@ public class transactionController extends VBox implements Initializable {
     @FXML
     private ListView listeTransaction = new ListView();
     private ObservableList<String> data = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println(Participant.getAllParticipants());
-        for (TransactionFini transactionFini: Marche.getTransactions()) {
+        for (TransactionFini transactionFini : Marche.getTransactions()) {
             data.add(transactionFini.toString());
         }
         listeTransaction.setItems(data);
     }
-
 
 
     public transactionController() throws IOException {

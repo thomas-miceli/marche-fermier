@@ -2,7 +2,6 @@ package fr.univamu.iut.marche.affichage;
 
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Paysan;
-import fr.univamu.iut.marche.traitement.produits.*;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -21,10 +20,9 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class productionController extends VBox implements Initializable  {
+public class productionController extends VBox implements Initializable {
 
     @FXML
     private VBox contentVBox;
@@ -36,7 +34,7 @@ public class productionController extends VBox implements Initializable  {
     @FXML
     private HBox productionBox;
 
-    private String selectedType ="";
+    private String selectedType = "";
     private TextField textField = new TextField("0");
     private Button button = new Button("Valider");
 
@@ -45,12 +43,13 @@ public class productionController extends VBox implements Initializable  {
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new participantController());
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        productionBox.getChildren().add(0,new Text("Produire : "));
+        productionBox.getChildren().add(0, new Text("Produire : "));
         System.out.println(listeParticipantController.getSelectedParticipant().getClass().getSimpleName());
         ChoiceBox<String> cb = null;
-        switch (listeParticipantController.getSelectedParticipant().getClass().getSimpleName()){
+        switch (listeParticipantController.getSelectedParticipant().getClass().getSimpleName()) {
             case "Apiculteur":
                 cb = new ChoiceBox(FXCollections.observableArrayList("Miel"));
                 productionBox.getChildren().add(1, textField);
@@ -77,7 +76,7 @@ public class productionController extends VBox implements Initializable  {
         }
         ChoiceBox<String> finalCb = cb;
         cb.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-            selectedType = finalCb.getItems().get((Integer)newValue);
+            selectedType = finalCb.getItems().get((Integer) newValue);
         });
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -88,7 +87,7 @@ public class productionController extends VBox implements Initializable  {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }else{
+                } else {
                     Paysan participantcurrent = (Paysan) listeParticipantController.getSelectedParticipant();
                     participantcurrent.fabriquerProduit(creerProduit(finalCb.getValue()), Integer.valueOf(textField.getCharacters().toString()));
                     contentVBox.getChildren().clear();
@@ -101,18 +100,20 @@ public class productionController extends VBox implements Initializable  {
             }
         });
 
-        productionBox.getChildren().add(1,cb);
+        productionBox.getChildren().add(1, cb);
 
     }
+
     public productionController() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/Production.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         fxmlLoader.load();
     }
-    private Participant.Produits creerProduit(String s){
 
-        switch (s){
+    private Participant.Produits creerProduit(String s) {
+
+        switch (s) {
             case "Cochon":
                 return Participant.Produits.COCHON;
             case "Fromage":

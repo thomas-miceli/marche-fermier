@@ -17,6 +17,6 @@ public class ObserverNewVente extends Observer {
     @Override
     public void updateO() {
         System.out.println("une nouvelle vente est apparue");
-        System.out.println(marche.getCompositionMarche().get(marche.getCompositionMarche().size()-1));
+        System.out.println(marche.getCompositionMarche().get(marche.getCompositionMarche().size() - 1));
     }
 }

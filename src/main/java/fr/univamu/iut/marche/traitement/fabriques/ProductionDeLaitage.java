@@ -8,12 +8,13 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 public class ProductionDeLaitage extends UniteDeProduction {
     /**
      * Fabrique dans la production des produits de type Laitage
+     *
      * @param type
      * @param quantite
      */
     @Override
     public ProduitFermier fabriquer(String type, int quantite) {
-        if (type.equals("LAIT") || type.equals("FROMAGE")){
+        if (type.equals("LAIT") || type.equals("FROMAGE")) {
             return cree(type, quantite);
         }
         return null;

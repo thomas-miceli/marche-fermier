@@ -1,12 +1,17 @@
 package fr.univamu.iut.marche.traitement;
 
 
-import fr.univamu.iut.marche.traitement.acteurs.*;
+import fr.univamu.iut.marche.traitement.acteurs.CentraleAchat;
+import fr.univamu.iut.marche.traitement.acteurs.Controlleur;
+import fr.univamu.iut.marche.traitement.acteurs.Marche;
+import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Apiculteur;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Orticulteur;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.ProducteurDeViande;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.ProducteurLaitier;
-import fr.univamu.iut.marche.traitement.produits.*;
+import fr.univamu.iut.marche.traitement.produits.Identificateur;
+import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
+
 import java.util.ArrayList;
 
 /***
@@ -19,54 +24,54 @@ public class Seeding {
     private static ArrayList<Marche> listeMarche = new ArrayList<Marche>();
     private static Participant FxmlUser;
 
-    Seeding(){
+    Seeding() {
         FxmlUser = new Orticulteur("Utilisateur", "FXML", 18);
         FxmlUser.setSolde(50000);
-        Marche marche = new Marche("PACA",new Controlleur());
+        Marche marche = new Marche("PACA", new Controlleur());
         listeMarche.add(marche);
         Apiculteur p1 = new Apiculteur("Claude", "Jean", 50);
         ProducteurDeViande p2 = new ProducteurDeViande("Claudette", "Jean", 45);
         Orticulteur p3 = new Orticulteur("Claudinette", "Jean", 40);
         ProducteurLaitier p4 = new ProducteurLaitier("Claudasse", "Jean", 45);
-        CentraleAchat centraleAchat = new CentraleAchat("corp","Marché",0);
+        CentraleAchat centraleAchat = new CentraleAchat("corp", "Marché", 0);
 
         centraleAchat.addMembre(p1);
         centraleAchat.addMembre(p2);
 
 
-        p1.setSolde( 100000.0);
+        p1.setSolde(100000.0);
         p2.setSolde(100.2);
         p3.setSolde(1500.3);
         p4.setSolde(200.4);
 
-        p1.fabriquerProduit(Participant.Produits.MIEL ,550);
-        p1.fabriquerProduit(Participant.Produits.MIEL,1000);
+        p1.fabriquerProduit(Participant.Produits.MIEL, 550);
+        p1.fabriquerProduit(Participant.Produits.MIEL, 1000);
 
-        p1.vendreProduit(Participant.Produits.MIEL,100,11.0,marche);
-        p3.proposerOffre(Participant.Produits.MIEL,100,11.0,marche);
-        p2.fabriquerProduit(Participant.Produits.COCHON,  30);
+        p1.vendreProduit(Participant.Produits.MIEL, 100, 11.0, marche);
+        p3.proposerOffre(Participant.Produits.MIEL, 100, 11.0, marche);
+        p2.fabriquerProduit(Participant.Produits.COCHON, 30);
         p2.fabriquerProduit(Participant.Produits.VACHE, 40);
 
         p3.fabriquerProduit(Participant.Produits.POMME, 500);
-        p3.fabriquerProduit(Participant.Produits.ORANGE,  700);
+        p3.fabriquerProduit(Participant.Produits.ORANGE, 700);
         p3.fabriquerProduit(Participant.Produits.ORANGE, 1000);
         p4.fabriquerProduit(Participant.Produits.FROMAGE, 40);
-        ProduitFermier p =p4.fabriquerProduit(Participant.Produits.LAIT,  800);
+        ProduitFermier p = p4.fabriquerProduit(Participant.Produits.LAIT, 800);
 
         p1.show();
         p2.show();
         p3.show();
 
-        centraleAchat.poserOffre(Participant.Produits.MIEL,p1,10.0,2,marche);
+        centraleAchat.poserOffre(Participant.Produits.MIEL, p1, 10.0, 2, marche);
         p2.proposerOffre(Participant.Produits.COCHON, 15, 50.0, marche);
-        p1.vendreProduit(Participant.Produits.MIEL,1,10.0,marche);
+        p1.vendreProduit(Participant.Produits.MIEL, 1, 10.0, marche);
 
 
         p2.vendreProduit(Participant.Produits.VACHE, 20, 2000.0, marche);
         p1.proposerOffre(Participant.Produits.VACHE, 10, 1000.0, marche);
-        p3.vendreProduit(Participant.Produits.POMME,10,100.0,marche);
-        p3.vendreProduit(Participant.Produits.ORANGE,10,100.0,marche);
-        p1.proposerOffre(Participant.Produits.POMME,10,100.0,marche);
+        p3.vendreProduit(Participant.Produits.POMME, 10, 100.0, marche);
+        p3.vendreProduit(Participant.Produits.ORANGE, 10, 100.0, marche);
+        p1.proposerOffre(Participant.Produits.POMME, 10, 100.0, marche);
         marche.show();
 
         centraleAchat.showCentralArray();
@@ -76,13 +81,13 @@ public class Seeding {
 
     }
 
-    public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd){
+    public static ArrayList<ProduitFermier> compilerProduits(ArrayList<ProduitFermier> listProd) {
         Identificateur identificateur = new Identificateur();
-        for (int i = 0; i <listProd.size() ; i++) {
-            for (int j = 0; j <listProd.size() ; j++) {
-                if(listProd.get(i).identifier(identificateur)==listProd.get(j).identifier(identificateur)
+        for (int i = 0; i < listProd.size(); i++) {
+            for (int j = 0; j < listProd.size(); j++) {
+                if (listProd.get(i).identifier(identificateur) == listProd.get(j).identifier(identificateur)
                         && i != j
-                        && listProd.get(i).getStringDate() .equals(listProd.get(j).getStringDate())) {
+                        && listProd.get(i).getStringDate().equals(listProd.get(j).getStringDate())) {
                     listProd.get(i).fusionnerObjet(listProd.get(j));
                     listProd.remove(j);
                 }
@@ -91,11 +96,11 @@ public class Seeding {
         return listProd;
     }
 
-    public static ArrayList<Marche> getListeMarche(){
+    public static ArrayList<Marche> getListeMarche() {
         return listeMarche;
     }
 
-    public static Participant getFxmlUser(){
+    public static Participant getFxmlUser() {
         return FxmlUser;
     }
 }

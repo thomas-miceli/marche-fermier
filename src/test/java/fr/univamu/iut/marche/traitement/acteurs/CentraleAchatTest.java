@@ -2,8 +2,6 @@ package fr.univamu.iut.marche.traitement.acteurs;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class CentraleAchatTest {
 
     @Test

@@ -3,7 +3,7 @@ package fr.univamu.iut.marche.traitement.acteurs;
 import fr.univamu.iut.marche.traitement.Seeding;
 import fr.univamu.iut.marche.traitement.acteurs.Traders.Trader;
 import fr.univamu.iut.marche.traitement.produits.Identificateur;
-import fr.univamu.iut.marche.traitement.produits.*;
+import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import fr.univamu.iut.marche.traitement.remises.Strategy;
 
 import java.util.ArrayList;
@@ -17,7 +17,8 @@ import java.util.ArrayList;
  * @author Téo MARTIN
  */
 public abstract class Participant {
-    public Trader trader=null;
+    public Trader trader = null;
+
     public enum Produits {
         COCHON,
         FROMAGE,
@@ -46,7 +47,7 @@ public abstract class Participant {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
-        id = listeParticipant.size()+1;
+        id = listeParticipant.size() + 1;
         listeParticipant.add(this);
     }
 
@@ -72,6 +73,7 @@ public abstract class Participant {
 
     /**
      * modifie le prenom d'un Participant
+     *
      * @param prenom
      */
     public void setPrenom(String prenom) {
@@ -80,6 +82,7 @@ public abstract class Participant {
 
     /**
      * renvoie l'age d'un Participant
+     *
      * @return age
      */
     public int getAge() {
@@ -88,6 +91,7 @@ public abstract class Participant {
 
     /**
      * renvoie l'id d'un Participant
+     *
      * @return id
      */
     public int getId() {
@@ -96,6 +100,7 @@ public abstract class Participant {
 
     /**
      * renvoie l'âge d'un Participant
+     *
      * @param age
      */
     public void setAge(int age) {
@@ -104,6 +109,7 @@ public abstract class Participant {
 
     /**
      * renvoie le contenu de la variable solde
+     *
      * @return solde
      */
     public double getSolde() {
@@ -112,6 +118,7 @@ public abstract class Participant {
 
     /**
      * modifie la valeur du solde d'un Participant
+     *
      * @param solde
      */
     public void setSolde(double solde) {
@@ -120,6 +127,7 @@ public abstract class Participant {
 
     /**
      * ajoute un montant prédéfini au solde d'un Participant
+     *
      * @param montant
      */
     public void opArgent(double montant) {
@@ -129,6 +137,7 @@ public abstract class Participant {
     /**
      * renvoie vrai si la difference entre le solde d'un participant et un montant prédéfini est positif
      * faux sinon
+     *
      * @param argent
      * @return boolean
      */
@@ -138,26 +147,29 @@ public abstract class Participant {
 
     /**
      * renvoie le contenu de la variable listeParticipants
+     *
      * @return listeParticipant
      */
-    public static ArrayList<Participant> getAllParticipants(){
+    public static ArrayList<Participant> getAllParticipants() {
         return listeParticipant;
     }
 
     /**
      * renvoie un Participant parmi listeParticipant en fonction de son id
+     *
      * @param id
      * @return Participant
      */
-    public static Participant getParticipantbyId(int id){
+    public static Participant getParticipantbyId(int id) {
         for (Participant participant : listeParticipant) {
-            if(participant.getId()==id) return participant;
+            if (participant.getId() == id) return participant;
         }
         return null;
     }
 
     /**
      * renvoie la valeur de la variable stock d'un Participant
+     *
      * @return
      */
     public ArrayList<ProduitFermier> getStock() {
@@ -166,6 +178,7 @@ public abstract class Participant {
 
     /**
      * modifie la valeur de la variable produitOffre d'un objet Participant
+     *
      * @param stock
      */
     public void setStock(ArrayList<ProduitFermier> stock) {
@@ -174,6 +187,7 @@ public abstract class Participant {
 
     /**
      * Ajoute le produit fermier au stock déjà existant de produits
+     *
      * @param produit
      */
     public void addProduit(ProduitFermier produit) {
@@ -190,8 +204,8 @@ public abstract class Participant {
 
         numproduits += produit.getQuantite();
 
-        if ( maxStock+numproduits >=500) {
-            produit.setQuantite(maxStock+produit.getQuantite()-maxStock);
+        if (maxStock + numproduits >= 500) {
+            produit.setQuantite(maxStock + produit.getQuantite() - maxStock);
         }
         this.stock.add(produit);
         setStock(Seeding.compilerProduits(this.stock));
@@ -199,6 +213,7 @@ public abstract class Participant {
 
     /**
      * Retire le produit fermier du stock
+     *
      * @param produit
      */
     public void removeProduit(ProduitFermier produit) {
@@ -207,6 +222,7 @@ public abstract class Participant {
 
     /**
      * renvoie la variable produitFermier d'un objet de type Particpant
+     *
      * @param prod
      * @return produitFermier
      */
@@ -222,67 +238,74 @@ public abstract class Participant {
 
     /**
      * Ajoute de l'argent au solde existant du participant pour la vente de produits
+     *
      * @param prix
      * @param v
      */
-    public void addSolde(Double prix,Vente v){
-        System.out.println("ADD SOLDE NORMAL " + solde+ " + "+ prix);
-        this.setSolde(this.getSolde()+prix);
+    public void addSolde(Double prix, Vente v) {
+        System.out.println("ADD SOLDE NORMAL " + solde + " + " + prix);
+        this.setSolde(this.getSolde() + prix);
 
     }
+
     /**
      * Ajoute de l'argent au solde existant du participant pour l'offre de produits
+     *
      * @param prix
      * @param o
      */
-    public void addSolde(Double prix, Offre o){
+    public void addSolde(Double prix, Offre o) {
         System.out.println("ADD SOLDE NORMAL" + prix);
-        this.setSolde(this.getSolde()+prix);
+        this.setSolde(this.getSolde() + prix);
     }
 
     /**
      * Retire de l'argent au solde existant du participant pour la vente de produits
+     *
      * @param prix
      * @param v
      */
-    public void subSolde(Double prix , Vente v){
-        System.out.println("SUB SOLDE NORMAL " + solde+" - "+prix );
-        this.setSolde(this.getSolde()-prix);
+    public void subSolde(Double prix, Vente v) {
+        System.out.println("SUB SOLDE NORMAL " + solde + " - " + prix);
+        this.setSolde(this.getSolde() - prix);
     }
+
     /**
      * Retire de l'argent au solde existant du participant pour l'offre de produits
+     *
      * @param prix
      * @param o
      */
-    public void subSolde(Double prix, Offre o){
+    public void subSolde(Double prix, Offre o) {
         System.out.println("SUB SOLDE NORMAL");
-        this.setSolde(this.getSolde()-prix);
+        this.setSolde(this.getSolde() - prix);
     }
 
     /**
      * Fonction qui permet de vendre un produit. La fonction va chercher dans le stock si le produit à vendre est disponible, si oui, alors on établit la quantité à vendre ainsi que le prix.
-        Le produit est vendu que si les règles de vente établies par le marché sont respectées.
+     * Le produit est vendu que si les règles de vente établies par le marché sont respectées.
+     *
      * @param produitAVendre
      * @param quantite
      * @param prix
      * @param marche
      */
-    public void vendreProduit(Produits produitAVendre, Integer quantite, Double prix,Marche marche) {
+    public void vendreProduit(Produits produitAVendre, Integer quantite, Double prix, Marche marche) {
         Identificateur identificateur = new Identificateur();
-        for (int i = stock.size()-1; i >= 0 ; i--) {
-            if(stock.get(i).identifier(identificateur).equals(produitAVendre)){
-                if(stock.get(i).getQuantite()>=quantite){
-                    ProduitFermier pTemp= (ProduitFermier) stock.get(i).clone();
+        for (int i = stock.size() - 1; i >= 0; i--) {
+            if (stock.get(i).identifier(identificateur).equals(produitAVendre)) {
+                if (stock.get(i).getQuantite() >= quantite) {
+                    ProduitFermier pTemp = (ProduitFermier) stock.get(i).clone();
                     pTemp.setQuantite(quantite);
-                    if(marche.getControlleur().validerVente(pTemp,"validé", prix, this)){
-                        new Vente(pTemp,this,prix,marche);
-                        if(stock.get(i).getQuantite()-quantite==0){
+                    if (marche.getControlleur().validerVente(pTemp, "validé", prix, this)) {
+                        new Vente(pTemp, this, prix, marche);
+                        if (stock.get(i).getQuantite() - quantite == 0) {
                             stock.remove(stock.get(i));
-                        }else{
-                            stock.get(i).setQuantite(stock.get(i).getQuantite()-quantite);
+                        } else {
+                            stock.get(i).setQuantite(stock.get(i).getQuantite() - quantite);
                         }
                         System.out.println("la vente c'est bien passée");
-                    }else{
+                    } else {
                         System.out.println("le controle de l'objet c'est mal passé");
                     }
 
@@ -294,13 +317,14 @@ public abstract class Participant {
 
     /**
      * Fonction permettant à un participant de proposer une offre tant que le solde de celui-ci est supérieur au prix qu'il propose
+     *
      * @param produitAAcheter
      * @param quantite
      * @param prix
      * @param marche
      */
-    public void proposerOffre(Produits produitAAcheter, Integer quantite, Double prix,Marche marche){
-        if(quantite!=0) {
+    public void proposerOffre(Produits produitAAcheter, Integer quantite, Double prix, Marche marche) {
+        if (quantite != 0) {
             if (solde >= prix) {
                 new Offre(produitAAcheter, this, prix, quantite, marche);
             } else {
@@ -311,6 +335,7 @@ public abstract class Participant {
 
     /**
      * Calcule les cotisations d'une participant en fonction d'une ou plusieurs stratégies.
+     *
      * @param strategies
      */
     public void calculerRemises(Strategy... strategies) {
@@ -320,7 +345,7 @@ public abstract class Participant {
             remises += s.calcRemise(this);
         }
         this.clearVenteNonRemisee();
-        opArgent(0 - (this.solde * ((15 - (remises/100))/100)));
+        opArgent(0 - (this.solde * ((15 - (remises / 100)) / 100)));
     }
 
     public void addVenteNonRemisee(Vente vente) {
@@ -341,6 +366,7 @@ public abstract class Participant {
 
     /**
      * modifie la valeur de la variable trader d'un objet Participant
+     *
      * @param trader
      */
     public void setTrader(Trader trader) {
@@ -348,12 +374,13 @@ public abstract class Participant {
     }
 
     /**
-     *revoie la variable produitOffre d'un objet de type Offre
+     * revoie la variable produitOffre d'un objet de type Offre
+     *
      * @return String
      */
     @Override
     public String toString() {
-        return nom+ "\n";
+        return nom + "\n";
     }
 
 }

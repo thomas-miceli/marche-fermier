@@ -4,6 +4,7 @@ import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import static fr.univamu.iut.marche.traitement.Main.*;
+
 /**
  * @author Yann FORNER
  * @author Thomas MICELI

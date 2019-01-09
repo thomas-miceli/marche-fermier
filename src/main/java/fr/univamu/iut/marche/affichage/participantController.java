@@ -1,7 +1,6 @@
 package fr.univamu.iut.marche.affichage;
 
 import fr.univamu.iut.marche.traitement.acteurs.CentraleAchat;
-import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import fr.univamu.iut.marche.traitement.remises.StratProduitBio;
@@ -54,21 +53,23 @@ public class participantController extends VBox implements Initializable {
     private Button choixButton;
     private Button choixButton2;
     private Button choixButton3;
+
     @FXML
-    public void setViewToListeparticipants() throws IOException{
+    public void setViewToListeparticipants() throws IOException {
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new listeParticipantController());
     }
 
     private static ProduitFermier selectedProduit;
     private ObservableList<String> data = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Participant participantCurrent = listeParticipantController.getSelectedParticipant();
         System.out.println(participantCurrent.getClass().getSimpleName());
-        if (participantCurrent.getClass().getSimpleName().equals("CentraleAchat")){
+        if (participantCurrent.getClass().getSimpleName().equals("CentraleAchat")) {
             CentraleAchat centraleAchat = (CentraleAchat) participantCurrent;
-            for(Participant participant : centraleAchat.getMembres()){
+            for (Participant participant : centraleAchat.getMembres()) {
                 data.add(participant.getPrenom() + ' ' + participant.getNom());
             }
             listeParticipant.setItems(data);
@@ -96,9 +97,9 @@ public class participantController extends VBox implements Initializable {
                     }
                 }
             });
-        }else{
-            for (int i =0; i<participantCurrent.getStock().size(); ++i) {
-                data.add("Produit : " + participantCurrent.getStock().get(i).getClass().getSimpleName() +"  Quantité : " + participantCurrent.getStock().get(i).getQuantite() + "  | Date de peremption : "+ participantCurrent.getStock().get(i).getDateDePeremption().getMonth() + '-' +(participantCurrent.getStock().get(i).getDateDePeremption().getYear()-100+2000) + "   | Id : " + i);
+        } else {
+            for (int i = 0; i < participantCurrent.getStock().size(); ++i) {
+                data.add("Produit : " + participantCurrent.getStock().get(i).getClass().getSimpleName() + "  Quantité : " + participantCurrent.getStock().get(i).getQuantite() + "  | Date de peremption : " + participantCurrent.getStock().get(i).getDateDePeremption().getMonth() + '-' + (participantCurrent.getStock().get(i).getDateDePeremption().getYear() - 100 + 2000) + "   | Id : " + i);
                 produitParticipantsString.add(data.get(i));
                 produitsParticipants.add(participantCurrent.getStock().get(i));
             }
@@ -144,7 +145,7 @@ public class participantController extends VBox implements Initializable {
         }
 
         participantName.setText(participantCurrent.getPrenom() + ' ' + participantCurrent.getNom());
-        participantInfo.setText("Info \nAge : " + participantCurrent.getAge() + " | Nombre de produits : " + participantCurrent.getStock().size() + " | Solde : " + participantCurrent.getSolde()  + " | Type : "  + participantCurrent.getClass().getSimpleName()  );
+        participantInfo.setText("Info \nAge : " + participantCurrent.getAge() + " | Nombre de produits : " + participantCurrent.getStock().size() + " | Solde : " + participantCurrent.getSolde() + " | Type : " + participantCurrent.getClass().getSimpleName());
 
     }
 
@@ -159,15 +160,18 @@ public class participantController extends VBox implements Initializable {
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new productionController());
     }
+
     public void setViewToAddParticipant() throws IOException {
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new addParticipantController());
     }
+
     public void setViewToPoserOffre() throws IOException {
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new PoserOffreController());
     }
-    public static ProduitFermier getSelectedProduit(){
+
+    public static ProduitFermier getSelectedProduit() {
         return selectedProduit;
     }
 }

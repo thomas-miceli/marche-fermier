@@ -1,6 +1,9 @@
 package fr.univamu.iut.marche;
 
-import fr.univamu.iut.marche.traitement.acteurs.*;
+import fr.univamu.iut.marche.traitement.acteurs.CentraleAchat;
+import fr.univamu.iut.marche.traitement.acteurs.Controlleur;
+import fr.univamu.iut.marche.traitement.acteurs.Marche;
+import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Apiculteur;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Orticulteur;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.ProducteurDeViande;
@@ -9,8 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+
 /**
  * @author Thomas MICELI
  */
@@ -57,17 +59,17 @@ public class CentraleTest {
 
     @Test
     public void test_add_offre() {
-        p1.fabriquerProduit(Participant.Produits.MIEL,1000);
+        p1.fabriquerProduit(Participant.Produits.MIEL, 1000);
 
-        centrale.poserOffre(Participant.Produits.MIEL, p1,10.0,2,marche);
+        centrale.poserOffre(Participant.Produits.MIEL, p1, 10.0, 2, marche);
         assertEquals(p1, centrale.recupOffresCentrales(Participant.Produits.MIEL, 5.0).get(0).getAcheteur());
     }
 
     @Test
     public void test_add_vente() {
-        p1.fabriquerProduit(Participant.Produits.MIEL,1000);
+        p1.fabriquerProduit(Participant.Produits.MIEL, 1000);
 
-        centrale.vendre(Participant.Produits.MIEL, p1,10.0,2,marche);
+        centrale.vendre(Participant.Produits.MIEL, p1, 10.0, 2, marche);
         assertEquals(p1, centrale.recupVentesCentrales(Participant.Produits.MIEL, 5.0).get(0).getVendeur());
     }
 

@@ -1,7 +1,5 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
-import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
-
 /**
  * @author Téo MARTIN
  * @author Yann FORNER
@@ -14,19 +12,20 @@ public class Offre {
     private Integer quantite;
     private Double prixParU;
 
-    public Offre(Participant.Produits produitOffre, Participant acheteur, Double prixOffre,Integer quantite, Marche marche) {
+    public Offre(Participant.Produits produitOffre, Participant acheteur, Double prixOffre, Integer quantite, Marche marche) {
         this.produitOffre = produitOffre;
         this.prixOffre = prixOffre;
         this.acheteur = acheteur;
         this.marche = marche;
-        this.quantite=quantite;
-        this.prixParU= Double.valueOf((prixOffre/quantite));
+        this.quantite = quantite;
+        this.prixParU = Double.valueOf((prixOffre / quantite));
         marche.addOffre(this);
         marche.updateMarket();
     }
 
     /**
      * revoie la variable produitOffre d'un objet de type Offre
+     *
      * @return produitOffre
      */
     public Participant.Produits getProduitOffre() {
@@ -35,6 +34,7 @@ public class Offre {
 
     /**
      * modifie la valeur de la variable produitOffre d'un objet Offre
+     *
      * @param produitOffre
      */
     public void setProduitOffre(Participant.Produits produitOffre) {
@@ -43,6 +43,7 @@ public class Offre {
 
     /**
      * revoie la variable produitOffre d'un objet de type Offre
+     *
      * @return quantité
      */
     public Integer getQuantite() {
@@ -51,6 +52,7 @@ public class Offre {
 
     /**
      * modifie la valeur de la variable quantite d'un objet Offre
+     *
      * @param quantite
      */
     public void setQuantite(Integer quantite) {
@@ -59,6 +61,7 @@ public class Offre {
 
     /**
      * revoie la variable produitOffre d'un objet de type Offre
+     *
      * @return marche
      */
     public Marche getMarche() {
@@ -67,6 +70,7 @@ public class Offre {
 
     /**
      * modifie la valeur de la variable produitOffre d'un objet Offre
+     *
      * @param marche
      */
     public void setMarche(Marche marche) {
@@ -75,6 +79,7 @@ public class Offre {
 
     /**
      * revoie la variable produitOffre d'un objet de type Offre
+     *
      * @return prixOffre
      */
     public Double getPrixOffre() {
@@ -82,7 +87,6 @@ public class Offre {
     }
 
     /**
-     *
      * @param prixOffre
      */
     public void setPrixOffre(Double prixOffre) {
@@ -91,6 +95,7 @@ public class Offre {
 
     /**
      * revoie la variable produitOffre d'un objet de type Offre
+     *
      * @return acheteur
      */
     public Participant getAcheteur() {
@@ -99,6 +104,7 @@ public class Offre {
 
     /**
      * modifie la valeur de la variable acheteur d'un objet Offre
+     *
      * @param acheteur
      */
     public void setAcheteur(Participant acheteur) {
@@ -107,6 +113,7 @@ public class Offre {
 
     /**
      * revoie la variable produitOffre d'un objet de type Offre
+     *
      * @return prixParU
      */
     public Double getPrixParU() {
@@ -115,6 +122,7 @@ public class Offre {
 
     /**
      * modifie la valeur de la variable prixParU d'un objet Offre
+     *
      * @param prixParU
      */
     public void setPrixParU(Double prixParU) {
@@ -124,12 +132,13 @@ public class Offre {
     /**
      * redéfinit la valeur du prixParU en fonction du prixOffre et la quantite
      */
-    public void refreshPrixParU(){
-        prixParU= (double) (prixOffre/quantite);
+    public void refreshPrixParU() {
+        prixParU = (double) (prixOffre / quantite);
     }
 
     /**
      * revoie la variable produitOffre d'un objet de type Offre
+     *
      * @return String
      */
     @Override

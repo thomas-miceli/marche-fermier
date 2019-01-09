@@ -1,11 +1,10 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
 
-import fr.univamu.iut.marche.traitement.Observer.Observer;
-import fr.univamu.iut.marche.traitement.produits.*;
-import fr.univamu.iut.marche.traitement.remises.StratProduitBio;
-import fr.univamu.iut.marche.traitement.remises.StratProduitQuantite;
 import fr.univamu.iut.marche.affichage.homeController;
+import fr.univamu.iut.marche.traitement.Observer.Observer;
+import fr.univamu.iut.marche.traitement.produits.Identificateur;
+import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.ArrayList;
 

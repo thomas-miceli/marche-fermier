@@ -1,74 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univamu.iut.marche.affichage.homeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0"
+            prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="fr.univamu.iut.marche.affichage.homeController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="Marché">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#setSceneToAjoutPaysan" text="Nouveau Paysan" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#setSceneToAjoutParticipant" text="Nouveau Participant" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#setSceneToAjoutTrader" text="Nouveau Trader" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#setSceneToParticipantsView" text="Listes Participants" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem onAction="#actionQuitter" text="Quitter" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToAjoutPaysan" text="Nouveau Paysan"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToAjoutParticipant"
+                                  text="Nouveau Participant"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToAjoutTrader" text="Nouveau Trader"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToParticipantsView"
+                                  text="Listes Participants"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem onAction="#actionQuitter" text="Quitter"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Transactions">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#setSceneToCatalogView" text="Catalogue" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#setSceneToOffreView" text="Offres" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#setSceneToProposerOffreView" text="Proposer une offre" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#setSceneToTransactionView" text="Transaction" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToCatalogView" text="Catalogue"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToOffreView" text="Offres"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToProposerOffreView"
+                                  text="Proposer une offre"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToTransactionView" text="Transaction"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Cotations">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#setSceneToCotationView" text="Prix par unité" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToCotationView" text="Prix par unité"/>
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
     </top>
     <bottom>
-        <AnchorPane prefHeight="23.0" prefWidth="800.0" style="-fx-background-color: dedede;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="23.0" prefWidth="800.0" style="-fx-background-color: dedede;"
+                    BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER_RIGHT" contentDisplay="TOP" prefHeight="24.0" prefWidth="800.0" text="Version 1.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <Label alignment="CENTER_RIGHT" contentDisplay="TOP" prefHeight="24.0" prefWidth="800.0"
+                       text="Version 1.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <padding>
-                        <Insets right="20.0" />
-                    </padding></Label>
+                        <Insets right="20.0"/>
+                    </padding>
+                </Label>
             </children>
         </AnchorPane>
     </bottom>
     <center>
         <VBox fx:id="contentVBox" prefHeight="497.0" prefWidth="538.0">
             <padding>
-                <Insets left="10.0" right="10.0" top="10.0" />
-            </padding></VBox>
+                <Insets left="10.0" right="10.0" top="10.0"/>
+            </padding>
+        </VBox>
     </center>
     <right>
         <VBox prefHeight="497.0" prefWidth="185.0">
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Marché fermier" />
-                <Text fx:id="soldeFxmlUser" strokeType="OUTSIDE" strokeWidth="0.0" text="Solde : " />
-            <Text fx:id="notification" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="113.0" />
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Marché fermier"/>
+                <Text fx:id="soldeFxmlUser" strokeType="OUTSIDE" strokeWidth="0.0" text="Solde : "/>
+                <Text fx:id="notification" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="113.0"/>
             </children>
         </VBox>
     </right>

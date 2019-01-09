@@ -4,6 +4,7 @@ import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 
 import java.util.ArrayList;
+
 /**
  * @author Téo MARTIN
  * @author Yann FORNER
@@ -13,7 +14,7 @@ public class Trader {
     private String name;
     private String prenom;
     private int age;
-    private Double solde=0.0;
+    private Double solde = 0.0;
     private ArrayList<Participant> clients = new ArrayList<>();
     private static ArrayList<Trader> allTraders = new ArrayList<>();
 
@@ -28,7 +29,7 @@ public class Trader {
         allTraders.add(this);
     }
 
-    public static ArrayList<Trader> getAllTraders(){
+    public static ArrayList<Trader> getAllTraders() {
         return allTraders;
     }
 
@@ -59,48 +60,53 @@ public class Trader {
 
     /**
      * ajoute une client à la liste clients
+     *
      * @param p
      */
-    public void addClients (Participant p){
+    public void addClients(Participant p) {
         clients.add(p);
         p.setTrader(this);
     }
 
     /**
      * Ajoute à la vente un objet de type ProduitFermier d'un de ses clients dans un marché
+     *
      * @param client
      * @param produitMisEnVente
      * @param quantite
      * @param prix
      * @param marche
      */
-    public void metEnVente(Participant client, Participant.Produits produitMisEnVente , Integer quantite, Double prix, Marche marche){
-        if(isClient(client))client.vendreProduit(produitMisEnVente,quantite,prix,marche);
+    public void metEnVente(Participant client, Participant.Produits produitMisEnVente, Integer quantite, Double prix, Marche marche) {
+        if (isClient(client)) client.vendreProduit(produitMisEnVente, quantite, prix, marche);
     }
 
     /**
      * Ajoute une offre d'achat sur un ou plusieurs objets de type ProduitFermier en vente dans un objet de
      * type Marche
+     *
      * @param client
      * @param produitMisEnVente
      * @param quantite
      * @param prix
      * @param marche
      */
-    public void poseUneOffre(Participant client, Participant.Produits produitMisEnVente , Integer quantite, Double prix, Marche marche){
-        if(isClient(client))client.proposerOffre(produitMisEnVente,quantite,prix,marche);
+    public void poseUneOffre(Participant client, Participant.Produits produitMisEnVente, Integer quantite, Double prix, Marche marche) {
+        if (isClient(client)) client.proposerOffre(produitMisEnVente, quantite, prix, marche);
     }
 
     /**
      * Ajoute 1/8 d'un revenu au solde du Trader
+     *
      * @param revenu
      */
-    public void ajouterAuSolde(double revenu){
-        solde += revenu/8;
+    public void ajouterAuSolde(double revenu) {
+        solde += revenu / 8;
     }
 
     /**
      * revoie la valeur de la variable solde d'un objet de type Trader
+     *
      * @return solde
      */
     public Double getSolde() {
@@ -109,6 +115,7 @@ public class Trader {
 
     /**
      * permet de modifier la valeur de la variable solde d'un objet de type Trader
+     *
      * @param solde
      */
     public void setSolde(Double solde) {
@@ -117,6 +124,7 @@ public class Trader {
 
     /**
      * revoie la valeur de la variable name d'un objet de type Trader
+     *
      * @return name
      */
     public String getName() {
@@ -125,6 +133,7 @@ public class Trader {
 
     /**
      * revoie le contenu de l'ArrayList<Participant> clients.
+     *
      * @return clients
      */
     public ArrayList<Participant> getClients() {
@@ -133,13 +142,14 @@ public class Trader {
 
     /**
      * revoie vrai si un Participant fait partie de la liste de clients du trader, faux sinon
+     *
      * @param p
      * @return boolean
      */
-    public boolean isClient(Participant p){
+    public boolean isClient(Participant p) {
 
-        for (Participant client: clients) {
-            if(p.equals(client)){
+        for (Participant client : clients) {
+            if (p.equals(client)) {
                 return true;
             }
         }
@@ -148,13 +158,14 @@ public class Trader {
 
     /**
      * renvoie l'ensemble des valeurs des variables d'un objet Trader
+     *
      * @return
      */
     @Override
     public String toString() {
-        String string = "Le trader " + this.getName() +" possèdent " + clients.size() + " client \n";
-        for (Participant participant: clients){
-            string+=participant.getNom() +' ' + participant.getPrenom()+'\n';
+        String string = "Le trader " + this.getName() + " possèdent " + clients.size() + " client \n";
+        for (Participant participant : clients) {
+            string += participant.getNom() + ' ' + participant.getPrenom() + '\n';
         }
         return string;
     }

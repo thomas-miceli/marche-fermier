@@ -5,18 +5,14 @@ import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Apiculteur;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Orticulteur;
-import fr.univamu.iut.marche.traitement.acteurs.Paysans.Paysan;
-import fr.univamu.iut.marche.traitement.acteurs.Vente;
-import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import fr.univamu.iut.marche.traitement.remises.StratProduitBio;
 import fr.univamu.iut.marche.traitement.remises.StratProduitQuantite;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
+
 /**
  * @author Thomas MICELI
  */

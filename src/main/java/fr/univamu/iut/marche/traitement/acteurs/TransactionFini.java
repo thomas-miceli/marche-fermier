@@ -1,6 +1,5 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
-import java.util.ArrayList;
 /**
  * @author Yann FORNER
  */
@@ -13,7 +12,7 @@ public class TransactionFini {
 
     private Participant.Produits produitVendu;
 
-    public TransactionFini(Offre o , Vente v, Integer quantite) {
+    public TransactionFini(Offre o, Vente v, Integer quantite) {
 
         this.vendeur = v.getVendeur();
         this.acheteur = o.getAcheteur();
@@ -26,6 +25,7 @@ public class TransactionFini {
 
     /**
      * revoie le vendeur de la TransactionFini
+     *
      * @return vendeur
      */
     public Participant getVendeur() {
@@ -34,6 +34,7 @@ public class TransactionFini {
 
     /**
      * modifie le vendeur de la TransactionFini
+     *
      * @param vendeur
      */
     public void setVendeur(Participant vendeur) {
@@ -42,6 +43,7 @@ public class TransactionFini {
 
     /**
      * renvoie l'acheteur de la TransactionFini
+     *
      * @return acheteur
      */
     public Participant getAcheteur() {
@@ -50,6 +52,7 @@ public class TransactionFini {
 
     /**
      * modifie l'acheteur de la TransactionFini
+     *
      * @param acheteur
      */
     public void setAcheteur(Participant acheteur) {
@@ -58,6 +61,7 @@ public class TransactionFini {
 
     /**
      * revoie la variable produitOffre d'un objet de type Offre
+     *
      * @return prix
      */
     public Double getPrix() {
@@ -66,6 +70,7 @@ public class TransactionFini {
 
     /**
      * modifie le prix de la TransactionFini
+     *
      * @param prix
      */
     public void setPrix(Double prix) {
@@ -74,6 +79,7 @@ public class TransactionFini {
 
     /**
      * renvoie la quantite d'une TransactionFinie
+     *
      * @return quantite
      */
     public Integer getQuantite() {
@@ -82,6 +88,7 @@ public class TransactionFini {
 
     /**
      * modifie la quantite d'une TransactionFini
+     *
      * @param quantite
      */
     public void setQuantite(Integer quantite) {
@@ -90,6 +97,7 @@ public class TransactionFini {
 
     /**
      * renvoie le produitVendu d'une TransactionFinie
+     *
      * @return produitVendu
      */
     public Participant.Produits getProduitVendu() {
@@ -98,6 +106,7 @@ public class TransactionFini {
 
     /**
      * modifie le produitVendu d'une TransactionFinie
+     *
      * @param produitVendu
      */
     public void setProduitVendu(Participant.Produits produitVendu) {
@@ -106,10 +115,11 @@ public class TransactionFini {
 
     /**
      * revoie les valeurs des variables de TransactionFinie dans une chaine de caractères
+     *
      * @return String
      */
     @Override
     public String toString() {
-        return "Vendeur : " + vendeur.getPrenom() + ' ' + vendeur.getNom() + " vends " + quantite + ' '  + produitVendu + " à " + acheteur.getPrenom() +' '+acheteur.getNom() + " pour " + prix + "€ l'unité";
+        return "Vendeur : " + vendeur.getPrenom() + ' ' + vendeur.getNom() + " vends " + quantite + ' ' + produitVendu + " à " + acheteur.getPrenom() + ' ' + acheteur.getNom() + " pour " + prix + "€ l'unité";
     }
 }

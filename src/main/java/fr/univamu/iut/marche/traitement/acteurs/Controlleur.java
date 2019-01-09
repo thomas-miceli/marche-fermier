@@ -18,23 +18,25 @@ public class Controlleur {
 
     /**
      * Ajoute un objet de type ProduitFermier à la listeProduitsInterdits
+     *
      * @param p
      * @param label
      * @param prix
      * @param paysan
      */
-    public void addProduitToList (ProduitFermier p, String label, int prix, Participant paysan){
+    public void addProduitToList(ProduitFermier p, String label, int prix, Participant paysan) {
         if (validerVente(p, label, prix, paysan))
             listeProduitsInterdits.add(p);
     }
 
     /**
      * renvoie vrai si le ProduitFermier défini se trouve dans listeProduitsInterdits, faux sinon
+     *
      * @param p
      * @return boolean
      */
-    private boolean isInterdit(ProduitFermier p){
-        for (ProduitFermier produit: listeProduitsInterdits) {
+    private boolean isInterdit(ProduitFermier p) {
+        for (ProduitFermier produit : listeProduitsInterdits) {
             if (produit == p)
                 return true;
         }
@@ -44,13 +46,14 @@ public class Controlleur {
     /**
      * Renvoie vrai si le produit prédéfini n'est pas interdit, si son label n'est pas invalide et si son prix
      * se trouve entre les bornes maxPrix et minPrix. Faux sinon.
+     *
      * @param p
      * @param label
      * @param prix
      * @param paysan
      * @return boolean
      */
-    public boolean validerVente(ProduitFermier p, String label, double prix, Participant paysan){
+    public boolean validerVente(ProduitFermier p, String label, double prix, Participant paysan) {
         Participant.Produits prod = Participant.Produits.valueOf(p.getType().toUpperCase());
 
         if (isInterdit(p)) {
@@ -81,6 +84,7 @@ public class Controlleur {
 
     /**
      * modifie la valeur de la variable minPrix.
+     *
      * @param prod
      * @param prix
      */
@@ -94,6 +98,7 @@ public class Controlleur {
 
     /**
      * modifie la valeur de la variable maxPrix.
+     *
      * @param prod
      * @param prix
      */
@@ -107,6 +112,7 @@ public class Controlleur {
 
     /**
      * renvoie la valeur de la variable minPrix.
+     *
      * @param prod
      * @return minPrix
      */
@@ -116,6 +122,7 @@ public class Controlleur {
 
     /**
      * renvoie la valeur de la variable maxPrix
+     *
      * @param prod
      * @return minPrix
      */
@@ -125,9 +132,10 @@ public class Controlleur {
 
     /**
      * sanctionne un utilisateur en lui soustrayant une amende de son solde
+     *
      * @param vendeur
      */
-    public void sanctionner (Participant vendeur){
+    public void sanctionner(Participant vendeur) {
         vendeur.subSolde(150.0, (Vente) null);
     }
 }

@@ -3,27 +3,29 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<fx:root fx:id="contentVBox" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121"
+         xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Text fx:id="participantName" strokeType="OUTSIDE" strokeWidth="0.0" text="Participants inconnu">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Text>
+        <ListView fx:id="listeParticipant" prefHeight="300.0" prefWidth="650.0">
+            <opaqueInsets>
+                <Insets bottom="10" top="10"/>
+            </opaqueInsets>
+        </ListView>
+        <Text fx:id="participantInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Participant Inconnu">
+            <Insets bottom="15" top="15"/>
+        </Text>
+        <HBox fx:id="choix">
+            <Button mnemonicParsing="false" onAction="#setViewToListeparticipants" text="Liste Participants"/>
+        </HBox>
 
-<?import javafx.scene.layout.HBox?>
-<fx:root fx:id="contentVBox" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
-        <children>
-            <Text fx:id="participantName" strokeType="OUTSIDE" strokeWidth="0.0" text="Participants inconnu">
-                <font>
-                    <Font size="16.0" />
-                </font>
-            </Text>
-            <ListView fx:id="listeParticipant" prefHeight="300.0" prefWidth="650.0">
-                <opaqueInsets>
-                    <Insets bottom="10" top="10" />
-                </opaqueInsets>
-            </ListView>
-            <Text fx:id="participantInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Participant Inconnu">
-                <Insets bottom="15" top="15" />
-            </Text>
-            <HBox fx:id="choix"><Button mnemonicParsing="false" onAction="#setViewToListeparticipants" text="Liste Participants" /></HBox>
-
-        </children>
+    </children>
 </fx:root>

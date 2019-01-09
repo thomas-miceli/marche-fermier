@@ -3,14 +3,13 @@ package fr.univamu.iut.marche.traitement.produits;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 /**
  * @author Yann FORNER
  */
-public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
+public abstract class ProduitFermier implements ProduitVisitable, Cloneable {
     protected int quantite;
     protected Date dateDePeremption;
     protected String label;
@@ -20,6 +19,7 @@ public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
 
     /**
      * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     *
      * @return String
      */
     @Override
@@ -38,6 +38,7 @@ public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
 
     /**
      * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     *
      * @return quantite
      */
     public int getQuantite() {
@@ -46,6 +47,7 @@ public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
 
     /**
      * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     *
      * @return label
      */
     public String getLabel() {
@@ -53,7 +55,6 @@ public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
     }
 
     /**
-     *
      * @param quantite
      */
     public void setQuantite(int quantite) {
@@ -62,6 +63,7 @@ public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
 
     /**
      * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     *
      * @return dateDePeremption
      */
     public Date getDateDePeremption() {
@@ -69,7 +71,6 @@ public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
     }
 
     /**
-     *
      * @param dateDePeremption
      */
     public void setDateDePeremption(Date dateDePeremption) {
@@ -78,48 +79,51 @@ public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
 
     /**
      * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     *
      * @return String
      */
-    public String getDateToString(){
+    public String getDateToString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH);
         return sdf.format(getDateDePeremption());
     }
 
     /**
      * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     *
      * @param label
      * @return boolean
      */
-    public boolean valider(String label){
-        if(getDateDePeremption().compareTo(new Date())> 0){
-            this.label=label;
+    public boolean valider(String label) {
+        if (getDateDePeremption().compareTo(new Date()) > 0) {
+            this.label = label;
             return true;
         }
         return false;
     }
 
     /**
-     *
      * @param produitFermier
      */
-    public void fusionnerObjet(ProduitFermier produitFermier){
-        if(this.getClass().getSimpleName().equals(produitFermier.getClass().getSimpleName())){
-            setQuantite(quantite+produitFermier.getQuantite());
-            produitFermier=null;
+    public void fusionnerObjet(ProduitFermier produitFermier) {
+        if (this.getClass().getSimpleName().equals(produitFermier.getClass().getSimpleName())) {
+            setQuantite(quantite + produitFermier.getQuantite());
+            produitFermier = null;
         }
     }
 
     /**
      * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     *
      * @return String
      */
-    public String getStringDate(){
+    public String getStringDate() {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         return format.format(dateDePeremption);
     }
 
     /**
      * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     *
      * @return this.getClass().getSimpleName()
      */
     public String getType() {
@@ -133,6 +137,7 @@ public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
 
     /**
      * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     *
      * @return o
      */
     public Object clone() {
@@ -141,7 +146,7 @@ public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
             // On récupère l'instance à renvoyer par l'appel de la
             // méthode super.clone()
             o = super.clone();
-        } catch(CloneNotSupportedException cnse) {
+        } catch (CloneNotSupportedException cnse) {
             // Ne devrait jamais arriver car nous implémentons
             // l'interface Cloneable
             cnse.printStackTrace(System.err);
