@@ -18,27 +18,27 @@ public abstract class UniteDeProduction {
      * @param quantite
      */
     public ProduitFermier cree(String type, int quantite) {
-        switch (type) {
-            case "MIEL":
-                return new Miel(quantite, calcDatePeremption());
-            case "ORANGE":
-                return new Orange(quantite, calcDatePeremption());
-            case "POMME":
-                return new Pomme(quantite, calcDatePeremption());
-            case "LAIT":
-                return new Lait(quantite, calcDatePeremption());
-            case "FROMAGE":
-                return new Fromage(quantite, calcDatePeremption());
-            case "VACHE":
-                return new Vache(quantite, calcDatePeremption());
-            case "COCHON":
-                return new Cochon(quantite, calcDatePeremption());
-            default:
-                try {
+        try {
+            switch (type) {
+                case "MIEL":
+                    return new Miel(quantite, calcDatePeremption());
+                case "ORANGE":
+                    return new Orange(quantite, calcDatePeremption());
+                case "POMME":
+                    return new Pomme(quantite, calcDatePeremption());
+                case "LAIT":
+                    return new Lait(quantite, calcDatePeremption());
+                case "FROMAGE":
+                    return new Fromage(quantite, calcDatePeremption());
+                case "VACHE":
+                    return new Vache(quantite, calcDatePeremption());
+                case "COCHON":
+                    return new Cochon(quantite, calcDatePeremption());
+                default:
                     throw new ClassNotFoundException();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
         return null;
     }
