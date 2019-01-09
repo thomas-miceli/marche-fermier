@@ -44,11 +44,6 @@
                         <MenuItem mnemonicParsing="false" onAction="#setSceneToCotationView" text="Prix par unité" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Aide">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#showCredits" text="À propos" />
-                    </items>
-                </Menu>
             </menus>
         </MenuBar>
     </top>

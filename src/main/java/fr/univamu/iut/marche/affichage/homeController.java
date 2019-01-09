@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -34,8 +35,6 @@ public class homeController implements Initializable {
 
     @FXML
     private Text notification;
-
-    private static Stage credits;
     public void setStageAndSetupListeners(Stage stage) {
         stage.setOnCloseRequest(event -> Platform.exit());
     }
@@ -90,22 +89,6 @@ public class homeController implements Initializable {
     public void setSceneToProposerOffreView() throws IOException{
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new ProposerOffreController());
-    }
-    @FXML
-    public void showCredits() throws IOException {
-        Stage creditStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr.univ_amu.iut/views/credits.fxml"));
-        Pane root = loader.load();
-        creditStage.setScene(new Scene(root));
-        creditStage.setTitle("Crédits");
-        creditStage.setResizable(false);
-        credits = creditStage;
-        creditStage.show();
-    }
-
-
-    public static Stage getCreditStage() {
-        return credits;
     }
 
     @FXML
