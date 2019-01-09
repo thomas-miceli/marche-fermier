@@ -31,6 +31,10 @@ public class Marche {
         this.controlleur= c;
     }
 
+    /**
+     * modifie le homeController du Marche
+     * @param h
+     */
     public static void setHomeController(homeController h){
         homeController = h;
     }
