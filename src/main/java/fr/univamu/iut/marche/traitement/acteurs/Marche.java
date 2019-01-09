@@ -112,7 +112,7 @@ public class Marche {
                 if(v.getVendeur().getTrader()==null){
                     v.getVendeur().addSolde(o.getPrixOffre(),o);
                 }else{
-                    v.getVendeur().getTrader().ajouterAuSolde(v.getPrix());
+                    v.getVendeur().getTrader().ajouterAuSolde(o.getPrixOffre());
                     v.getVendeur().addSolde(o.getPrixOffre()*(7/8),o);
                 }
                 o.getAcheteur().subSolde(o.getPrixOffre(),v);

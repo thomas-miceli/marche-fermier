@@ -65,7 +65,7 @@ public class Trader {
         if(isClient(client))client.proposerOffre(produitMisEnVente,quantite,prix,marche);
     }
     public void ajouterAuSolde(double revenu){
-        solde+=revenu*1/8;
+        solde += revenu/8;
     }
 
 
