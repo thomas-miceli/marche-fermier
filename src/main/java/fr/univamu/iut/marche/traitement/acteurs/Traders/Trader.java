@@ -27,9 +27,6 @@ public class Trader {
     public static ArrayList<Trader> getAllTraders(){
         return allTraders;
     }
-    public String getName() {
-        return name;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -51,9 +48,6 @@ public class Trader {
         this.age = age;
     }
 
-    public Double getSolde() {
-        return solde;
-    }
 
     public void setSolde(double solde) {
         this.solde = solde;
