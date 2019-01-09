@@ -7,12 +7,53 @@ import java.util.ArrayList;
 
 public class Trader {
     private String name;
+    private String prenom;
+    private int age;
     private Double solde=0.0;
     private ArrayList<Participant> clients = new ArrayList<>();
 
     public Trader(String name) {
         this.name = name;
     }
+
+    public Trader(String name, String prenom, int age) {
+        this.name = name;
+        this.prenom = prenom;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Double getSolde() {
+        return solde;
+    }
+
+    public void setSolde(double solde) {
+        this.solde = solde;
+    }
+
     public void addClients (Participant p){
         clients.add(p);
         p.setTrader(this);
@@ -23,20 +64,11 @@ public class Trader {
     public void poseUneOffre(Participant client, Participant.Produits produitMisEnVente , Integer quantite, Double prix, Marche marche){
         if(isClient(client))client.proposerOffre(produitMisEnVente,quantite,prix,marche);
     }
-    public void ajouterAuSolde(Double revenu){
+    public void ajouterAuSolde(double revenu){
         solde+=revenu*1/8;
     }
-    public Double getSolde() {
-        return solde;
-    }
 
-    public void setSolde(Double solde) {
-        this.solde = solde;
-    }
 
-    public String getName() {
-        return name;
-    }
 
     public ArrayList<Participant> getClients() {
         return clients;
