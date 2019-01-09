@@ -8,6 +8,8 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.ArrayList;
 
+import static fr.univamu.iut.marche.traitement.Main.*;
+
 /***
  * @author Pierre LEJEUNE
  * @author Téo MARTIN
@@ -109,32 +111,28 @@ public class Marche {
     public void addOffre(Offre o) {
         offresMarche.add(o);
         if (homeController != null) homeController.setNotification("Une nouvelle offre est présente !");
-        System.out.println("une nouvelle offre est présente");
+        System.out.println(ANSI_CYAN + "Une nouvelle offre est présente : " + ANSI_RESET + o.toString());
     }
 
     /**
      * affiche l'ensemble des Vente et Offre présentes pour le Marche sur el terminal
      */
     public void show() {
-        System.out.println("Marché :");
-        System.out.println("VENTES : ");
+        System.out.println(ANSI_GREEN + "Marché :" + ANSI_RESET + "@" + Integer.toHexString(System.identityHashCode(this)));
+        System.out.println(ANSI_CYAN + "    Ventes : " + ANSI_RESET);
         for (Vente v : compositionMarche) {
-            System.out.println("------------");
-            System.out.println(v.getProduitVendu().getClass().getSimpleName() + " : " + v.getPrix() + " euro pour " + v.getProduitVendu().getQuantite());
-            System.out.println("vendu par " + v.getVendeur().getNom());
+            System.out.println("        " + v.getProduitVendu().getClass().getSimpleName() + " : " + v.getPrix() + " euros pour " + v.getProduitVendu().getQuantite());
+            System.out.println("        vendu par " + v.getVendeur().getPrenom() + " " + v.getVendeur().getNom() + "\n");
         }
-        System.out.println("OFFRES :");
+        System.out.println(ANSI_CYAN + "    Offres : " + ANSI_RESET);
         for (Offre o : offresMarche) {
-            System.out.println("------------");
-            System.out.println(o.getProduitOffre() + " : " + o.getPrixOffre() + " euro pour " + o.getQuantite());
-            System.out.println("Proposé par " + o.getAcheteur().getNom());
+            System.out.println("        " + o.getProduitOffre() + " : " + o.getPrixOffre() + " euros pour " + o.getQuantite());
+            System.out.println("        proposé par " + o.getAcheteur().getPrenom() + " " + o.getAcheteur().getNom() + "\n");
         }
-        System.out.println("fin Marché");
-        System.out.println("HISTORIQUE-------------");
+        System.out.println(ANSI_CYAN + "    Historique : " + ANSI_RESET);
         for (TransactionFini t : historiqueDesVentes) {
-            System.out.println(t);
+            System.out.println("        " + t);
         }
-        System.out.println("FIN HISTORIQUE ----------");
     }
 
     /**
@@ -191,7 +189,7 @@ public class Marche {
                 v.getProduitVendu().setQuantite(v.getProduitVendu().getQuantite() - o.getQuantite());
                 v.setPrix(v.getPrix() - o.getPrixOffre());
                 pTemp.setQuantite(o.getQuantite());
-                System.out.println(o.getAcheteur() + " ---> " + pTemp.getClass().getSimpleName() + " " + pTemp.getQuantite());
+                System.out.println(o.getAcheteur() + ANSI_CYAN + "\n    achète --> " + pTemp.toString());
                 o.getAcheteur().addProduit(pTemp);
                 offresMarche.remove(o);
                 new TransactionFini(o, v, o.getQuantite());

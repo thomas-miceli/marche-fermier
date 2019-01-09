@@ -6,6 +6,9 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
+import static fr.univamu.iut.marche.traitement.Main.ANSI_RESET;
+
 /**
  * @author Téo MARTIN
  * @author Yann FORNER
@@ -57,24 +60,24 @@ public class Controlleur {
         Participant.Produits prod = Participant.Produits.valueOf(p.getType().toUpperCase());
 
         if (isInterdit(p)) {
-            System.out.println("Produit interdit");
+            System.out.println(ANSI_RED + "Produit interdit : " + ANSI_RESET + p.toString());
             sanctionner(paysan);
             return false;
         }
         if (!p.valider(label)) {
-            System.out.println("Label invalide");
+            System.out.println(ANSI_RED + "Label invalide : " + ANSI_RESET + p.toString());
             sanctionner(paysan);
             return false;
         }
 
         if (maxPrix.get(prod) != null && getMaxPrix(prod) < prix) {
-            System.out.println("Prix trop haut");
+            System.out.println(ANSI_RED + "Prix trop haut : " + ANSI_RESET + p.toString());
             sanctionner(paysan);
             return false;
         }
 
         if (minPrix.get(prod) != null && getMinPrix(prod) > prix) {
-            System.out.println("Prix trop bas");
+            System.out.println(ANSI_RED + "Prix trop bas : " + ANSI_RESET + p.toString());
             sanctionner(paysan);
             return false;
         }

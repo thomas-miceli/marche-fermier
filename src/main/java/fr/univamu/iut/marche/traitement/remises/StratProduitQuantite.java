@@ -16,7 +16,6 @@ public class StratProduitQuantite implements Strategy {
             if (vente.getProduitVendu().getQuantite() > 199) {
                 pourcentage += 5;
             }
-            System.out.println("XD");
         }
         return pourcentage;
     }

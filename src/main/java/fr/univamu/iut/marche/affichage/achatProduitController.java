@@ -73,7 +73,6 @@ public class achatProduitController extends VBox implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(catalogController.getSelectedProduit());
         Participant participant = Participant.getParticipantbyId(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length() - 1)));
         Vente vente = Marche.getCompositionMarche().get(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length() - 1)));
         produitName.setText(vente.getProduitVendu().getClass().getSimpleName());

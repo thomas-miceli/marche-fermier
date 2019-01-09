@@ -8,6 +8,8 @@ import fr.univamu.iut.marche.traitement.remises.Strategy;
 
 import java.util.ArrayList;
 
+import static fr.univamu.iut.marche.traitement.Main.*;
+
 //import static fr.univamu.iut.marche.traitement.Main.ANSI_RED;
 
 /**
@@ -255,7 +257,7 @@ public abstract class Participant {
      * @param o
      */
     public void addSolde(Double prix, Offre o) {
-        System.out.println("ADD SOLDE NORMAL" + prix);
+        System.out.println("ADD SOLDE NORMAL " + prix);
         this.setSolde(this.getSolde() + prix);
     }
 
@@ -298,15 +300,15 @@ public abstract class Participant {
                     ProduitFermier pTemp = (ProduitFermier) stock.get(i).clone();
                     pTemp.setQuantite(quantite);
                     if (marche.getControlleur().validerVente(pTemp, "validé", prix, this)) {
-                        new Vente(pTemp, this, prix, marche);
+                        Vente v = new Vente(pTemp, this, prix, marche);
                         if (stock.get(i).getQuantite() - quantite == 0) {
                             stock.remove(stock.get(i));
                         } else {
                             stock.get(i).setQuantite(stock.get(i).getQuantite() - quantite);
                         }
-                        System.out.println("la vente c'est bien passée");
+                        System.out.println("La vente s'est bien passée : " + v);
                     } else {
-                        System.out.println("le controle de l'objet c'est mal passé");
+                        System.out.println(ANSI_RED + "Le contrôle de l'objet s'est mal passé");
                     }
 
 
@@ -328,7 +330,7 @@ public abstract class Participant {
             if (solde >= prix) {
                 new Offre(produitAAcheter, this, prix, quantite, marche);
             } else {
-                System.out.println(nom + " n'a pas assez de solde pour placer cette offre");
+                System.out.println(this + ANSI_RED + " n'a pas assez de solde pour placer cette offre !");
             }
         }
     }
@@ -339,7 +341,6 @@ public abstract class Participant {
      * @param strategies
      */
     public void calculerRemises(Strategy... strategies) {
-        System.out.println("aa" + ventesNonRemisees);
         double remises = 0;
         for (Strategy s : strategies) {
             remises += s.calcRemise(this);
@@ -380,7 +381,10 @@ public abstract class Participant {
      */
     @Override
     public String toString() {
-        return nom + "\n";
+        return ANSI_GREEN + this.getClass().getSimpleName() + ANSI_RESET + "@" + Integer.toHexString(System.identityHashCode(this)) + "{" +
+                "prenom='" + prenom + '\'' +
+                ", nom='" + nom + '\'' +
+                ", solde=" + solde +
+                '}';
     }
-
 }

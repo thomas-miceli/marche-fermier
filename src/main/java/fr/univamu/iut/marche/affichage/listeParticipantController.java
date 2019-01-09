@@ -36,7 +36,6 @@ public class listeParticipantController extends VBox implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(Participant.getAllParticipants());
         for (Participant participant : Participant.getAllParticipants()) {
             data.add(participant.getPrenom() + "  " + participant.getNom());
             listeparticipant.add(participant.getPrenom() + "  " + participant.getNom());

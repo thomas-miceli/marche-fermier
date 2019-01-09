@@ -63,7 +63,6 @@ public class ajoutPaysanController extends VBox implements Initializable {
                     paysan = null;
             }
             for (String string : listesProduits) {
-                System.out.println(choixQuantiteProduits.get(listesProduits.indexOf(string)).getCharacters().toString());
                 ajouterProdtoPaysan(paysan, string);
             }
             Random Solde = new Random();

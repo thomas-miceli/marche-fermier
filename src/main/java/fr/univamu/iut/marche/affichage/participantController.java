@@ -66,7 +66,6 @@ public class participantController extends VBox implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Participant participantCurrent = listeParticipantController.getSelectedParticipant();
-        System.out.println(participantCurrent.getClass().getSimpleName());
         if (participantCurrent.getClass().getSimpleName().equals("CentraleAchat")) {
             CentraleAchat centraleAchat = (CentraleAchat) participantCurrent;
             for (Participant participant : centraleAchat.getMembres()) {

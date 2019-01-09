@@ -39,7 +39,6 @@ public class ajoutTraderController extends VBox implements Initializable {
         }
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new listeParticipantController());
-        System.out.println(trader.toString());
     }
 
     @Override

@@ -2,6 +2,8 @@ package fr.univamu.iut.marche.traitement.Observer;
 
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
 
+import static fr.univamu.iut.marche.traitement.Main.ANSI_CYAN;
+
 /**
  * @author Yann FORNER
  */
@@ -16,7 +18,6 @@ public class ObserverNewVente extends Observer {
      */
     @Override
     public void updateO() {
-        System.out.println("une nouvelle vente est apparue");
-        System.out.println(marche.getCompositionMarche().get(marche.getCompositionMarche().size() - 1));
+        System.out.println(ANSI_CYAN + "Une nouvelle vente est apparue : " + marche.getCompositionMarche().get(marche.getCompositionMarche().size() - 1));
     }
 }

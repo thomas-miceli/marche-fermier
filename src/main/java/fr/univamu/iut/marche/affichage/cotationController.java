@@ -33,7 +33,6 @@ public class cotationController extends VBox implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(Participant.getAllParticipants());
         for (Participant.Produits p : Participant.Produits.values()) {
             data.add("Prix moyen pour : " + p.toString() + " -> " + Marche.cotationProduitparU(p));
         }

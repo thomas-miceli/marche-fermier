@@ -47,7 +47,6 @@ public class productionController extends VBox implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         productionBox.getChildren().add(0, new Text("Produire : "));
-        System.out.println(listeParticipantController.getSelectedParticipant().getClass().getSimpleName());
         ChoiceBox<String> cb = null;
         switch (listeParticipantController.getSelectedParticipant().getClass().getSimpleName()) {
             case "Apiculteur":

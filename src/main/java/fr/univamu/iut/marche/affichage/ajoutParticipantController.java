@@ -60,7 +60,6 @@ public class ajoutParticipantController extends VBox implements Initializable {
                     participant = null;
             }
             for (String string : listesProduits) {
-                System.out.println(choixQuantiteProduits.get(listesProduits.indexOf(string)).getCharacters().toString());
                 ajouterProdtoParticipant(participant, string);
             }
             Random Solde = new Random();

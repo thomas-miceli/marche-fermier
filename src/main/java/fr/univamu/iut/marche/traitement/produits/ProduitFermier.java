@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import static fr.univamu.iut.marche.traitement.Main.ANSI_GREEN;
+import static fr.univamu.iut.marche.traitement.Main.ANSI_RESET;
+
 /**
  * @author Yann FORNER
  */
@@ -24,7 +27,7 @@ public abstract class ProduitFermier implements ProduitVisitable, Cloneable {
      */
     @Override
     public String toString() {
-        return "ProduitFermier{" +
+        return ANSI_GREEN + this.getClass().getSimpleName() + ANSI_RESET + "@" + Integer.toHexString(System.identityHashCode(this)) + "{" +
                 "quantite=" + quantite +
                 ", dateDePeremption=" + dateDePeremption +
                 ", label='" + label + '\'' +

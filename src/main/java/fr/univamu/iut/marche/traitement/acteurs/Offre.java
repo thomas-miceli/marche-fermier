@@ -1,5 +1,8 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
+import static fr.univamu.iut.marche.traitement.Main.ANSI_GREEN;
+import static fr.univamu.iut.marche.traitement.Main.ANSI_RESET;
+
 /**
  * @author Téo MARTIN
  * @author Yann FORNER
@@ -143,7 +146,7 @@ public class Offre {
      */
     @Override
     public String toString() {
-        return "Offre{" +
+        return ANSI_GREEN + "Offre" + ANSI_RESET + "@" + Integer.toHexString(System.identityHashCode(this)) + "{" +
                 "produitOffre=" + produitOffre +
                 ", prixOffre=" + prixOffre +
                 ", quantite=" + quantite +

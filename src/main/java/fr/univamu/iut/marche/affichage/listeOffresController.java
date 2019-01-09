@@ -2,7 +2,6 @@ package fr.univamu.iut.marche.affichage;
 
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Offre;
-import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -33,7 +32,6 @@ public class listeOffresController extends VBox implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(Participant.getAllParticipants());
         for (Offre offre : Marche.getOffresMarche()) {
             data.add(offre.toString());
         }

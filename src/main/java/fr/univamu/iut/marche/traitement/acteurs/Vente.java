@@ -4,6 +4,9 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.ArrayList;
 
+import static fr.univamu.iut.marche.traitement.Main.ANSI_GREEN;
+import static fr.univamu.iut.marche.traitement.Main.ANSI_RESET;
+
 /**
  * @author Yann FORNER
  */
@@ -127,9 +130,11 @@ public class Vente {
      */
     @Override
     public String toString() {
-        return "Vente{" +
-                "produitVendu=" + produitVendu.getQuantite() + " " + produitVendu.getClass().getSimpleName() +
+        return ANSI_GREEN + "Vente" + ANSI_RESET + "@" + Integer.toHexString(System.identityHashCode(this)) + "{" +
+                "produitVendu=" + produitVendu +
+                ", vendeur=" + vendeur +
                 ", prix=" + prix +
+                ", marche=" + marche +
                 '}';
     }
 

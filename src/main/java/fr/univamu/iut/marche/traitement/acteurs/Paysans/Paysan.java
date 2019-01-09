@@ -23,7 +23,7 @@ public abstract class Paysan extends Participant {
                 ANSI_CYAN + "Produits en stock : " + ANSI_RESET);
 
         for (ProduitFermier produit : this.getStock()) {
-            System.out.println(produit.getClass().getSimpleName() + " | Quantité: " + produit.getQuantite() + " | Péremption: " + produit.getDateToString());
+            System.out.println(produit.toString());
         }
         System.out.println("\n");
     }
