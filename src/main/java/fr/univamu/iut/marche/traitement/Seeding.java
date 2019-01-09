@@ -57,14 +57,15 @@ public class Seeding {
         p2.show();
         p3.show();
 
-//        centraleAchat.poserOffre(Participant.Produits.MIEL,p1,10.0,2,marche);
-//        p2.proposerOffre(Participant.Produits.COCHON, 15, 50.0, marche);
-//        p1.vendreProduit(Participant.Produits.MIEL,1,10.0,marche);
+        centraleAchat.poserOffre(Participant.Produits.MIEL,p1,10.0,2,marche);
+        p2.proposerOffre(Participant.Produits.COCHON, 15, 50.0, marche);
+        p1.vendreProduit(Participant.Produits.MIEL,1,10.0,marche);
 
 
         p2.vendreProduit(Participant.Produits.VACHE, 20, 2000.0, marche);
         p1.proposerOffre(Participant.Produits.VACHE, 10, 1000.0, marche);
         p3.vendreProduit(Participant.Produits.POMME,10,100.0,marche);
+        p3.vendreProduit(Participant.Produits.ORANGE,10,100.0,marche);
         p1.proposerOffre(Participant.Produits.POMME,10,100.0,marche);
         marche.show();
 
