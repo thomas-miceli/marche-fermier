@@ -37,8 +37,8 @@
                         <MenuItem mnemonicParsing="false" onAction="#setSceneToTransactionView" text="Transaction" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" onAction="#setSceneToCotationView" text="Cotations"/>
-                <Menu mnemonicParsing="false"  text="Aide">
+                <Menu mnemonicParsing="false" onAction="#setSceneToCotationView" text="Cotations" />
+                <Menu mnemonicParsing="false" text="Aide">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#showCredits" text="À propos" />
                     </items>
@@ -53,6 +53,7 @@
                     <padding>
                         <Insets right="20.0" />
                     </padding></Label>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="" fx:id="notification" />
             </children>
         </AnchorPane>
     </bottom>
