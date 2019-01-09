@@ -55,7 +55,7 @@ public class ajoutParticipantController extends VBox implements Initializable {
             Participant participant = null;
             switch (selectedType) {
                 case "Grossiste":
-                    /*participant = new Grossiste(getStringOfTextField(Nom), getStringOfTextField(Prenom), getIntOfTextField(Age));*/
+                    participant = new Grossiste(Nom.getCharacters().toString(), Prenom.getCharacters().toString(), Integer.valueOf(Age.getCharacters().toString()));
                     break;
                 case "Centrale d'achat":
                     participant = new CentraleAchat(Nom.getCharacters().toString(), Prenom.getCharacters().toString(), Integer.valueOf(Age.getCharacters().toString()));

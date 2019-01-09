@@ -23,7 +23,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
 
-public class ajoutPaysanController extends VBox implements Initializable {
+public class ajoutPaysanController extends VBox implements Initializable{
     @FXML
     private VBox contentVBox;
 
@@ -35,34 +35,6 @@ public class ajoutPaysanController extends VBox implements Initializable {
     private TextField Prenom;
     @FXML
     private TextField Age;
-    /*@FXML
-    private TextField Cochon;
-    @FXML
-    private TextField CochonPrix;
-    @FXML
-    private TextField Fromage;
-    @FXML
-    private TextField FromagePrix;
-    @FXML
-    private TextField Lait;
-    @FXML
-    private TextField LaitPrix;
-    @FXML
-    private TextField Miel;
-    @FXML
-    private TextField MielPrix;
-    @FXML
-    private TextField Orange;
-    @FXML
-    private TextField OrangePrix;
-    @FXML
-    private TextField Pomme;
-    @FXML
-    private TextField PommePrix;
-    @FXML
-    private TextField Vache;
-    @FXML
-    private TextField VachePrix;*/
     @FXML
     private Text alertText;
     @FXML
