@@ -45,8 +45,8 @@ public class catalogController extends VBox implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         for (int i=0; i<Marche.getCompositionMarche().size(); i++) {
             if(Marche.getCompositionMarche().get(i).getVendeur().getStock().size()!=0) {
-                textaffichetotextdescription.put(Marche.getCompositionMarche().get(i).getProduitVendu().getClass().getSimpleName() + "        Quantité  : " + Marche.getCompositionMarche().get(i).getProduitVendu().getQuantite() + "        id : " + i, Marche.getCompositionMarche().get(i).getProduitVendu().getClass().getSimpleName() + ',' + Marche.getCompositionMarche().get(i).getVendeur().getPrenom() + ',' + Marche.getCompositionMarche().get(i).getVendeur().getNom() + ',' + i );
-                data.add(Marche.getCompositionMarche().get(i).getProduitVendu().getClass().getSimpleName() + "        Quantité  : " + Marche.getCompositionMarche().get(i).getProduitVendu().getQuantite() + "        id : " + i);
+                textaffichetotextdescription.put(Marche.getCompositionMarche().get(i).getProduitVendu().getClass().getSimpleName() + "        Quantité  : " + Marche.getCompositionMarche().get(i).getProduitVendu().getQuantite() + "         prix : " + Marche.getCompositionMarche().get(i).getPrix() + "        id : " + i, Marche.getCompositionMarche().get(i).getProduitVendu().getClass().getSimpleName() + ',' + Marche.getCompositionMarche().get(i).getVendeur().getPrenom() + ',' + Marche.getCompositionMarche().get(i).getVendeur().getNom() + ',' + i );
+                data.add(Marche.getCompositionMarche().get(i).getProduitVendu().getClass().getSimpleName() + "        Quantité  : " + Marche.getCompositionMarche().get(i).getProduitVendu().getQuantite() + "         prix : " + Marche.getCompositionMarche().get(i).getPrix() + "        id : " + i);
             }
         }
         listeVentes.setItems(data);
@@ -55,7 +55,7 @@ public class catalogController extends VBox implements Initializable {
                     try {
                         root.getChildren().clear();
                         selectedProduit = newValue;
-                        root.getChildren().addAll(new venteProduitController());
+                        root.getChildren().addAll(new achatProduitController());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

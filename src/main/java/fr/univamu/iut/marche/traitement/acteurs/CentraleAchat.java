@@ -75,7 +75,7 @@ public class CentraleAchat extends Participant {
                             }
                         }
                     } else {
-                        this.vendreProduit(p, quantite, prix, marche, vendeurInitial);
+                        this.vendreProduit(p, quantite, prix, marche);
                     }
                     new VenteCentrale(p, vendeurInitial, prix, quantite, marche);
                 }

@@ -116,7 +116,7 @@ public class homeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Marche.setHomeController(this);
-        venteProduitController.setHomeController(this);
+        achatProduitController.setHomeController(this);
         soldeFxmlUser.setText("Solde : " + Seeding.getFxmlUser().getSolde());
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll();

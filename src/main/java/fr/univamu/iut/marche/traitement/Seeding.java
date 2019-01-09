@@ -42,7 +42,7 @@ public class Seeding {
         p1.fabriquerProduit(Participant.Produits.MIEL ,550);
         p1.fabriquerProduit(Participant.Produits.MIEL,1000);
 
-        p1.vendreProduit(Participant.Produits.MIEL,100,11.0,marche, p1);
+        p1.vendreProduit(Participant.Produits.MIEL,100,11.0,marche);
         p3.proposerOffre(Participant.Produits.MIEL,100,11.0,marche);
         p2.fabriquerProduit(Participant.Produits.COCHON,  30);
         p2.fabriquerProduit(Participant.Produits.VACHE, 40);
@@ -58,7 +58,7 @@ public class Seeding {
         p3.show();
 
 
-        p2.vendreProduit(Participant.Produits.COCHON, 15, 150.0, marche, p2);
+        p2.vendreProduit(Participant.Produits.COCHON, 15, 150.0, marche);
 
         marche.show();
 
