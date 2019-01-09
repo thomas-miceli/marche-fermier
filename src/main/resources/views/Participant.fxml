@@ -7,6 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.layout.HBox?>
 <fx:root fx:id="contentVBox" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
         <children>
             <Text fx:id="participantName" strokeType="OUTSIDE" strokeWidth="0.0" text="Participants inconnu">
@@ -20,8 +21,9 @@
                 </opaqueInsets>
             </ListView>
             <Text fx:id="participantInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Participant Inconnu">
-                <Insets bottom="15" top="15"/>
+                <Insets bottom="15" top="15" />
             </Text>
-      <Button mnemonicParsing="false" text="Liste Participants" onAction="#setViewToListeparticipants"/>
+            <HBox fx:id="choix"><Button mnemonicParsing="false" onAction="#setViewToListeparticipants" text="Liste Participants" /></HBox>
+
         </children>
 </fx:root>

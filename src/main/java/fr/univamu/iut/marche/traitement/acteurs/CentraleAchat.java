@@ -114,7 +114,7 @@ public class CentraleAchat extends Participant {
         }
     }
 
-    private class VenteCentrale {
+    public class VenteCentrale {
 
         private Participant.Produits produits;
         private Participant vendeur;
@@ -213,7 +213,7 @@ public class CentraleAchat extends Participant {
                     '}';
         }
     }
-    private class OffreCentrale{
+    public class OffreCentrale{
         private Participant.Produits produits;
         private Participant acheteur;
         private Double prix;

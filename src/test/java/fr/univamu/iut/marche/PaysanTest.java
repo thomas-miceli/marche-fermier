@@ -6,6 +6,7 @@ import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Apiculteur;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Orticulteur;
 import fr.univamu.iut.marche.traitement.acteurs.Paysans.Paysan;
+import fr.univamu.iut.marche.traitement.acteurs.Vente;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 import fr.univamu.iut.marche.traitement.remises.StratProduitBio;
 import fr.univamu.iut.marche.traitement.remises.StratProduitQuantite;
@@ -80,10 +81,10 @@ public class PaysanTest {
         p1.vendreProduit(Participant.Produits.MIEL, 100, 150.0, marche);
 
         p2.fabriquerProduit(Participant.Produits.MIEL, 150);
-        p2.vendreProduit(Participant.Produits.MIEL, 120, 130.0, marche);
+
         p2.proposerOffre(Participant.Produits.MIEL, 20, 30.0, marche);
 
-        assertEquals(50, p2.getStock().get(0).getQuantite());
+        assertEquals(170, p2.getStock().get(0).getQuantite());
     }
 
     /**
@@ -206,6 +207,35 @@ public class PaysanTest {
         // solde restant => 1350 - 200.745
 
         assertEquals(1149.255, p3.getSolde(), 0.001);
+    }
+
+    @Test
+    public void test_Ventes_Non_Remises() {
+        p3.fabriquerProduit(Participant.Produits.POMME, 200);
+        p3.fabriquerProduit(Participant.Produits.ORANGE, 250);
+
+        p3.vendreProduit(Participant.Produits.POMME, 200, 200.0, marche);
+        p3.vendreProduit(Participant.Produits.ORANGE, 250, 250.0, marche);
+
+        p1.proposerOffre(Participant.Produits.POMME, 200, 200.0, marche);
+        p1.proposerOffre(Participant.Produits.ORANGE, 250, 250.0, marche);
+
+        assertFalse(p3.getVentesNonRemisees().isEmpty());
+
+        p3.calculerRemises(new StratProduitQuantite(), new StratProduitBio());
+
+        assertTrue(p3.getVentesNonRemisees().isEmpty());
+    }
+
+    @Test
+    public void test_Ventes_Maximum() {
+        p1.fabriquerProduit(Participant.Produits.MIEL, 550);
+        p1.vendreProduit(Participant.Produits.MIEL, 100, 150.0, marche);
+
+        marche.show();
+
+        //assertEquals(500, vente.getProduitVendu().getQuantite());
+
     }
 
 }
