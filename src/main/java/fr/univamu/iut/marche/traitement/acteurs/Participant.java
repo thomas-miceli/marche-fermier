@@ -127,7 +127,7 @@ public abstract class Participant {
 
         // le stock max est de 500
 
-        if (this.stock.size() == 500)
+        if (this.stock.size() == maxStock)
             return;
 
         int numproduits = 0;
@@ -137,10 +137,9 @@ public abstract class Participant {
 
         numproduits += produit.getQuantite();
 
-        if (numproduits > 500) {
-            produit.setQuantite(numproduits - 500);
+        if ( maxStock+numproduits >=500) {
+            produit.setQuantite(maxStock+produit.getQuantite()-maxStock);
         }
-
         this.stock.add(produit);
         setStock(Seeding.compilerProduits(this.stock));
     }
