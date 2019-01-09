@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Pierre LEJEUNE
  * @author Téo MARTIN
  * @author Yann FORNER
+ * @author Thomas MICELI
  * Ceci est la classe Marché qui possède toutes les fonctions permettant de gérer celui-ci
  */
 
@@ -91,20 +92,13 @@ public class Marche {
                 v.getVendeur().addSolde(o.getPrixOffre()*(7/8),v);
             }
 
-            if (v.getProduitVendu().getType().equals("Miel") || v.getProduitVendu().getType().equals("Pomme")) {
-                v.getVendeur().calculerCotisations(new StratProduitBio());
-            }
 
-            if (v.getProduitVendu().getQuantite() > 200) {
-                v.getVendeur().calculerCotisations(new StratProduitQuantite());
-            }
-
-           v.getVendeur().setSolde(v.getVendeur().getSolde()+o.getPrixOffre());//refaire
             o.getAcheteur().subSolde(o.getPrixOffre(),v);
-           o.getAcheteur().addProduit(v.getProduitVendu());
-           offresMarche.remove(o);
-           compositionMarche.remove(v);
-           new TransactionFini(o,v,o.getQuantite());
+            o.getAcheteur().addProduit(v.getProduitVendu());
+            offresMarche.remove(o);
+            compositionMarche.remove(v);
+            v.getVendeur().addVenteNonRemisee(v);
+            new TransactionFini(o,v,o.getQuantite());
         }//cas basique
         else if(o.getPrixParU().equals(v.getPrixParU())){
             ProduitFermier pTemp= (ProduitFermier)v.getProduitVendu().clone();

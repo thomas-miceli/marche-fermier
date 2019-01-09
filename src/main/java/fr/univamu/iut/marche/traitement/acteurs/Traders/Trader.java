@@ -69,7 +69,6 @@ public class Trader {
     }
 
 
-
     public ArrayList<Participant> getClients() {
         return clients;
     }

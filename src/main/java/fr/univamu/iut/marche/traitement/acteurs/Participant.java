@@ -4,6 +4,8 @@ import fr.univamu.iut.marche.traitement.Seeding;
 import fr.univamu.iut.marche.traitement.acteurs.Traders.Trader;
 import fr.univamu.iut.marche.traitement.produits.Identificateur;
 import fr.univamu.iut.marche.traitement.produits.*;
+import fr.univamu.iut.marche.traitement.remises.StratProduitBio;
+import fr.univamu.iut.marche.traitement.remises.StratProduitQuantite;
 import fr.univamu.iut.marche.traitement.remises.Strategy;
 
 import java.util.ArrayList;
@@ -34,6 +36,9 @@ public abstract class Participant {
     protected int age;
     private ArrayList<ProduitFermier> stock = new ArrayList<>();
     protected double solde = 0;
+
+
+    protected ArrayList<Vente> ventesNonRemisees = new ArrayList<>();
 
     protected static ArrayList<Participant> listeParticipant = new ArrayList<>();
 
@@ -84,10 +89,6 @@ public abstract class Participant {
 
     public void opArgent(double montant) {
         this.solde += montant;
-    }
-
-    public boolean canBuy(double argent) {
-        return !((this.solde -= argent) < 0);
     }
 
     public static ArrayList<Participant> getAllParticipants(){
@@ -149,7 +150,7 @@ public abstract class Participant {
     /**
      * Ajoute de l'argent au solde existant du participant pour l'offre de produits
      * @param prix
-     * @param v
+     * @param o
      */
     public void addSolde(Double prix, Offre o){
         System.out.println("ADD SOLDE NORMAL");
@@ -168,7 +169,7 @@ public abstract class Participant {
     /**
      * Retire de l'argent au solde existant du participant pour l'offre de produits
      * @param prix
-     * @param v
+     * @param o
      */
     public void subSolde(Double prix, Offre o){
         System.out.println("SUB SOLDE NORMAL");
@@ -227,14 +228,26 @@ public abstract class Participant {
      * Calcule les cotisations d'une participant en fonction d'une ou plusieurs stratégies.
      * @param strategies
      */
-    public void calculerCotisations(Strategy... strategies) {
+    public void calculerRemises(Strategy... strategies) {
+        System.out.println("aa" + ventesNonRemisees);
         double remises = 0;
         for (Strategy s : strategies) {
-            if (s.calcRemise(this) != 0)
-                remises += s.calcRemise(this);
+            remises += s.calcRemise(this);
         }
-        System.out.println(remises);
+        this.clearVenteNonRemisee();
         opArgent(0 - (this.solde * ((15 - (remises/100))/100)));
+    }
+
+    public void addVenteNonRemisee(Vente vente) {
+        this.ventesNonRemisees.add(vente);
+    }
+
+    public void clearVenteNonRemisee() {
+        this.ventesNonRemisees.clear();
+    }
+
+    public ArrayList<Vente> getVentesNonRemisees() {
+        return ventesNonRemisees;
     }
 
     public Trader getTrader() {
