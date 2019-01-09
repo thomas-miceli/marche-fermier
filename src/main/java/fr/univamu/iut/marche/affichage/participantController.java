@@ -64,7 +64,7 @@ public class participantController extends VBox implements Initializable {
                     try {
                         contentVBox.getChildren().clear();
                         selectedProduit = produitsParticipants.get(produitParticipantsString.indexOf(newValue));
-                        contentVBox.getChildren().addAll(new participantController());
+                        contentVBox.getChildren().addAll(new vendreProduitController());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

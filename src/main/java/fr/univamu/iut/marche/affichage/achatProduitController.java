@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 
-public class venteProduitController extends VBox implements Initializable {
+public class achatProduitController extends VBox implements Initializable {
 
     @FXML
     private VBox contentVBox;
@@ -36,6 +36,8 @@ public class venteProduitController extends VBox implements Initializable {
 
     @FXML
     private Text popupAlert;
+    @FXML
+    private Text produitPrix;
 
     @FXML
     private TextField QuantiteVoulus;
@@ -66,8 +68,8 @@ public class venteProduitController extends VBox implements Initializable {
     public static void setHomeController(homeController h){
         homeController = h;
     }
-    public venteProduitController() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/VenteProduit.fxml"));
+    public achatProduitController() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/AchatProduit.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         fxmlLoader.load();
@@ -80,6 +82,7 @@ public class venteProduitController extends VBox implements Initializable {
         Vente vente = Marche.getCompositionMarche().get(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
         produitName.setText(vente.getProduitVendu().getClass().getSimpleName());
         produitQuantite.setText("Quantitée : " + String.valueOf(vente.getProduitVendu().getQuantite()));
+        produitPrix.setText("Prix : " + vente.getPrix());
 
     }
 }
