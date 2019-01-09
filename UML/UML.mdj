@@ -1273,23 +1273,6 @@
 										},
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAFoMbOsd617RHI=",
-											"_parent": {
-												"$ref": "AAAAAAFnX3XLZKdTe1Y="
-											},
-											"model": {
-												"$ref": "AAAAAAFoMbOsUq14hyo="
-											},
-											"font": "Arial;13;0",
-											"left": 1821,
-											"top": 1581,
-											"width": 592.76513671875,
-											"height": 13,
-											"text": "+removeV(v: VenteCentrale, m: Marche)",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
 											"_id": "AAAAAAFoMbTGHbMorRE=",
 											"_parent": {
 												"$ref": "AAAAAAFnX3XLZKdTe1Y="
@@ -1299,7 +1282,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1821,
-											"top": 1596,
+											"top": 1581,
 											"width": 592.76513671875,
 											"height": 13,
 											"text": "+removeO(o: OffreCentrale, m: Marche)",
@@ -1310,7 +1293,7 @@
 									"left": 1816,
 									"top": 1366,
 									"width": 602.76513671875,
-									"height": 248
+									"height": 233
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -14191,36 +14174,6 @@
 						},
 						{
 							"_type": "UMLOperation",
-							"_id": "AAAAAAFoMbOsUq14hyo=",
-							"_parent": {
-								"$ref": "AAAAAAFnX3XLZKdKgjg="
-							},
-							"name": "removeV",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFoMbS+o7ITIkA=",
-									"_parent": {
-										"$ref": "AAAAAAFoMbOsUq14hyo="
-									},
-									"name": "v",
-									"type": "VenteCentrale"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFoMbS+o7IU5CA=",
-									"_parent": {
-										"$ref": "AAAAAAFoMbOsUq14hyo="
-									},
-									"name": "m",
-									"type": {
-										"$ref": "AAAAAAFnX3QGp6cf8Ck="
-									}
-								}
-							]
-						},
-						{
-							"_type": "UMLOperation",
 							"_id": "AAAAAAFoMbTF+7MlT/4=",
 							"_parent": {
 								"$ref": "AAAAAAFnX3XLZKdKgjg="
@@ -14469,7 +14422,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFoMYs1B8lCoww="
 									},
-									"name": "produitsMisEnVente Participant"
+									"name": "produitsMisEnVente Participant",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -14536,7 +14490,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFoMY0UGc2Npu8="
 									},
-									"name": "produitsMisEnVente Participant"
+									"name": "produitsMisEnVente Participant",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
