@@ -38,33 +38,7 @@ public class ajoutParticipantController extends VBox implements Initializable {
     @FXML
     private TextField Age;
     @FXML
-    private TextField Cochon;
-    @FXML
-    private TextField CochonPrix;
-    @FXML
-    private TextField Fromage;
-    @FXML
-    private TextField FromagePrix;
-    @FXML
-    private TextField Lait;
-    @FXML
-    private TextField LaitPrix;
-    @FXML
-    private TextField Miel;
-    @FXML
-    private TextField MielPrix;
-    @FXML
-    private TextField Orange;
-    @FXML
-    private TextField OrangePrix;
-    @FXML
-    private TextField Pomme;
-    @FXML
-    private TextField PommePrix;
-    @FXML
-    private TextField Vache;
-    @FXML
-    private TextField VachePrix;
+    private VBox listeProduits;
     @FXML
     private Text alertText;
     @FXML
@@ -72,24 +46,27 @@ public class ajoutParticipantController extends VBox implements Initializable {
     @FXML
     private Text textType;
 
+    private ArrayList<String> listesProduits = new ArrayList<>();
+    private ArrayList<TextField> choixQuantiteProduits = new ArrayList<>();
     private String selectedType = "";
     @FXML
     public void newParticipant() throws IOException{
-        if(!Nom.getCharacters().toString().isEmpty() && !Prenom.getCharacters().toString().isEmpty() && !Age.getCharacters().toString().isEmpty() && !Cochon.getCharacters().toString().isEmpty() && !Fromage.getCharacters().toString().isEmpty() && !Lait.getCharacters().toString().isEmpty() && !Miel.getCharacters().toString().isEmpty() && !Orange.getCharacters().toString().isEmpty() && !Pomme.getCharacters().toString().isEmpty() && !Vache.getCharacters().toString().isEmpty() && !selectedType.isEmpty()){
+        if(!Nom.getCharacters().toString().isEmpty() && !Prenom.getCharacters().toString().isEmpty() && !Age.getCharacters().toString().isEmpty() && !selectedType.isEmpty()){
             Participant participant = null;
             switch (selectedType) {
                 case "Grossiste":
-                    /*participant = new Grossiste(getStringOfTextField(Nom), getStringOfTextField(Prenom), getIntOfTextField(Age));*/
+                    participant = new Grossiste(Nom.getCharacters().toString(), Prenom.getCharacters().toString(), Integer.valueOf(Age.getCharacters().toString()));
                     break;
                 case "Centrale d'achat":
-                    participant = new CentraleAchat(getStringOfTextField(Nom), getStringOfTextField(Prenom), getIntOfTextField(Age));
+                    participant = new CentraleAchat(Nom.getCharacters().toString(), Prenom.getCharacters().toString(), Integer.valueOf(Age.getCharacters().toString()));
                     break;
                 default:
                     participant = null;
             }
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.YEAR, 1);
-            ajouterProdtoParticipant(participant,new Cochon(getIntOfTextField(Cochon),calcDatePeremption()) ,new Lait(getIntOfTextField(Lait), calcDatePeremption()), new Miel(getIntOfTextField(Miel), calcDatePeremption()), new Fromage(getIntOfTextField(Fromage), calcDatePeremption()), new Pomme(getIntOfTextField(Pomme), calcDatePeremption()), new Orange(getIntOfTextField(Orange), calcDatePeremption()), new Vache(getIntOfTextField(Vache), calcDatePeremption()));
+            for (String string : listesProduits){
+                System.out.println(choixQuantiteProduits.get(listesProduits.indexOf(string)).getCharacters().toString());
+                ajouterProdtoParticipant(participant, string);
+            }
             Random Solde = new Random();
             participant.setSolde(Solde.nextInt(400)+200);
             contentVBox.getChildren().clear();
@@ -100,6 +77,20 @@ public class ajoutParticipantController extends VBox implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        for (Participant.Produits produit : Participant.Produits.values()){
+            HBox hBox = new HBox();
+            TextField textField = new TextField("0");
+            String produitStringtemp = produit.toString().substring(0,1);
+            String produitString = produitStringtemp + produit.toString().substring(1).toLowerCase();
+            hBox.getChildren().add(0, new Text(produitString));
+            listesProduits.add(produitString);
+            choixQuantiteProduits.add(textField);
+            String espace = "";
+            for (int i = produitString.length(); i<40; ++i) espace+=' ';
+            hBox.getChildren().add(1, new Text(espace));
+            hBox.getChildren().add(2, textField);
+            listeProduits.getChildren().add(hBox);
+        }
         ChoiceBox<String> cb = new ChoiceBox(FXCollections.observableArrayList("Grossiste", "Centrale d'achat"));
         cb.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
             selectedType = cb.getItems().get((Integer)newValue);
@@ -112,30 +103,31 @@ public class ajoutParticipantController extends VBox implements Initializable {
         fxmlLoader.setController(this);
         fxmlLoader.load();
     }
-
-    public String getStringOfTextField(TextField textField){
-        return textField.getCharacters().toString();
-    }
-    public int getIntOfTextField(TextField textField){
-        try{
-            return Integer.valueOf(getStringOfTextField(textField));
-        }catch (Exception e){
-            return 0;
+    private void ajouterProdtoParticipant(Participant p ,  String s){
+        ProduitFermier pr = creerProduit(s);
+        if(pr.getQuantite()>0){
+            p.addProduit(pr);
         }
-
     }
-    private void ajouterProdtoParticipant(Participant p, ProduitFermier pf1, ProduitFermier pf2, ProduitFermier pf3, ProduitFermier pf4, ProduitFermier pf5, ProduitFermier pf6, ProduitFermier pf7){
-        ajouterProdtoParticipant(p, pf1);
-        ajouterProdtoParticipant(p, pf2);
-        ajouterProdtoParticipant(p, pf3);
-        ajouterProdtoParticipant(p, pf4);
-        ajouterProdtoParticipant(p, pf5);
-        ajouterProdtoParticipant(p, pf6);
-        ajouterProdtoParticipant(p, pf7);
-    }
-    private void ajouterProdtoParticipant(Participant p ,  ProduitFermier produitFermier){
-        if(produitFermier.getQuantite()>0){
-            p.addProduit(produitFermier);
+    private ProduitFermier creerProduit(String s){
+        int i = Integer.valueOf(choixQuantiteProduits.get(listesProduits.indexOf(s)).getCharacters().toString());
+        switch (s){
+            case "Cochon":
+                return new Cochon(i, calcDatePeremption());
+            case "Fromage":
+                return new Fromage(i, calcDatePeremption());
+            case "Lait":
+                return new Lait(i, calcDatePeremption());
+            case "Miel":
+                return new Miel(i, calcDatePeremption());
+            case "Orange":
+                return new Orange(i, calcDatePeremption());
+            case "Pomme":
+                return new Pomme(i, calcDatePeremption());
+            case "Vache":
+                return new Vache(i, calcDatePeremption());
+            default:
+                return null;
         }
     }
     private Date calcDatePeremption(){
