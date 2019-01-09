@@ -191,7 +191,7 @@ public abstract class Participant {
                 if(stock.get(i).getQuantite()>=quantite){
                     ProduitFermier pTemp= (ProduitFermier) stock.get(i).clone();
                     pTemp.setQuantite(quantite);
-                    if(marche.getControlleur().validerVente(pTemp,"validé", prix)){
+                    if(marche.getControlleur().validerVente(pTemp,"validé", prix, this)){
                         new Vente(pTemp,this,prix,marche);
                         if(stock.get(i).getQuantite()-quantite==0){
                             stock.remove(stock.get(i));
