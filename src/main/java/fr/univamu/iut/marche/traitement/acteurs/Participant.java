@@ -179,7 +179,7 @@ public abstract class Participant {
      * @param o
      */
     public void addSolde(Double prix, Offre o){
-        System.out.println("ADD SOLDE NORMAL");
+        System.out.println("ADD SOLDE NORMAL" + prix);
         this.setSolde(this.getSolde()+prix);
     }
 

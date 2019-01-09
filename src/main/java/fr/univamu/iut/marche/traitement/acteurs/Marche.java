@@ -187,6 +187,7 @@ public class Marche {
                     v.getVendeur().getTrader().ajouterAuSolde(o.getPrixOffre());
                     v.getVendeur().addSolde(o.getPrixOffre() * (7 / 8), o);
                 }
+
                 o.getAcheteur().subSolde(o.getPrixOffre(), v);
                 v.getProduitVendu().setQuantite(v.getProduitVendu().getQuantite() - o.getQuantite());
                 v.setPrix(v.getPrix() - o.getPrixOffre());
@@ -202,9 +203,7 @@ public class Marche {
                     v.getVendeur().getTrader().ajouterAuSolde(v.getPrix());
                     v.getVendeur().addSolde(v.getPrix() * (7 / 8), v);
                 }
-
                 o.setPrixOffre(o.getPrixOffre() - v.getPrix());
-                o.getAcheteur().setSolde(o.getAcheteur().getSolde() - v.getPrix());
                 o.getAcheteur().subSolde(v.getPrix(), v);
                 o.setQuantite(o.getQuantite() - v.getProduitVendu().getQuantite());
                 pTemp.setQuantite(v.getProduitVendu().getQuantite());
