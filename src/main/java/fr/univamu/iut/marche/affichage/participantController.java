@@ -4,6 +4,8 @@ import fr.univamu.iut.marche.traitement.acteurs.CentraleAchat;
 import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
+import fr.univamu.iut.marche.traitement.remises.StratProduitBio;
+import fr.univamu.iut.marche.traitement.remises.StratProduitQuantite;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,6 +53,7 @@ public class participantController extends VBox implements Initializable {
 
     private Button choixButton;
     private Button choixButton2;
+    private Button choixButton3;
     @FXML
     public void setViewToListeparticipants() throws IOException{
         contentVBox.getChildren().clear();
@@ -121,7 +124,23 @@ public class participantController extends VBox implements Initializable {
                     }
                 }
             });
+            choixButton2 = new Button("Appliquer remise Bio");
+            choixButton2.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    participantCurrent.calculerRemises(new StratProduitBio());
+                }
+            });
+            choixButton3 = new Button("Appliquer remise quantité");
+            choixButton3.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    participantCurrent.calculerRemises(new StratProduitQuantite());
+                }
+            });
             choix.getChildren().add(choixButton);
+            choix.getChildren().add(choixButton2);
+            choix.getChildren().add(choixButton3);
         }
 
         participantName.setText(participantCurrent.getPrenom() + ' ' + participantCurrent.getNom());
