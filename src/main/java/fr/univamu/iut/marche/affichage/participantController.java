@@ -66,7 +66,7 @@ public class participantController extends VBox implements Initializable {
         if (participantCurrent.getClass().getSimpleName().equals("CentraleAchat")){
             CentraleAchat centraleAchat = (CentraleAchat) participantCurrent;
             for(Participant participant : centraleAchat.getMembres()){
-                data.add(participant.toString());
+                data.add(participant.getPrenom() + ' ' + participant.getNom());
             }
             listeParticipant.setItems(data);
             choixButton = new Button("Ajouter Participants");
