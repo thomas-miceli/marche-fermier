@@ -75,7 +75,7 @@ public class Trader {
      * @param marche
      */
     public void metEnVente(Participant client, Participant.Produits produitMisEnVente , Integer quantite, Double prix, Marche marche){
-        if(isClient(client))client.vendreProduit(produitMisEnVente,quantite,prix,marche);
+        if(isClient(client))client.vendreProduit(produitMisEnVente,quantite,prix,marche, client);
     }
 
     /**

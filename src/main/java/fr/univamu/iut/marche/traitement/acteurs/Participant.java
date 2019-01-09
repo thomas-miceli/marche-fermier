@@ -249,15 +249,16 @@ public abstract class Participant {
      * @param quantite
      * @param prix
      * @param marche
+     * @param paysan
      */
-    public void vendreProduit(Produits produitAVendre, Integer quantite, Double prix,Marche marche) {
+    public void vendreProduit(Produits produitAVendre, Integer quantite, Double prix,Marche marche, Participant paysan) {
         Identificateur identificateur = new Identificateur();
         for (int i = stock.size()-1; i >= 0 ; i--) {
             if(stock.get(i).identifier(identificateur).equals(produitAVendre)){
                 if(stock.get(i).getQuantite()>=quantite){
                     ProduitFermier pTemp= (ProduitFermier) stock.get(i).clone();
                     pTemp.setQuantite(quantite);
-                    if(marche.getControlleur().validerVente(pTemp,"validé", prix)){
+                    if(marche.getControlleur().validerVente(pTemp,"validé", prix, paysan)){
                         new Vente(pTemp,this,prix,marche);
                         if(stock.get(i).getQuantite()-quantite==0){
                             stock.remove(stock.get(i));

@@ -21,9 +21,10 @@ public class Controlleur {
      * @param p
      * @param label
      * @param prix
+     * @param paysan
      */
-    public void addProduitToList (ProduitFermier p, String label, int prix){
-        if (validerVente(p, label, prix))
+    public void addProduitToList (ProduitFermier p, String label, int prix, Participant paysan){
+        if (validerVente(p, label, prix, paysan))
             listeProduitsInterdits.add(p);
     }
 
@@ -46,27 +47,32 @@ public class Controlleur {
      * @param p
      * @param label
      * @param prix
+     * @param paysan
      * @return boolean
      */
-    public boolean validerVente(ProduitFermier p, String label, double prix){
+    public boolean validerVente(ProduitFermier p, String label, double prix, Participant paysan){
         Participant.Produits prod = Participant.Produits.valueOf(p.getType().toUpperCase());
 
         if (isInterdit(p)) {
             System.out.println("Produit interdit");
+            sanctionner(paysan);
             return false;
         }
         if (!p.valider(label)) {
             System.out.println("Label invalide");
+            sanctionner(paysan);
             return false;
         }
 
         if (maxPrix.get(prod) != null && getMaxPrix(prod) < prix) {
             System.out.println("Prix trop haut");
+            sanctionner(paysan);
             return false;
         }
 
         if (minPrix.get(prod) != null && getMinPrix(prod) > prix) {
             System.out.println("Prix trop bas");
+            sanctionner(paysan);
             return false;
         }
 
@@ -117,7 +123,11 @@ public class Controlleur {
         return maxPrix.get(prod);
     }
 
-    public void sanctionner (ProduitFermier p, String label, double prix, Participant vendeur){
+    /**
+     * sanctionne un utilisateur en lui soustrayant une amende de son solde
+     * @param vendeur
+     */
+    public void sanctionner (Participant vendeur){
         vendeur.subSolde(150.0, (Vente) null);
     }
 }
