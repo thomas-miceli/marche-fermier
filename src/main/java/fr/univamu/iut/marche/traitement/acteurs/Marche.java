@@ -108,9 +108,12 @@ public class Marche {
      */
     public void updateMarket(){
         Identificateur i = new Identificateur();
-        for (int j = offresMarche.size() - 1 ; j >= 0 ; j--) {
-            for (int k = compositionMarche.size() - 1 ; k >= 0 ; k--) {
-                if(offresMarche.get(j).getProduitOffre().equals(compositionMarche.get(k).getProduitVendu().identifier(i)))aquisition(offresMarche.get(j),compositionMarche.get(k));
+        for (int j = offresMarche.size() - 1 ; j >=0 ; j--) {
+            for (int k = compositionMarche.size() - 1 ; k >= 0 ; k--) { ;
+                if(offresMarche.get(j).getProduitOffre().equals(compositionMarche.get(k).getProduitVendu().identifier(i))){
+                    aquisition(offresMarche.get(j),compositionMarche.get(k));
+                    break;
+                }
             }
         }
     }
