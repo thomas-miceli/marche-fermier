@@ -9,6 +9,11 @@ import java.util.*;
  */
 public abstract class UniteDeProduction {
 
+    /**
+     * Crée chaque produit par son type en fonction de sa quantité et date de peremption
+     * @param type
+     * @param quantite
+     */
     public ProduitFermier cree(String type, int quantite){
         switch (type){
             case "MIEL":
@@ -37,6 +42,9 @@ public abstract class UniteDeProduction {
 
     public abstract ProduitFermier fabriquer(String type, int quantite) throws ClassNotFoundException ;
 
+    /**
+     * Calcule la date de péremption d'un produit
+     */
     private Date calcDatePeremption(){
 
         Calendar c = Calendar.getInstance();
