@@ -110,6 +110,6 @@ public class TransactionFini {
      */
     @Override
     public String toString() {
-        return "Vendeur : " + vendeur.getPrenom() + ' ' + vendeur.getNom() + " vends " + quantite + ' '  + produitVendu + " à " + acheteur.getPrenom() +' '+acheteur.getNom() + " pour " + prix + "€ chacun";
+        return "Vendeur : " + vendeur.getPrenom() + ' ' + vendeur.getNom() + " vends " + quantite + ' '  + produitVendu + " à " + acheteur.getPrenom() +' '+acheteur.getNom() + " pour " + prix + "€ l'unité";
     }
 }

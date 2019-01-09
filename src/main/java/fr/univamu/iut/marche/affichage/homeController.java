@@ -87,6 +87,11 @@ public class homeController implements Initializable {
         contentVBox.getChildren().addAll(new ajoutTraderController());
     }
     @FXML
+    public void setSceneToProposerOffreView() throws IOException{
+        contentVBox.getChildren().clear();
+        contentVBox.getChildren().addAll(new ProposerOffreController());
+    }
+    @FXML
     public void showCredits() throws IOException {
         Stage creditStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr.univ_amu.iut/views/credits.fxml"));
@@ -97,6 +102,7 @@ public class homeController implements Initializable {
         credits = creditStage;
         creditStage.show();
     }
+
 
     public static Stage getCreditStage() {
         return credits;

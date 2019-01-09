@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Seeding {
     private static ArrayList<Marche> listeMarche = new ArrayList<Marche>();
-    private static Participant FxmlUser = new Orticulteur("Fxml", "User", 18);
+    private static Participant FxmlUser;
 
     Seeding(){
         FxmlUser = new Orticulteur("Utilisateur", "FXML", 18);

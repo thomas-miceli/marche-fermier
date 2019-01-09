@@ -34,6 +34,8 @@
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" onAction="#setSceneToOffreView" text="Offres" />
                         <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSceneToProposerOffreView" text="Proposer une offre" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" onAction="#setSceneToTransactionView" text="Transaction" />
                     </items>
                 </Menu>

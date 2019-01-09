@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
-public class PoserOffreController extends VBox implements Initializable {
+public class ProposerOffreController extends VBox implements Initializable {
 
     @FXML
     private VBox contentVBox;
@@ -38,23 +38,14 @@ public class PoserOffreController extends VBox implements Initializable {
     private BorderPane content;
     @FXML
     private VBox produitChoix;
-    @FXML
-    private VBox listeParticipantCentrale;
-
-
-    private ArrayList<Participant> participants = new ArrayList<>();
-    private ArrayList<CheckBox> participantscheck = new ArrayList<>();
     private String selectedProduit;
-    private String selectedParticipant;
     private TextField prix = new TextField("0");
     private TextField quantite = new TextField("0");
-    private ArrayList<String> listeParticipantsCentraleAchat = new ArrayList<>();
-    private CentraleAchat centraleAchat = (CentraleAchat) listeParticipantController.getSelectedParticipant();
 
     @FXML
-    public void setViewToListeparticipants() throws IOException{
+    public void setViewToCatalog() throws IOException{
         if(Integer.valueOf(prix.getCharacters().toString())!=0 || Integer.valueOf(prix.getCharacters().toString())!=0) {
-            centraleAchat.poserOffre(creerProduit(selectedProduit), centraleAchat.getMembres().get(listeParticipantsCentraleAchat.indexOf(selectedParticipant)), Double.valueOf(prix.getCharacters().toString()), Integer.valueOf(quantite.getCharacters().toString()), Seeding.getListeMarche().get(0));
+            Seeding.getFxmlUser().proposerOffre(creerProduit(selectedProduit), Integer.valueOf(quantite.getCharacters().toString()), Double.valueOf(prix.getCharacters().toString()), Seeding.getListeMarche().get(0));
         }else {
 
         }
@@ -71,23 +62,16 @@ public class PoserOffreController extends VBox implements Initializable {
         cb.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
             selectedProduit = cb.getItems().get((Integer)newValue);
         });
-        produitChoix.getChildren().add(1, cb);
-        produitChoix.getChildren().add(2, new Text("Quantite :"));
-        produitChoix.getChildren().add(3, quantite);
-        produitChoix.getChildren().add(4, new Text("Prix : "));
-        produitChoix.getChildren().add(5,prix);
-        for (Participant participant : centraleAchat.getMembres()) listeParticipantsCentraleAchat.add(participant.getPrenom() + ' ' + participant.getNom());
-        ChoiceBox<String> cb2 = new ChoiceBox(FXCollections.observableArrayList(listeParticipantsCentraleAchat));
-        cb2.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-            selectedParticipant = cb2.getItems().get((Integer)newValue);
-        });
-        listeParticipantCentrale.getChildren().add(0, new Text("Choix participant : "));
-        listeParticipantCentrale.getChildren().add(cb2);
+        produitChoix.getChildren().add(1,cb);
+        produitChoix.getChildren().add(2,new Text("Prix :"));
+        produitChoix.getChildren().add(3, prix);
+        produitChoix.getChildren().add(4, new Text("Quantité :"));
+        produitChoix.getChildren().add(5,quantite);
 
     }
 
-    public PoserOffreController() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/PoserOffre.fxml"));
+    public ProposerOffreController() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/ProposerOffre.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         fxmlLoader.load();
