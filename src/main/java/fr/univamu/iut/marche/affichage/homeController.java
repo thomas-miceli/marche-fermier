@@ -108,7 +108,11 @@ public class homeController implements Initializable {
         achatProduitController.setHomeController(this);
         soldeFxmlUser.setText("Solde : " + Seeding.getFxmlUser().getSolde());
         contentVBox.getChildren().clear();
-        contentVBox.getChildren().addAll();
+        try {
+            contentVBox.getChildren().addAll(new catalogController());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     public void setSoldeFxmlUser(){
