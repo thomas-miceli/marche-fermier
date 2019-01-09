@@ -11,7 +11,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-
+/**
+ * @author Thomas MICELI
+ */
 public class MarcheTest {
 
     private Marche marche;
@@ -37,7 +39,6 @@ public class MarcheTest {
         p1 = null;
         p2 = null;
         p3 = null;
-
     }
 
     /**
@@ -65,6 +66,7 @@ public class MarcheTest {
     public void test_Offre_Donnees() {
         p1.proposerOffre(Participant.Produits.MIEL, 100, 100.0, marche);
 
+        System.out.println(marche.getListOffreClient(p1));
         Offre offre = marche.getListOffreClient(p1).get(0);
 
         assertEquals(p1, offre.getAcheteur());

@@ -10,14 +10,9 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
  */
 public class Apiculteur extends Paysan {
 
-    public enum ProduitsFabricables {
-        MIEL
-    }
-
     public Apiculteur(String nom, String prenom, int age) {
         super(nom, prenom, age);
     }
-
 
     /**
      * Fabrique un objet de type ProduitFermier (ici du miel) et l'ajoute au stock après l'avoir compilé avec les
@@ -28,8 +23,8 @@ public class Apiculteur extends Paysan {
      */
     @Override
     public ProduitFermier fabriquerProduit(Participant.Produits objetFab, int quantite) {
-        ProductionDeMiel productionDeLaitage = new ProductionDeMiel();
-        ProduitFermier produit =  productionDeLaitage.fabriquer(objetFab.name(), quantite);
+        ProductionDeMiel productionDeMiel = new ProductionDeMiel();
+        ProduitFermier produit =  productionDeMiel.fabriquer(objetFab.name(), quantite);
         if(produit!= null){
             this.addProduit(produit);
             this.setStock( Seeding.compilerProduits(this.getStock()));

@@ -94,6 +94,7 @@ public class Seeding {
     public static ArrayList<Marche> getListeMarche(){
         return listeMarche;
     }
+
     public static Participant getFxmlUser(){
         return FxmlUser;
     }

@@ -13,13 +13,6 @@ public class ProducteurLaitier extends Paysan {
         super(nom, prenom, age);
     }
 
-
-
-    public enum ProduitsFabricables {
-        LAIT,
-        FROMAGE
-    }
-
     /**
      * Fabrique un objet de type ProduitFermier (ici du lait)
      * et l'ajoute au stock du paysan l'ayant produit

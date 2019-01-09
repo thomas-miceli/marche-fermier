@@ -4,7 +4,12 @@ import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.acteurs.Vente;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
+/**
+ * @author Thomas MICELI
+ */
 public class StratProduitQuantite implements Strategy {
+
+
     @Override
     public double calcRemise(Participant p) {
         double pourcentage = 0;

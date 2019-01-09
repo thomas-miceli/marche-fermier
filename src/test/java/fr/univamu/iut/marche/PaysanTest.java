@@ -17,7 +17,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
-
+/**
+ * @author Thomas MICELI
+ */
 public class PaysanTest {
 
     private Marche marche;
@@ -134,6 +136,9 @@ public class PaysanTest {
         assertTrue(p1.getStock().isEmpty());
     }
 
+    /**
+     * Teste si l'utilisateur à le bon solde après une certaine réduction
+     */
     @Test
     public void test_Remise_Strategy_Bio() {
         p3.fabriquerProduit(Participant.Produits.POMME, 200);
@@ -158,6 +163,9 @@ public class PaysanTest {
         assertEquals(p3.getSolde(), 1011.857, 0.0001);
     }
 
+    /**
+     * Teste si l'utilisateur à le bon solde après une certaine réduction
+     */
     @Test
     public void test_Remise_Strategy_Quantite() {
         p3.fabriquerProduit(Participant.Produits.POMME, 200);
@@ -183,6 +191,9 @@ public class PaysanTest {
         assertEquals(1148.85, p3.getSolde(), 0.001);
     }
 
+    /**
+     * Teste si l'utilisateur à le bon solde après plusieurs réductions
+     */
     @Test
     public void test_Remise_Strategy_QuantiteBio() {
 
@@ -209,6 +220,9 @@ public class PaysanTest {
         assertEquals(1149.255, p3.getSolde(), 0.001);
     }
 
+    /**
+     * Teste si les ventes non remisées de l'utilisateur sont bien supprimées après une remise effectuée
+     */
     @Test
     public void test_Ventes_Non_Remises() {
         p3.fabriquerProduit(Participant.Produits.POMME, 200);
@@ -226,16 +240,4 @@ public class PaysanTest {
 
         assertTrue(p3.getVentesNonRemisees().isEmpty());
     }
-
-    @Test
-    public void test_Ventes_Maximum() {
-        p1.fabriquerProduit(Participant.Produits.MIEL, 550);
-        p1.vendreProduit(Participant.Produits.MIEL, 100, 150.0, marche);
-
-        marche.show();
-
-        //assertEquals(500, vente.getProduitVendu().getQuantite());
-
-    }
-
 }
