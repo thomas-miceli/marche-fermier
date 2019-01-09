@@ -43,7 +43,7 @@ public class TraderTest {
         marche = null;
         p1 = null;
         p2 = null;
-
+        System.out.println("-------------------");
     }
 
     /**

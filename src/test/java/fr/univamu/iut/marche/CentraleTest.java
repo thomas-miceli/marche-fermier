@@ -45,7 +45,7 @@ public class CentraleTest {
         p1 = null;
         p2 = null;
         p3 = null;
-
+        System.out.println("-------------------");
     }
 
     /**

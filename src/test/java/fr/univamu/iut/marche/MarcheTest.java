@@ -31,7 +31,6 @@ public class MarcheTest {
         p1.setSolde(500);
         p2.setSolde(700);
         p3.setSolde(900);
-
     }
 
     @After
@@ -40,6 +39,23 @@ public class MarcheTest {
         p1 = null;
         p2 = null;
         p3 = null;
+        System.out.println("-------------------");
+    }
+
+    /**
+     * Teste si les données de l'offre sont respectées
+     */
+    @Test
+    public void test_Offre_Donnees() {
+        p1.proposerOffre(Participant.Produits.COCHON, 20, 50.0, marche);
+
+        Offre offre = marche.getListOffreClient(p1).get(0);
+
+        assertEquals(p1, offre.getAcheteur());
+        assertEquals(50, offre.getPrixOffre(), 0.001);
+        assertEquals(2.5, offre.getPrixParU(), 0.001);
+        assertEquals(marche, offre.getMarche());
+        assertEquals(Participant.Produits.COCHON, offre.getProduitOffre());
     }
 
     /**
@@ -60,22 +76,7 @@ public class MarcheTest {
         assertEquals("Miel", vente.getProduitVendu().getType());
     }
 
-    /**
-     * Teste si les données de l'offre sont respectées
-     */
-    @Test
-    public void test_Offre_Donnees() {
-        p1.proposerOffre(Participant.Produits.MIEL, 100, 100.0, marche);
 
-        System.out.println(marche.getListOffreClient(p1));
-        Offre offre = marche.getListOffreClient(p1).get(0);
-
-        assertEquals(p1, offre.getAcheteur());
-        assertEquals(100, offre.getPrixOffre(), 0.001);
-        assertEquals(1, offre.getPrixParU(), 0.001);
-        assertEquals(marche, offre.getMarche());
-        assertEquals(Participant.Produits.MIEL, offre.getProduitOffre());
-    }
 
     /**
      * Teste si les données d'une vente sont respectées avec plusieurs vente dans le marché
