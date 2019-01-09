@@ -8,6 +8,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class MarcheTest {
@@ -197,5 +199,43 @@ public class MarcheTest {
 
     }
 
+    @Test
+    public void test_Historique() {
+        p3.fabriquerProduit(Participant.Produits.COCHON, 5);
+        p3.vendreProduit(Participant.Produits.COCHON, 5, 20.0, marche);
+        p1.proposerOffre(Participant.Produits.COCHON, 5, 20.0, marche);
+
+        p1.fabriquerProduit(Participant.Produits.MIEL, 150);
+        p1.vendreProduit(Participant.Produits.MIEL, 100, 100.0, marche);
+        p2.proposerOffre(Participant.Produits.MIEL, 100, 100.0, marche);
+
+        p2.fabriquerProduit(Participant.Produits.POMME, 50);
+        p2.vendreProduit(Participant.Produits.POMME, 25, 10.0, marche);
+        p3.proposerOffre(Participant.Produits.POMME, 25, 10.0, marche);
+
+        ArrayList<TransactionFini> historiqueDesVentes = marche.getHistoriqueDesVentes();
+
+        TransactionFini h1 = historiqueDesVentes.get(0);
+        TransactionFini h2 = historiqueDesVentes.get(1);
+        TransactionFini h3 = historiqueDesVentes.get(2);
+        System.out.println(historiqueDesVentes);
+        assertEquals(p3, h1.getVendeur());
+        assertEquals(p1, h1.getAcheteur());
+        assertEquals(Participant.Produits.COCHON, h1.getProduitVendu());
+        assertEquals(4, h1.getPrix(), 0.001);
+        assertEquals(5, h1.getQuantite(), 0.001);
+
+        assertEquals(p1, h2.getVendeur());
+        assertEquals(p2, h2.getAcheteur());
+        assertEquals(Participant.Produits.MIEL, h2.getProduitVendu());
+        assertEquals(1, h2.getPrix(), 0.001);
+        assertEquals(100, h2.getQuantite(), 0.001);
+
+        assertEquals(p2, h3.getVendeur());
+        assertEquals(p3, h3.getAcheteur());
+        assertEquals(Participant.Produits.POMME, h3.getProduitVendu());
+        assertEquals(0.4, h3.getPrix(), 0.001);
+        assertEquals(25, h3.getQuantite(), 0.001);
+    }
 
 }

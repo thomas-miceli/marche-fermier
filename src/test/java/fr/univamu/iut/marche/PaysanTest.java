@@ -208,4 +208,22 @@ public class PaysanTest {
         assertEquals(1149.255, p3.getSolde(), 0.001);
     }
 
+    @Test
+    public void test_Ventes_Non_Remises() {
+        p3.fabriquerProduit(Participant.Produits.POMME, 200);
+        p3.fabriquerProduit(Participant.Produits.ORANGE, 250);
+
+        p3.vendreProduit(Participant.Produits.POMME, 200, 200.0, marche);
+        p3.vendreProduit(Participant.Produits.ORANGE, 250, 250.0, marche);
+
+        p1.proposerOffre(Participant.Produits.POMME, 200, 200.0, marche);
+        p1.proposerOffre(Participant.Produits.ORANGE, 250, 250.0, marche);
+
+        assertFalse(p3.getVentesNonRemisees().isEmpty());
+
+        p3.calculerRemises(new StratProduitQuantite(), new StratProduitBio());
+
+        assertTrue(p3.getVentesNonRemisees().isEmpty());
+    }
+
 }
