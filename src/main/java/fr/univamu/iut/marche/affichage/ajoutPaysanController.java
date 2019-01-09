@@ -17,12 +17,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ajoutPaysanController extends VBox implements Initializable {
     @FXML
@@ -36,7 +35,7 @@ public class ajoutPaysanController extends VBox implements Initializable {
     private TextField Prenom;
     @FXML
     private TextField Age;
-    @FXML
+    /*@FXML
     private TextField Cochon;
     @FXML
     private TextField CochonPrix;
@@ -63,17 +62,20 @@ public class ajoutPaysanController extends VBox implements Initializable {
     @FXML
     private TextField Vache;
     @FXML
-    private TextField VachePrix;
+    private TextField VachePrix;*/
     @FXML
     private Text alertText;
     @FXML
     private HBox Type;
+    @FXML
+    private VBox listeProduit;
 
-
+    private ArrayList<String> listesProduits = new ArrayList<>();
+    private ArrayList<TextField> choixQuantiteProduits = new ArrayList<>();
     private String selectedType = "";
     @FXML
     public void newPaysan() throws IOException{
-        if(!Nom.getCharacters().toString().isEmpty() && !Prenom.getCharacters().toString().isEmpty() && !Age.getCharacters().toString().isEmpty() && !Cochon.getCharacters().toString().isEmpty() && !Fromage.getCharacters().toString().isEmpty() && !Lait.getCharacters().toString().isEmpty() && !Miel.getCharacters().toString().isEmpty() && !Orange.getCharacters().toString().isEmpty() && !Pomme.getCharacters().toString().isEmpty() && !Vache.getCharacters().toString().isEmpty() && !selectedType.isEmpty()){
+        if(!Nom.getCharacters().toString().isEmpty() && !Prenom.getCharacters().toString().isEmpty() && !selectedType.isEmpty()){
             Paysan paysan;
             switch (selectedType) {
                 case "Apiculteur":
@@ -91,15 +93,10 @@ public class ajoutPaysanController extends VBox implements Initializable {
                 default:
                     paysan = null;
             }
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.YEAR, 1);
-            ajouterProdtoPaysan(paysan,new Cochon(getIntOfTextField(Cochon),calcDatePeremption()));
-            ajouterProdtoPaysan(paysan,new Lait(getIntOfTextField(Lait), calcDatePeremption()));
-            ajouterProdtoPaysan(paysan,new Miel(getIntOfTextField(Miel), calcDatePeremption()));
-            ajouterProdtoPaysan(paysan, new Fromage(getIntOfTextField(Fromage), calcDatePeremption()));
-            ajouterProdtoPaysan(paysan,new Pomme(getIntOfTextField(Pomme), calcDatePeremption()));
-            ajouterProdtoPaysan(paysan,new Orange(getIntOfTextField(Orange), calcDatePeremption()));
-            ajouterProdtoPaysan(paysan,new Vache(getIntOfTextField(Vache), calcDatePeremption()));
+            for (String string : listesProduits){
+                System.out.println(choixQuantiteProduits.get(listesProduits.indexOf(string)).getCharacters().toString());
+                ajouterProdtoPaysan(paysan, string);
+            }
             Random Solde = new Random();
             paysan.setSolde(Solde.nextInt(400)+200);
             contentVBox.getChildren().clear();
@@ -110,6 +107,20 @@ public class ajoutPaysanController extends VBox implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        for (Participant.Produits produit : Participant.Produits.values()){
+            HBox hBox = new HBox();
+            TextField textField = new TextField("0");
+            String produitStringtemp = produit.toString().substring(0,1);
+            String produitString = produitStringtemp + produit.toString().substring(1).toLowerCase();
+            hBox.getChildren().add(0, new Text(produitString));
+            listesProduits.add(produitString);
+            choixQuantiteProduits.add(textField);
+            String espace = "";
+            for (int i = produitString.length(); i<40; ++i) espace+=' ';
+            hBox.getChildren().add(1, new Text(espace));
+            hBox.getChildren().add(2, textField);
+            listeProduit.getChildren().add(hBox);
+        }
         ChoiceBox<String> cb = new ChoiceBox(FXCollections.observableArrayList("Apiculteur", "Orticulteur", "Producteur de viande", "Producteur Laitier"));
         cb.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
             selectedType = cb.getItems().get((Integer)newValue);
@@ -134,9 +145,31 @@ public class ajoutPaysanController extends VBox implements Initializable {
         }
 
     }
-    private void ajouterProdtoPaysan(Paysan p ,  ProduitFermier produitFermier){
-        if(produitFermier.getQuantite()>0){
-            p.addProduit(produitFermier);
+    private void ajouterProdtoPaysan(Paysan p ,  String s){
+        ProduitFermier pr = creerProduit(s);
+        if(pr.getQuantite()>0){
+            p.addProduit(pr);
+        }
+    }
+    private ProduitFermier creerProduit(String s){
+        int i = Integer.valueOf(choixQuantiteProduits.get(listesProduits.indexOf(s)).getCharacters().toString());
+        switch (s){
+            case "Cochon":
+                return new Cochon(i, calcDatePeremption());
+            case "Fromage":
+                return new Fromage(i, calcDatePeremption());
+            case "Lait":
+                return new Lait(i, calcDatePeremption());
+            case "Miel":
+                return new Miel(i, calcDatePeremption());
+            case "Orange":
+                return new Orange(i, calcDatePeremption());
+            case "Pomme":
+                return new Pomme(i, calcDatePeremption());
+            case "Vache":
+                return new Vache(i, calcDatePeremption());
+                default:
+                return null;
         }
     }
     private Date calcDatePeremption(){

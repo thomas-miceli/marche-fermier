@@ -28,13 +28,15 @@ public class homeController implements Initializable {
     @FXML
     private Text soldeFxmlUser;
 
+    @FXML
+    private Text notification;
+
     private static Stage credits;
 
     private static Participant participantFxml;
     public void setStageAndSetupListeners(Stage stage) {
         stage.setOnCloseRequest(event -> Platform.exit());
     }
-
     @FXML
     public void setSceneToCatalogView() throws IOException {
         contentVBox.getChildren().clear();
