@@ -337,19 +337,11 @@ public class CentraleAchat extends Participant {
      */
     public ArrayList<OffreCentrale> recupOffresCentrales(Produits p , Double prixParU){
 
-        Comparator<OffreCentrale> comparator = new Comparator<OffreCentrale>() {
-            @Override
-            public int compare(OffreCentrale o1, OffreCentrale o2) {
-                return o1.getQuantite().compareTo(o2.getQuantite());
-            }
-        };
-        PriorityQueue<OffreCentrale> offreCentralesFiltrer= new PriorityQueue<>(comparator);
+        ArrayList<OffreCentrale> offreCentralesFiltrer= new ArrayList<>();
         for (OffreCentrale o : offresDeCentrale
              ) {
             if(o.getProduits().equals(p)&& o.getPrixParU().equals(prixParU))offreCentralesFiltrer.add(o);
         }
-        System.out.println("JE SUIS LA");
-        System.out.println(new ArrayList<>(offreCentralesFiltrer));
         return new ArrayList<>(offreCentralesFiltrer);
     }
 
