@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<fx:root fx:id="contentVBox" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox prefHeight="200.0" prefWidth="100.0" fx:id="listeParticipantsToAdd">
+
+        </VBox>
+        <Button text="Valider" onAction="#setViewToParticipant"/>
+    </children>
+</fx:root>
