@@ -90,6 +90,11 @@ public class Trader {
     public void poseUneOffre(Participant client, Participant.Produits produitMisEnVente , Integer quantite, Double prix, Marche marche){
         if(isClient(client))client.proposerOffre(produitMisEnVente,quantite,prix,marche);
     }
+
+    /**
+     * Ajoute 1/8 d'un revenu au solde du Trader
+     * @param revenu
+     */
     public void ajouterAuSolde(double revenu){
         solde += revenu/8;
     }
