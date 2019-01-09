@@ -9,7 +9,6 @@ import java.util.HashMap;
 /**
  * @author Téo MARTIN
  * @author Yann FORNER
- * @author Thomas MICELI
  */
 public class Controlleur {
     private ArrayList<ProduitFermier> listeProduitsInterdits = new ArrayList<>();
@@ -118,10 +117,7 @@ public class Controlleur {
         return maxPrix.get(prod);
     }
 
-    /**
-     *
-     */
-    public void choisirAcheteur() {
-        //TODO
+    public void sanctionner (ProduitFermier p, String label, double prix, Participant vendeur){
+        vendeur.subSolde(150.0, (Vente) null);
     }
 }

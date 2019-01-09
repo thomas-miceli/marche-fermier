@@ -3,6 +3,9 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
 import java.util.ArrayList;
 
+/**
+ * @author Yann FORNER
+ */
 public class Vente {
 
     private static int id=0;

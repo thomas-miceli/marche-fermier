@@ -1,7 +1,9 @@
 package fr.univamu.iut.marche.traitement.acteurs;
 
 import java.util.ArrayList;
-
+/**
+ * @author Yann FORNER
+ */
 public class TransactionFini {
     private Participant vendeur;
     private Participant acheteur;
@@ -109,12 +111,5 @@ public class TransactionFini {
     @Override
     public String toString() {
         return "Vendeur : " + vendeur.getPrenom() + ' ' + vendeur.getNom() + " vends " + quantite + ' '  + produitVendu + " à " + acheteur.getPrenom() +' '+acheteur.getNom() + " pour " + prix +'€';
-        /*return "TransactionFini{" +
-                "vendeur=" + vendeur +
-                ", acheteur=" + acheteur +
-                ", prix/u=" + prix +
-                ", quantite=" + quantite +
-                ", produitVendu=" + produitVendu +
-                '}';*/
     }
 }

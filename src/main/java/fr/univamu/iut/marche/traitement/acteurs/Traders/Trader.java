@@ -4,7 +4,11 @@ import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 
 import java.util.ArrayList;
-
+/**
+ * @author Téo MARTIN
+ * @author Yann FORNER
+ * @author Dylan MARCH
+ */
 public class Trader {
     private String name;
     private String prenom;

@@ -4,7 +4,9 @@ import fr.univamu.iut.marche.traitement.produits.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
+/**
+ * @author Yann FORNER
+ */
 public class CentraleAchat extends Participant {
 
     private ArrayList<Participant> membres = new ArrayList<>();
@@ -130,7 +132,7 @@ public class CentraleAchat extends Participant {
         }
 
         /**
-         * Override de la méthode addPorduit dans une centrale pour qu'elle ne fasse rien
+         * Override de la méthode addProduit dans une centrale pour qu'elle ne fasse rien
          * @param p
          */
         public void addProduit(ProduitFermier p){
@@ -390,8 +392,6 @@ public class CentraleAchat extends Participant {
             for (VenteCentrale vc: recupFiltre
                     ) {
                 vc.getVendeur().addSolde(prix*((double)vc.getQuantite()/(double)recupQuantiteTotDeVenteCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())),(Vente) null);
-                //                System.out.println((double)vc.getQuantite()+"/"+(double)recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU())+"="+(double)vc.getQuantite()/(double)recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU()));
-
             }
             for (VenteCentrale vc: recupFiltre
                     ) {
@@ -421,8 +421,6 @@ public class CentraleAchat extends Participant {
             for (VenteCentrale vc: recupFiltre
                     ) {
                 vc.getVendeur().addSolde(prix*((double)vc.getQuantite()/(double)recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU())),(Vente) null);
-                //                System.out.println((double)vc.getQuantite()+"/"+(double)recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU())+"="+(double)vc.getQuantite()/(double)recupQuantiteTotDeVenteCentrale(o.getProduitOffre(),o.getPrixParU()));
-
             }
             for (VenteCentrale vc: recupFiltre
                     ) {
@@ -443,7 +441,6 @@ public class CentraleAchat extends Participant {
         if(v.getProduitVendu().getQuantite()>=recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
             for (OffreCentrale oC:recupFiltre
                  ) {
-//                System.out.println("-------------"+oC.getQuantite()+"/"+recupQuantiteTotDeOffreCentrale(v.getProduitVendu().identifier(i),v.getPrixParU()));
                 ProduitFermier prodTemp= (ProduitFermier)v.getProduitVendu().clone();
                 prodTemp.setQuantite(oC.getQuantite());
                 oC.getAcheteur().addProduit(prodTemp);
@@ -464,8 +461,6 @@ public class CentraleAchat extends Participant {
             }
             for (int j = recupFiltre.size()-1; j >=0  ; j--) {
                 ProduitFermier prodTemp = (ProduitFermier)v.getProduitVendu().clone();
-                System.out.println("ICI");
-                System.out.println(quantiteLever);
                 if(quantiteLever==0)break;
                 if(recupFiltre.get(j).getQuantite()<= quantiteLever){
                     prodTemp.setQuantite(recupFiltre.get(j).getQuantite());

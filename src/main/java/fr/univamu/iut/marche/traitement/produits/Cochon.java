@@ -4,6 +4,9 @@ import fr.univamu.iut.marche.traitement.acteurs.Participant;
 
 import java.util.Date;
 
+/**
+ * @author Yann FORNER
+ */
 public class Cochon extends ProduitFermier {
 
     public Cochon(int quantite, Date dateDePeremption) {

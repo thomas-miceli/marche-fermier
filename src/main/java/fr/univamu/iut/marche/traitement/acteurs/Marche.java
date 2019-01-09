@@ -97,7 +97,7 @@ public class Marche {
     }
 
     /**
-     *
+     * Fais en sorte de vérifie qu'il n'y ait pas d'acquisition
      */
     public void updateMarket(){
         Identificateur i = new Identificateur();
@@ -109,7 +109,7 @@ public class Marche {
     }
 
     /**
-     *
+     * Fais en sorte qu'une vente et une offre se complètent
      * @param o
      * @param v
      */
@@ -141,7 +141,7 @@ public class Marche {
         }//cas basique
         else if(o.getPrixParU().equals(v.getPrixParU())){
             ProduitFermier pTemp= (ProduitFermier)v.getProduitVendu().clone();
-            if(o.getQuantite()<v.getProduitVendu().getQuantite()){// cas o < v
+            if(o.getQuantite()<v.getProduitVendu().getQuantite()){  // cas o < v
                 if(v.getVendeur().getTrader()==null){
                     v.getVendeur().addSolde(o.getPrixOffre(),o);
                 }else{

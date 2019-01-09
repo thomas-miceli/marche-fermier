@@ -1,6 +1,6 @@
 package fr.univamu.iut.marche.traitement.acteurs.Paysans;
 
-import fr.univamu.iut.marche.traitement.fabriques.ProduictionDeFruit;
+import fr.univamu.iut.marche.traitement.fabriques.ProductionDeFruit;
 import fr.univamu.iut.marche.traitement.Seeding;
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
@@ -23,7 +23,7 @@ public class Orticulteur extends Paysan {
      */
     @Override
     public ProduitFermier fabriquerProduit(Produits objetFab, int quantite) {
-        ProduictionDeFruit produictionDeFruit = new ProduictionDeFruit();
+        ProductionDeFruit produictionDeFruit = new ProductionDeFruit();
         ProduitFermier produit =  produictionDeFruit.fabriquer(objetFab.name(), quantite);
         if(produit!= null){
             this.addProduit(produit);

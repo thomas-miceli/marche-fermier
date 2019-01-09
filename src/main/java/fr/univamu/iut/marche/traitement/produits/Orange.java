@@ -4,6 +4,9 @@ import fr.univamu.iut.marche.traitement.acteurs.Participant;
 
 import java.util.Date;
 
+/**
+ * @author Yann FORNER
+ */
 public class Orange extends ProduitFermier {
     public Orange(int quantite, Date dateDePeremption) {
         super(quantite, dateDePeremption);

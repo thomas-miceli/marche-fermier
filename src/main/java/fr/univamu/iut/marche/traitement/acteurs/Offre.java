@@ -2,6 +2,10 @@ package fr.univamu.iut.marche.traitement.acteurs;
 
 import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
 
+/**
+ * @author Téo MARTIN
+ * @author Yann FORNER
+ */
 public class Offre {
     private Participant.Produits produitOffre;
     private Double prixOffre;

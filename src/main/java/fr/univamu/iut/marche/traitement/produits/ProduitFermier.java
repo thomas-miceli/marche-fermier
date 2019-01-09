@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * @author Yann FORNER
+ */
 public abstract class ProduitFermier implements ProduitVisitable,Cloneable {
     protected int quantite;
     protected Date dateDePeremption;
