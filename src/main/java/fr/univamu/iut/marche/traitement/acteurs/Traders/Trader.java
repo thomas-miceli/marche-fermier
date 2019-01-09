@@ -22,45 +22,36 @@ public class Trader {
         this.age = age;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Double getSolde() {
-        return solde;
-    }
-
-    public void setSolde(double solde) {
-        this.solde = solde;
-    }
-
+    /**
+     * ajoute une client à la liste clients
+     * @param p
+     */
     public void addClients (Participant p){
         clients.add(p);
         p.setTrader(this);
     }
+
+    /**
+     * Ajoute à la vente un objet de type ProduitFermier d'un de ses clients dans un marché
+     * @param client
+     * @param produitMisEnVente
+     * @param quantite
+     * @param prix
+     * @param marche
+     */
     public void metEnVente(Participant client, Participant.Produits produitMisEnVente , Integer quantite, Double prix, Marche marche){
         if(isClient(client))client.vendreProduit(produitMisEnVente,quantite,prix,marche);
     }
+
+    /**
+     * Ajoute une offre d'achat sur un ou plusieurs objets de type ProduitFermier en vente dans un objet de
+     * type Marche
+     * @param client
+     * @param produitMisEnVente
+     * @param quantite
+     * @param prix
+     * @param marche
+     */
     public void poseUneOffre(Participant client, Participant.Produits produitMisEnVente , Integer quantite, Double prix, Marche marche){
         if(isClient(client))client.proposerOffre(produitMisEnVente,quantite,prix,marche);
     }
@@ -68,11 +59,43 @@ public class Trader {
         solde += revenu/8;
     }
 
+    /**
+     * revoie la valeur de la variable solde d'un objet de type Trader
+     * @return solde
+     */
+    public Double getSolde() {
+        return solde;
+    }
 
+    /**
+     * permet de modifier la valeur de la variable solde d'un objet de type Trader
+     * @param solde
+     */
+    public void setSolde(Double solde) {
+        this.solde = solde;
+    }
 
+    /**
+     * revoie la valeur de la variable name d'un objet de type Trader
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * revoie le contenu de l'ArrayList<Participant> clients.
+     * @return clients
+     */
     public ArrayList<Participant> getClients() {
         return clients;
     }
+
+    /**
+     * revoie vrai si un Participant fait partie de la liste de clients du trader, faux sinon
+     * @param p
+     * @return boolean
+     */
     public boolean isClient(Participant p){
 
         for (Participant client: clients) {
@@ -83,6 +106,10 @@ public class Trader {
         return false;
     }
 
+    /**
+     * renvoie l'ensemble des valeurs des variables d'un objet Trader
+     * @return
+     */
     @Override
     public String toString() {
         String string = "Le trader " + this.getName() +" possèdent " + clients.size() + " client \n";

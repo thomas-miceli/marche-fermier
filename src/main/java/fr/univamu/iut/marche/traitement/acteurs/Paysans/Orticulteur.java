@@ -14,6 +14,13 @@ public class Orticulteur extends Paysan {
         super(nom, prenom, age);
     }
 
+    /**
+     * Fabrique un objet de type ProduitFermier (ici des pommes ou des oranges)
+     * et l'ajoute au stock du paysan l'ayant produit après l'avoir compilé
+     * @param objetFab
+     * @param quantite
+     * @return ProduitFermier
+     */
     @Override
     public ProduitFermier fabriquerProduit(Produits objetFab, int quantite) {
         ProduictionDeFruit produictionDeFruit = new ProduictionDeFruit();

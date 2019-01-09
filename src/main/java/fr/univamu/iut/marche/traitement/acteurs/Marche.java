@@ -28,20 +28,36 @@ public class Marche {
         this.controlleur= c;
     }
 
+    /**
+     * revoie la valeur de la variable region d'un objet de type Marche
+     * @return region
+     */
     public String getRegion() {
         return region;
     }
 
+    /**
+     * ajoute une Vente à la liste des offres offresMarche
+     * @param vente
+     */
     public void addVente(Vente vente){
         compositionMarche.add(vente);
         System.out.println("un nouveau produit est disponible");
         updateAll();
     }
+
+    /**
+     * ajoute une Offre à la liste des offres offresMarche
+     * @param o
+     */
     public void addOffre(Offre o){
         offresMarche.add(o);
         System.out.println("une nouvelle offre est présente");
     }
 
+    /**
+     * affiche l'ensemble des Vente et Offre présentes pour le Marche sur el terminal
+     */
     public void show(){
         System.out.println("Marché :");
         System.out.println("VENTES : ");
@@ -64,14 +80,25 @@ public class Marche {
         System.out.println("FIN HISTORIQUE ----------");
     }
 
+    /**
+     *  revoie le contenu de la variable offresMarche d'un objet de type Marche
+     * @return offresMarche
+     */
     public static ArrayList<Offre> getOffresMarche() {
         return offresMarche;
     }
 
+    /**
+     *  revoie le contenu de la variable compositionMarche d'un objet de type Marche
+     * @return compositionMarche
+     */
     public static ArrayList<Vente> getCompositionMarche() {
         return compositionMarche;
     }
 
+    /**
+     *
+     */
     public void updateMarket(){
         Identificateur i = new Identificateur();
         for (int j = offresMarche.size() - 1 ; j >= 0 ; j--) {
@@ -80,6 +107,12 @@ public class Marche {
             }
         }
     }
+
+    /**
+     *
+     * @param o
+     * @param v
+     */
     public void aquisition(Offre o, Vente v){
         if(o.getPrixOffre( ).equals(v.getPrix())// cas o = v
                && (v.getProduitVendu().getQuantite())== o.getQuantite()
@@ -142,15 +175,30 @@ public class Marche {
             }
         }
     }
+
+    /**
+     * ajoute un Observer à observers
+     * @param o
+     */
     public void addObserver(Observer o){
         this.observers.add(o);
     }
+
+    /**
+     * mets à jour le marché en cas d'ajout de vente
+     */
     public void updateAll(){
         for (Observer o: observers
              ) {
             o.updateO();
         }
     }//provisoire
+
+    /**
+     * calcule la moyenne de prix d'un ProduitFermier sur le Marche
+     * @param p
+     * @return prixTot/qMoy
+     */
     public Integer cotationProduitparU(Participant.Produits p){
         Identificateur identificateur = new Identificateur();
         int prixTot=0;
@@ -164,17 +212,37 @@ public class Marche {
         return prixTot/qMoy;
     }
 
+    /**
+     * revoie le contenu de la variable historiqueDesVentes d'un Marche
+     * @return historiqueDesVentes
+     */
     public ArrayList<TransactionFini> getHistoriqueDesVentes() {
+
         return historiqueDesVentes;
     }
+
+    /**
+     * ajoute une TransactionFinie à l'historique des ventes.
+     * @param t
+     */
     public void addTransactionFinie(TransactionFini t){
         historiqueDesVentes.add(t);
     }
 
+    /**
+     * revoie la valeur de la variable controller d'un objet de type Marche
+     * @return controlleur
+     */
     public Controlleur getControlleur() {
         return controlleur;
     }
 
+    /**
+     * récupère les Vente effectuées par un Participant dans compositionMarche d'un Marche
+     * pour les stocker dans une liste ventesClient puis le renvoie
+     * @param p
+     * @return ventesClient
+     */
     public ArrayList<Vente> getListVenteClient(Participant p){
         ArrayList<Vente> ventesClient = new ArrayList<>(0);
         for (Vente v: compositionMarche) {
@@ -182,6 +250,13 @@ public class Marche {
         }
         return ventesClient;
     }
+
+    /**
+     * récupère les Offre effectuées par un Participant dans offresMarche d'un Marche
+     * pour les stocker dans une liste offresClient puis le renvoie
+     * @param p
+     * @return offresClient
+     */
     public ArrayList<Offre> getListOffreClient(Participant p){
         ArrayList<Offre> offresClient = new ArrayList<>(0);
         for (Offre o: offresMarche) {
@@ -189,6 +264,11 @@ public class Marche {
         }
         return offresClient;
     }
+
+    /**
+     *  revoie la contenu de la variable historiqueDesVentes d'un objet de type Marche
+     * @return historiqueDesVentes
+     */
     public static ArrayList<TransactionFini> getTransactions(){
         return historiqueDesVentes;
     }

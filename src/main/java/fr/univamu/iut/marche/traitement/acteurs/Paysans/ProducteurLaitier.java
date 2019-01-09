@@ -20,6 +20,13 @@ public class ProducteurLaitier extends Paysan {
         FROMAGE
     }
 
+    /**
+     * Fabrique un objet de type ProduitFermier (ici du lait)
+     * et l'ajoute au stock du paysan l'ayant produit
+     * @param objetFab
+     * @param quantite
+     * @return ProduitFermier
+     */
     @Override
     public ProduitFermier fabriquerProduit(Produits objetFab, int quantite) {
         ProductionDeLaitage productionDeLaitage = new ProductionDeLaitage();

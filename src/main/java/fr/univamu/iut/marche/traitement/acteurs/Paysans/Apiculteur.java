@@ -19,6 +19,13 @@ public class Apiculteur extends Paysan {
     }
 
 
+    /**
+     * Fabrique un objet de type ProduitFermier (ici du miel) et l'ajoute au stock après l'avoir compilé avec les
+     * objets identiques.
+     * @param objetFab
+     * @param quantite
+     * @return ProduitFermier
+     */
     @Override
     public ProduitFermier fabriquerProduit(Participant.Produits objetFab, int quantite) {
         ProductionDeMiel productionDeLaitage = new ProductionDeMiel();

@@ -13,6 +13,12 @@ public class Orange extends ProduitFermier {
         this.label=copy.label;
         this.dateDePeremption=copy.dateDePeremption;
     }//constructCopieur
+
+    /**
+     * Visiteur qui permet de retrouver le produit dans la classe où il est appelé
+     * @param v
+     * @return Participant.Produits
+     */
     @Override
     public Participant.Produits identifier(ProduitVisiteur v) {
         return v.visiter(this);

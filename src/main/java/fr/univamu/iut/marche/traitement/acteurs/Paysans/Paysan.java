@@ -14,6 +14,9 @@ public abstract class Paysan extends Participant {
         super(nom, prenom, age);
     }
 
+    /**
+     * Affiche le nom du paysan et le contenu de son stock sur le terminal.
+     */
     public void show() {
         System.out.println(ANSI_YELLOW + "(" + this.getClass().getSimpleName() + ") " + ANSI_GREEN + this.prenom + " " + this.nom + " - " + this.age + " ans - " + this.solde + "€ :\n" +
                 ANSI_CYAN + "Produits en stock : " + ANSI_RESET);

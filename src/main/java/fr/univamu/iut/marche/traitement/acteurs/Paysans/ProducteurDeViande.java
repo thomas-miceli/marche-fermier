@@ -18,6 +18,13 @@ public class ProducteurDeViande extends Paysan {
         VACHE
     }
 
+    /**
+     * Fabrique un objet de type ProduitFermier (ici du cochon ou de la vache)
+     * et l'ajoute au stock du paysan l'ayant produit
+     * @param objetFab
+     * @param quantite
+     * @return ProduitFermier
+     */
     @Override
     public ProduitFermier fabriquerProduit(Produits objetFab, int quantite) {
         ProductionDeViande productionDeLaitage = new ProductionDeViande();

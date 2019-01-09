@@ -8,6 +8,9 @@ public class ObserverNewVente extends Observer {
         this.marche = m;
     }
 
+    /**
+     * Mets à jour le marche
+     */
     @Override
     public void updateO() {
         System.out.println("une nouvelle vente est apparue");

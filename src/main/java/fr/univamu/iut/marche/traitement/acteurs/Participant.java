@@ -45,55 +45,109 @@ public abstract class Participant {
         listeParticipant.add(this);
     }
 
-
+    /**
+     * renvoie le nom d'un Participant
+     * @return nom
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * modifie le nom d'un Participant
+     * @param nom
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     * renvoie le prenom d'un Participant
+     * @return prenom
+     */
     public String getPrenom() {
         return prenom;
     }
 
+    /**
+     * modifie le prenom d'un Participant
+     * @param prenom
+     */
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
+    /**
+     * renvoie l'age d'un Participant
+     * @return age
+     */
     public int getAge() {
         return age;
     }
 
+    /**
+     * renvoie l'id d'un Participant
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * renvoie l'âge d'un Participant
+     * @param age
+     */
     public void setAge(int age) {
         this.age = age;
     }
 
+    /**
+     * renvoie le contenu de la variable solde
+     * @return solde
+     */
     public double getSolde() {
         return solde;
     }
 
+    /**
+     * modifie la valeur du solde d'un Participant
+     * @param solde
+     */
     public void setSolde(double solde) {
         this.solde = solde;
     }
 
+    /**
+     * ajoute un montant prédéfini au solde d'un Participant
+     * @param montant
+     */
     public void opArgent(double montant) {
         this.solde += montant;
     }
 
+    /**
+     * renvoie vrai si la difference entre le solde d'un participant et un montant prédéfini est positif
+     * faux sinon
+     * @param argent
+     * @return boolean
+     */
     public boolean canBuy(double argent) {
         return !((this.solde -= argent) < 0);
     }
 
+    /**
+     * renvoie le contenu de la variable listeParticipants
+     * @return listeParticipant
+     */
     public static ArrayList<Participant> getAllParticipants(){
         return listeParticipant;
     }
 
+    /**
+     * renvoie un Participant parmi listeParticipant en fonction de son id
+     * @param id
+     * @return Participant
+     */
     public static Participant getParticipantbyId(int id){
         for (Participant participant : listeParticipant) {
             if(participant.getId()==id) return participant;
@@ -101,10 +155,18 @@ public abstract class Participant {
         return null;
     }
 
+    /**
+     * renvoie la valeur de la variable stock d'un Participant
+     * @return
+     */
     public ArrayList<ProduitFermier> getStock() {
         return stock;
     }
 
+    /**
+     * modifie la valeur de la variable produitOffre d'un objet Participant
+     * @param stock
+     */
     public void setStock(ArrayList<ProduitFermier> stock) {
         this.stock = stock;
     }
@@ -126,6 +188,11 @@ public abstract class Participant {
         this.stock.remove(produit);
     }
 
+    /**
+     * renvoie la variable produitFermier d'un objet de type Particpant
+     * @param prod
+     * @return produitFermier
+     */
     public ProduitFermier getProduit(Produits prod) {
         ProduitFermier produitFermier = null;
         for (ProduitFermier produ : stock) {
@@ -149,7 +216,7 @@ public abstract class Participant {
     /**
      * Ajoute de l'argent au solde existant du participant pour l'offre de produits
      * @param prix
-     * @param v
+     * @param o
      */
     public void addSolde(Double prix, Offre o){
         System.out.println("ADD SOLDE NORMAL");
@@ -168,7 +235,7 @@ public abstract class Participant {
     /**
      * Retire de l'argent au solde existant du participant pour l'offre de produits
      * @param prix
-     * @param v
+     * @param o
      */
     public void subSolde(Double prix, Offre o){
         System.out.println("SUB SOLDE NORMAL");
@@ -237,14 +304,26 @@ public abstract class Participant {
         opArgent(0 - (this.solde * ((15 - (remises/100))/100)));
     }
 
+    /**
+     * revoie la variable produitOffre d'un objet de type Offre
+     * @return trader
+     */
     public Trader getTrader() {
         return trader;
     }
 
+    /**
+     * modifie la valeur de la variable trader d'un objet Participant
+     * @param trader
+     */
     public void setTrader(Trader trader) {
         this.trader = trader;
     }
 
+    /**
+     *revoie la variable produitOffre d'un objet de type Offre
+     * @return String
+     */
     @Override
     public String toString() {
         return nom+ "\n";

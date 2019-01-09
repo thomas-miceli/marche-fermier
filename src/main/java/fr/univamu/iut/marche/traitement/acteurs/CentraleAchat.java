@@ -14,14 +14,26 @@ public class CentraleAchat extends Participant {
         super(nom, prenom, age);
     }
 
+    /**
+     * renvoie le contenu de la variable membres d'une CentraleAchat
+     * @return membres
+     */
     public ArrayList<Participant> getMembres() {
         return membres;
     }
 
+    /**
+     * ajoute un Participant à la liste des membres membres
+     * @param p
+     */
     public void addMembre(Participant p){
         membres.add(p);
     }
 
+    /**
+     * renvoie l'ensemble des valeurs des variables d'un objet de type CentraleAchat
+     * @return String
+     */
     @Override
     public String toString() {
         return "CentraleAchat{" +
@@ -29,6 +41,16 @@ public class CentraleAchat extends Participant {
                 ", nom='" + nom + '\'' +
                 '}';
     }
+
+    /**
+     * Ajoute une VenteCentrale à l'offre de Marche, si elle existe déjà, ajoute la quantité à la quantité
+     * de l'offre de Marche, sinon créé un objet VenteCentrale
+     * @param p
+     * @param vendeurInitial
+     * @param prix
+     * @param quantite
+     * @param marche
+     */
     public void vendre(Produits p,Participant vendeurInitial,Double prix , Integer quantite , Marche marche) {
         Identificateur i = new Identificateur();
         if(isMember(vendeurInitial)) {
@@ -53,13 +75,21 @@ public class CentraleAchat extends Participant {
                     } else {
                         this.vendreProduit(p, quantite, prix, marche);
                     }
-
-                    VenteCentrale vLOL = new VenteCentrale(p, vendeurInitial, prix, quantite, marche);
-                    System.out.println(vLOL);
+                    new VenteCentrale(p, vendeurInitial, prix, quantite, marche);
                 }
             }
         }
     }
+
+    /**
+     * Ajoute une OffreCentrale à l'offre de Marche, si elle existe déjà, ajoute la quantité à la quantité
+     * de l'offre de Marche, sinon créé un objet OffreCentrale
+     * @param produit
+     * @param achteurInitial
+     * @param prix
+     * @param quantite
+     * @param marche
+     */
     public void poserOffre(Produits produit,Participant achteurInitial,Double prix, Integer quantite,Marche marche){
         if(achteurInitial.getSolde()>=prix && isMember(achteurInitial)){
             this.setSolde(solde+prix);
@@ -88,7 +118,6 @@ public class CentraleAchat extends Participant {
         private Double prixParU;
         private Marche marche;
 
-
         public VenteCentrale(Participant.Produits produits, Participant vendeur, Double prix, Integer quantite,Marche marche) {
             this.produits = produits;
             this.vendeur = vendeur;
@@ -99,40 +128,76 @@ public class CentraleAchat extends Participant {
             ventesDeCentrale.add(this);
 
         }
+
+        /**
+         * Override de la méthode addPorduit dans une centrale pour qu'elle ne fasse rien
+         * @param p
+         */
         public void addProduit(ProduitFermier p){
             //ne doit absolument rien faire dans les cas d'une centrale
-            System.out.println("JE FAIS RIEN LOL");
         }
 
+        /**
+         * renvoie le contenu de la variable produits d'un objet de type VenteCentrale
+         * @return produits
+         */
         public Produits getProduits() {
             return produits;
         }
 
+        /**
+         * renvoie la valeur de la variable vendeur d'un objet de type VenteCentrale
+         * @return vendeur
+         */
         public Participant getVendeur() {
             return vendeur;
         }
 
+        /**
+         * renvoie la valeur de la variable prix d'un objet de type VenteCentrale
+         * @return prix
+         */
         public Double getPrix() {
             return prix;
         }
 
+        /**
+         * renvoie la valeur de la variable quantite d'un objet de type VenteCentrale
+         * @return quantite
+         */
         public Integer getQuantite() {
             return quantite;
         }
 
+        /**
+         * renvoie la valeur de la variable marche d'un objet de type VenteCentrale
+         * @return marche
+         */
         public Marche getMarche() {
             return marche;
         }
 
+        /**
+         * renvoie la valeur de la variable prixParU d'un objet de type VenteCentrale
+         * @return prixParU
+         */
         public Double getPrixParU() {
             return prixParU;
         }
 
+        /**
+         * modifie la valeur de la variable quantite d'un objet de type VenteCentrale
+         * @param quantite
+         */
         public void setQuantite(Integer quantite) {
             prix=prixParU*quantite;
             this.quantite = quantite;
         }
 
+        /**
+         * Affiche l'ensemble des valeurs des variables d'un objet de type VenteCentrale
+         * @return String
+         */
         @Override
         public String toString() {
             return "VenteCentrale{" +
@@ -151,6 +216,14 @@ public class CentraleAchat extends Participant {
         private Double prixParU;
         private Marche marche;
 
+        /**
+         *
+         * @param produits
+         * @param acheteur
+         * @param prix
+         * @param quantite
+         * @param marche
+         */
         public OffreCentrale(Produits produits, Participant acheteur, Double prix, Integer quantite, Marche marche) {
             this.produits = produits;
             this.acheteur = acheteur;
@@ -161,35 +234,67 @@ public class CentraleAchat extends Participant {
             offresDeCentrale.add(this);
         }
 
+        /**
+         * renvoie le contenu de la variable produits d'un objet de type OffreCentrale
+         * @return produits
+         */
         public Produits getProduits() {
             return produits;
         }
 
+        /**
+         * renvoie la valeur de la variable acheteur d'un objet de type OffreCentrale
+         * @return acheteur
+         */
         public Participant getAcheteur() {
             return acheteur;
         }
 
+        /**
+         * renvoie la valeur de la variable prix d'un objet de type OffreCentrale
+         * @return prix
+         */
         public Double getPrix() {
             return prix;
         }
 
+        /**
+         * revoie la valeur de la variable quantité d'un objet de type OffreCentrale
+         * @return quantité
+         */
         public Integer getQuantite() {
             return quantite;
         }
 
+        /**
+         * revoie la valeur de la variable prixParU d'un objet de type OffreCentrale
+         * @return prixParU
+         */
         public Double getPrixParU() {
             return prixParU;
         }
 
+        /**
+         * revoie la valeur de la variable marche d'un objet de type OffreCentrale
+         * @return marche
+         */
         public Marche getMarche() {
             return marche;
         }
 
+        /**
+         * modifie la valeur de la variable quantité et prix d'un objet de type OffreCentrale
+         * @param quantite
+         */
         public void setQuantite(Integer quantite) {
             prix=prixParU*quantite;
             this.quantite = quantite;
         }
 
+        /**
+         * renvoie l'ensemble des valeurs des variables d'un objet OffreCentrale
+         * @return String
+         */
         @Override
         public String toString() {
             return "OffreCentrale{" +
@@ -201,6 +306,14 @@ public class CentraleAchat extends Participant {
         }
 
     }
+
+    /**
+     *  Récupère parmi l'ensemble des VenteCentrale contenues dans la variable ventesDeCentrale celles qui
+     *  concernent un Produits et un prixParU prédéfinis.
+     * @param p
+     * @param prixParU
+     * @return venteCentralesFilter
+     */
     public ArrayList<VenteCentrale> recupVentesCentrales(Produits p,Double prixParU){
         ArrayList<VenteCentrale> venteCentralesFiltrer = new ArrayList<>();
         for (VenteCentrale v: ventesDeCentrale
@@ -209,6 +322,14 @@ public class CentraleAchat extends Participant {
         }
         return venteCentralesFiltrer;
     }
+
+    /**
+     * Récupère parmi l'ensemble des OffreCentrale contenues dans la variable offresDeCentrale celles qui
+     * concernent un Produits et un prixParU prédéfinis.
+     * @param p
+     * @param prixParU
+     * @return offreCentralesFilter
+     */
     public ArrayList<OffreCentrale> recupOffresCentrales(Produits p , Double prixParU){
         ArrayList<OffreCentrale> offreCentralesFiltrer = new ArrayList<>();
         for (OffreCentrale o : offresDeCentrale
@@ -218,6 +339,10 @@ public class CentraleAchat extends Participant {
         return offreCentralesFiltrer;
     }
 
+    /**
+     * Affiche l'ensemble des ProduitFermier qui se trouvent dans les ArrayList ventesDeCentrale et
+     * offresDeCentrale
+     */
     public void showCentralArray(){
         System.out.println("VENTES CENTRALES");
         for (VenteCentrale v: ventesDeCentrale) {
@@ -228,6 +353,12 @@ public class CentraleAchat extends Participant {
             System.out.println(o);
         }
     }
+
+    /**
+     * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     * @param p
+     * @return boolean
+     */
     public boolean isPresentVentesC(Produits p){
         for (int j = ventesDeCentrale.size()-1 ; j >= 0 ; j--) {
             if(ventesDeCentrale.get(j).getProduits().equals(p))return true;
@@ -241,8 +372,12 @@ public class CentraleAchat extends Participant {
         return false;
     }
 
+    /**
+     * cas offre
+     * @param prix
+     * @param v
+     */
     public void addSolde(Double prix,Vente v){
-        System.out.println("CEST PASSSEEE VENTE " + prix);
             Identificateur i = new Identificateur();
             ArrayList <VenteCentrale> recupFiltre = recupVentesCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());
         if(v.getProduitVendu().getQuantite()==recupQuantiteTotDeVenteCentrale(v.getProduitVendu().identifier(i),v.getPrixParU())){
@@ -266,6 +401,12 @@ public class CentraleAchat extends Participant {
         }
 
     }
+
+    /**
+     * cas vente
+     * @param prix
+     * @param o
+     */
     public void addSolde(Double prix,Offre o){
         Identificateur i = new Identificateur();
         ArrayList <VenteCentrale> recupFiltre = recupVentesCentrales(o.getProduitOffre(),o.getPrixParU());
@@ -291,6 +432,11 @@ public class CentraleAchat extends Participant {
         }
     }
 
+    /**
+     *
+     * @param prix
+     * @param v
+     */
     public void subSolde(Double prix , Vente v){
         Identificateur i = new Identificateur();
         ArrayList<OffreCentrale> recupFiltre = recupOffresCentrales(v.getProduitVendu().identifier(i),v.getPrixParU());;
@@ -338,6 +484,12 @@ public class CentraleAchat extends Participant {
 
     }
 
+    /**
+     * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     * @param p
+     * @param prixParU
+     * @return quantiteVcTot
+     */
     public Integer recupQuantiteTotDeVenteCentrale(Produits p , Double prixParU){
         Integer quantiteVcTot = 0;
         for (VenteCentrale vc: ventesDeCentrale) {
@@ -347,6 +499,13 @@ public class CentraleAchat extends Participant {
         }
         return quantiteVcTot;
     }
+
+    /**
+     * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     * @param p
+     * @param prixParaU
+     * @return quantitéOcTot
+     */
     public Integer recupQuantiteTotDeOffreCentrale(Produits p,Double prixParaU){
         Integer quantiteOcTot =0;
         for (OffreCentrale oc: offresDeCentrale
@@ -356,6 +515,11 @@ public class CentraleAchat extends Participant {
         return quantiteOcTot;
     }
 
+    /**
+     * revoie la valeur de la variable produitOffre d'un objet de type Offre
+     * @param p
+     * @return boolean
+     */
     private boolean isMember(Participant p){
         for (Participant membre : membres
              ) {
@@ -363,20 +527,15 @@ public class CentraleAchat extends Participant {
         }
         return false;
     }
-    private boolean removeV(VenteCentrale v,Marche m){
-        ventesDeCentrale.remove(v);
-        Identificateur i = new Identificateur();
-        for ( Vente venteOrigin : m.getListVenteClient(this)
-             ) {
-            if(venteOrigin.getProduitVendu().identifier(i).equals(v.getProduits())
-                    && venteOrigin.getPrixParU().equals(v.getPrixParU())
-                    && venteOrigin.getProduitVendu().getQuantite()==v.getQuantite()){
-                Marche.getCompositionMarche().remove(venteOrigin);
-            }
 
-        }
-        return true;
-    }
+
+    /**
+     * Supprime une offre centrale de la centrale et s'il n'y a pas d'autre offre du même produit, supprime
+     * l'offre du marché
+     * @param o
+     * @param m
+     * @return boolean
+     */
     private boolean removeO(OffreCentrale o,Marche m){
         offresDeCentrale.remove(o);
         for ( Offre offreOrigin : m.getListOffreClient(this)
