@@ -60,7 +60,7 @@ public class addParticipantController extends VBox implements Initializable  {
             participants.add(participant);
             participantscheck.add(checkBox);
             for (Participant participant1 : centraleAchat.getMembres()){
-                if (participant.getPrenom() != participant1.getPrenom() || participant.getPrenom() != participant1.getNom() || participant.getClass().getSimpleName()!="CentraleAchat") {
+                if (!participant.getPrenom().equals(participant1.getPrenom()) || !participant.getPrenom().equals(participant1.getNom()) || !participant.getClass().getSimpleName().equals("CentraleAchat")) {
                     HBox hBox = new HBox();
                     hBox.getChildren().add(0,text);
                     hBox.getChildren().add(1,checkBox);

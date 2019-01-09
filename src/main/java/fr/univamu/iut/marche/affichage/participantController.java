@@ -50,6 +50,7 @@ public class participantController extends VBox implements Initializable {
     private ArrayList<String> produitParticipantsString = new ArrayList<>();
 
     private Button choixButton;
+    private Button choixButton2;
     @FXML
     public void setViewToListeparticipants() throws IOException{
         contentVBox.getChildren().clear();
@@ -70,6 +71,18 @@ public class participantController extends VBox implements Initializable {
             listeParticipant.setItems(data);
             choixButton = new Button("Ajouter Participants");
             choix.getChildren().add(choixButton);
+            choixButton2 = new Button("Poser Offre");
+            choix.getChildren().add(choixButton2);
+            choixButton2.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        setViewToPoserOffre();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
             choixButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -130,6 +143,10 @@ public class participantController extends VBox implements Initializable {
     public void setViewToAddParticipant() throws IOException {
         contentVBox.getChildren().clear();
         contentVBox.getChildren().addAll(new addParticipantController());
+    }
+    public void setViewToPoserOffre() throws IOException {
+        contentVBox.getChildren().clear();
+        contentVBox.getChildren().addAll(new PoserOffreController());
     }
     public static ProduitFermier getSelectedProduit(){
         return selectedProduit;
