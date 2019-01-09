@@ -29,9 +29,9 @@ public class TraderTest {
         p4 = new Trader("Garcia", "Andrea", 41);
 
         p1.setSolde(500);
-        p2.setSolde(700);
+        p2.setSolde(700.0);
         p3.setSolde(900);
-        p4.setSolde(1100);
+        p4.setSolde(1100.0);
 
     }
 

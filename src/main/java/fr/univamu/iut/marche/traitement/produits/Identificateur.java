@@ -3,7 +3,11 @@ package fr.univamu.iut.marche.traitement.produits;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 import fr.univamu.iut.marche.traitement.produits.*;
 
+/**
+ * @author Yann FORNER
+ */
 public class Identificateur implements ProduitVisiteur {
+
     @Override
     public Participant.Produits visiter(Miel m) {
         return Participant.Produits.MIEL;

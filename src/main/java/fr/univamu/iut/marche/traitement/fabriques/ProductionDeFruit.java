@@ -6,7 +6,7 @@ import fr.univamu.iut.marche.traitement.produits.ProduitFermier;
  * @author Yann FORNER
  * @author Thomas MICELI
  */
-public class ProduictionDeFruit extends UniteDeProduction {
+public class ProductionDeFruit extends UniteDeProduction {
     /**
      * Fabrique dans la production des produits de type Fruit
      * @param type

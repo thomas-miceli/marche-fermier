@@ -40,6 +40,8 @@ public class venteProduitController extends VBox implements Initializable {
     @FXML
     private TextField QuantiteVoulus;
 
+    private static homeController homeController;
+
     @FXML
     public void setViewToCatalog() throws IOException{
         contentVBox.getChildren().clear();
@@ -55,11 +57,15 @@ public class venteProduitController extends VBox implements Initializable {
         if(QuantiteVoulus.getCharacters().toString().isEmpty()) popupAlert.setText("Quantité ??");
         else {
             Vente vente = Marche.getCompositionMarche().get(Integer.parseInt(catalogController.getSelectedProduit().substring(catalogController.getSelectedProduit().length()-1)));
-            homeController.getFxmlUser().proposerOffre(Participant.Produits.valueOf(vente.getProduitVendu().getClass().getSimpleName().toUpperCase()),Integer.valueOf(QuantiteVoulus.getCharacters().toString()), ((Double.valueOf(QuantiteVoulus.getCharacters().toString()))*vente.getPrix())/vente.getProduitVendu().getQuantite(),Seeding.getListeMarche().get(0));
+            Seeding.getFxmlUser().proposerOffre(Participant.Produits.valueOf(vente.getProduitVendu().getClass().getSimpleName().toUpperCase()),Integer.valueOf(QuantiteVoulus.getCharacters().toString()), ((Double.valueOf(QuantiteVoulus.getCharacters().toString()))*vente.getPrix())/vente.getProduitVendu().getQuantite(),Seeding.getListeMarche().get(0));
+            homeController.setSoldeFxmlUser();
             setViewToCatalog();
         }
     }
 
+    public static void setHomeController(homeController h){
+        homeController = h;
+    }
     public venteProduitController() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/VenteProduit.fxml"));
         fxmlLoader.setRoot(this);

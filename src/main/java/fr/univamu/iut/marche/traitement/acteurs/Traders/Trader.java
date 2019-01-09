@@ -4,13 +4,18 @@ import fr.univamu.iut.marche.traitement.acteurs.Marche;
 import fr.univamu.iut.marche.traitement.acteurs.Participant;
 
 import java.util.ArrayList;
-
+/**
+ * @author Téo MARTIN
+ * @author Yann FORNER
+ * @author Dylan MARCH
+ */
 public class Trader {
     private String name;
     private String prenom;
     private int age;
     private Double solde=0.0;
     private ArrayList<Participant> clients = new ArrayList<>();
+    private static ArrayList<Trader> allTraders = new ArrayList<>();
 
     public Trader(String name) {
         this.name = name;
@@ -20,10 +25,11 @@ public class Trader {
         this.name = name;
         this.prenom = prenom;
         this.age = age;
+        allTraders.add(this);
     }
 
-    public String getName() {
-        return name;
+    public static ArrayList<Trader> getAllTraders(){
+        return allTraders;
     }
 
     public void setName(String name) {
@@ -46,21 +52,41 @@ public class Trader {
         this.age = age;
     }
 
-    public Double getSolde() {
-        return solde;
-    }
 
     public void setSolde(double solde) {
         this.solde = solde;
     }
 
+    /**
+     * ajoute une client à la liste clients
+     * @param p
+     */
     public void addClients (Participant p){
         clients.add(p);
         p.setTrader(this);
     }
+
+    /**
+     * Ajoute à la vente un objet de type ProduitFermier d'un de ses clients dans un marché
+     * @param client
+     * @param produitMisEnVente
+     * @param quantite
+     * @param prix
+     * @param marche
+     */
     public void metEnVente(Participant client, Participant.Produits produitMisEnVente , Integer quantite, Double prix, Marche marche){
-        if(isClient(client))client.vendreProduit(produitMisEnVente,quantite,prix,marche);
+        if(isClient(client))client.vendreProduit(produitMisEnVente,quantite,prix,marche, client);
     }
+
+    /**
+     * Ajoute une offre d'achat sur un ou plusieurs objets de type ProduitFermier en vente dans un objet de
+     * type Marche
+     * @param client
+     * @param produitMisEnVente
+     * @param quantite
+     * @param prix
+     * @param marche
+     */
     public void poseUneOffre(Participant client, Participant.Produits produitMisEnVente , Integer quantite, Double prix, Marche marche){
         if(isClient(client))client.proposerOffre(produitMisEnVente,quantite,prix,marche);
     }
@@ -68,10 +94,43 @@ public class Trader {
         solde += revenu/8;
     }
 
+    /**
+     * revoie la valeur de la variable solde d'un objet de type Trader
+     * @return solde
+     */
+    public Double getSolde() {
+        return solde;
+    }
 
+    /**
+     * permet de modifier la valeur de la variable solde d'un objet de type Trader
+     * @param solde
+     */
+    public void setSolde(Double solde) {
+        this.solde = solde;
+    }
+
+    /**
+     * revoie la valeur de la variable name d'un objet de type Trader
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * revoie le contenu de l'ArrayList<Participant> clients.
+     * @return clients
+     */
     public ArrayList<Participant> getClients() {
         return clients;
     }
+
+    /**
+     * revoie vrai si un Participant fait partie de la liste de clients du trader, faux sinon
+     * @param p
+     * @return boolean
+     */
     public boolean isClient(Participant p){
 
         for (Participant client: clients) {
@@ -82,6 +141,10 @@ public class Trader {
         return false;
     }
 
+    /**
+     * renvoie l'ensemble des valeurs des variables d'un objet Trader
+     * @return
+     */
     @Override
     public String toString() {
         String string = "Le trader " + this.getName() +" possèdent " + clients.size() + " client \n";
