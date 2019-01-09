@@ -15,6 +15,7 @@ public class Trader {
     private int age;
     private Double solde=0.0;
     private ArrayList<Participant> clients = new ArrayList<>();
+    private static ArrayList<Trader> allTraders = new ArrayList<>();
 
     public Trader(String name) {
         this.name = name;
@@ -24,6 +25,36 @@ public class Trader {
         this.name = name;
         this.prenom = prenom;
         this.age = age;
+        allTraders.add(this);
+    }
+
+    public static ArrayList<Trader> getAllTraders(){
+        return allTraders;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+
+    public void setSolde(double solde) {
+        this.solde = solde;
     }
 
     /**
