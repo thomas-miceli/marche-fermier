@@ -61,8 +61,8 @@ Compilation du projet par Maven
 
 Copie du fichier exécutable
 
-```cp target/marche-fermier-1.0-SNAPSHOT.jar marche-fermier.jar``` (Linux)
-```copy target/marche-fermier-1.0-SNAPSHOT.jar marche-fermier.jar``` (Windows)
+```cp target/marche-fermier-1.0.jar marche-fermier.jar``` (Linux)
+```copy target\marche-fermier-1.0.jar marche-fermier.jar``` (Windows)
 
 Exécution du programme
 
